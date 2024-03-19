@@ -1,4 +1,4 @@
-[![Build application](https://github.com/learning-process/parallel_programming_course/actions/workflows/main.yml/badge.svg)](https://github.com/learning-process/parallel_programming_course/actions/workflows/main.yml)
+[![Build application](https://github.com/learning-process/ppc-2024-threads/actions/workflows/main.yml/badge.svg)](https://github.com/learning-process/ppc-2024-threads/actions/workflows/main.yml)
 
 # Parallel Programming Course
 
