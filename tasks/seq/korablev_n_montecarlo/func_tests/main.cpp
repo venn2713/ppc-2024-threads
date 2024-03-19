@@ -1,5 +1,6 @@
 // Copyright 2023 Korablev Nikita
 #include <gtest/gtest.h>
+
 #include <vector>
 
 #include "seq/korablev_n_montecarlo/include/ops_seq.hpp"

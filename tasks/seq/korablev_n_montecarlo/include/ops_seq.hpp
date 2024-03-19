@@ -7,7 +7,7 @@
 #include "core/task/include/task.hpp"
 
 struct Funs {
-  enum class F {SIN, COS, TWO_SC};
+  enum class F { SIN, COS, TWO_SC };
 
   double fsin(double x);
   double fcos(double x);

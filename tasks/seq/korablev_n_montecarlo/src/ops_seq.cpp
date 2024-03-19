@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 double Funs::fsin(double x) { return sin(x); }
 double Funs::fcos(double x) { return cos(x); }
-double Funs::f_two_sc(double x) { return 2*sin(x)*cos(x); }
+double Funs::f_two_sc(double x) { return 2 * sin(x) * cos(x); }
 
 double Funs::curFun(double x) {
   switch (cur_fun) {
@@ -63,9 +63,9 @@ bool MonteCarloSequential::run() {
 
   double h = (b - a) / static_cast<double>(N);
   for (int i = 0; i < N; ++i) {
-    res += function.curFun(a + h*i);
+    res += function.curFun(a + h * i);
   }
-  res = h*res;
+  res = h * res;
 
   std::this_thread::sleep_for(20ms);
   return true;
