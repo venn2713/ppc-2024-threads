@@ -5,13 +5,12 @@
 
 #include "core/perf/include/perf.hpp"
 #include "seq/korablev_n_montecarlo/include/ops_seq.hpp"
+#define ESTIMATE 0.01
 
-TEST(sequential_example_perf_test, test_pipeline_run) {
-  const int count = 100;
-
+TEST(sequential_korablev_nikita_perf_test, test_pipeline_run) {
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<double> in = {5, 11, 0};
+  std::vector<double> out(1, 0.279236);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -40,15 +39,13 @@ TEST(sequential_example_perf_test, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
+  ASSERT_LT(out[0], ESTIMATE);
 }
 
-TEST(sequential_example_perf_test, test_task_run) {
-  const int count = 100;
-
+TEST(sequential_korablev_nikita_perf_test, test_task_run) {
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<double> in = {-10, -1.5, 1};
+  std::vector<double> out(1, -1.54152);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -77,10 +74,5 @@ TEST(sequential_example_perf_test, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
-}
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  ASSERT_LT(out[0], ESTIMATE);
 }
