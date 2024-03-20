@@ -1,4 +1,4 @@
-// Copyright 2023 Nesterov Alexander
+// Copyright 2024 Ivanov Nikita
 #include <gtest/gtest.h>
 
 #include <vector>
@@ -32,7 +32,7 @@ TEST(Sequential_ivanov, Linar_0_2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
 
 TEST(Sequential_ivanov, x_mul_y_5_10) {
@@ -62,7 +62,7 @@ TEST(Sequential_ivanov, x_mul_y_5_10) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
 
 TEST(Sequential_ivanov, sin_cos_0_2_0_1) {
@@ -92,7 +92,7 @@ TEST(Sequential_ivanov, sin_cos_0_2_0_1) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
 
 TEST(Sequential_ivanov, liner_10_12_2_4) {
@@ -122,7 +122,7 @@ TEST(Sequential_ivanov, liner_10_12_2_4) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
 
 TEST(Sequential_ivanov, Test_Sum_100) {
@@ -152,5 +152,5 @@ TEST(Sequential_ivanov, Test_Sum_100) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
