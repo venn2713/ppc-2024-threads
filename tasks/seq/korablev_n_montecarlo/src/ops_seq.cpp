@@ -39,14 +39,11 @@ bool MonteCarloSequential::run() {
   int i, j;
   for (j = 0; j < N; ++j) {
     double y = Int2[0] + h2 * j;
-    double sum = 0;
     for (i = 0; i < N; ++i) {
-      double x = Int1[0] + h1 * i;
-      sum += function(x, y);
+      res += function(Int1[0] + h1 * i, y);
     }
-    res += sum * h1;
   }
-  res *= h2;
+  res *= h1 * h2;
 
   std::this_thread::sleep_for(20ms);
   return true;
