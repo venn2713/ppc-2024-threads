@@ -2,6 +2,8 @@
 #include "seq/kulikov_a_rect_integr/include/ops_seq.hpp"
 
 #include <thread>
+#include <cmath>
+#include <iostream>
 
 using namespace std::chrono_literals;
 
@@ -32,6 +34,7 @@ bool KulikovTaskSequential::run() {
     res *= h_x * h_y;
     err = 2 * (x_lim_u - x_lim_l) * (y_lim_u - y_lim_l) / 24;
   } catch (const std::exception& e) {
+    std::cout << e.what() << std::endl;
     return false;
   }
   std::this_thread::sleep_for(20ms);
