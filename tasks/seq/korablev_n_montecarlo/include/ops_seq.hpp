@@ -6,18 +6,11 @@
 
 #include "core/task/include/task.hpp"
 
-struct Funs {
-  enum class F { SINPSIN, COSPCOS, SINMCOS, LIN };
+typedef double (*func)(double, double);
 
-  double flin(double x, double y);
-  double fsinxPsiny(double x, double y);
-  double fcosxPcosy(double x, double y);
-  double fsinxMcosy(double x, double y);
-  F cur_fun;
-
-  double curFun(double x, double y);
-  void setCurFun(int i);
-};
+double flin(double x, double y);
+double fsinxPsiny(double x, double y);
+double fcosxPcosy(double x, double y);
 
 class MonteCarloSequential : public ppc::core::Task {
  public:
@@ -28,10 +21,9 @@ class MonteCarloSequential : public ppc::core::Task {
   bool post_processing() override;
 
  private:
+  func function{};
   double Int1[2]{}, Int2[2]{};
 
   int N{};
   double res{};
-
-  Funs function{};
 };
