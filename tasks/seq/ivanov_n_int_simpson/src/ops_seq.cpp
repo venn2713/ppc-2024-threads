@@ -1,5 +1,6 @@
 // Copyright 2024 Ivanov Nikita
 #include "seq/ivanov_n_int_simpson/include/ops_seq.hpp"
+
 #include <cmath>
 #include <thread>
 

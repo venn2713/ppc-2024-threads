@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 #include "core/task/include/task.hpp"
 
 typedef double (*func)(double a, double b);

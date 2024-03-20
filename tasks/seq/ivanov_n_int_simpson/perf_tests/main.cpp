@@ -47,7 +47,7 @@ TEST(sequential_ivanov_perf_test, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
 
 TEST(sequential_ivanov_perf_test, test_task_run) {
@@ -91,5 +91,5 @@ TEST(sequential_ivanov_perf_test, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LE(res-out[0], 0.001);
+  ASSERT_LE(res - out[0], 0.001);
 }
