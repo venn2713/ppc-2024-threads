@@ -9,6 +9,8 @@ using namespace std::chrono_literals;
 double flin(double x, double y) { return x + y; }
 double fsinxPsiny(double x, double y) { return sin(x) + sin(y); }
 double fcosxPcosy(double x, double y) { return cos(x) + cos(y); }
+double fxy(double x, double y) { return x * y; }
+double fxyy(double x, double y) { return x * y * y; }
 
 bool MonteCarloSequential::pre_processing() {
   internal_order_test();
@@ -19,7 +21,7 @@ bool MonteCarloSequential::pre_processing() {
   Int2[1] = reinterpret_cast<double*>(taskData->inputs[1])[1];
   function = reinterpret_cast<func>(taskData->inputs[2]);
 
-  N = 100;
+  N = 1000;
   res = 0.0;
   return true;
 }
