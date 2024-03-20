@@ -8,14 +8,23 @@
 #define ESTIMATE 0.01
 
 TEST(sequential_korablev_nikita_perf_test, test_pipeline_run) {
+  double res = 8;
+  func f = flin;
+
   // Create data
-  std::vector<double> in = {5, 11, 0};
-  std::vector<double> out(1, 0.279236);
+  std::vector<double> in1 = {0, 2};
+  std::vector<double> in2 = {0, 2};
+  std::vector<double> out(1, res);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
+  taskDataSeq->inputs_count.emplace_back(in1.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
+  taskDataSeq->inputs_count.emplace_back(in2.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(in2.size());
+
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
@@ -39,18 +48,27 @@ TEST(sequential_korablev_nikita_perf_test, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LT(out[0], ESTIMATE);
+  ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
 TEST(sequential_korablev_nikita_perf_test, test_task_run) {
+  double res = 8;
+  func f = flin;
+
   // Create data
-  std::vector<double> in = {-10, -1.5, 1};
-  std::vector<double> out(1, -1.54152);
+  std::vector<double> in1 = {0, 2};
+  std::vector<double> in2 = {0, 2};
+  std::vector<double> out(1, res);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
+  taskDataSeq->inputs_count.emplace_back(in1.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
+  taskDataSeq->inputs_count.emplace_back(in2.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(in2.size());
+
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
@@ -74,5 +92,5 @@ TEST(sequential_korablev_nikita_perf_test, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LT(out[0], ESTIMATE);
+  ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
