@@ -97,12 +97,12 @@ TEST(korablev_n_monte_carlo_seq, Test_sum_of_cos) {
 }
 
 TEST(korablev_n_monte_carlo_seq, Test_x_mult_y) {
-  double res = 156.25;
+  double res = 2.25;
   func f = fxy;
 
   // Create data
-  std::vector<double> in1 = {-5, 0};
-  std::vector<double> in2 = {-5, 0};
+  std::vector<double> in1 = {0, 1};
+  std::vector<double> in2 = {0, 3};
   std::vector<double> out(1, res);
 
   // Create TaskData
