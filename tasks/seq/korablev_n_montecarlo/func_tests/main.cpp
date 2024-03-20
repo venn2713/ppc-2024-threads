@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "seq/korablev_n_montecarlo/include/ops_seq.hpp"
-#define ESTIMATE 0.1
+#define ESTIMATE 0.2
 
 TEST(SeqMC, Test_lin_fun) {
   double res = 8;

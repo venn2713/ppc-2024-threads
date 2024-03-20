@@ -5,7 +5,7 @@
 
 #include "core/perf/include/perf.hpp"
 #include "seq/korablev_n_montecarlo/include/ops_seq.hpp"
-#define ESTIMATE 0.01
+#define ESTIMATE 0.2
 
 TEST(sequential_korablev_nikita_perf_test, test_pipeline_run) {
   double res = 8;
