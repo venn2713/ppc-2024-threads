@@ -33,8 +33,8 @@ bool MonteCarloSequential::validation() {
 bool MonteCarloSequential::run() {
   internal_order_test();
 
-  double h1 = (Int1[1] - Int1[0]) / static_cast<double>(N);
-  double h2 = (Int2[1] - Int2[0]) / static_cast<double>(N);
+  double h1 = (Int1[1] - Int1[0]) / N;
+  double h2 = (Int2[1] - Int2[0]) / N;
 
   int i, j;
   for (j = 0; j < N; ++j) {
