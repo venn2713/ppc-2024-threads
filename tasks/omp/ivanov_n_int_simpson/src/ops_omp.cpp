@@ -3,10 +3,6 @@
 
 #include <omp.h>
 
-#include <iostream>
-#include <numeric>
-#include <random>
-#include <string>
 #include <cmath>
 #include <thread>
 
@@ -28,7 +24,6 @@ bool TestOMPTaskSequentialIvanovSimpson::pre_processing() {
   c = reinterpret_cast<int*>(taskData->inputs[0])[2];
   d = reinterpret_cast<int*>(taskData->inputs[0])[3];
   n = reinterpret_cast<int*>(taskData->inputs[0])[4];
-//  fun = reinterpret_cast<func>(taskData->inputs[1]);
   res = 0.0;
   return true;
 }
@@ -75,7 +70,6 @@ bool TestOMPTaskParallelIvanovSimpson::pre_processing() {
   c = reinterpret_cast<int*>(taskData->inputs[0])[2];
   d = reinterpret_cast<int*>(taskData->inputs[0])[3];
   n = reinterpret_cast<int*>(taskData->inputs[0])[4];
-//  fun = reinterpret_cast<func>(taskData->inputs[1]);
   res = 0.0;
   return true;
 }
@@ -93,7 +87,7 @@ bool TestOMPTaskParallelIvanovSimpson::run() {
   double h2 = (double)(d - c) / n;
   auto temp_res = res;
 
-#pragma omp parallel for reduction(+: temp_res)
+#pragma omp parallel for reduction(+ : temp_res)
   for (int i = 0; i < n; i++) {
     double y0 = c + i * h2;
     double y1 = c + (i + 1) * h2;
@@ -102,7 +96,7 @@ bool TestOMPTaskParallelIvanovSimpson::run() {
       double x1 = a + (j + 1) * h1;
 
       temp_res += h2 * h1 / 36 *
-             (simpson(x0, x1, y0, fun) + 4 * simpson(x0, x1, (y0 + y1) / 2, fun) + simpson(x0, x1, y1, fun));
+                  (simpson(x0, x1, y0, fun) + 4 * simpson(x0, x1, (y0 + y1) / 2, fun) + simpson(x0, x1, y1, fun));
     }
   }
   res = temp_res;

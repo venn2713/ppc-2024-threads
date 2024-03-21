@@ -5,7 +5,7 @@
 
 #include "omp/ivanov_n_int_simpson/include/ops_omp.hpp"
 
-TEST(OMP_ivanov, Linar_0_2) {
+TEST(ivanov_n_int_simpson_omp, Linar_0_2) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
@@ -48,10 +48,10 @@ TEST(OMP_ivanov, Linar_0_2) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  ASSERT_LE(abs(out[0]-out_par[0]), 0.0000001);
+  ASSERT_LE(abs(out[0] - out_par[0]), 0.0000001);
 }
 
-TEST(OMP_ivanov, x_mul_y_5_10) {
+TEST(ivanov_n_int_simpson_omp, x_mul_y_5_10) {
   const int a = 5;
   const int b = 10;
   const int c = 2;
@@ -94,10 +94,10 @@ TEST(OMP_ivanov, x_mul_y_5_10) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  ASSERT_LE(abs(out[0]-out_par[0]), 0.0000001);
+  ASSERT_LE(abs(out[0] - out_par[0]), 0.0000001);
 }
 
-TEST(OMP_ivanov, sin_cos_0_2_0_1) {
+TEST(ivanov_n_int_simpson_omp, sin_cos_0_2_0_1) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
@@ -140,10 +140,10 @@ TEST(OMP_ivanov, sin_cos_0_2_0_1) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  ASSERT_LE(abs(out[0]-out_par[0]), 0.0000001);
+  ASSERT_LE(abs(out[0] - out_par[0]), 0.0000001);
 }
 
-TEST(OMP_ivanov, liner_10_12_2_4) {
+TEST(ivanov_n_int_simpson_omp, liner_10_12_2_4) {
   const int a = 10;
   const int b = 12;
   const int c = 2;
@@ -186,10 +186,10 @@ TEST(OMP_ivanov, liner_10_12_2_4) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  ASSERT_LE(abs(out[0]-out_par[0]), 0.0000001);
+  ASSERT_LE(abs(out[0] - out_par[0]), 0.0000001);
 }
 
-TEST(OMP_ivanov, x_mul_y_10_12_2_4) {
+TEST(ivanov_n_int_simpson_omp, x_mul_y_10_12_2_4) {
   const int a = 10;
   const int b = 12;
   const int c = 2;
@@ -232,5 +232,5 @@ TEST(OMP_ivanov, x_mul_y_10_12_2_4) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  ASSERT_LE(abs(out[0]-out_par[0]), 0.0000001);
+  ASSERT_LE(abs(out[0] - out_par[0]), 0.0000001);
 }

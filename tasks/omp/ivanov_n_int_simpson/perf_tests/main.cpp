@@ -7,7 +7,7 @@
 #include "core/perf/include/perf.hpp"
 #include "omp/ivanov_n_int_simpson/include/ops_omp.hpp"
 
-TEST(sequential_ivanov_perf_test, test_pipeline_run) {
+TEST(ivanov_n_int_simpson_omp, test_pipeline_run) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
@@ -45,7 +45,7 @@ TEST(sequential_ivanov_perf_test, test_pipeline_run) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(sequential_ivanov_perf_test, test_task_run) {
+TEST(ivanov_n_int_simpson_omp, test_task_run) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
