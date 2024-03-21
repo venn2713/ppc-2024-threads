@@ -2,6 +2,7 @@
 #include "seq/mitin_r_double_radix_sort/include/ops_seq.hpp"
 
 #include <cstring>
+#include <iostream>
 #include <thread>
 
 using namespace std::chrono_literals;
@@ -52,6 +53,7 @@ bool SortRadixDoubleTaskSequential::run() {
       }
     }
   } catch (const std::exception& e) {
+    std::cerr << "Double Radix sort Exception error: " << e.what() << std::endl;
     return false;
   }
 
