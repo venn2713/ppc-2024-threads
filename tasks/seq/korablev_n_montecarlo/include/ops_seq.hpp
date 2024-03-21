@@ -6,7 +6,7 @@
 
 #include "core/task/include/task.hpp"
 
-typedef double (*func)(double, double);
+using func = double (*)(double, double);
 
 double flin(double x, double y);
 double fsinxPsiny(double x, double y);

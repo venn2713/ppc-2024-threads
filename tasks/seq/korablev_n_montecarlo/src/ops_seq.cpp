@@ -48,7 +48,7 @@ bool MonteCarloSequential::run() {
   }
   res *= h1 * h2;
 
-  std::this_thread::sleep_for(20ms);
+//  std::this_thread::sleep_for(20ms);
   return true;
 }
 
