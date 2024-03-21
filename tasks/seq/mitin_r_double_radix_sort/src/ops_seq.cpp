@@ -1,8 +1,8 @@
 // Copyright 2024 Mitin Roman
 #include "seq/mitin_r_double_radix_sort/include/ops_seq.hpp"
 
-#include <thread>
 #include <cstring>
+#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -19,8 +19,9 @@ uint8_t get_byte_val(double val, size_t byte_num) {
 bool SortRadixDoubleTaskSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count.size() || taskData->inputs_count.size() == taskData->outputs_count.size() ||
-         taskData->outputs[0] || taskData->inputs_count[0] == 0 || taskData->inputs.size() || taskData->inputs[0];
+  return !taskData->inputs_count.empty() || taskData->inputs_count.size() == taskData->outputs_count.size() ||
+         taskData->outputs[0] != nullptr || taskData->inputs_count[0] == 0 || !taskData->inputs.empty() ||
+         taskData->inputs[0] != nullptr;
 }
 
 bool SortRadixDoubleTaskSequential::pre_processing() {
@@ -29,7 +30,7 @@ bool SortRadixDoubleTaskSequential::pre_processing() {
 
   data_size = taskData->inputs_count[0];
   data_ptr = reinterpret_cast<double*>(taskData->inputs[0]);
-  
+
   return data_size == 0 || data_ptr != nullptr;
 }
 

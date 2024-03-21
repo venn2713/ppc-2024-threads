@@ -14,13 +14,13 @@ constexpr size_t input_size = 5e+6;
 }  // namespace
 
 double timer() {
-    auto current_time_point = std::chrono::high_resolution_clock::now();
-    return static_cast<double>(current_time_point.time_since_epoch().count()) * 1e-9;
+  auto current_time_point = std::chrono::high_resolution_clock::now();
+  return static_cast<double>(current_time_point.time_since_epoch().count()) * 1e-9;
 }
 
 TEST(mitin_r_double_radix_sort_seq, test_pipeline_run) {
   // Create data
-  
+
   std::mt19937 gen(1.0);
   std::uniform_real_distribution<> dis(0.0, 1e+10);
   std::vector<double> in(input_size);
@@ -33,9 +33,9 @@ TEST(mitin_r_double_radix_sort_seq, test_pipeline_run) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(out.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
   // Create Task
   auto testTaskSequential = std::make_shared<SortRadixDoubleTaskSequential>(taskDataSeq);
@@ -43,7 +43,6 @@ TEST(mitin_r_double_radix_sort_seq, test_pipeline_run) {
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  std::chrono::_V2::system_clock::time_point t0;
   perfAttr->current_timer = &timer;
 
   // Create and init perf results
@@ -51,7 +50,6 @@ TEST(mitin_r_double_radix_sort_seq, test_pipeline_run) {
 
   // Create Perf analyzer
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
-  t0 = std::chrono::high_resolution_clock::now();
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
 
@@ -72,13 +70,13 @@ TEST(mitin_r_double_radix_sort_seq, test_task_run) {
     in[i] = expected[i] = dis(gen);
   }
 
-  std::vector<double*> out(1);
+  std::vector<double *> out(1);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(out.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
   // Create Task
   auto testTaskSequential = std::make_shared<SortRadixDoubleTaskSequential>(taskDataSeq);

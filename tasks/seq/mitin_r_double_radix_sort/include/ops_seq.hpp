@@ -1,9 +1,9 @@
 // Copyright 2024 Mitin Roman
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 #include "core/task/include/task.hpp"
 
