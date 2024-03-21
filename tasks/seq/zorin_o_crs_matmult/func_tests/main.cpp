@@ -7,9 +7,9 @@
 
 TEST(Zorin_O_CRS_MatMult_Seq, zero_rhs_matrix) {
   // Create data
-  size_t p = 100;
-  size_t q = 100;
-  size_t r = 100;
+  size_t p = 11;
+  size_t q = 10;
+  size_t r = 9;
   std::vector<double> lhs_in = getRandomMatrix(p, q);
   std::vector<double> rhs_in(q * r);
   std::vector<double> out(p * r);
@@ -39,9 +39,9 @@ TEST(Zorin_O_CRS_MatMult_Seq, zero_rhs_matrix) {
 
 TEST(Zorin_O_CRS_MatMult_Seq, zero_lhs_matrix) {
   // Create data
-  size_t p = 100;
-  size_t q = 100;
-  size_t r = 100;
+  size_t p = 11;
+  size_t q = 10;
+  size_t r = 9;
   std::vector<double> lhs_in(p * q);
   std::vector<double> rhs_in = getRandomMatrix(q, r);
   std::vector<double> out(p * r);
@@ -71,8 +71,8 @@ TEST(Zorin_O_CRS_MatMult_Seq, zero_lhs_matrix) {
 
 TEST(Zorin_O_CRS_MatMult_Seq, identity_rhs_matrix) {
   // Create data
-  size_t p = 100;
-  size_t q = 100;
+  size_t p = 11;
+  size_t q = 10;
   size_t r = q;
   std::vector<double> lhs_in = getRandomMatrix(p, q);
   std::vector<double> rhs_in = getIdentityMatrix(q);
@@ -103,9 +103,9 @@ TEST(Zorin_O_CRS_MatMult_Seq, identity_rhs_matrix) {
 
 TEST(Zorin_O_CRS_MatMult_Seq, identity_lhs_matrix) {
   // Create data
-  size_t p = 100;
+  size_t p = 11;
   size_t q = p;
-  size_t r = 100;
+  size_t r = 10;
   std::vector<double> lhs_in = getIdentityMatrix(p);
   std::vector<double> rhs_in = getRandomMatrix(q, r);
   std::vector<double> out(p * r);
@@ -133,7 +133,7 @@ TEST(Zorin_O_CRS_MatMult_Seq, identity_lhs_matrix) {
   }
 }
 
-TEST(Zorin_O_CRS_MatMult_Seq, test_matmult1) {
+TEST(Zorin_O_CRS_MatMult_Seq, matmult_with_answer) {
   // Create data
   size_t p = 4;
   size_t q = 5;
@@ -148,6 +148,7 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_matmult1) {
       0, 50, 90, 90, 0, 25, 45, 42, 1, -4, -9, -8, 140, 0, 160, 5,
   };
   std::vector<double> out(p * r);
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(lhs_in.data()));
@@ -171,20 +172,24 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_matmult1) {
   }
 }
 
-TEST(Zorin_O_CRS_MatMult_Seq, test_matmult2) {
+TEST(Zorin_O_CRS_MatMult_Seq, special_matmult) {
   // Create data
-  size_t p = 100;
-  size_t q = 100;
-  size_t r = 100;
+  size_t p = 11;
+  size_t q = 10;
+  size_t r = 11;
   std::vector<double> lhs_in(p * q);
-  for (size_t i = 0; i < lhs_in.size(); ++i) {
-    if (i % 2 > 0)
-      lhs_in[i] = 1.0;
+  for (size_t i = 0; i < p; ++i) {
+    if (i % 2 == 0)
+      for (size_t j = 0; j < q; ++j) {
+        lhs_in[i * q + j] = 1.0;
+      }
   }
   std::vector<double> rhs_in(q * r);
-  for (size_t i = 0; i < lhs_in.size(); ++i) {
-    if (i % 2 == 0)
-      lhs_in[i] = 1.0;
+  for (size_t i = 0; i < q; ++i) {
+    for (size_t j = 0; j < r; ++j) {
+      if (j % 2 == 0)
+        rhs_in[i * r + j] = 1.0;
+    }
   }
   std::vector<double> out(p * r);
 
@@ -206,7 +211,12 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_matmult2) {
   ASSERT_TRUE(crsMatMultSeq.pre_processing());
   ASSERT_TRUE(crsMatMultSeq.run());
   ASSERT_TRUE(crsMatMultSeq.post_processing());
-  for (size_t i = 0; i < out.size(); ++i) {
-    EXPECT_DOUBLE_EQ(out[i], 0.0);
+  for (size_t i = 0; i < p; ++i) {
+    for (size_t j = 0; j < r; ++j) {
+      if (i % 2 == 0 && j % 2 == 0)
+        EXPECT_DOUBLE_EQ(out[i * r + j], q);
+      else
+        EXPECT_DOUBLE_EQ(out[i * r + j], 0.0);
+    }
   }
 }

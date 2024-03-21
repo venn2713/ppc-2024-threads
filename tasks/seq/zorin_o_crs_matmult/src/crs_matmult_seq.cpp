@@ -3,6 +3,7 @@
 
 bool CRSMatMult::validation() {
   internal_order_test();
+
   return taskData->inputs_count[1] == taskData->inputs_count[2] &&
          taskData->outputs_count[0] == taskData->inputs_count[0] &&
          taskData->outputs_count[1] == taskData->inputs_count[3];
@@ -10,11 +11,13 @@ bool CRSMatMult::validation() {
 
 bool CRSMatMult::pre_processing() {
   internal_order_test();
+
   A = std::make_unique<CRSMatrix>(reinterpret_cast<double*>(taskData->inputs[0]), taskData->inputs_count[0],
                                   taskData->inputs_count[1]);
   B = std::make_unique<CRSMatrix>(reinterpret_cast<double*>(taskData->inputs[1]), taskData->inputs_count[2],
                                   taskData->inputs_count[3]);
   C = std::make_unique<CRSMatrix>(taskData->outputs_count[0], taskData->outputs_count[1]);
+
   return true;
 }
 
@@ -49,11 +52,13 @@ bool CRSMatMult::run() {
 
 bool CRSMatMult::post_processing() {
   internal_order_test();
+
   auto* out_ptr = reinterpret_cast<double*>(taskData->outputs[0]);
   for (size_t i = 0; i < C->n_rows; ++i) {
     for (size_t j = C->row_ptr[i]; j < C->row_ptr[i + 1]; ++j) {
       out_ptr[i * C->n_cols + C->col_index[j]] = C->values[j];
     }
   }
+
   return true;
 }
