@@ -1,9 +1,9 @@
 // Copyright 2023 Kulikov Artem
 #include "seq/kulikov_a_rect_integr/include/ops_seq.hpp"
 
-#include <thread>
 #include <cmath>
 #include <iostream>
+#include <thread>
 
 using namespace std::chrono_literals;
 
