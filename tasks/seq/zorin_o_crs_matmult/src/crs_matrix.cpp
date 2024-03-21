@@ -25,7 +25,7 @@ std::vector<double> getRandomMatrix(const size_t& n_rows, const size_t& n_cols, 
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> value_dist(a, b);
-  std::uniform_int_distribution<size_t> index_dist(0, n_rows * n_cols);
+  std::uniform_int_distribution<size_t> index_dist(0, n_rows * n_cols - 1);
   std::vector<double> matrix(n_rows * n_cols);
   auto nnz = static_cast<size_t>(static_cast<double>(n_rows * n_cols) * density);
   for (size_t i = 0; i < nnz; ++i) {
