@@ -10,7 +10,8 @@ typedef double (*func)(double a, double b);
 
 class TestTaskSequentialSimpson : public ppc::core::Task {
  public:
-  explicit TestTaskSequentialSimpson(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit TestTaskSequentialSimpson(std::shared_ptr<ppc::core::TaskData> taskData_, func fun_)
+      : Task(std::move(taskData_)), fun(std::move(fun_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

@@ -6,14 +6,14 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/ivanov_n_int_simpson/include/ops_seq.hpp"
 
-TEST(sequential_ivanov_perf_test, test_pipeline_run) {
+TEST(ivanov_n_int_simpson_seq, test_pipeline_run) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
   const int d = 2;
   const int n = 100;
   const int res = 8;
-  func fuction = linear_fun;
+  func function = linear_fun;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -22,13 +22,12 @@ TEST(sequential_ivanov_perf_test, test_pipeline_run) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialSimpson>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -50,14 +49,14 @@ TEST(sequential_ivanov_perf_test, test_pipeline_run) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(sequential_ivanov_perf_test, test_task_run) {
+TEST(ivanov_n_int_simpson_seq, test_task_run) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
   const int d = 2;
   const int n = 100;
   const int res = 8;
-  func fuction = linear_fun;
+  func function = linear_fun;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -66,13 +65,12 @@ TEST(sequential_ivanov_perf_test, test_task_run) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialSimpson>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();

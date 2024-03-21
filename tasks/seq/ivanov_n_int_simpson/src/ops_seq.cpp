@@ -22,7 +22,6 @@ bool TestTaskSequentialSimpson::pre_processing() {
   c = reinterpret_cast<int*>(taskData->inputs[0])[2];
   d = reinterpret_cast<int*>(taskData->inputs[0])[3];
   n = reinterpret_cast<int*>(taskData->inputs[0])[4];
-  fun = reinterpret_cast<func>(taskData->inputs[1]);
   res = 0.0;
   return true;
 }

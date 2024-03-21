@@ -5,14 +5,14 @@
 
 #include "seq/ivanov_n_int_simpson/include/ops_seq.hpp"
 
-TEST(Sequential_ivanov, Linar_0_2) {
+TEST(ivanov_n_int_simpson_seq, Linar_0_2) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
   const int d = 2;
   const int n = 100;
   const int res = 8;
-  func fuction = linear_fun;
+  func function = linear_fun;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -21,13 +21,12 @@ TEST(Sequential_ivanov, Linar_0_2) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  TestTaskSequentialSimpson testTaskSequential(taskDataSeq);
+  TestTaskSequentialSimpson testTaskSequential(taskDataSeq, function);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -35,14 +34,14 @@ TEST(Sequential_ivanov, Linar_0_2) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(Sequential_ivanov, x_mul_y_5_10) {
+TEST(ivanov_n_int_simpson_seq, x_mul_y_5_10) {
   const int a = 5;
   const int b = 10;
   const int c = 2;
   const int d = 10;
   const int n = 100;
   const double res = 1406.25;
-  func fuction = x_mul_y;
+  func function = x_mul_y;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -51,13 +50,12 @@ TEST(Sequential_ivanov, x_mul_y_5_10) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  TestTaskSequentialSimpson testTaskSequential(taskDataSeq);
+  TestTaskSequentialSimpson testTaskSequential(taskDataSeq, function);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -65,14 +63,14 @@ TEST(Sequential_ivanov, x_mul_y_5_10) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(Sequential_ivanov, sin_cos_0_2_0_1) {
+TEST(ivanov_n_int_simpson_seq, sin_cos_0_2_0_1) {
   const int a = 0;
   const int b = 2;
   const int c = 0;
   const int d = 1;
   const int n = 100;
   const double res = 1.828692;
-  func fuction = sin_cos;
+  func function = sin_cos;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -81,13 +79,12 @@ TEST(Sequential_ivanov, sin_cos_0_2_0_1) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  TestTaskSequentialSimpson testTaskSequential(taskDataSeq);
+  TestTaskSequentialSimpson testTaskSequential(taskDataSeq, function);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -95,14 +92,14 @@ TEST(Sequential_ivanov, sin_cos_0_2_0_1) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(Sequential_ivanov, liner_10_12_2_4) {
+TEST(ivanov_n_int_simpson_seq, liner_10_12_2_4) {
   const int a = 10;
   const int b = 12;
   const int c = 2;
   const int d = 4;
   const int n = 100;
   const double res = 56.0;
-  func fuction = linear_fun;
+  func function = linear_fun;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -111,13 +108,12 @@ TEST(Sequential_ivanov, liner_10_12_2_4) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  TestTaskSequentialSimpson testTaskSequential(taskDataSeq);
+  TestTaskSequentialSimpson testTaskSequential(taskDataSeq, function);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -125,14 +121,14 @@ TEST(Sequential_ivanov, liner_10_12_2_4) {
   ASSERT_LE(res - out[0], 0.001);
 }
 
-TEST(Sequential_ivanov, Test_Sum_100) {
+TEST(ivanov_n_int_simpson_seq, Test_Sum_100) {
   const int a = 10;
   const int b = 12;
   const int c = 2;
   const int d = 4;
   const int n = 100;
   const double res = 132.0;
-  func fuction = x_mul_y;
+  func function = x_mul_y;
 
   // Create data
   std::vector<int> in = {a, b, c, d, n};
@@ -141,13 +137,12 @@ TEST(Sequential_ivanov, Test_Sum_100) {
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(fuction));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  TestTaskSequentialSimpson testTaskSequential(taskDataSeq);
+  TestTaskSequentialSimpson testTaskSequential(taskDataSeq, function);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
