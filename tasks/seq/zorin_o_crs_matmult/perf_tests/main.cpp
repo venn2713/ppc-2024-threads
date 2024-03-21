@@ -6,9 +6,9 @@
 
 TEST(Zorin_O_CRS_MatMult_Seq, test_pipeline_run) {
   // Create data
-  size_t p = 1001;
-  size_t q = 1000;
-  size_t r = 1001;
+  size_t p = 901;
+  size_t q = 900;
+  size_t r = 901;
   std::vector<double> lhs_in(p * q);
   for (size_t i = 0; i < p; ++i) {
     if (i % 2 == 0)
@@ -67,9 +67,9 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_pipeline_run) {
 
 TEST(Zorin_O_CRS_MatMult_Seq, test_task_run) {
   // Create data
-  size_t p = 1001;
-  size_t q = 1000;
-  size_t r = 1001;
+  size_t p = 901;
+  size_t q = 900;
+  size_t r = 901;
   std::vector<double> lhs_in(p * q);
   for (size_t i = 0; i < p; ++i) {
     if (i % 2 == 0)

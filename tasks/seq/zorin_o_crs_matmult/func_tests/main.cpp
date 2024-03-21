@@ -5,6 +5,34 @@
 
 #include "seq/zorin_o_crs_matmult/include/crs_matmult_seq.hpp"
 
+TEST(Zorin_O_CRS_MatMult_Seq, incorrect_matrix_sizes) {
+  // Create data
+  size_t p = 11;
+  size_t q = 10;
+  size_t s = 11;
+  size_t r = 9;
+  std::vector<double> lhs_in(p * q);
+  std::vector<double> rhs_in(s * r);
+  std::vector<double> out(p * r);
+
+  // Create TaskData
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(lhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(p);
+  taskDataSeq->inputs_count.emplace_back(q);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(rhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(s);
+  taskDataSeq->inputs_count.emplace_back(r);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+  taskDataSeq->outputs_count.emplace_back(p);
+  taskDataSeq->outputs_count.emplace_back(r);
+
+  // Create Task
+  CRSMatMult crsMatMultSeq(taskDataSeq);
+  ASSERT_FALSE(crsMatMultSeq.validation());
+}
+
+
 TEST(Zorin_O_CRS_MatMult_Seq, zero_rhs_matrix) {
   // Create data
   size_t p = 11;
