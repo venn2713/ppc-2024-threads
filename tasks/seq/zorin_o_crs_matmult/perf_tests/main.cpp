@@ -19,8 +19,7 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_pipeline_run) {
   std::vector<double> rhs_in(q * r);
   for (size_t i = 0; i < q; ++i) {
     for (size_t j = 0; j < r; ++j) {
-      if (j % 2 == 0)
-        rhs_in[i * r + j] = 1.0;
+      if (j % 2 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
   std::vector<double> out(p * r);
@@ -81,8 +80,7 @@ TEST(Zorin_O_CRS_MatMult_Seq, test_task_run) {
   std::vector<double> rhs_in(q * r);
   for (size_t i = 0; i < q; ++i) {
     for (size_t j = 0; j < r; ++j) {
-      if (j % 2 == 0)
-        rhs_in[i * r + j] = 1.0;
+      if (j % 2 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
   std::vector<double> out(p * r);
