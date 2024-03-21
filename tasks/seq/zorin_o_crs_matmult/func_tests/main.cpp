@@ -32,7 +32,6 @@ TEST(Zorin_O_CRS_MatMult_Seq, incorrect_matrix_sizes) {
   ASSERT_FALSE(crsMatMultSeq.validation());
 }
 
-
 TEST(Zorin_O_CRS_MatMult_Seq, zero_rhs_matrix) {
   // Create data
   size_t p = 11;
