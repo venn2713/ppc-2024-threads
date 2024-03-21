@@ -21,7 +21,6 @@ bool CRSMatMult::pre_processing() {
 bool CRSMatMult::run() {
   internal_order_test();
 
-  C->row_ptr.push_back(0);
   std::vector<double> temp_row(C->n_cols);
 
   for (size_t row_i = 0; row_i < A->n_rows; ++row_i) {
@@ -33,6 +32,7 @@ bool CRSMatMult::run() {
       }
     }
 
+    C->row_ptr.push_back(C->values.size());
     for (size_t i = 0; i < temp_row.size(); ++i) {
       double& val = temp_row[i];
       if (std::abs(val) > 1e-8) {
@@ -41,8 +41,9 @@ bool CRSMatMult::run() {
         val = 0.0;
       }
     }
-    C->row_ptr.push_back(C->values.size());
   }
+  C->row_ptr.push_back(C->values.size());
+
   return true;
 }
 
