@@ -1,4 +1,4 @@
-// Copyright 2023 Nesterov Alexander
+// Copyright 2024 Ivanov Nikita
 #include <gtest/gtest.h>
 
 #include <vector>
