@@ -12,7 +12,7 @@ TEST(ivanov_n_int_simpson_omp, test_pipeline_run) {
   const int b = 2;
   const int c = 0;
   const int d = 2;
-  const int n = 100;
+  const int n = 1000;
   const int res = 8;
   func function = linear_fun;
 
@@ -28,7 +28,7 @@ TEST(ivanov_n_int_simpson_omp, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskOMP = std::make_shared<TestOMPTaskSequentialIvanovSimpson>(taskDataSeq, function);
+  auto testTaskOMP = std::make_shared<TestOMPTaskParallelIvanovSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -50,7 +50,7 @@ TEST(ivanov_n_int_simpson_omp, test_task_run) {
   const int b = 2;
   const int c = 0;
   const int d = 2;
-  const int n = 100;
+  const int n = 1000;
   const int res = 8;
   func function = linear_fun;
 
@@ -66,7 +66,7 @@ TEST(ivanov_n_int_simpson_omp, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskOMP = std::make_shared<TestOMPTaskSequentialIvanovSimpson>(taskDataSeq, function);
+  auto testTaskOMP = std::make_shared<TestOMPTaskParallelIvanovSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
