@@ -15,7 +15,7 @@ class HoareSortWBatcherMergeSequential : public ppc::core::Task {
   bool run() override;
   bool post_processing() override;
   void HoareSortWBatcherMergeSeq(std::vector<int> &arr, size_t l, size_t r);
-  void CompExch(int &a, int &b);
+  static void CompExch(int &a, int &b);
 
  private:
   std::vector<int> array{};
