@@ -6,7 +6,7 @@
 
 #include "core/task/include/task.hpp"
 
-typedef double (*func)(double a, double b);
+using func = double (*)(double, double);
 
 class TestOMPTaskSequentialIvanovSimpson : public ppc::core::Task {
  public:
