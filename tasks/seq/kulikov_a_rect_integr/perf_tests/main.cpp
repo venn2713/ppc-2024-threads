@@ -8,7 +8,7 @@
 
 TEST(kulikov_a_rect_integr_seq, test_pipeline_run) {
   // Create data
-  std::vector<double> in{-15.0, 15.0, -20.0, 10.0, 1e3};
+  std::vector<double> in{-15.0, 15.0, -20.0, 10.0, 4e3};
   std::vector<double> out(2);
 
   // Create TaskData
@@ -43,7 +43,7 @@ TEST(kulikov_a_rect_integr_seq, test_pipeline_run) {
 
 TEST(kulikov_a_rect_integr_seq, test_task_run) {
   // Create data
-  std::vector<double> in{-15.0, 15.0, -20.0, 10.0, 1e3};
+  std::vector<double> in{-15.0, 15.0, -20.0, 10.0, 4e3};
   std::vector<double> out(2);
 
   // Create TaskData

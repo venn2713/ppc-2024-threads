@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -37,7 +36,6 @@ bool KulikovTaskSequential::run() {
     std::cout << e.what() << std::endl;
     return false;
   }
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
