@@ -1,7 +1,6 @@
 // Copyright 2024 Ivanov Nikita
 #include "tbb/ivanov_n_int_simpson/include/ops_tbb.hpp"
 
-//#include <tbb/tbb.h>
 #include <oneapi/tbb.h>
 #include <oneapi/tbb/parallel_for.h>
 
