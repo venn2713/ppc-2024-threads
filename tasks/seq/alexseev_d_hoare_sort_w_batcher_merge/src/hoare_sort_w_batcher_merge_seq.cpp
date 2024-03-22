@@ -32,7 +32,7 @@ bool HoareSortWBatcherMergeSequential::validation() {
 bool HoareSortWBatcherMergeSequential::run() {
   try {
     internal_order_test();
-    hoareSortWBatcherMergeSeq(array, 0, array.size() - 1);
+    HoareSortWBatcherMergeSeq(array, 0, array.size() - 1);
     std::this_thread::sleep_for(20ms);
   } catch (...) {
     return false;
@@ -56,17 +56,17 @@ bool HoareSortWBatcherMergeSequential::post_processing() {
   return true;
 }
 
-void HoareSortWBatcherMergeSequential::hoareSortWBatcherMergeSeq(std::vector<int> &arr, size_t l, size_t r) {
+void HoareSortWBatcherMergeSequential::HoareSortWBatcherMergeSeq(std::vector<int> &arr, size_t l, size_t r) {
   if (arr.size() <= 1) return;
   int n = r - l + 1;
   for (int p = 1; p < n; p += p)
     for (int k = p; k > 0; k /= 2)
       for (int j = k % p; j + k < n; j += (k + k))
         for (int i = 0; i < n - j - k; ++i)
-          if ((j + i) / (p + p) == (j + i + k) / (p + p)) compexch(arr[l + j + i], arr[l + j + i + k]);
+          if ((j + i) / (p + p) == (j + i + k) / (p + p)) CompExch(arr[l + j + i], arr[l + j + i + k]);
 }
 
-void HoareSortWBatcherMergeSequential::compexch(int &a, int &b) {
+void HoareSortWBatcherMergeSequential::CompExch(int &a, int &b) {
   if (a > b) std::swap(a, b);
 }
 
