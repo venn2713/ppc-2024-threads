@@ -38,7 +38,7 @@ bool KulikovTaskTBB::run() {
           }
           return sum;
         },
-        std::plus<double>());
+        std::plus<>());
     res = sum * h_x * h_y;
     err = 2 * (x_lim_u - x_lim_l) * (y_lim_u - y_lim_l) * (h_x * h_x + h_y * h_y) / 24;
   } catch (const std::exception& e) {
