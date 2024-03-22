@@ -1,6 +1,7 @@
 // Copyright 2024 Alexseev Danila
 #include <gtest/gtest.h>
 
+#include <algorithm>
 #include <vector>
 
 #include "seq/alexseev_d_hoare_sort_w_batcher_merge/include/hoare_sort_w_batcher_merge_seq.hpp"

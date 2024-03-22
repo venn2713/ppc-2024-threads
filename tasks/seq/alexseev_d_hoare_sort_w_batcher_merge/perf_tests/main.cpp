@@ -1,6 +1,7 @@
 // Copyright 2024 Alexseev Danila
 #include <gtest/gtest.h>
 
+#include <algorithm>
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
