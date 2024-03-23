@@ -7,7 +7,7 @@
 #include <vector>
 
 std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
-                                              int m) {
+                                               int m) {
   int blockSize = std::min({n, m});
 
   std::vector<double> C(n * m, 0.0);
