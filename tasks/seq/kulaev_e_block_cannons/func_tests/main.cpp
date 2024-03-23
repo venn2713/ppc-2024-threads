@@ -164,7 +164,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_100x100) {
   std::vector<double> out(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();;
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
