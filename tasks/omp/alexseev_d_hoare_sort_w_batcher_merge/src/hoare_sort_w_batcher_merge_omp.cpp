@@ -128,9 +128,9 @@ void HoareSortWBatcherMergeOMP::HoareSortWBatcherMergeParallel(std::vector<int> 
       for (int j = k % p; j + k < n; j += (k + k))
 #pragma omp parallel for
         for (int i = 0; i < n - j - k; ++i)
-          if ((j + i) / (p + p) == (j + i + k) / (p + p)) 
+          if ((j + i) / (p + p) == (j + i + k) / (p + p))
 #pragma omp critical
-		  {
+          {
             CompExch(arr[l + j + i], arr[l + j + i + k]);
           }
 }
