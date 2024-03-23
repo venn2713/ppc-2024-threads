@@ -1,6 +1,6 @@
 // Copyright 2024 Ivanov Nikita
 #include <gtest/gtest.h>
-#include <omp.h>
+#include <oneapi/tbb.h>
 
 #include <vector>
 
@@ -28,18 +28,19 @@ TEST(ivanov_n_int_simpson_tbb, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskOMP = std::make_shared<TestTBBTaskParallelIvanovSimpson>(taskDataSeq, function);
+  auto testTaskTBB = std::make_shared<TestTBBTaskParallelIvanovSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  perfAttr->current_timer = [&] { return omp_get_wtime(); };
+  const auto t0 = oneapi::tbb::tick_count::now();
+  perfAttr->current_timer = [&] { return (oneapi::tbb::tick_count::now() - t0).seconds(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskOMP);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskTBB);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
   ASSERT_LE(res - out[0], 0.001);
@@ -66,18 +67,19 @@ TEST(ivanov_n_int_simpson_tbb, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskOMP = std::make_shared<TestTBBTaskParallelIvanovSimpson>(taskDataSeq, function);
+  auto testTaskTBB = std::make_shared<TestTBBTaskParallelIvanovSimpson>(taskDataSeq, function);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  perfAttr->current_timer = [&] { return omp_get_wtime(); };
+  const auto t0 = oneapi::tbb::tick_count::now();
+  perfAttr->current_timer = [&] { return (oneapi::tbb::tick_count::now() - t0).seconds(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskOMP);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskTBB);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
   ASSERT_LE(res - out[0], 0.001);
