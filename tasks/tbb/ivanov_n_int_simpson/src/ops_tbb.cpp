@@ -53,7 +53,6 @@ bool TestTBBTaskSequentialIvanovSimpson::run() {
     }
   }
 
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
