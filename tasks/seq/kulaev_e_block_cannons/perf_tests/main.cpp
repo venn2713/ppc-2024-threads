@@ -7,18 +7,18 @@
 #include "seq/kulaev_e_block_cannons/include/ops_seq.hpp"
 
 TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
-    int n = 1000;
-    int m = 1000;
+  int n = 1000;
+  int m = 1000;
 
-  std::vector<double> in_A = getRandomMatrix(n , m);
+  std::vector<double> in_A = getRandomMatrix(n, m);
 
   // Create data
-  std::vector<double> in_B = getRandomMatrix(n , m);
+  std::vector<double> in_B = getRandomMatrix(n, m);
   std::vector<double> out(n * m);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-                        std::make_shared<ppc::core::TaskData>();
+      std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -34,7 +34,7 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
 
   // Create Task
   auto testTaskSequential =
-  std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
+      std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -42,9 +42,9 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration =
-            std::chrono::duration_cast<std::chrono::nanoseconds>
-                                (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                        current_time_point - t0)
+                        .count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -65,15 +65,15 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_task_run) {
   int n = 1000;
   int m = 1000;
 
-  std::vector<double> in_A = getRandomMatrix(n , m);
+  std::vector<double> in_A = getRandomMatrix(n, m);
 
   // Create data
-  std::vector<double> in_B = getRandomMatrix(n , m);
+  std::vector<double> in_B = getRandomMatrix(n, m);
   std::vector<double> out(n * m);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-                std::make_shared<ppc::core::TaskData>();
+      std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -89,7 +89,7 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_task_run) {
 
   // Create Task
   auto testTaskSequential =
-                std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
+      std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -97,9 +97,9 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration =
-    std::chrono::duration_cast<std::chrono::nanoseconds>
-            (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                        current_time_point - t0)
+                        .count();
     return static_cast<double>(duration) * 1e-9;
   };
 

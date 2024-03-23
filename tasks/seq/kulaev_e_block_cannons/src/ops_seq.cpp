@@ -1,41 +1,39 @@
 // Copyright 2024 Kulaev Zhenya
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <random>
-
 #include "seq/kulaev_e_block_cannons/include/ops_seq.hpp"
 
+#include <algorithm>
+#include <iostream>
+#include <random>
+#include <vector>
+
 std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A,
-            const std::vector<double>& B,
-                  int n,
-                  int m) {
-    int blockSize = std::min({n, m});
+                                               const std::vector<double>& B,
+                                               int n, int m) {
+  int blockSize = std::min({n, m});
 
-    std::vector<double> C(n * m, 0.0);
+  std::vector<double> C(n * m, 0.0);
 
-    for (int i = 0; i < n; i += blockSize) {
-        for (int j = 0; j < m; j += blockSize) {
-            for (int k = 0; k < m; k += blockSize) {
-                int i_end = std::min(i + blockSize, n);
-                int j_end = std::min(j + blockSize, m);
-                int k_end = std::min(k + blockSize, m);
+  for (int i = 0; i < n; i += blockSize) {
+    for (int j = 0; j < m; j += blockSize) {
+      for (int k = 0; k < m; k += blockSize) {
+        int i_end = std::min(i + blockSize, n);
+        int j_end = std::min(j + blockSize, m);
+        int k_end = std::min(k + blockSize, m);
 
-                for (int ii = i; ii < i_end; ++ii) {
-                    for (int kk = k; kk < k_end; ++kk) {
-                        double A_ik = A[ii * m + kk];
-                        for (int jj = j; jj < j_end; ++jj) {
-                            C[ii * m + jj] += A_ik * B[kk * m + jj];
-                        }
-                    }
-                }
+        for (int ii = i; ii < i_end; ++ii) {
+          for (int kk = k; kk < k_end; ++kk) {
+            double A_ik = A[ii * m + kk];
+            for (int jj = j; jj < j_end; ++jj) {
+              C[ii * m + jj] += A_ik * B[kk * m + jj];
             }
+          }
         }
+      }
     }
+  }
 
-    return C;
+  return C;
 }
-
 
 bool TestTaskSequentialCannon::pre_processing() {
   internal_order_test();
@@ -73,8 +71,8 @@ bool TestTaskSequentialCannon::validation() {
   // Check count elements of output
   //  std::cout<<"validation\n";
   return taskData->inputs_count[0] == taskData->inputs_count[1] &&
-      taskData->inputs_count[0] == taskData->outputs_count[0] &&
-      taskData->inputs_count[1] == taskData->outputs_count[0];
+         taskData->inputs_count[0] == taskData->outputs_count[0] &&
+         taskData->inputs_count[1] == taskData->outputs_count[0];
 }
 
 bool TestTaskSequentialCannon::run() {
