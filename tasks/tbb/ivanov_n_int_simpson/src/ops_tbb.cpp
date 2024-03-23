@@ -103,7 +103,7 @@ bool TestTBBTaskParallelIvanovSimpson::run() {
         }
         return total;
       },
-      std::plus<double>());
+      std::plus<>());
 
   return true;
 }
