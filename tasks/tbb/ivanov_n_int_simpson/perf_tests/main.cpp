@@ -12,7 +12,7 @@ TEST(ivanov_n_int_simpson_tbb, test_pipeline_run) {
   const int b = 2;
   const int c = 0;
   const int d = 2;
-  const int n = 100;
+  const int n = 1000;
   const int res = 8;
   func function = linear_fun;
 
@@ -51,7 +51,7 @@ TEST(ivanov_n_int_simpson_tbb, test_task_run) {
   const int b = 2;
   const int c = 0;
   const int d = 2;
-  const int n = 100;
+  const int n = 1000;
   const int res = 8;
   func function = linear_fun;
 
