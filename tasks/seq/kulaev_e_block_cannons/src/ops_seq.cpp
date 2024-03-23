@@ -6,9 +6,8 @@
 #include <random>
 #include <vector>
 
-std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A,
-                                               const std::vector<double>& B,
-                                               int n, int m) {
+std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
+                                              int m) {
   int blockSize = std::min({n, m});
 
   std::vector<double> C(n * m, 0.0);
@@ -85,7 +84,6 @@ bool TestTaskSequentialCannon::run() {
 
 bool TestTaskSequentialCannon::post_processing() {
   internal_order_test();
-  std::copy(result.begin(), result.end(),
-            reinterpret_cast<double*>(taskData->outputs[0]));
+  std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
   return true;
 }

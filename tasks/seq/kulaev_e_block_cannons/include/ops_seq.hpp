@@ -11,9 +11,7 @@
 
 class TestTaskSequentialCannon : public ppc::core::Task {
  public:
-  explicit TestTaskSequentialCannon(
-      std::shared_ptr<ppc::core::TaskData> taskData_)
-      : Task(std::move(taskData_)) {}
+  explicit TestTaskSequentialCannon(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -42,9 +40,8 @@ inline std::vector<double> getRandomMatrix(int rows, int cols) {
   return matrix;
 }
 
-inline std::vector<double> multiplyBlocks(const std::vector<double>& A,
-                                          const std::vector<double>& B,
-                                          int rows_A, int col_B) {
+inline std::vector<double> multiplyBlocks(const std::vector<double>& A, const std::vector<double>& B, int rows_A,
+                                          int col_B) {
   int col_A = rows_A;
   std::vector<double> C(rows_A * col_B, 0.0);
 
