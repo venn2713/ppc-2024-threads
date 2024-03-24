@@ -34,7 +34,6 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
   return C;
 }
 
-
 bool TestTaskSequentialCannon::pre_processing() {
   internal_order_test();
   // Init value for input and output

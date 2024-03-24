@@ -54,4 +54,3 @@ inline std::vector<double> multiplyMatrix(const std::vector<double>& A, const st
   }
   return C;
 }
-
