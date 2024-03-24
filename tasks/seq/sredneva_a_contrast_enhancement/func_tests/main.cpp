@@ -10,7 +10,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_1) {
   int m = 3;
 
   // Create data
-  std::vector<uint8_t> in = {200, 67, 120, 88, 90, 199, 65, 98, 77}; 
+  std::vector<uint8_t> in = {200, 67, 120, 88, 90, 199, 65, 98, 77};
 
   uint8_t min = *std::min_element(in.begin(), in.end());
   uint8_t max = *std::max_element(in.begin(), in.end());
@@ -48,7 +48,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_2) {
   int m = 3;
 
   // Create data
-  std::vector<uint8_t> in = { 67, 120, 88, 90, 199, 65, 98, 77, 0, 16, 99, 255};
+  std::vector<uint8_t> in = {67, 120, 88, 90, 199, 65, 98, 77, 0, 16, 99, 255};
 
   uint8_t min = *std::min_element(in.begin(), in.end());
   uint8_t max = *std::max_element(in.begin(), in.end());

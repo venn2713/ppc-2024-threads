@@ -1,8 +1,8 @@
 // Copyright 2024 Sredneva Anastasiya
 #include "seq/sredneva_a_contrast_enhancement/include/ops_seq.hpp"
 
-#include <thread>
 #include <random>
+#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -12,7 +12,7 @@ std::vector<uint8_t> getRandomPicture(int n, int m, uint8_t min, uint8_t max) {
   std::mt19937 gen(dev());
   std::uniform_int_distribution<int> distrib(min, max);
   std::vector<uint8_t> pict(size);
-  for (int i = 0; i < pict.size(); i++) {
+  for (int i = 0; i < size; i++) {
     pict[i] = distrib(gen);
   }
   return pict;
@@ -20,8 +20,8 @@ std::vector<uint8_t> getRandomPicture(int n, int m, uint8_t min, uint8_t max) {
 
 bool ContrastEnhancementSequential::pre_processing() {
   internal_order_test();
-  n = reinterpret_cast<int*>(taskData->inputs[0])[0];
-  m = reinterpret_cast<int*>(taskData->inputs[0])[1];
+  n = reinterpret_cast<int *>(taskData->inputs[0])[0];
+  m = reinterpret_cast<int *>(taskData->inputs[0])[1];
   min = reinterpret_cast<uint8_t *>(taskData->inputs[2])[0];
   max = reinterpret_cast<uint8_t *>(taskData->inputs[2])[1];
   for (int i = 0; i < n * m; i++) {
@@ -51,7 +51,7 @@ bool ContrastEnhancementSequential::run() {
 bool ContrastEnhancementSequential::post_processing() {
   internal_order_test();
   for (int i = 0; i < n * m; i++) {
-    reinterpret_cast<uint8_t*>(taskData->outputs[0])[i] = res[i];
+    reinterpret_cast<uint8_t *>(taskData->outputs[0])[i] = res[i];
   }
   return true;
 }
