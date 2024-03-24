@@ -5,14 +5,14 @@
 #include <cmath>
 #include <iostream>
 
-CRSMatrix::CRSMatrix(std::size_t n_rows, std::size_t n_cols) : n_rows(n_rows), n_cols(n_cols) {
+CRSMatrix::CRSMatrix(int n_rows, int n_cols) : n_rows(n_rows), n_cols(n_cols) {
   row_ptr.reserve(n_rows + 1);
 }
 
-CRSMatrix::CRSMatrix(const double* matrix, std::size_t n_rows, std::size_t n_cols) : CRSMatrix(n_rows, n_cols) {
-  for (std::size_t i = 0; i < n_rows; ++i) {
-    row_ptr.emplace_back(values.size());
-    for (std::size_t j = 0; j < n_cols; ++j) {
+CRSMatrix::CRSMatrix(const double* matrix, int n_rows, int n_cols) : CRSMatrix(n_rows, n_cols) {
+  for (int i = 0; i < n_rows; ++i) {
+    row_ptr.emplace_back(static_cast<int>(values.size()));
+    for (int j = 0; j < n_cols; ++j) {
       const double& val = matrix[i * n_cols + j];
       if (std::abs(val) > EPS) {
         values.emplace_back(val);
@@ -20,26 +20,26 @@ CRSMatrix::CRSMatrix(const double* matrix, std::size_t n_rows, std::size_t n_col
       }
     }
   }
-  row_ptr.emplace_back(values.size());
+  row_ptr.emplace_back(static_cast<int>(values.size()));
 }
 
-std::vector<double> getRandomMatrix(const std::size_t& n_rows, const std::size_t& n_cols, const double& density,
+std::vector<double> getRandomMatrix(const int& n_rows, const int& n_cols, const double& density,
                                     const double& a, const double& b) {
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> value_dist(a, b);
-  std::uniform_int_distribution<std::size_t> index_dist(0, n_rows * n_cols - 1);
+  std::uniform_int_distribution<int> index_dist(0, n_rows * n_cols - 1);
   std::vector<double> matrix(n_rows * n_cols);
-  auto nnz = static_cast<std::size_t>(static_cast<double>(n_rows * n_cols) * density);
-  for (std::size_t i = 0; i < nnz; ++i) {
+  auto nnz = static_cast<int>(static_cast<double>(n_rows * n_cols) * density);
+  for (int i = 0; i < nnz; ++i) {
     matrix[index_dist(gen)] = value_dist(gen);
   }
   return matrix;
 }
 
-std::vector<double> getIdentityMatrix(const std::size_t& n) {
+std::vector<double> getIdentityMatrix(const int& n) {
   std::vector<double> matrix(n * n);
-  for (std::size_t i = 0; i < n; ++i) {
+  for (int i = 0; i < n; ++i) {
     matrix[i * n + i] = 1.0;
   }
   return matrix;

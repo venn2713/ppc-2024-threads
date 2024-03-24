@@ -7,10 +7,10 @@
 
 TEST(Zorin_O_CRS_MatMult_OMP, incorrect_matrix_sizes) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = 10;
-  std::size_t s = 11;
-  std::size_t r = 9;
+  int p = 11;
+  int q = 10;
+  int s = 11;
+  int r = 9;
   std::vector<double> lhs_in(p * q);
   std::vector<double> rhs_in(s * r);
   std::vector<double> out(p * r);
@@ -34,9 +34,9 @@ TEST(Zorin_O_CRS_MatMult_OMP, incorrect_matrix_sizes) {
 
 TEST(Zorin_O_CRS_MatMult_OMP, zero_rhs_matrix) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = 10;
-  std::size_t r = 9;
+  int p = 11;
+  int q = 10;
+  int r = 9;
   std::vector<double> lhs_in = getRandomMatrix(p, q);
   std::vector<double> rhs_in(q * r);
   std::vector<double> out(p * r);
@@ -59,16 +59,16 @@ TEST(Zorin_O_CRS_MatMult_OMP, zero_rhs_matrix) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < out.size(); ++i) {
+  for (int i = 0; i < p * r; ++i) {
     EXPECT_DOUBLE_EQ(out[i], 0.0);
   }
 }
 
 TEST(Zorin_O_CRS_MatMult_OMP, zero_lhs_matrix) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = 10;
-  std::size_t r = 9;
+  int p = 11;
+  int q = 10;
+  int r = 9;
   std::vector<double> lhs_in(p * q);
   std::vector<double> rhs_in = getRandomMatrix(q, r);
   std::vector<double> out(p * r);
@@ -91,16 +91,16 @@ TEST(Zorin_O_CRS_MatMult_OMP, zero_lhs_matrix) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < out.size(); ++i) {
+  for (int i = 0; i < p * r; ++i) {
     EXPECT_DOUBLE_EQ(out[i], 0.0);
   }
 }
 
 TEST(Zorin_O_CRS_MatMult_OMP, identity_rhs_matrix) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = 10;
-  std::size_t r = q;
+  int p = 11;
+  int q = 10;
+  int r = q;
   std::vector<double> lhs_in = getRandomMatrix(p, q);
   std::vector<double> rhs_in = getIdentityMatrix(q);
   std::vector<double> out(p * r);
@@ -123,16 +123,16 @@ TEST(Zorin_O_CRS_MatMult_OMP, identity_rhs_matrix) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < out.size(); ++i) {
+  for (int i = 0; i < p * r; ++i) {
     EXPECT_DOUBLE_EQ(out[i], lhs_in[i]);
   }
 }
 
 TEST(Zorin_O_CRS_MatMult_OMP, identity_lhs_matrix) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = p;
-  std::size_t r = 10;
+  int p = 11;
+  int q = p;
+  int r = 10;
   std::vector<double> lhs_in = getIdentityMatrix(p);
   std::vector<double> rhs_in = getRandomMatrix(q, r);
   std::vector<double> out(p * r);
@@ -155,16 +155,16 @@ TEST(Zorin_O_CRS_MatMult_OMP, identity_lhs_matrix) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < out.size(); ++i) {
+  for (int i = 0; i < p * r; ++i) {
     EXPECT_DOUBLE_EQ(out[i], rhs_in[i]);
   }
 }
 
 TEST(Zorin_O_CRS_MatMult_OMP, matmult_with_answer) {
   // Create data
-  std::size_t p = 4;
-  std::size_t q = 5;
-  std::size_t r = 4;
+  int p = 4;
+  int q = 5;
+  int r = 4;
   std::vector<double> lhs_in{
       0, 10, 0, 0, 0, 0, 5, 3, 0, 0, 1, -1, -1, 0, 0, 0, 0, -5, 0, 20,
   };
@@ -194,26 +194,26 @@ TEST(Zorin_O_CRS_MatMult_OMP, matmult_with_answer) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < out.size(); ++i) {
+  for (int i = 0; i < p * r; ++i) {
     EXPECT_DOUBLE_EQ(out[i], ans[i]);
   }
 }
 
 TEST(Zorin_O_CRS_MatMult_OMP, special_matmult) {
   // Create data
-  std::size_t p = 11;
-  std::size_t q = 10;
-  std::size_t r = 11;
+  int p = 11;
+  int q = 10;
+  int r = 11;
   std::vector<double> lhs_in(p * q);
-  for (std::size_t i = 0; i < p; ++i) {
+  for (int i = 0; i < p; ++i) {
     if (i % 2 == 0)
-      for (std::size_t j = 0; j < q; ++j) {
+      for (int j = 0; j < q; ++j) {
         lhs_in[i * q + j] = 1.0;
       }
   }
   std::vector<double> rhs_in(q * r);
-  for (std::size_t i = 0; i < q; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < q; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (j % 2 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
@@ -237,8 +237,8 @@ TEST(Zorin_O_CRS_MatMult_OMP, special_matmult) {
   ASSERT_TRUE(testTaskOMP.pre_processing());
   ASSERT_TRUE(testTaskOMP.run());
   ASSERT_TRUE(testTaskOMP.post_processing());
-  for (std::size_t i = 0; i < p; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < p; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (i % 2 == 0 && j % 2 == 0)
         EXPECT_DOUBLE_EQ(out[i * r + j], q);
       else

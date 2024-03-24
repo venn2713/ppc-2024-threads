@@ -7,19 +7,19 @@
 
 TEST(Zorin_O_CRS_MatMult_OMP, test_pipeline_run) {
   // Create data
-  std::size_t p = 901;
-  std::size_t q = 900;
-  std::size_t r = 901;
+  int p = 901;
+  int q = 900;
+  int r = 901;
   std::vector<double> lhs_in(p * q);
-  for (std::size_t i = 0; i < p; ++i) {
+  for (int i = 0; i < p; ++i) {
     if (i % 2 == 0)
-      for (std::size_t j = 0; j < q; ++j) {
+      for (int j = 0; j < q; ++j) {
         lhs_in[i * q + j] = 1.0;
       }
   }
   std::vector<double> rhs_in(q * r);
-  for (std::size_t i = 0; i < q; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < q; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (j % 2 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
@@ -51,8 +51,8 @@ TEST(Zorin_O_CRS_MatMult_OMP, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskOMP);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (std::size_t i = 0; i < p; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < p; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (i % 2 == 0 && j % 2 == 0)
         EXPECT_DOUBLE_EQ(out[i * r + j], q);
       else
@@ -63,19 +63,19 @@ TEST(Zorin_O_CRS_MatMult_OMP, test_pipeline_run) {
 
 TEST(Zorin_O_CRS_MatMult_OMP, test_task_run) {
   // Create data
-  std::size_t p = 901;
-  std::size_t q = 900;
-  std::size_t r = 901;
+  int p = 901;
+  int q = 900;
+  int r = 901;
   std::vector<double> lhs_in(p * q);
-  for (std::size_t i = 0; i < p; ++i) {
+  for (int i = 0; i < p; ++i) {
     if (i % 2 == 0)
-      for (std::size_t j = 0; j < q; ++j) {
+      for (int j = 0; j < q; ++j) {
         lhs_in[i * q + j] = 1.0;
       }
   }
   std::vector<double> rhs_in(q * r);
-  for (std::size_t i = 0; i < q; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < q; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (j % 2 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
@@ -107,8 +107,8 @@ TEST(Zorin_O_CRS_MatMult_OMP, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskOMP);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (std::size_t i = 0; i < p; ++i) {
-    for (std::size_t j = 0; j < r; ++j) {
+  for (int i = 0; i < p; ++i) {
+    for (int j = 0; j < r; ++j) {
       if (i % 2 == 0 && j % 2 == 0)
         EXPECT_DOUBLE_EQ(out[i * r + j], q);
       else
