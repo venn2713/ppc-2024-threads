@@ -15,15 +15,20 @@ class SparseMatrixMultiSequential : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  vector<double> values1;
-  vector<int> rows1;
-  vector<int> colPtr1;
+  std::vector<double> values1{};
+  std::vector<int> rows1{};
+  std::vector<int> colPtr1{};
   int numRows1{};
   int numCols1{};
-  vector<double> values2;
-  vector<int> rows2;
-  vector<int> colPtr2;
+  std::vector<double> values2{};
+  std::vector<int> rows2{};
+  std::vector<int> colPtr2{};
   int numRows2{};
   int numCols2{};
-  double* result;
+  std::vector<double> values3{};
+  std::vector<int> rows3{};
+  std::vector<int> colPtr3{};
+  int numRows3{};
+  int numCols3{};
+  double* result{};
 };

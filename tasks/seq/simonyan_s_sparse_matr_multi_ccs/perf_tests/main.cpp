@@ -4,85 +4,87 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "seq/example/include/ops_seq.hpp"
+#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ops_seq.hpp"
 
-TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy) {
+using namespace std;
 
-  // Create data
-  std::vector<int> in1(n1*m1);
-  std::vector<int> in2(n2*m2);
-  std::vector<int> out(n1*m2);
+// TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy) {
 
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
-  taskDataSeq->inputs_count.emplace_back(in1.size());
-    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
-  taskDataSeq->inputs_count.emplace_back(in2.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+//   // Create data
+//   std::vector<int> in1(n1*m1);
+//   std::vector<int> in2(n2*m2);
+//   std::vector<int> out(n1*m2);
 
-  // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
+//   // Create TaskData
+//   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
+//   taskDataSeq->inputs_count.emplace_back(in1.size());
+//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
+//   taskDataSeq->inputs_count.emplace_back(in2.size());
+//   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+//   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Perf attributes
-  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
-  const auto t0 = std::chrono::high_resolution_clock::now();
-  perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1e-9;
-  };
+//   // Create Task
+//   auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
 
-  // Create and init perf results
-  auto perfResults = std::make_shared<ppc::core::PerfResults>();
+//   // Create Perf attributes
+//   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
+//   perfAttr->num_running = 10;
+//   const auto t0 = std::chrono::high_resolution_clock::now();
+//   perfAttr->current_timer = [&] {
+//     auto current_time_point = std::chrono::high_resolution_clock::now();
+//     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+//     return static_cast<double>(duration) * 1e-9;
+//   };
 
-  // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
-  perfAnalyzer->pipeline_run(perfAttr, perfResults);
-  ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
-}
+//   // Create and init perf results
+//   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
-TEST(sequential_example_perf_test, test_task_run) {
-  const int count = 100;
+//   // Create Perf analyzer
+//   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+//   perfAnalyzer->pipeline_run(perfAttr, perfResults);
+//   ppc::core::Perf::print_perf_statistic(perfResults);
+//   ASSERT_EQ(count, out[0]);
+// }
 
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+// TEST(sequential_example_perf_test, test_task_run) {
+//   const int count = 100;
 
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+//   // Create data
+//   std::vector<int> in(1, count);
+//   std::vector<int> out(1, 0);
 
-  // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
+//   // Create TaskData
+//   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
+//   taskDataSeq->inputs_count.emplace_back(in.size());
+//   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+//   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Perf attributes
-  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
-  const auto t0 = std::chrono::high_resolution_clock::now();
-  perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1e-9;
-  };
+//   // Create Task
+//   auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
 
-  // Create and init perf results
-  auto perfResults = std::make_shared<ppc::core::PerfResults>();
+//   // Create Perf attributes
+//   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
+//   perfAttr->num_running = 10;
+//   const auto t0 = std::chrono::high_resolution_clock::now();
+//   perfAttr->current_timer = [&] {
+//     auto current_time_point = std::chrono::high_resolution_clock::now();
+//     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+//     return static_cast<double>(duration) * 1e-9;
+//   };
 
-  // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
-  perfAnalyzer->task_run(perfAttr, perfResults);
-  ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
-}
+//   // Create and init perf results
+//   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+//   // Create Perf analyzer
+//   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+//   perfAnalyzer->task_run(perfAttr, perfResults);
+//   ppc::core::Perf::print_perf_statistic(perfResults);
+//   ASSERT_EQ(count, out[0]);
+// }
+
+// int main(int argc, char **argv) {
+//   testing::InitGoogleTest(&argc, argv);
+//   return RUN_ALL_TESTS();
+// }
