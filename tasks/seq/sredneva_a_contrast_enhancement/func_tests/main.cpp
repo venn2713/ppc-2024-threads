@@ -38,7 +38,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_1) {
   testTaskSequential.pre_processing();
   ASSERT_EQ(testTaskSequential.run(), true);
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(res[i], out[i]);
   }
 }
@@ -74,7 +74,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_2) {
   testTaskSequential.pre_processing();
   ASSERT_EQ(testTaskSequential.run(), true);
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(in[i], out[i]);
   }
 }
@@ -84,7 +84,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_3_rand) {
   int m = 4;
   uint8_t min = 75;
   uint8_t max = 200;
-  
+
   // Create data
   std::vector<uint8_t> in = getRandomPicture(n, m, min, max);
 
@@ -115,7 +115,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_3_rand) {
   testTaskSequential.pre_processing();
   ASSERT_EQ(testTaskSequential.run(), true);
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(res[i], out[i]);
   }
 }
@@ -186,7 +186,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_5) {
   testTaskSequential.pre_processing();
   ASSERT_EQ(testTaskSequential.run(), true);
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(res[i], out[i]);
   }
 }

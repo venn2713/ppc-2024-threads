@@ -56,7 +56,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(res[i], out[i]);
   }
 }
@@ -111,7 +111,7 @@ TEST(sredneva_a_contrast_enhancement_seq, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < out.size(); i++) {
+  for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(res[i], out[i]);
   }
 }
