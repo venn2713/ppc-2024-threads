@@ -27,7 +27,7 @@ bool CRSMatMult::run() {
   std::vector<std::vector<std::size_t>> all_col_index(A->n_rows);
 
 #pragma omp parallel for default(none) shared(all_value, all_col_index) schedule(static)
-  for (std::size_t row_i = 0; row_i < A->n_rows; ++row_i) {
+  for (int row_i = 0; row_i < A->n_rows; ++row_i) {
     std::vector<double> local_row(C->n_cols);
     for (std::size_t i = A->row_ptr[row_i]; i < A->row_ptr[row_i + 1]; ++i) {
       const std::size_t& col_i = A->col_index[i];
