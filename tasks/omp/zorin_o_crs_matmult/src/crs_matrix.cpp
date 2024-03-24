@@ -5,9 +5,7 @@
 #include <cmath>
 #include <iostream>
 
-CRSMatrix::CRSMatrix(int n_rows, int n_cols) : n_rows(n_rows), n_cols(n_cols) {
-  row_ptr.reserve(n_rows + 1);
-}
+CRSMatrix::CRSMatrix(int n_rows, int n_cols) : n_rows(n_rows), n_cols(n_cols) { row_ptr.reserve(n_rows + 1); }
 
 CRSMatrix::CRSMatrix(const double* matrix, int n_rows, int n_cols) : CRSMatrix(n_rows, n_cols) {
   for (int i = 0; i < n_rows; ++i) {
@@ -23,8 +21,8 @@ CRSMatrix::CRSMatrix(const double* matrix, int n_rows, int n_cols) : CRSMatrix(n
   row_ptr.emplace_back(static_cast<int>(values.size()));
 }
 
-std::vector<double> getRandomMatrix(const int& n_rows, const int& n_cols, const double& density,
-                                    const double& a, const double& b) {
+std::vector<double> getRandomMatrix(const int& n_rows, const int& n_cols, const double& density, const double& a,
+                                    const double& b) {
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> value_dist(a, b);
