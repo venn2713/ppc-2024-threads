@@ -12,6 +12,10 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
 
   std::vector<double> C(n * m, 0.0);
 
+  if (n == 0 || m == 0) {
+    return std::vector<double>();
+  }
+
   for (int i = 0; i < n; i += blockSize) {
     for (int j = 0; j < m; j += blockSize) {
       for (int k = 0; k < m; k += blockSize) {
