@@ -11,7 +11,7 @@ bool HoareSortWBatcherMergeSequential::pre_processing() {
   try {
     internal_order_test();
     array.clear();
-	for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
+    for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->inputs[0] + i * sizeof(int));
       array.push_back(*currentElementPtr);
     }
