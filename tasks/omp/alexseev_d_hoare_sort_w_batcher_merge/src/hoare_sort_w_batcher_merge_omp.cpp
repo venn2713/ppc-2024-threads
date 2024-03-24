@@ -13,7 +13,7 @@ using namespace std::chrono_literals;
 bool HoareSortWBatcherMergeSequential::pre_processing() {
   try {
     internal_order_test();
-	array.clear();
+    array.clear();
     for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->inputs[0] + i * sizeof(int));
       array.push_back(*currentElementPtr);
@@ -70,7 +70,7 @@ void HoareSortWBatcherMergeSequential::HoareSortWBatcherMergeSeq(std::vector<int
 bool HoareSortWBatcherMergeOMP::pre_processing() {
   try {
     internal_order_test();
-	array.clear();
+    array.clear();
     for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->inputs[0] + i * sizeof(int));
       array.push_back(*currentElementPtr);
@@ -125,8 +125,7 @@ void HoareSortWBatcherMergeOMP::HoareSortWBatcherMergeParallel(std::vector<int> 
       for (int j = k % p; j + k < n; j += (k + k))
 #pragma omp parallel for
         for (int i = 0; i < n - j - k; ++i)
-          if ((j + i) / (p + p) == (j + i + k) / (p + p))
-          {
+          if ((j + i) / (p + p) == (j + i + k) / (p + p)) {
             CompExch(arr[l + j + i], arr[l + j + i + k]);
           }
 }
