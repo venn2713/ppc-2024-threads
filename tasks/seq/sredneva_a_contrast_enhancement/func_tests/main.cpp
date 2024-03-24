@@ -189,4 +189,4 @@ TEST(sredneva_a_contrast_enhancement_seq, test_5) {
   for (int i = 0; i < out.size(); i++) {
     ASSERT_EQ(res[i], out[i]);
   }
-}
+} 
