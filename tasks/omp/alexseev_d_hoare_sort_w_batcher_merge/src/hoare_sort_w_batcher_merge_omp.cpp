@@ -13,6 +13,7 @@ using namespace std::chrono_literals;
 bool HoareSortWBatcherMergeSequential::pre_processing() {
   try {
     internal_order_test();
+	array.clear();
     for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->inputs[0] + i * sizeof(int));
       array.push_back(*currentElementPtr);
@@ -36,7 +37,6 @@ bool HoareSortWBatcherMergeSequential::run() {
   try {
     internal_order_test();
     HoareSortWBatcherMergeSeq(array, 0, array.size() - 1);
-    std::this_thread::sleep_for(20ms);
   } catch (...) {
     return false;
   }
@@ -46,9 +46,6 @@ bool HoareSortWBatcherMergeSequential::run() {
 bool HoareSortWBatcherMergeSequential::post_processing() {
   try {
     internal_order_test();
-    if (array.size() != taskData->outputs_count[0]) {
-      throw;
-    }
     for (size_t i = 0; i < array.size(); ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->outputs[0] + i * sizeof(int));
       *currentElementPtr = array[i];
@@ -73,6 +70,7 @@ void HoareSortWBatcherMergeSequential::HoareSortWBatcherMergeSeq(std::vector<int
 bool HoareSortWBatcherMergeOMP::pre_processing() {
   try {
     internal_order_test();
+	array.clear();
     for (size_t i = 0; i < taskData->inputs_count[0]; ++i) {
       int *currentElementPtr = reinterpret_cast<int *>(taskData->inputs[0] + i * sizeof(int));
       array.push_back(*currentElementPtr);
@@ -96,7 +94,6 @@ bool HoareSortWBatcherMergeOMP::run() {
   try {
     internal_order_test();
     HoareSortWBatcherMergeParallel(array, 0, array.size() - 1);
-    std::this_thread::sleep_for(20ms);
   } catch (...) {
     return false;
   }
@@ -129,7 +126,6 @@ void HoareSortWBatcherMergeOMP::HoareSortWBatcherMergeParallel(std::vector<int> 
 #pragma omp parallel for
         for (int i = 0; i < n - j - k; ++i)
           if ((j + i) / (p + p) == (j + i + k) / (p + p))
-#pragma omp critical
           {
             CompExch(arr[l + j + i], arr[l + j + i + k]);
           }

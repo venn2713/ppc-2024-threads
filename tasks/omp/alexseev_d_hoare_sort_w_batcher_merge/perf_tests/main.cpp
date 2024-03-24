@@ -9,7 +9,7 @@
 #include "omp/alexseev_d_hoare_sort_w_batcher_merge/include/hoare_sort_w_batcher_merge_omp.hpp"
 
 TEST(alexseev_d_hoare_sort_w_batcher_merge_omp, test_pipeline_run) {
-  std::vector<int> inputArray = generateRandomVector(100, -1000, 1000);
+  std::vector<int> inputArray = generateRandomVector(4000, -1000, 1000);
 
   // Sequential
   std::vector<int> outputArraySeq(inputArray.size());
@@ -50,7 +50,7 @@ TEST(alexseev_d_hoare_sort_w_batcher_merge_omp, test_pipeline_run) {
 }
 
 TEST(alexseev_d_hoare_sort_w_batcher_merge_omp, test_task_run) {
-  std::vector<int> inputArray = generateRandomVector(100, -1000, 1000);
+  std::vector<int> inputArray = generateRandomVector(4000, -1000, 1000);
 
   // Sequential
   std::vector<int> outputArraySeq(inputArray.size());
