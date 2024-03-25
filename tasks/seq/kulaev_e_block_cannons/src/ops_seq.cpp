@@ -56,7 +56,6 @@ std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vect
   return C;
 }
 
-
 bool TestTaskSequentialCannon::pre_processing() {
   internal_order_test();
   // Init value for input and output
