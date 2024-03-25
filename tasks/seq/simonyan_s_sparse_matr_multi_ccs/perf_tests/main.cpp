@@ -21,8 +21,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
   std::vector<double> rhs_in(q * r);
   for (int i = 0; i < q; ++i) {
     for (int j = 0; j < r; ++j) {
-      if (j % 5 == 0)
-        rhs_in[i * r + j] = 1.0;
+      if (j % 5 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
   std::vector<double> out(p * r);
@@ -68,7 +67,6 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
   }
 }
 
-
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
   // Create data
   int p = 500;
@@ -84,8 +82,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
   std::vector<double> rhs_in(q * r);
   for (int i = 0; i < q; ++i) {
     for (int j = 0; j < r; ++j) {
-      if (j % 5 == 0)
-        rhs_in[i * r + j] = 1.0;
+      if (j % 5 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
   std::vector<double> out(p * r);

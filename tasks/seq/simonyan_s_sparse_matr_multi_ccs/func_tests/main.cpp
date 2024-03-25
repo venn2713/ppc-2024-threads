@@ -104,7 +104,6 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
     }
   }
   ASSERT_EQ(k, n1 * m2);
-
 }
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
@@ -119,7 +118,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
 
   std::vector<double> out(n1 * m2);
 
-  std::vector<double> identity{1,0,0,0,1,0,0,0,1};
+  std::vector<double> identity{1, 0, 0, 0, 1, 0, 0, 0, 1};
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -156,7 +155,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, zero_matrix) {
   // Create data
   std::vector<double> in1{1, -2, 1, 2, 1, -1, 3, 2, -2};
 
-  std::vector<double> in2(n2*m2, 0);
+  std::vector<double> in2(n2 * m2, 0);
 
   std::vector<double> out(n1 * m2);
 
