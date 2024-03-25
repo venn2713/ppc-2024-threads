@@ -38,6 +38,26 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
   return C;
 }
 
+std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vector<double>& B, int rows_A,
+                                          int col_B) {
+  int col_A = rows_A;
+  std::vector<double> C(rows_A * col_B, 0.0);
+
+  if (rows_A == 0 || col_B == 0) {
+    return std::vector<double>();
+  }
+
+  for (int i = 0; i < rows_A; ++i) {
+    for (int j = 0; j < col_B; ++j) {
+      for (int k = 0; k < col_A; ++k) {
+        C[i * col_B + j] += A[i * col_A + k] * B[k * col_B + j];
+      }
+    }
+  }
+  return C;
+}
+
+
 bool TestTaskSequentialCannon::pre_processing() {
   internal_order_test();
   // Init value for input and output
