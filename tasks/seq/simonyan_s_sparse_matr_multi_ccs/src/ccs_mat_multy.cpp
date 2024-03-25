@@ -1,5 +1,5 @@
 // Copyright 2024 Simonyan Suren
-#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ops_seq.hpp"
+#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
 #include <thread>
 

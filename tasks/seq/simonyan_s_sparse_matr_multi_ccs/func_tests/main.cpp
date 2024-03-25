@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ops_seq.hpp"
+#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_sizes) {
   size_t n1 = 4;

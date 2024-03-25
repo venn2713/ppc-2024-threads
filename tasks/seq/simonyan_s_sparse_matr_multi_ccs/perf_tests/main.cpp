@@ -1,90 +1,132 @@
 // Copyright 2023 Simonyan Suren
 #include <gtest/gtest.h>
 
-#include <vector>
-
 #include "core/perf/include/perf.hpp"
-#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ops_seq.hpp"
+#include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
 using namespace std;
 
-// TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy) {
+TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
+  // Create data
+  int p = 500;
+  int q = 500;
+  int r = 500;
+  std::vector<double> lhs_in(p * q);
+  for (int i = 0; i < p; ++i) {
+    if (i % 4 == 0)
+      for (int j = 0; j < q; ++j) {
+        lhs_in[i * q + j] = 1.0;
+      }
+  }
+  std::vector<double> rhs_in(q * r);
+  for (int i = 0; i < q; ++i) {
+    for (int j = 0; j < r; ++j) {
+      if (j % 5 == 0)
+        rhs_in[i * r + j] = 1.0;
+    }
+  }
+  std::vector<double> out(p * r);
 
-//   // Create data
-//   std::vector<int> in1(n1*m1);
-//   std::vector<int> in2(n2*m2);
-//   std::vector<int> out(n1*m2);
+  // Create TaskData
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(lhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(p);
+  taskDataSeq->inputs_count.emplace_back(q);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(rhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(q);
+  taskDataSeq->inputs_count.emplace_back(r);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+  taskDataSeq->outputs_count.emplace_back(p);
+  taskDataSeq->outputs_count.emplace_back(r);
 
-//   // Create TaskData
-//   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
-//   taskDataSeq->inputs_count.emplace_back(in1.size());
-//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
-//   taskDataSeq->inputs_count.emplace_back(in2.size());
-//   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-//   taskDataSeq->outputs_count.emplace_back(out.size());
+  // Create Task
+  auto testTaskSeq = std::make_shared<SparseMatrixMultiSequential>(taskDataSeq);
 
-//   // Create Task
-//   auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
+  // Create Perf attributes
+  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
+  perfAttr->num_running = 10;
+  const auto t0 = std::chrono::high_resolution_clock::now();
+  perfAttr->current_timer = [&] {
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    return static_cast<double>(duration) * 1e-9;
+  };
 
-//   // Create Perf attributes
-//   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-//   perfAttr->num_running = 10;
-//   const auto t0 = std::chrono::high_resolution_clock::now();
-//   perfAttr->current_timer = [&] {
-//     auto current_time_point = std::chrono::high_resolution_clock::now();
-//     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-//     return static_cast<double>(duration) * 1e-9;
-//   };
+  // Create and init perf results
+  auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
-//   // Create and init perf results
-//   auto perfResults = std::make_shared<ppc::core::PerfResults>();
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSeq);
+  perfAnalyzer->pipeline_run(perfAttr, perfResults);
+  ppc::core::Perf::print_perf_statistic(perfResults);
+  for (int i = 0; i < p; ++i) {
+    for (int j = 0; j < r; ++j) {
+      if (i % 4 == 0 && j % 5 == 0)
+        EXPECT_DOUBLE_EQ(out[i * r + j], q);
+      else
+        EXPECT_DOUBLE_EQ(out[i * r + j], 0.0);
+    }
+  }
+}
 
-//   // Create Perf analyzer
-//   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
-//   perfAnalyzer->pipeline_run(perfAttr, perfResults);
-//   ppc::core::Perf::print_perf_statistic(perfResults);
-//   ASSERT_EQ(count, out[0]);
-// }
 
-// TEST(sequential_example_perf_test, test_task_run) {
-//   const int count = 100;
+TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
+  // Create data
+  int p = 500;
+  int q = 500;
+  int r = 500;
+  std::vector<double> lhs_in(p * q);
+  for (int i = 0; i < p; ++i) {
+    if (i % 4 == 0)
+      for (int j = 0; j < q; ++j) {
+        lhs_in[i * q + j] = 1.0;
+      }
+  }
+  std::vector<double> rhs_in(q * r);
+  for (int i = 0; i < q; ++i) {
+    for (int j = 0; j < r; ++j) {
+      if (j % 5 == 0)
+        rhs_in[i * r + j] = 1.0;
+    }
+  }
+  std::vector<double> out(p * r);
 
-//   // Create data
-//   std::vector<int> in(1, count);
-//   std::vector<int> out(1, 0);
+  // Create TaskData
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(lhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(p);
+  taskDataSeq->inputs_count.emplace_back(q);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(rhs_in.data()));
+  taskDataSeq->inputs_count.emplace_back(q);
+  taskDataSeq->inputs_count.emplace_back(r);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+  taskDataSeq->outputs_count.emplace_back(p);
+  taskDataSeq->outputs_count.emplace_back(r);
 
-//   // Create TaskData
-//   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-//   taskDataSeq->inputs_count.emplace_back(in.size());
-//   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-//   taskDataSeq->outputs_count.emplace_back(out.size());
+  // Create Task
+  auto testTaskSeq = std::make_shared<SparseMatrixMultiSequential>(taskDataSeq);
 
-//   // Create Task
-//   auto testTaskSequential = std::make_shared<TestTaskSequential>(taskDataSeq);
+  // Create Perf attributes
+  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
+  perfAttr->num_running = 10;
+  const auto t0 = std::chrono::high_resolution_clock::now();
+  perfAttr->current_timer = [&] {
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    return static_cast<double>(duration) * 1e-9;
+  };
 
-//   // Create Perf attributes
-//   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-//   perfAttr->num_running = 10;
-//   const auto t0 = std::chrono::high_resolution_clock::now();
-//   perfAttr->current_timer = [&] {
-//     auto current_time_point = std::chrono::high_resolution_clock::now();
-//     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-//     return static_cast<double>(duration) * 1e-9;
-//   };
+  // Create and init perf results
+  auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
-//   // Create and init perf results
-//   auto perfResults = std::make_shared<ppc::core::PerfResults>();
-
-//   // Create Perf analyzer
-//   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
-//   perfAnalyzer->task_run(perfAttr, perfResults);
-//   ppc::core::Perf::print_perf_statistic(perfResults);
-//   ASSERT_EQ(count, out[0]);
-// }
-
-// int main(int argc, char **argv) {
-//   testing::InitGoogleTest(&argc, argv);
-//   return RUN_ALL_TESTS();
-// }
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSeq);
+  perfAnalyzer->task_run(perfAttr, perfResults);
+  ppc::core::Perf::print_perf_statistic(perfResults);
+  for (int i = 0; i < p; ++i) {
+    for (int j = 0; j < r; ++j) {
+      if (i % 4 == 0 && j % 5 == 0)
+        EXPECT_DOUBLE_EQ(out[i * r + j], q);
+      else
+        EXPECT_DOUBLE_EQ(out[i * r + j], 0.0);
+    }
+  }
+}
