@@ -13,5 +13,5 @@ class SpgemmCSCComplex : public ppc::core::Task {
   bool post_processing() override;
 
  private:
- sparse_matrix *A, *B, *C;
+  sparse_matrix *A, *B, *C;
 };

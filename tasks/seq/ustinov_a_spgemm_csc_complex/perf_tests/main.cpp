@@ -7,16 +7,19 @@
 #include "seq/ustinov_a_spgemm_csc_complex/include/ops_seq.hpp"
 #include "seq/ustinov_a_spgemm_csc_complex/include/sparse_matrix.hpp"
 
+const double PI = 3.14159265358979323846;
+
 sparse_matrix dft_matrix(int n) {
   double N = (double)n;
-  std::complex<double> exponent{0.0, -2.0*M_PI/N};
-  sparse_matrix dft(n,n,n*n);
-  for (int i = 1; i <= n; ++i)
-    dft.col_ptr[i] = i*n;
+  std::complex<double> exponent{0.0, -2.0 * PI / N};
+  sparse_matrix dft(n, n, n * n);
+  for (int i = 1; i <= n; ++i) {
+    dft.col_ptr[i] = i * n;
+  }
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
-      dft.rows[i*n + j] = j;
-      dft.values[i*n + j] = std::exp(exponent*double(i*j));
+      dft.rows[i * n + j] = j;
+      dft.values[i * n + j] = std::exp(exponent * double(i * j));
     }
   }
   return dft;
@@ -24,14 +27,15 @@ sparse_matrix dft_matrix(int n) {
 
 sparse_matrix dft_conj_matrix(int n) {
   double N = (double)n;
-  std::complex<double> exponent{0.0, 2.0*M_PI/N};
-  sparse_matrix dft_conj(n,n,n*n);
-  for (int i = 1; i <= n; ++i)
-    dft_conj.col_ptr[i] = i*n;
+  std::complex<double> exponent{0.0, 2.0 * PI / N};
+  sparse_matrix dft_conj(n, n, n * n);
+  for (int i = 1; i <= n; ++i) {
+    dft_conj.col_ptr[i] = i * n;
+  }
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
-      dft_conj.rows[i*n + j] = j;
-      dft_conj.values[i*n + j] = std::exp(exponent*double(j*i));
+      dft_conj.rows[i * n + j] = j;
+      dft_conj.values[i * n + j] = std::exp(exponent * double(j * i));
     }
   }
   return dft_conj;
@@ -42,7 +46,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft256x256) {
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
   sparse_matrix C;
-  
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
@@ -76,7 +80,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_task_run_dft384x384) {
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
   sparse_matrix C;
-  
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
