@@ -32,7 +32,7 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialKulaevCannon>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -83,7 +83,7 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_task_run) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialCannon>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialKulaevCannon>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();

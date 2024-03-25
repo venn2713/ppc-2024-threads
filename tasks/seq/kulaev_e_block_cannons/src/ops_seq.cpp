@@ -8,7 +8,7 @@
 
 std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
                                                int m) {
-  int blockSize = std::min({n, m});
+  int blockSize = std::min(n, m);
 
   std::vector<double> C(n * m, 0.0);
 
@@ -56,7 +56,7 @@ std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vect
   return C;
 }
 
-bool TestTaskSequentialCannon::pre_processing() {
+bool TestTaskSequentialKulaevCannon::pre_processing() {
   internal_order_test();
   // Init value for input and output
 
@@ -78,7 +78,7 @@ bool TestTaskSequentialCannon::pre_processing() {
   return true;
 }
 
-bool TestTaskSequentialCannon::validation() {
+bool TestTaskSequentialKulaevCannon::validation() {
   internal_order_test();
   // Check count elements of output
   return taskData->inputs_count[0] == taskData->inputs_count[1] &&
@@ -86,13 +86,13 @@ bool TestTaskSequentialCannon::validation() {
          taskData->inputs_count[1] == taskData->outputs_count[0];
 }
 
-bool TestTaskSequentialCannon::run() {
+bool TestTaskSequentialKulaevCannon::run() {
   internal_order_test();
   result = cannonMatrixMultiplication(A, B, n, m);
   return true;
 }
 
-bool TestTaskSequentialCannon::post_processing() {
+bool TestTaskSequentialKulaevCannon::post_processing() {
   internal_order_test();
   std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
   return true;

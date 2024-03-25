@@ -9,9 +9,9 @@
 
 #include "core/task/include/task.hpp"
 
-class TestTaskSequentialCannon : public ppc::core::Task {
+class TestTaskSequentialKulaevCannon : public ppc::core::Task {
  public:
-  explicit TestTaskSequentialCannon(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit TestTaskSequentialKulaevCannon(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

@@ -31,7 +31,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_3x3) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  TestTaskSequentialCannon testTaskSequential(taskDataSeq);
+  TestTaskSequentialKulaevCannon testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -68,7 +68,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_2x2) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  TestTaskSequentialCannon testTaskSequential(taskDataSeq);
+  TestTaskSequentialKulaevCannon testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -105,7 +105,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_5x5) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  TestTaskSequentialCannon testTaskSequential(taskDataSeq);
+  TestTaskSequentialKulaevCannon testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -142,7 +142,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_0x0) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  TestTaskSequentialCannon testTaskSequential(taskDataSeq);
+  TestTaskSequentialKulaevCannon testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -179,7 +179,7 @@ TEST(Kulaev_e_block_cannons_seq, Multiplication_100x100) {
   std::vector<double> res = multiplyMatrix(in_A, in_B, n, m);
 
   // Create Task
-  TestTaskSequentialCannon testTaskSequential(taskDataSeq);
+  TestTaskSequentialKulaevCannon testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
