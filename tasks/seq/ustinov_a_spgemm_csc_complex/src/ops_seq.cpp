@@ -1,16 +1,14 @@
 // Copyright 2024 Ustinov Alexander
 #include "seq/ustinov_a_spgemm_csc_complex/include/ops_seq.hpp"
+
 #include <iostream>
 
 bool SpgemmCSCComplex::pre_processing() {
   internal_order_test();
-  
+
   A = reinterpret_cast<sparse_matrix*>(taskData->inputs[0]);
   B = reinterpret_cast<sparse_matrix*>(taskData->inputs[1]);
   C = reinterpret_cast<sparse_matrix*>(taskData->outputs[0]);
-  // std::cout << "Reached preprocessing" << A->row_num << ' ' << A->col_num << '\n';
-  // std::cout << B->row_num << ' ' << B->col_num << '\n';
-  // std::cout << C->row_num << ' ' << C->col_num << '\n';
   return true;
 }
 
@@ -18,14 +16,13 @@ bool SpgemmCSCComplex::validation() {
   internal_order_test();
   int A_col_num = reinterpret_cast<sparse_matrix*>(taskData->inputs[0])->col_num;
   int B_row_num = reinterpret_cast<sparse_matrix*>(taskData->inputs[1])->row_num;
-  // std::cout << "Reached validation" << A_col_num << ' ' << B_row_num << '\n';
   // check that matrices are compatible for multiplication
   return (A_col_num == B_row_num);
 }
 
 bool SpgemmCSCComplex::run() {
   internal_order_test();
-  
+
   // symbolic stage
   C->row_num = A->row_num;
   C->col_num = B->col_num;
@@ -33,24 +30,27 @@ bool SpgemmCSCComplex::run() {
   C->col_ptr[0] = 0;
   std::vector<int> present_elements(C->row_num);
   for (int b_col = 0; b_col < C->col_num; ++b_col) {
-    for (int c_row = 0; c_row < C->row_num; ++c_row)
+    for (int c_row = 0; c_row < C->row_num; ++c_row) {
       present_elements[c_row] = 0;
+    }
     for (int b_idx = B->col_ptr[b_col]; b_idx < B->col_ptr[b_col + 1]; ++b_idx) {
       int b_row = B->rows[b_idx];
-      for (int a_idx = A->col_ptr[b_row]; a_idx < A->col_ptr[b_row + 1]; ++a_idx)
+      for (int a_idx = A->col_ptr[b_row]; a_idx < A->col_ptr[b_row + 1]; ++a_idx) {
         present_elements[A->rows[a_idx]] = 1;
+      }
     }
     int col_nonzero_count = 0;
-    for (int c_row = 0; c_row < C->row_num; ++c_row)
+    for (int c_row = 0; c_row < C->row_num; ++c_row) {
       col_nonzero_count += present_elements[c_row];
+    }
     C->col_ptr[b_col + 1] = col_nonzero_count + C->col_ptr[b_col];
   }
-  
+
   // allocate memory for matrix C
   int total_nonzeros = C->col_ptr[C->col_num];
   C->rows.resize(total_nonzeros);
   C->values.resize(total_nonzeros);
-  
+
   // numeric stage
   std::complex<double> zero, b_value;
   std::vector<std::complex<double>> accumulator(C->row_num);
@@ -79,14 +79,11 @@ bool SpgemmCSCComplex::run() {
       }
     }
   }
-  
+
   return true;
 }
 
 bool SpgemmCSCComplex::post_processing() {
   internal_order_test();
-  
-  // std::cout << "Reached postprocessing" << '\n' << C->row_num << ' ' << C->col_num << ' ' << C->col_ptr[C->col_num] << '\n';
-  
   return true;
 }
