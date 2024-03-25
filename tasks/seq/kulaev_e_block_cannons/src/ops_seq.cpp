@@ -38,8 +38,7 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
   return C;
 }
 
-std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vector<double>& B, int rows_A,
-                                          int col_B) {
+std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vector<double>& B, int rows_A, int col_B) {
   int col_A = rows_A;
   std::vector<double> C(rows_A * col_B, 0.0);
 
