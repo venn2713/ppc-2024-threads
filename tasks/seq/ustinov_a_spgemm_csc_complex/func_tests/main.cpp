@@ -164,7 +164,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft64x64) {
 
 TEST(ustinov_a_spgemm_csc_complex_seq_func, test_shifting_diagonal) {
   int n = 256;
-  sparse_matrix A(n, n, n - 1)
+  sparse_matrix A(n, n, n - 1);
   sparse_matrix C;
   for (int i = 0; i < n - 1; ++i) {
     A.col_ptr[i + 1] = i;
