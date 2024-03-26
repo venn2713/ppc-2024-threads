@@ -41,8 +41,8 @@ sparse_matrix dft_conj_matrix(int n) {
   return dft_conj;
 }
 
-TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft256x256) {
-  int n = 256;
+TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft384x384) {
+  int n = 384;
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
   sparse_matrix C;
@@ -54,7 +54,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft256x256) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  auto testTaskSequential = std::make_shared<SpgemmCSCComplex>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<SpgemmCSCComplexSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -88,7 +88,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_task_run_dft384x384) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  auto testTaskSequential = std::make_shared<SpgemmCSCComplex>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<SpgemmCSCComplexSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
