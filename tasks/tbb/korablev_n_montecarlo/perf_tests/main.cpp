@@ -1,6 +1,6 @@
 // Copyright 2024 Korablev Nikita
 #include <gtest/gtest.h>
-#include <omp.h>
+#include <oneapi/tbb.h>
 
 #include <vector>
 
@@ -33,7 +33,8 @@ TEST(TBB_Korablev_Nikita_perf_test, test_pipeline_run) {
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  perfAttr->current_timer = [&] { return omp_get_wtime(); };
+  const auto t0 = oneapi::tbb::tick_count::now();
+  perfAttr->current_timer = [&] { return (oneapi::tbb::tick_count::now() - t0).seconds(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
@@ -69,7 +70,8 @@ TEST(TBB_Korablev_Nikita_perf_test, test_task_run) {
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  perfAttr->current_timer = [&] { return omp_get_wtime(); };
+  const auto t0 = oneapi::tbb::tick_count::now();
+  perfAttr->current_timer = [&] { return (oneapi::tbb::tick_count::now() - t0).seconds(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
