@@ -39,9 +39,10 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
   return C;
 }
 
-std::vector<double> cannonMatrixMultiplication_tbb(const std::vector<double>& A, const std::vector<double>& B, int n, int m) {
+std::vector<double> cannonMatrixMultiplication_tbb(const std::vector<double>& A, const std::vector<double>& B, int n,
+                                                   int m) {
   int blockSize = std::min(n, m);
-    std::vector<double> C(n * m, 0.0);
+  std::vector<double> C(n * m, 0.0);
 
   if (n == 0 || m == 0) {
     return std::vector<double>();
