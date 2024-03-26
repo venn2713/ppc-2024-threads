@@ -39,37 +39,32 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, con
   return C;
 }
 
-std::vector<double> cannonMatrixMultiplication_tbb(const std::vector<double>& A, const std::vector<double>& B, int n,
-                                                   int m) {
+std::vector<double> cannonMatrixMultiplication_tbb(const std::vector<double>& A, const std::vector<double>& B, int n, int m) {
   int blockSize = std::min(n, m);
-
-  std::vector<double> C(n * m, 0.0);
+    std::vector<double> C(n * m, 0.0);
 
   if (n == 0 || m == 0) {
     return std::vector<double>();
   }
 
-  tbb::parallel_for(0, n, blockSize, [&](int i) {
-    std::vector<double> local_accumulator(n * m, 0.0);
+  tbb::parallel_for(tbb::blocked_range<int>(0, n, blockSize), [&](const tbb::blocked_range<int>& row_range) {
+    for (int i = row_range.begin(); i != row_range.end(); i += blockSize) {
+      for (int j = 0; j < m; j += blockSize) {
+        for (int k = 0; k < m; k += blockSize) {
+          int i_end = std::min(i + blockSize, n);
+          int j_end = std::min(j + blockSize, m);
+          int k_end = std::min(k + blockSize, m);
 
-    for (int j = 0; j < m; j += blockSize) {
-      for (int k = 0; k < m; k += blockSize) {
-        int i_end = std::min(i + blockSize, n);
-        int j_end = std::min(j + blockSize, m);
-        int k_end = std::min(k + blockSize, m);
-
-        for (int ii = i; ii < i_end; ++ii) {
-          for (int jj = j; jj < j_end; ++jj) {
+          for (int ii = i; ii < i_end; ++ii) {
             for (int kk = k; kk < k_end; ++kk) {
-              local_accumulator[ii * m + jj] += A[ii * m + kk] * B[kk * m + jj];
+              double A_ik = A[ii * m + kk];
+              for (int jj = j; jj < j_end; ++jj) {
+                C[ii * m + jj] += A_ik * B[kk * m + jj];
+              }
             }
           }
         }
       }
-    }
-
-    for (int i = 0; i < n * m; ++i) {
-      C[i] += local_accumulator[i];
     }
   });
 
