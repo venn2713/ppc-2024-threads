@@ -8,9 +8,9 @@ using namespace std;
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
   // Create data
-  int p = 500;
-  int q = 500;
-  int r = 500;
+  size_t p = 500;
+  size_t q = 500;
+  size_t r = 500;
   std::vector<double> lhs_in(p * q);
   for (size_t i = 0; i < p; ++i) {
     if (i % 4 == 0)
@@ -69,9 +69,9 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
   // Create data
-  int p = 500;
-  int q = 500;
-  int r = 500;
+  size_t p = 500;
+  size_t q = 500;
+  size_t r = 500;
   std::vector<double> lhs_in(p * q);
   for (size_t i = 0; i < p; ++i) {
     if (i % 4 == 0)
