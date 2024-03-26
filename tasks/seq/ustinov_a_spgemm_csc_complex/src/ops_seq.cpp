@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-bool SpgemmCSCComplex::pre_processing() {
+bool SpgemmCSCComplexSeq::pre_processing() {
   internal_order_test();
 
   A = reinterpret_cast<sparse_matrix*>(taskData->inputs[0]);
@@ -12,7 +12,7 @@ bool SpgemmCSCComplex::pre_processing() {
   return true;
 }
 
-bool SpgemmCSCComplex::validation() {
+bool SpgemmCSCComplexSeq::validation() {
   internal_order_test();
   int A_col_num = reinterpret_cast<sparse_matrix*>(taskData->inputs[0])->col_num;
   int B_row_num = reinterpret_cast<sparse_matrix*>(taskData->inputs[1])->row_num;
@@ -20,7 +20,7 @@ bool SpgemmCSCComplex::validation() {
   return (A_col_num == B_row_num);
 }
 
-bool SpgemmCSCComplex::run() {
+bool SpgemmCSCComplexSeq::run() {
   internal_order_test();
 
   // symbolic stage
@@ -84,7 +84,7 @@ bool SpgemmCSCComplex::run() {
   return true;
 }
 
-bool SpgemmCSCComplex::post_processing() {
+bool SpgemmCSCComplexSeq::post_processing() {
   internal_order_test();
   return true;
 }

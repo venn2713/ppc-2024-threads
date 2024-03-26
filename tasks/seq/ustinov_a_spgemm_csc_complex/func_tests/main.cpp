@@ -61,7 +61,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_scalar_matrix) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -92,7 +92,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft2x2) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -118,7 +118,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft16x16) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -147,7 +147,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft64x64) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -181,7 +181,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_shifting_diagonal) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -222,7 +222,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_permutation_matrix) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C));
 
   // Create Task
-  SpgemmCSCComplex testTaskSequential(taskDataSeq);
+  SpgemmCSCComplexSeq testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
