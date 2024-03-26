@@ -102,5 +102,7 @@ bool SparseMatrixMultiSequential::post_processing() {
     out_ptr[i] = result[i];
   }
 
+  delete result;
+
   return true;
 }
