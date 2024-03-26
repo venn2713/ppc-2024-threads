@@ -12,15 +12,15 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
   int q = 500;
   int r = 500;
   std::vector<double> lhs_in(p * q);
-  for (int i = 0; i < p; ++i) {
+  for (size_t i = 0; i < p; ++i) {
     if (i % 4 == 0)
-      for (int j = 0; j < q; ++j) {
+      for (size_t j = 0; j < q; ++j) {
         lhs_in[i * q + j] = 1.0;
       }
   }
   std::vector<double> rhs_in(q * r);
-  for (int i = 0; i < q; ++i) {
-    for (int j = 0; j < r; ++j) {
+  for (size_t i = 0; i < q; ++i) {
+    for (size_t j = 0; j < r; ++j) {
       if (j % 5 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
@@ -57,8 +57,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSeq);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < p; ++i) {
-    for (int j = 0; j < r; ++j) {
+  for (size_t i = 0; i < p; ++i) {
+    for (size_t j = 0; j < r; ++j) {
       if (i % 4 == 0 && j % 5 == 0)
         EXPECT_DOUBLE_EQ(out[i * r + j], q);
       else
@@ -73,15 +73,15 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
   int q = 500;
   int r = 500;
   std::vector<double> lhs_in(p * q);
-  for (int i = 0; i < p; ++i) {
+  for (size_t i = 0; i < p; ++i) {
     if (i % 4 == 0)
-      for (int j = 0; j < q; ++j) {
+      for (size_t j = 0; j < q; ++j) {
         lhs_in[i * q + j] = 1.0;
       }
   }
   std::vector<double> rhs_in(q * r);
-  for (int i = 0; i < q; ++i) {
-    for (int j = 0; j < r; ++j) {
+  for (size_t i = 0; i < q; ++i) {
+    for (size_t j = 0; j < r; ++j) {
       if (j % 5 == 0) rhs_in[i * r + j] = 1.0;
     }
   }
@@ -118,8 +118,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSeq);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < p; ++i) {
-    for (int j = 0; j < r; ++j) {
+  for (size_t i = 0; i < p; ++i) {
+    for (size_t j = 0; j < r; ++j) {
       if (i % 4 == 0 && j % 5 == 0)
         EXPECT_DOUBLE_EQ(out[i * r + j], q);
       else

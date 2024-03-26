@@ -66,10 +66,10 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_sizes2) {
 }
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
-  int n1 = 4;
-  int m1 = 4;
-  int n2 = 4;
-  int m2 = 4;
+  size_t n1 = 4;
+  size_t m1 = 4;
+  size_t n2 = 4;
+  size_t m2 = 4;
   // Create data
   std::vector<double> in1{5, 0, 0, 0, 0, 0, 5, 0, 0, 1, 0, 0, 8, 0, 6, 0};
 
@@ -97,8 +97,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
-  int k = 0;
-  for (int i = 0; i < out.size(); ++i) {
+  size_t k = 0;
+  for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == test[i]) {
       k++;
     }
@@ -107,10 +107,10 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
 }
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
-  int n1 = 3;
-  int m1 = 3;
-  int n2 = 3;
-  int m2 = 3;
+  size_t n1 = 3;
+  size_t m1 = 3;
+  size_t n2 = 3;
+  size_t m2 = 3;
   // Create data
   std::vector<double> in1{1, -2, 1, 2, 1, -1, 3, 2, -2};
 
@@ -138,8 +138,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
-  int k = 0;
-  for (int i = 0; i < out.size(); ++i) {
+  size_t k = 0;
+  for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == identity[i]) {
       k++;
     }
@@ -148,10 +148,10 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
 }
 
 TEST(simonyan_s_sparse_matr_multi_ccs_seq, zero_matrix) {
-  int n1 = 3;
-  int m1 = 3;
-  int n2 = 3;
-  int m2 = 3;
+  size_t n1 = 3;
+  size_t m1 = 3;
+  size_t n2 = 3;
+  size_t m2 = 3;
   // Create data
   std::vector<double> in1{1, -2, 1, 2, 1, -1, 3, 2, -2};
 
@@ -177,8 +177,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, zero_matrix) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
-  int k = 0;
-  for (int i = 0; i < out.size(); ++i) {
+  size_t k = 0;
+  for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == 0.0) {
       k++;
     }
