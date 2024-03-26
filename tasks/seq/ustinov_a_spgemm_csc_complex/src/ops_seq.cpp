@@ -52,7 +52,8 @@ bool SpgemmCSCComplex::run() {
   C->values.resize(total_nonzeros);
 
   // numeric stage
-  std::complex<double> zero, b_value;
+  std::complex<double> zero;
+  std::complex<double> b_value;
   std::vector<std::complex<double>> accumulator(C->row_num);
   for (int b_col = 0; b_col < C->col_num; ++b_col) {
     // set accumulator values to zero
@@ -73,7 +74,7 @@ bool SpgemmCSCComplex::run() {
     // write column into matrix C
     int c_pos = C->col_ptr[b_col];
     for (int c_row = 0; c_row < C->row_num; ++c_row) {
-      if (present_elements[c_row]) {
+      if (present_elements[c_row] != 0) {
         C->rows[c_pos] = c_row;
         C->values[c_pos++] = accumulator[c_row];
       }

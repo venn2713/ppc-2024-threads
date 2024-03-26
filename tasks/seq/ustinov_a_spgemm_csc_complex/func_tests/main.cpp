@@ -12,7 +12,7 @@
 const double PI = 3.14159265358979323846;
 
 sparse_matrix dft_matrix(int n) {
-  double N = (double)n;
+  auto N = (double)n;
   std::complex<double> exponent{0.0, -2.0 * PI / N};
   sparse_matrix dft(n, n, n * n);
   for (int i = 1; i <= n; ++i) {
@@ -28,7 +28,7 @@ sparse_matrix dft_matrix(int n) {
 }
 
 sparse_matrix dft_conj_matrix(int n) {
-  double N = (double)n;
+  auto N = (double)n;
   std::complex<double> exponent{0.0, 2.0 * PI / N};
   sparse_matrix dft_conj(n, n, n * n);
   for (int i = 1; i <= n; ++i) {
@@ -44,7 +44,9 @@ sparse_matrix dft_conj_matrix(int n) {
 }
 
 TEST(ustinov_a_spgemm_csc_complex_seq_func, test_scalar_matrix) {
-  sparse_matrix A(1, 1, 1), B(1, 1, 1), C;
+  sparse_matrix A(1, 1, 1);
+  sparse_matrix B(1, 1, 1);
+  sparse_matrix C;
   A.col_ptr = {0, 1};
   A.rows = {0};
   A.values = {std::complex<double>(0.0, 1.0)};
@@ -71,7 +73,9 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_scalar_matrix) {
 TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft2x2) {
   double N = 2.0;
   std::complex<double> exponent{0, -2.0 * PI / N};
-  sparse_matrix A(2, 2, 4), B(2, 2, 4), C;
+  sparse_matrix A(2, 2, 4);
+  sparse_matrix B(2, 2, 4);
+  sparse_matrix C;
   A.col_ptr = {0, 2, 4};
   A.rows = {0, 1, 0, 1};
   A.values = {std::exp(exponent * 0.0 * 0.0), std::exp(exponent * 0.0 * 1.0), std::exp(exponent * 1.0 * 0.0),
@@ -160,7 +164,8 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_dft64x64) {
 
 TEST(ustinov_a_spgemm_csc_complex_seq_func, test_shifting_diagonal) {
   int n = 256;
-  sparse_matrix A(n, n, n - 1), C;
+  sparse_matrix A(n, n, n - 1)
+  sparse_matrix C;
   for (int i = 0; i < n - 1; ++i) {
     A.col_ptr[i + 1] = i;
     A.rows[i] = i;
@@ -194,7 +199,9 @@ TEST(ustinov_a_spgemm_csc_complex_seq_func, test_shifting_diagonal) {
 
 TEST(ustinov_a_spgemm_csc_complex_seq_func, test_permutation_matrix) {
   int n = 257;
-  sparse_matrix A(n, n, n), B(n, n, n), C;
+  sparse_matrix A(n, n, n);
+  sparse_matrix B(n, n, n);
+  sparse_matrix C;
   int pos = 3;
   for (int i = 0; i < n; ++i) {
     A.col_ptr[i] = B.col_ptr[i] = i;

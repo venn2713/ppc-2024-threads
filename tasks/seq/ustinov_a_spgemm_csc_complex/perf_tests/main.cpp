@@ -10,7 +10,7 @@
 const double PI = 3.14159265358979323846;
 
 sparse_matrix dft_matrix(int n) {
-  double N = (double)n;
+  auto N = (double)n;
   std::complex<double> exponent{0.0, -2.0 * PI / N};
   sparse_matrix dft(n, n, n * n);
   for (int i = 1; i <= n; ++i) {
@@ -26,7 +26,7 @@ sparse_matrix dft_matrix(int n) {
 }
 
 sparse_matrix dft_conj_matrix(int n) {
-  double N = (double)n;
+  auto N = (double)n;
   std::complex<double> exponent{0.0, 2.0 * PI / N};
   sparse_matrix dft_conj(n, n, n * n);
   for (int i = 1; i <= n; ++i) {
