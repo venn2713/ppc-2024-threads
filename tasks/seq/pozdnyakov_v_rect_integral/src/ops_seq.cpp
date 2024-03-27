@@ -1,7 +1,6 @@
 // Copyright 2024 Pozdnyakov Vasya
 #include "seq/pozdnyakov_v_rect_integral/include/ops_seq.hpp"
 
-
 double flin(double x, double y) { return x - y; }
 double fxy(double x, double y) { return x * y; }
 double fysinx(double x, double y) { return y * std::sin(x); }
@@ -24,7 +23,7 @@ bool PozdnyakovTaskSequential::pre_processing() {
 
 bool PozdnyakovTaskSequential::validation() {
   internal_order_test();
-  return taskData->inputs_count[0] == 4  && taskData->outputs_count[0] == 1;
+  return taskData->inputs_count[0] == 4 && taskData->outputs_count[0] == 1;
 }
 
 bool PozdnyakovTaskSequential::run() {
