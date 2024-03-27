@@ -48,6 +48,7 @@ bool SpgemmCSCComplexSeq::run() {
 
   // allocate memory for matrix C
   int total_nonzeros = C->col_ptr[C->col_num];
+  C->nonzeros = total_nonzeros;
   C->rows.resize(total_nonzeros);
   C->values.resize(total_nonzeros);
 

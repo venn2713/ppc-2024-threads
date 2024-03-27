@@ -40,7 +40,7 @@ sparse_matrix dft_conj_matrix(int n) {
   return dft_conj;
 }
 
-TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft384x384) {
+TEST(ustinov_a_spgemm_csc_complex_seq, test_pipeline_run_dft384x384) {
   int n = 384;
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
@@ -74,7 +74,7 @@ TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_pipeline_run_dft384x384) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 }
 
-TEST(ustinov_a_spgemm_csc_complex_seq_perf, test_task_run_dft384x384) {
+TEST(ustinov_a_spgemm_csc_complex_seq, test_task_run_dft384x384) {
   int n = 384;
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
