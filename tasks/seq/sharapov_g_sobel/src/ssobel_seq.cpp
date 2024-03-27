@@ -20,7 +20,6 @@ std::vector<SSobelSeq::RGB> SSobelSeq::generateColorImage(size_t width, size_t h
   std::vector<SSobelSeq::RGB> image;
   image.reserve(width * height);
 
-  std::random_device rd;
   std::mt19937 gen(static_cast<unsigned int>(seed));
   std::uniform_int_distribution<> rgb(0, 255);
 
@@ -54,7 +53,7 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
   const int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
   const int Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-  std::vector<GrayScale> result(width * height);
+  std::vector<GrayScale> resultImg(width * height);
 
   for (size_t i = 0; i < height; ++i) {
     for (size_t j = 0; j < width; ++j) {
@@ -79,11 +78,11 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
         sum = 0;
       }
 
-      result[i * width + j] = GrayScale{static_cast<uint8_t>(sum)};
+      resultImg[i * width + j] = GrayScale{static_cast<uint8_t>(sum)};
     }
   }
 
-  return result;
+  return resultImg;
 }
 
 void SSobelSeq::printPixel(std::vector<GrayScale> Image, int width, int height) {
