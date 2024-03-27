@@ -145,8 +145,6 @@ bool SSobelSeq::post_processing() {
     internal_order_test();
 
     for (size_t i = 0; i < grayscale_img.size(); ++i) {
-      // uint8_t* pixel = taskData->outputs[0] + i;
-      // *pixel = result[i].value;
       SSobelSeq::GrayScale* pixel = reinterpret_cast<SSobelSeq::GrayScale*>(taskData->outputs[0] + i);
       *pixel = result[i];
     }
