@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <vector>
 #include <utility>
 #include <memory>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 
@@ -16,13 +16,13 @@ class SSobelSeq : public ppc::core::Task {
   bool run() override;
   bool post_processing() override;
 
-    struct RGB {
-      uint8_t r, g, b;
-    };
+  struct RGB {
+    uint8_t r, g, b;
+  };
 
-    struct GrayScale {
-      uint8_t value;
-    };
+  struct GrayScale {
+    uint8_t value;
+  };
 
   static void printPixel(std::vector<GrayScale> Image, int width, int height);
   static std::vector<RGB> generateColorImage(size_t width, size_t height, size_t seed);
@@ -33,7 +33,7 @@ class SSobelSeq : public ppc::core::Task {
 
  private:
   size_t imgWidth{}, imgHeight{}, imgSize{};
-  std::vector<RGB>       colored_img{};
+  std::vector<RGB> colored_img{};
   std::vector<GrayScale> grayscale_img{};
   std::vector<GrayScale> result{};
 };
