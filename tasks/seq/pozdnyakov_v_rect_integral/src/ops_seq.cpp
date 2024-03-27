@@ -11,9 +11,9 @@ bool PozdnyakovTaskSequential::pre_processing() {
   try {
     double* tmp = reinterpret_cast<double*>(taskData->inputs[0]);
     x1 = tmp[0], x2 = tmp[1], y1 = tmp[2], y2 = tmp[3];
-    n = 5000;
     res = 0.0;
     f = reinterpret_cast<Func>(taskData->inputs[1]);
+    n = reinterpret_cast<uint64_t*>(taskData->inputs[2])[0];
   } catch (const std::exception& e) {
     std::cout << e.what() << std::endl;
     return false;

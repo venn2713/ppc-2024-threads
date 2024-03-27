@@ -26,6 +26,6 @@ class PozdnyakovTaskSequential : public ppc::core::Task {
  private:
   Func f{};
   double x1{}, x2{}, y1{}, y2{};
-  size_t n;
+  uint64_t n;
   double res;
 };

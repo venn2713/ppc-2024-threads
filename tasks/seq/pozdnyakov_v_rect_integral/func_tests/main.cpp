@@ -8,6 +8,7 @@
 TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_1) {
   double res = 0.0;
   Func f = flin;
+  uint64_t n = 100;
 
   std::vector<double> in = {0, 3, 0, 3};
   std::vector<double> out(1, 0);
@@ -16,6 +17,8 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_1) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(1);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -32,6 +35,7 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_1) {
 TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_2) {
   double res = -357.0;
   Func f = flin;
+  uint64_t n = 100;
 
   std::vector<double> in = {-5, 2, 4, 10};
   std::vector<double> out(1, 0);
@@ -40,6 +44,8 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_2) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(1);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -56,6 +62,7 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_sub_y_2) {
 TEST(pozdnyakov_v_rect_integral_seq, Test_x_mul_y) {
   double res = 18.0;
   Func f = fxy;
+  uint64_t n = 100;
 
   std::vector<double> in = {0, 3, 1, 3};
   std::vector<double> out(1, 0);
@@ -64,6 +71,8 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_mul_y) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(1);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -80,6 +89,7 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_mul_y) {
 TEST(pozdnyakov_v_rect_integral_seq, Test_y_sin_x) {
   double res = 2.295;
   Func f = fysinx;
+  uint64_t n = 100;
 
   std::vector<double> in = {-2, 3, 1, 3};
   std::vector<double> out(1, 0);
@@ -88,6 +98,8 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_y_sin_x) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(1);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -104,6 +116,7 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_y_sin_x) {
 TEST(pozdnyakov_v_rect_integral_seq, Test_x_exp_y) {
   double res = 217.0907;
   Func f = fxexpy;
+  uint64_t n = 1000;
 
   std::vector<double> in = {0, 5, 1, 3};
   std::vector<double> out(1, 0);
@@ -112,6 +125,8 @@ TEST(pozdnyakov_v_rect_integral_seq, Test_x_exp_y) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(f));
+  taskDataSeq->inputs_count.emplace_back(1);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
