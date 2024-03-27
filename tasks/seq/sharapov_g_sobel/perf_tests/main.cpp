@@ -1,6 +1,6 @@
 // Copyright 2024 Sharapov Georgiy
 
-enum { SIZE = 2300 };
+enum { SIZE = 2350 };
 
 #include <gtest/gtest.h>
 #include <omp.h>
