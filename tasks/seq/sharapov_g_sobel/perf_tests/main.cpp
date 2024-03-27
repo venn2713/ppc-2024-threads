@@ -94,6 +94,6 @@ TEST(sharapov_g_sobel_seq, test_task_run) {
   // use some reference library, like OpenCV, or check the result
   // visually (the latter is not an option). Suggestions are welcome ;)
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
-    EXPECT_TRUE(EdgeImage[i].value == 0 || 255);
+    EXPECT_TRUE(static_cast<int>(EdgeImage[i].value) == 0 || 255);
   }
 }
