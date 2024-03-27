@@ -1,11 +1,11 @@
 // Copyright 2024 Pozdnyakov Vasya
 #include "seq/pozdnyakov_v_rect_integral/include/ops_seq.hpp"
-#include <cstdlib>
+
 
 double flin(double x, double y) { return x - y; }
 double fxy(double x, double y) { return x * y; }
-double fysinx(double x, double y) {return y * std::sin(x);}
-double fxexpy(double x, double y) {return x * std::exp(y);}
+double fysinx(double x, double y) { return y * std::sin(x); }
+double fxexpy(double x, double y) { return x * std::exp(y); }
 
 bool PozdnyakovTaskSequential::pre_processing() {
   internal_order_test();
@@ -15,7 +15,7 @@ bool PozdnyakovTaskSequential::pre_processing() {
     n = 5000;
     res = 0.0;
     f = reinterpret_cast<Func>(taskData->inputs[1]);
-  } catch(std::exception e) {
+  } catch (const std::exception& e) {
     std::cout << e.what() << std::endl;
     return false;
   }
@@ -37,7 +37,7 @@ bool PozdnyakovTaskSequential::run() {
       }
     }
     res *= x_i * y_i;
-  } catch(std::exception e) {
+  } catch (const std::exception& e) {
     std::cout << e.what() << std::endl;
     return false;
   }
@@ -48,7 +48,7 @@ bool PozdnyakovTaskSequential::post_processing() {
   internal_order_test();
   try {
     reinterpret_cast<double*>(taskData->outputs[0])[0] = res;
-  } catch(std::exception e) {
+  } catch (const std::exception& e) {
     std::cout << e.what() << std::endl;
     return false;
   }

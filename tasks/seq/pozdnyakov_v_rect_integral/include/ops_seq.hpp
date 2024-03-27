@@ -1,13 +1,14 @@
 // Copyright 2024 Pozdnyakov Vasya
 #pragma once
 
-#include <vector>
-#include <utility>
 #include <memory>
+#include <utility>
+#include <vector>
+#include <cmath>
 
 #include "core/task/include/task.hpp"
 
-using Func = double(*)(double, double);
+using Func = double (*)(double, double);
 
 double flin(double x, double y);
 double fxy(double x, double y);
@@ -25,6 +26,6 @@ class PozdnyakovTaskSequential : public ppc::core::Task {
  private:
   Func f{};
   double x1{}, x2{}, y1{}, y2{};
-  int n;
+  size_t n;
   double res;
 };
