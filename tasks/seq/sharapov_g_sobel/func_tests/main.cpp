@@ -37,6 +37,8 @@ TEST(sharapov_g_sobel_seq, Test_Seed_1234) {
   ASSERT_EQ(SSobelSeq.run(), true);
   ASSERT_EQ(SSobelSeq.post_processing(), true);
 
+  SSobelSeq::printPixel(EdgeImage, width, height);
+
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
     ASSERT_EQ(static_cast<int>(EdgeImageExpected[i].value), static_cast<int>(EdgeImage[i].value));
   }
@@ -72,6 +74,8 @@ TEST(sharapov_g_sobel_seq, Test_Seed_2451) {
   ASSERT_EQ(SSobelSeq.pre_processing(), true);
   ASSERT_EQ(SSobelSeq.run(), true);
   ASSERT_EQ(SSobelSeq.post_processing(), true);
+
+  SSobelSeq::printPixel(EdgeImage, width, height);
 
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
     ASSERT_EQ(static_cast<int>(EdgeImageExpected[i].value), static_cast<int>(EdgeImage[i].value));
@@ -109,6 +113,8 @@ TEST(sharapov_g_sobel_seq, Test_Seed_2423) {
   ASSERT_EQ(SSobelSeq.run(), true);
   ASSERT_EQ(SSobelSeq.post_processing(), true);
 
+  SSobelSeq::printPixel(EdgeImage, width, height);
+
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
     ASSERT_EQ(static_cast<int>(EdgeImageExpected[i].value), static_cast<int>(EdgeImage[i].value));
   }
@@ -145,6 +151,8 @@ TEST(sharapov_g_sobel_seq, Test_Seed_2354) {
   ASSERT_EQ(SSobelSeq.run(), true);
   ASSERT_EQ(SSobelSeq.post_processing(), true);
 
+  SSobelSeq::printPixel(EdgeImage, width, height);
+
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
     ASSERT_EQ(static_cast<int>(EdgeImageExpected[i].value), static_cast<int>(EdgeImage[i].value));
   }
@@ -180,6 +188,8 @@ TEST(sharapov_g_sobel_seq, Test_Seed_3453) {
   ASSERT_EQ(SSobelSeq.pre_processing(), true);
   ASSERT_EQ(SSobelSeq.run(), true);
   ASSERT_EQ(SSobelSeq.post_processing(), true);
+
+  SSobelSeq::printPixel(EdgeImage, width, height);
 
   for (size_t i = 0; i < ColoredImage.size(); ++i) {
     ASSERT_EQ(static_cast<int>(EdgeImageExpected[i].value), static_cast<int>(EdgeImage[i].value));
