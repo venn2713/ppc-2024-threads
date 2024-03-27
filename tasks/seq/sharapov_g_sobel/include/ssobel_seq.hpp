@@ -24,12 +24,11 @@ class SSobelSeq : public ppc::core::Task {
     uint8_t value;
   };
 
-  static void printPixel(std::vector<GrayScale> Image, int width, int height);
+  static void printPixel(const std::vector<GrayScale>& image, int width, int height);
   static std::vector<RGB> generateColorImage(size_t width, size_t height, size_t seed);
   static GrayScale getPixel(const std::vector<GrayScale>& image, size_t x, size_t y, size_t width, size_t height);
-
-  std::vector<GrayScale> convertToGrayScale(const std::vector<RGB>& colorImage, size_t width, size_t height);
-  std::vector<GrayScale> SobelOperatorSeq(const std::vector<GrayScale>& grayImage, size_t width, size_t height);
+  static std::vector<GrayScale> convertToGrayScale(const std::vector<RGB>& colorImage, size_t width, size_t height);
+  static std::vector<GrayScale> SobelOperatorSeq(const std::vector<GrayScale>& grayImage, size_t width, size_t height);
 
  private:
   size_t imgWidth{}, imgHeight{}, imgSize{};

@@ -57,7 +57,8 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
 
   for (size_t i = 0; i < height; ++i) {
     for (size_t j = 0; j < width; ++j) {
-      int sumX = 0, sumY = 0;
+      int sumX = 0;
+      int sumY = 0;
 
       for (int x = -1; x <= 1; x++) {
         for (int y = -1; y <= 1; y++) {
@@ -85,10 +86,10 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
   return resultImg;
 }
 
-void SSobelSeq::printPixel(std::vector<GrayScale> Image, int width, int height) {
+void SSobelSeq::printPixel(const std::vector<GrayScale> &image, int width, int height) {
   for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
-      GrayScale pixel = getPixel(Image, x, y, width, height);
+      GrayScale pixel = getPixel(image, x, y, width, height);
       std::cout << static_cast<int>(pixel.value) << "\t";
     }
     std::cout << std::endl;
@@ -145,7 +146,7 @@ bool SSobelSeq::post_processing() {
     internal_order_test();
 
     for (size_t i = 0; i < grayscale_img.size(); ++i) {
-      SSobelSeq::GrayScale* pixel = reinterpret_cast<SSobelSeq::GrayScale*>(taskData->outputs[0] + i);
+      auto* pixel = reinterpret_cast<SSobelSeq::GrayScale*>(taskData->outputs[0] + i);
       *pixel = result[i];
     }
   } catch (...) {
