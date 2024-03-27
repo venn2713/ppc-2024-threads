@@ -9,7 +9,7 @@ double fxexpy(double x, double y) { return x * std::exp(y); }
 bool PozdnyakovTaskSequential::pre_processing() {
   internal_order_test();
   try {
-    double* tmp = reinterpret_cast<double*>(taskData->inputs[0]);
+    auto* tmp = reinterpret_cast<double*>(taskData->inputs[0]);
     x1 = tmp[0], x2 = tmp[1], y1 = tmp[2], y2 = tmp[3];
     res = 0.0;
     f = reinterpret_cast<Func>(taskData->inputs[1]);
@@ -29,7 +29,8 @@ bool PozdnyakovTaskSequential::validation() {
 bool PozdnyakovTaskSequential::run() {
   internal_order_test();
   try {
-    double x_i = std::abs(x2 - x1) / n, y_i = std::abs(y2 - y1) / n;
+    double x_i = std::abs(x2 - x1) / n;
+    double y_i = std::abs(y2 - y1) / n;
     for (uint64_t i = 0; i < n; i++) {
       for (uint64_t j = 0; j < n; j++) {
         res += f(x1 + i * x_i, y1 + j * y_i);
