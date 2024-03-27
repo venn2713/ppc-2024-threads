@@ -86,7 +86,7 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
   return resultImg;
 }
 
-void SSobelSeq::printPixel(const std::vector<GrayScale> &image, int width, int height) {
+void SSobelSeq::printPixel(const std::vector<GrayScale>& image, int width, int height) {
   for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
       GrayScale pixel = getPixel(image, x, y, width, height);
