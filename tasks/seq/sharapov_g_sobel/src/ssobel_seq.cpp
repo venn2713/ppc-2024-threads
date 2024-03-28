@@ -55,32 +55,28 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
 
   std::vector<GrayScale> resultImg(width * height);
 
-  for (size_t i = 0; i < height; ++i) {
-    for (size_t j = 0; j < width; ++j) {
-      int sumX = 0;
-      int sumY = 0;
+  for (int index = 0; index < sizeImg; ++index) {
+    int i = index / width;
+    int j = index % width;
+    int sumX = 0;
+    int sumY = 0;
 
-      for (int x = -1; x <= 1; x++) {
-        for (int y = -1; y <= 1; y++) {
-          int posX = static_cast<int>(j) + y;
-          int posY = static_cast<int>(i) + x;
-          auto pixel = getPixel(grayImage, posX, posY, width, height);
+    for (int x = -1; x <= 1; x++) {
+      for (int y = -1; y <= 1; y++) {
+        int posX = static_cast<int>(j) + y;
+        int posY = static_cast<int>(i) + x;
+        auto pixel = getPixel(grayImage, posX, posY, width, height);
 
-          sumX += Gx[x + 1][y + 1] * pixel.value;
-          sumY += Gy[x + 1][y + 1] * pixel.value;
-        }
+        sumX += Gx[x + 1][y + 1] * pixel.value;
+        sumY += Gy[x + 1][y + 1] * pixel.value;
       }
-
-      int sum = std::sqrt(sumX * sumX + sumY * sumY);
-
-      if (sum >= 200) {
-        sum = 255;
-      } else {
-        sum = 0;
-      }
-
-      resultImg[i * width + j] = GrayScale{static_cast<uint8_t>(sum)};
     }
+
+    int sum = std::sqrt(sumX * sumX + sumY * sumY);
+
+    sum = sum >= 200 ? 255 : 0;
+
+    resultImg[index] = GrayScale{static_cast<uint8_t>(sum)};
   }
 
   return resultImg;
