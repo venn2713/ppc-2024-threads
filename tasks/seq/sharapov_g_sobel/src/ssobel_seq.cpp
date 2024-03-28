@@ -46,7 +46,7 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::convertToGrayScale(const std::vecto
     const auto& pixel = colorImage[index];
     grayImage[index].value = static_cast<uint8_t>(0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b);
   }
-  
+
   return grayImage;
 }
 
@@ -145,7 +145,9 @@ bool SSobelSeq::post_processing() {
   try {
     internal_order_test();
 
-    for (size_t i = 0; i < grayscale_img.size(); ++i) {
+    int sizeImg = static_cast<int>(grayscale_img.size());
+
+    for (int i = 0; i < sizeImg; ++i) {
       auto* pixel = reinterpret_cast<SSobelSeq::GrayScale*>(taskData->outputs[0] + i);
       *pixel = result[i];
     }
