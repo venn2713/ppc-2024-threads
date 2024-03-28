@@ -1,8 +1,8 @@
 // Copyright 2024 Eremin Alexander
 #include "seq/eremin_a_int_radixsort/include/ops_seq.hpp"
 
-#include <thread>
 #include <cmath>
+#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -91,6 +91,6 @@ bool RadixSortTaskSequential::run() {
 
 bool RadixSortTaskSequential::post_processing() {
   internal_order_test();
-  for (int i = 0; i < VectorForSort.size(); i++) reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
+  for (size_t i = 0; i < VectorForSort.size(); i++) reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
   return true;
 }
