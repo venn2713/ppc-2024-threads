@@ -1,22 +1,12 @@
 // Copyright 2024 Kozlov Mikhail
 #include "seq/kozlov_m_simpson_integral/include/ops_seq.hpp"
 
-double xy(double x, double y){
-    return x*y;
-}
-double siny(double x, double y){
-    return std::sin(y);
-}
-double linear(double x, double y){
-    return y*5 - x*2;
-}
-double expx(double x, double y){
-    return std::exp(x);
-}
+double xy(double x, double y) { return x*y; }
+double siny(double x, double y) { return std::sin(y); }
+double linear(double x, double y){ return y*5 - x*2; }
+double expx(double x, double y){ return std::exp(x); }
 
-double expy(double x, double y){
-    return std::exp(y)/2;
-}
+double expy(double x, double y){ return std::exp(y)/2; }
 
 
 bool KozlovTaskSequential::pre_processing() {
@@ -32,39 +22,38 @@ bool KozlovTaskSequential::pre_processing() {
 
 bool KozlovTaskSequential::validation() {
   internal_order_test();
-  return taskData->inputs_count[0] == 4 && taskData->outputs_count[0] == 1 ;
+  return taskData->inputs_count[0] == 4 && taskData->outputs_count[0] == 1;
 }
 
 bool KozlovTaskSequential::run() {
   internal_order_test();
   double h_x = std::abs(x2 - x1) / n;
   double h_y = std::abs(y2 - y1) / m;
-  double q,p;
-  double x,y;
+  double q, p;
+  double x, y;
   for (uint64_t i = 0; i <= n; i++) {
-      if (i==0 || i==n){
-        p = 1;
-      }
-      else if(i%2==0){
-        p = 4;
-      }else{
-        p = 2;
-      }
-      for (uint64_t j = 0; j <= m; j++) {
-        if (j==0 || j==m){
-          q = 1;
-        }
-        else if(i%2==0){
-          q = 4;
-        }else{
-          q = 2;
-        }
-       x = x1 + i*h_x;
-       y = y1 + j*h_y; 
-       res += p*q*f(x,y);
-      }
+   if (i == 0 || i == n) {
+     p = 1;
+   } else if(i % 2 == 0){
+     p = 4;
+   } else {
+     p = 2;
+   }
+   for (uint64_t j = 0; j <= m; j++) {
+    if (j == 0 || j == m){
+      q = 1;
+    } else if(i % 2 == 0){
+      q = 4;
+    } else{
+      q = 2;
+    }
+    x = x1 + i * h_x;
+    y = y1 + j * h_y; 
+    res += p * q * f(x, y);
+   }
   }
-  res *= h_x * h_y/9;
+
+  res *= h_x * h_y / 9;
   
   return true;
 }

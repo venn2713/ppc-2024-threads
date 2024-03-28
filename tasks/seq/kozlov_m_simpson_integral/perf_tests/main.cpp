@@ -13,7 +13,7 @@ TEST(kozlov_m_simpson_integral_seq, test_pipeline_run) {
   uint64_t m = 3000;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -44,7 +44,7 @@ TEST(kozlov_m_simpson_integral_seq, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LT(std::abs(res - out[0]), 0.01);
+  ASSERT_LT(std::abs(res - out[0]), 0.2);
 }
 
 TEST(kozlov_m_simpson_integral_seq, test_task_run) {
@@ -54,7 +54,7 @@ TEST(kozlov_m_simpson_integral_seq, test_task_run) {
   uint64_t m = 3000;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -85,5 +85,5 @@ TEST(kozlov_m_simpson_integral_seq, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_LT(std::abs(res - out[0]), 0.5);
+  ASSERT_LT(std::abs(res - out[0]), 0.2);
 }

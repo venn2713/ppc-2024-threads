@@ -12,7 +12,7 @@ TEST(kozlov_m_simpson_integral_seq, Test_linear) {
   uint64_t m = 50;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -42,7 +42,7 @@ TEST(kozlov_m_simpson_integral_seq, Test_expx) {
   uint64_t m = 50;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -72,7 +72,7 @@ TEST(kozlov_m_simpson_integral_seq, Test_expy) {
   uint64_t m = 50;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -102,7 +102,7 @@ TEST(kozlov_m_simpson_integral_seq, Test_siny) {
   uint64_t m = 50;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -132,7 +132,7 @@ TEST(kozlov_m_simpson_integral_seq, Test_xy) {
   uint64_t m = 50;
 
   std::vector<double> in = {0, 1, 0, 1};
-  std::vector<double> out(1,0);
+  std::vector<double> out(1, 0);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
