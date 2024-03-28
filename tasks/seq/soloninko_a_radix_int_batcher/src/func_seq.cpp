@@ -31,7 +31,9 @@ void fill_res(std::vector<int> &res, std::vector<int> p1, std::vector<int> p2, s
 
 std::vector<int> merge(std::vector<int> vec1, std::vector<int> vec2) {
   std::vector<int> res(vec1.size() + vec2.size());
-  size_t i = 0, j = 0, k = 0;
+  size_t i = 0;
+  size_t j = 0;
+  size_t k = 0;
 
   for (i = 0, j = 0, k = 0; (j < vec1.size()) && (k < vec2.size()); i += 2, j++, k++) {
     res[i] = vec1[j];
@@ -47,9 +49,11 @@ std::vector<int> merge(std::vector<int> vec1, std::vector<int> vec2) {
   return res;
 }
 
-std::vector<int> even(std::vector<int> p1, std::vector<int> p2) {
+std::vector<int> even(const std::vector<int> p1, const std::vector<int> p2) {
   std::vector<int> res(p1.size() / 2 + p2.size() / 2 + p1.size() % 2 + p2.size() % 2);
-  size_t i = 0, i1 = 0, i2 = 0;
+  size_t i = 0;
+  size_t i1 = 0;
+  size_t i2 = 0;
 
   fill_res(res, p1, p2, i, i1, i2);
 
@@ -58,9 +62,11 @@ std::vector<int> even(std::vector<int> p1, std::vector<int> p2) {
   return res;
 }
 
-std::vector<int> odd(std::vector<int> p1, std::vector<int> p2) {
+std::vector<int> odd(const std::vector<int> p1, const std::vector<int> p2) {
   std::vector<int> res(p1.size() / 2 + p2.size() / 2);
-  size_t i = 0, i1 = 1, i2 = 1;
+  size_t i = 0;
+  size_t i1 = 1;
+  size_t i2 = 1;
 
   fill_res(res, p1, p2, i, i1, i2);
 
@@ -69,7 +75,7 @@ std::vector<int> odd(std::vector<int> p1, std::vector<int> p2) {
   return res;
 }
 
-std::vector<int> batcher_sort(std::vector<int> p1, std::vector<int> p2) {
+std::vector<int> batcher_sort(const std::vector<int> p1, const std::vector<int> p2) {
   std::vector<int> even_vec = even(p1, p2);
 
   std::vector<int> odd_vec = odd(p1, p2);
