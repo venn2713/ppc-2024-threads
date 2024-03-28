@@ -2,14 +2,9 @@
 
 #include "stl/sharapov_g_sobel/include/ssobel_stl.hpp"
 
-#include <cmath>
-#include <future>
 #include <iostream>
-#include <numeric>
 #include <random>
-#include <string>
 #include <thread>
-#include <utility>
 #include <vector>
 
 SSobelStl::GrayScale SSobelStl::getPixel(const std::vector<SSobelStl::GrayScale>& image, size_t x, size_t y,
@@ -58,30 +53,46 @@ std::vector<SSobelStl::GrayScale> SSobelStl::SobelOperatorStl(const std::vector<
   const int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
   const int Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-  std::vector<GrayScale> resultImg(width * height);
+  int imgSize = width * height;
+  std::vector<GrayScale> resultImg(imgSize);
 
-  for (size_t index = 0; index < width * height; ++index) {
-    int i = index / width;
-    int j = index % width;
-    int sumX = 0;
-    int sumY = 0;
+  auto numCores = std::thread::hardware_concurrency();
+  std::vector<std::thread> threads(numCores);
+  auto blockSize = imgSize / numCores;
 
-    for (int x = -1; x <= 1; x++) {
-      for (int y = -1; y <= 1; y++) {
-        int posX = static_cast<int>(j) + y;
-        int posY = static_cast<int>(i) + x;
-        auto pixel = getPixel(grayImage, posX, posY, width, height);
+  for (unsigned int core = 0; core < numCores; ++core) {
+    threads[core] = std::thread([&, core] {
+      size_t startPixel = core * blockSize;
+      size_t endPixel = (core == numCores - 1) ? imgSize : (core + 1) * blockSize;
 
-        sumX += Gx[x + 1][y + 1] * pixel.value;
-        sumY += Gy[x + 1][y + 1] * pixel.value;
+      for (size_t index = startPixel; index < endPixel; ++index) {
+        int i = index / width;
+        int j = index % width;
+        int sumX = 0;
+        int sumY = 0;
+
+        for (int x = -1; x <= 1; x++) {
+          for (int y = -1; y <= 1; y++) {
+            int posX = static_cast<int>(j) + y;
+            int posY = static_cast<int>(i) + x;
+            auto pixel = SSobelStl::getPixel(grayImage, posX, posY, width, height);
+
+            sumX += Gx[x + 1][y + 1] * pixel.value;
+            sumY += Gy[x + 1][y + 1] * pixel.value;
+          }
+        }
+
+        int sum = std::sqrt(sumX * sumX + sumY * sumY);
+        sum = sum >= 200 ? 255 : 0;
+        resultImg[index] = SSobelStl::GrayScale{static_cast<uint8_t>(sum)};
       }
+    });
+  }
+
+  for (auto& thread : threads) {
+    if (thread.joinable()) {
+      thread.join();
     }
-
-    int sum = std::sqrt(sumX * sumX + sumY * sumY);
-
-    sum = sum >= 200 ? 255 : 0;
-
-    resultImg[index] = GrayScale{static_cast<uint8_t>(sum)};
   }
 
   return resultImg;
