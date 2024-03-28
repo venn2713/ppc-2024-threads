@@ -10,7 +10,7 @@
 
 #include "core/task/include/task.hpp"
 
-typedef double(*FUNC)(double, double) ;
+typedef double (*FUNC)(double, double);
 
 
 double xy(double x, double y);
