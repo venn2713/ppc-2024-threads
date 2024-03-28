@@ -45,7 +45,7 @@ std::vector<SSobelStl::RGB> SSobelStl::generateColorImage(size_t width, size_t h
 std::vector<SSobelStl::GrayScale> SSobelStl::convertToGrayScale(const std::vector<SSobelStl::RGB>& colorImage,
                                                                 size_t width, size_t height) {
   std::vector<SSobelStl::GrayScale> grayImage(width * height);
-#pragma Stl parallel for
+
   for (size_t index = 0; index < width * height; ++index) {
     const auto& pixel = colorImage[index];
     grayImage[index].value = static_cast<uint8_t>(0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b);
@@ -119,7 +119,7 @@ bool SSobelStl::pre_processing() {
 
     colored_img.reserve(imgSize);
     uint8_t* rawData = taskData->inputs[0];
-#pragma Stl parallel for
+
     for (size_t i = 0; i < imgSize; ++i) {
       colored_img[i] = (RGB{rawData[i * 3], rawData[i * 3 + 1], rawData[i * 3 + 2]});
     }
