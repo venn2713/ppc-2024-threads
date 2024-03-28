@@ -55,7 +55,9 @@ std::vector<SSobelSeq::GrayScale> SSobelSeq::SobelOperatorSeq(const std::vector<
   const int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
   const int Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-  std::vector<GrayScale> resultImg(width * height);
+  int sizeImg = width * height;
+
+  std::vector<GrayScale> resultImg(sizeImg);
 
   for (int index = 0; index < sizeImg; ++index) {
     int i = index / width;
