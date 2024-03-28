@@ -1,6 +1,4 @@
 // Copyright 2024 Simonyan Suren
-#pragma once
-
 #include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
 #include <thread>
