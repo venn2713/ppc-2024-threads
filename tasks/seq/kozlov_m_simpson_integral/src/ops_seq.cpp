@@ -2,10 +2,10 @@
 #include "seq/kozlov_m_simpson_integral/include/ops_seq.hpp"
 
 double xy(double x, double y) { return x * y; }
-double siny(double x, double y) { return std::sin(y); }
+double sinxy(double x, double y) { return std::sin(x * y); }
 double linear(double x, double y) { return y * 5 - x * 2; }
-double expx(double x, double y) { return std::exp(x); }
-double expy(double x, double y) { return std::exp(y) / 2; }
+double expxy(double x, double y) { return std::exp(x * y); }
+double expy_x(double x, double y) { return std::exp(y - x) / 2; }
 
 bool KozlovTaskSequential::pre_processing() {
   internal_order_test();
@@ -27,8 +27,10 @@ bool KozlovTaskSequential::run() {
   internal_order_test();
   double h_x = std::abs(x2 - x1) / n;
   double h_y = std::abs(y2 - y1) / m;
-  double q, p;
-  double x, y;
+  double q;
+  double p;
+  double x;
+  double y;
   for (uint64_t i = 0; i <= n; i++) {
     if (i == 0 || i == n) {
       p = 1;

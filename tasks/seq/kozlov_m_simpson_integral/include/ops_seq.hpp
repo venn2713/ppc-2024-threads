@@ -9,13 +9,13 @@
 
 #include "core/task/include/task.hpp"
 
-typedef double (*FUNC)(double, double);
+using FUNC = double (*)(double, double);
 
 double xy(double x, double y);
-double siny(double x, double y);
+double sinxy(double x, double y);
 double linear(double x, double y);
-double expx(double x, double y);
-double expy(double x, double y);
+double expxy(double x, double y);
+double expy_x(double x, double y);
 
 class KozlovTaskSequential : public ppc::core::Task {
  public:
