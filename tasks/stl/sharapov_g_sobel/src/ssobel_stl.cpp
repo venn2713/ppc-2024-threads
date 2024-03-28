@@ -83,7 +83,9 @@ std::vector<SSobelStl::GrayScale> SSobelStl::SobelOperatorStl(const std::vector<
         }
 
         int sum = std::sqrt(sumX * sumX + sumY * sumY);
+        
         sum = sum >= 200 ? 255 : 0;
+        
         resultImg[index] = SSobelStl::GrayScale{static_cast<uint8_t>(sum)};
       }
     });
