@@ -70,13 +70,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
   size_t m1 = 4;
   size_t n2 = 4;
   size_t m2 = 4;
+
   // Create data
   std::vector<double> in1{5, 0, 0, 0, 0, 0, 5, 0, 0, 1, 0, 0, 8, 0, 6, 0};
-
   std::vector<double> in2{5, 0, 0, 8, 0, 0, 1, 0, 0, 5, 0, 6, 0, 0, 0, 0};
-
   std::vector<double> out(n1 * m2);
-
   std::vector<double> test{25, 0, 0, 40, 0, 25, 0, 30, 0, 0, 1, 0, 40, 30, 0, 100};
 
   // Create TaskData
@@ -97,12 +95,15 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
+  
   size_t k = 0;
+  
   for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == test[i]) {
       k++;
     }
   }
+  
   ASSERT_EQ(k, n1 * m2);
 }
 
@@ -113,13 +114,9 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
   size_t m2 = 3;
   // Create data
   std::vector<double> in1{1, -2, 1, 2, 1, -1, 3, 2, -2};
-
   std::vector<double> in2{0, 2, -1, -1, 5, -3, -1, 8, -5};
-
   std::vector<double> out(n1 * m2);
-
   std::vector<double> identity{1, 0, 0, 0, 1, 0, 0, 0, 1};
-
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
@@ -131,19 +128,21 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(n1);
   taskDataSeq->outputs_count.emplace_back(m2);
-
   // Create Task
   SparseMatrixMultiSequential sparseMatrixMultiSequential(taskDataSeq);
   sparseMatrixMultiSequential.validation();
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
+  
   size_t k = 0;
+  
   for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == identity[i]) {
       k++;
     }
   }
+  
   ASSERT_EQ(k, n1 * m2);
 }
 
@@ -177,11 +176,14 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, zero_matrix) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
+
   size_t k = 0;
+
   for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == 0.0) {
       k++;
     }
   }
+
   ASSERT_EQ(k, n1 * m2);
 }

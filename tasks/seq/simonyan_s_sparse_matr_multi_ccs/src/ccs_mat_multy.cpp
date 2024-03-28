@@ -1,10 +1,11 @@
 // Copyright 2024 Simonyan Suren
+#pragma once
+
 #include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
 #include <thread>
 
 using namespace std::chrono_literals;
-
 using namespace std;
 
 bool SparseMatrixMultiSequential::pre_processing() {
@@ -54,17 +55,15 @@ bool SparseMatrixMultiSequential::pre_processing() {
 bool SparseMatrixMultiSequential::validation() {
   internal_order_test();
   return taskData->inputs_count[1] == taskData->inputs_count[2] &&
-         taskData->outputs_count[0] == taskData->inputs_count[0] &&
-         taskData->outputs_count[1] == taskData->inputs_count[3];
+        taskData->outputs_count[0] == taskData->inputs_count[0] &&
+        taskData->outputs_count[1] == taskData->inputs_count[3];
 }
 
 bool SparseMatrixMultiSequential::run() {
   internal_order_test();
-
   values3.clear();
   rows3.clear();
   colPtr3.clear();
-
   for (int j = 0; j < numCols1; j++) {
     for (int k = colPtr2[j]; k < colPtr2[j + 1]; k++) {
       int column2 = j;
@@ -78,7 +77,6 @@ bool SparseMatrixMultiSequential::run() {
       }
     }
   }
-
   for (int j = 0; j < numCols2; j++) {
     colPtr3.push_back(values3.size());
     for (int i = 0; i < numRows1; i++) {
@@ -90,7 +88,6 @@ bool SparseMatrixMultiSequential::run() {
     }
   }
   colPtr3.push_back(values3.size());
-
   return true;
 }
 
@@ -99,7 +96,7 @@ bool SparseMatrixMultiSequential::post_processing() {
 
   auto* out_ptr = reinterpret_cast<double*>(taskData->outputs[0]);
   for (int i = 0; i < numRows3 * numCols3; i++) {
-    out_ptr[i] = result[i];
+      out_ptr[i] = result[i];
   }
 
   delete[] result;
