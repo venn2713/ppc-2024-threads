@@ -49,7 +49,7 @@ std::vector<int> merge(std::vector<int> vec1, std::vector<int> vec2) {
   return res;
 }
 
-std::vector<int> even(const std::vector<int> p1, const std::vector<int> p2) {
+std::vector<int> even(const std::vector<int> &p1, const std::vector<int> &p2) {
   std::vector<int> res(p1.size() / 2 + p2.size() / 2 + p1.size() % 2 + p2.size() % 2);
   size_t i = 0;
   size_t i1 = 0;
@@ -62,7 +62,7 @@ std::vector<int> even(const std::vector<int> p1, const std::vector<int> p2) {
   return res;
 }
 
-std::vector<int> odd(const std::vector<int> p1, const std::vector<int> p2) {
+std::vector<int> odd(const std::vector<int> &p1, const std::vector<int> &p2) {
   std::vector<int> res(p1.size() / 2 + p2.size() / 2);
   size_t i = 0;
   size_t i1 = 1;
@@ -75,7 +75,7 @@ std::vector<int> odd(const std::vector<int> p1, const std::vector<int> p2) {
   return res;
 }
 
-std::vector<int> batcher_sort(const std::vector<int> p1, const std::vector<int> p2) {
+std::vector<int> batcher_sort(const std::vector<int> &p1, const std::vector<int> &p2) {
   std::vector<int> even_vec = even(p1, p2);
 
   std::vector<int> odd_vec = odd(p1, p2);
