@@ -1,15 +1,16 @@
 // Copyright 2024 Simonyan Suren
+#include <thread>
+
 #include "seq/simonyan_s_sparse_matr_multi_ccs/include/ccs_mat_multy.hpp"
 
-#include <thread>
 
 using namespace std::chrono_literals;
 using namespace std;
 
 bool SparseMatrixMultiSequential::pre_processing() {
   internal_order_test();
-  double* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
-  double* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
+  auto* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
+  auto* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
   numRows1 = taskData->inputs_count[0];
   numCols1 = taskData->inputs_count[1];
   numRows2 = taskData->inputs_count[2];
