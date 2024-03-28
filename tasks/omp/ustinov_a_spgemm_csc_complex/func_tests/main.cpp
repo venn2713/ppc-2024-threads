@@ -72,9 +72,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_scalar_matrix) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_seq));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_seq));
 
   // Create Task
   SpgemmCSCComplexOmpSeq testTaskSequential(taskDataSeq);
@@ -82,12 +82,12 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_scalar_matrix) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_par));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_par));
 
   // Create Task
   SpgemmCSCComplexOmpPar testTaskParallel(taskDataPar);
@@ -95,7 +95,7 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_scalar_matrix) {
   testTaskParallel.pre_processing();
   testTaskParallel.run();
   testTaskParallel.post_processing();
-  
+
   EXPECT_EQ(C_seq, C_par);
 }
 
@@ -153,9 +153,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_dft16x16) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_seq));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_seq));
 
   // Create Task
   SpgemmCSCComplexOmpSeq testTaskSequential(taskDataSeq);
@@ -163,12 +163,12 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_dft16x16) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_par));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_par));
 
   // Create Task
   SpgemmCSCComplexOmpPar testTaskParallel(taskDataPar);
@@ -176,7 +176,7 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_dft16x16) {
   testTaskParallel.pre_processing();
   testTaskParallel.run();
   testTaskParallel.post_processing();
-  
+
   EXPECT_EQ(C_seq, C_par);
 }
 
@@ -189,9 +189,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_dft64x64) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_seq));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_seq));
 
   // Create Task
   SpgemmCSCComplexOmpSeq testTaskSequential(taskDataSeq);
@@ -202,9 +202,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_dft64x64) {
   
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_par));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_par));
 
   // Create Task
   SpgemmCSCComplexOmpPar testTaskParallel(taskDataPar);
@@ -231,9 +231,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_shifting_diagonal) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_seq));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_seq));
 
   // Create Task
   SpgemmCSCComplexOmpSeq testTaskSequential(taskDataSeq);
@@ -244,9 +244,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_shifting_diagonal) {
   
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_par));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_par));
 
   // Create Task
   SpgemmCSCComplexOmpPar testTaskParallel(taskDataPar);
@@ -279,9 +279,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_permutation_matrix) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_seq));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_seq));
 
   // Create Task
   SpgemmCSCComplexOmpSeq testTaskSequential(taskDataSeq);
@@ -292,9 +292,9 @@ TEST(ustinov_a_spgemm_csc_complex_omp, test_permutation_matrix) {
   
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&A));
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(&B));
-  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(&C_par));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C_par));
 
   // Create Task
   SpgemmCSCComplexOmpPar testTaskParallel(taskDataPar);
