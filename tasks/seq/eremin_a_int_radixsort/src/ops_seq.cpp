@@ -2,6 +2,7 @@
 #include "seq/eremin_a_int_radixsort/include/ops_seq.hpp"
 
 #include <thread>
+#include <cmath>
 
 using namespace std::chrono_literals;
 
@@ -24,7 +25,7 @@ bool RadixSortTaskSequential::validation() {
   internal_order_test();
   // Check count elements of output
   return taskData->inputs_count[0] == taskData->outputs_count[0] && taskData->outputs[0] != nullptr &&
-         taskData->inputs[0] != nullptr && !taskData->inputs_count[0] == 0;
+         taskData->inputs[0] != nullptr && taskData->inputs_count[0] != 0;
 }
 
 bool RadixSortTaskSequential::run() {
@@ -36,7 +37,7 @@ bool RadixSortTaskSequential::run() {
     int maxNum = 0;
     int MinKey, MaxKey;
 
-    for (int i = 0; i < VectorForSort_.size(); i++) {
+    for (size_t i = 0; i < VectorForSort_.size(); i++) {
       if (maxNum <= VectorForSort_[i]) {
         maxNum = VectorForSort_[i];
       }
@@ -52,7 +53,7 @@ bool RadixSortTaskSequential::run() {
 
       MinKey = VectorForSort_[0] % (devider * 10) / devider;
       MaxKey = MinKey;
-      for (int i = 0; i < VectorForSort_.size(); i++) {
+      for (size_t i = 0; i < VectorForSort_.size(); i++) {
         int digit = VectorForSort_[i] % (devider * 10) / devider;
         if (digit < MinKey) {
           MinKey = digit;
@@ -63,7 +64,7 @@ bool RadixSortTaskSequential::run() {
       }
 
       std::vector<int> count(MaxKey - MinKey + 1);
-      for (int i = 0; i < VectorForSort_.size(); i++) {
+      for (size_t i = 0; i < VectorForSort_.size(); i++) {
         count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]++;
       }
 
@@ -73,11 +74,11 @@ bool RadixSortTaskSequential::run() {
         count[i] = size;
       }
       std::vector<int> temp(VectorForSort_.size());
-      for (int i = 0; i < VectorForSort_.size(); i++) {
+      for (size_t i = 0; i < VectorForSort_.size(); i++) {
         temp[count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]] = VectorForSort_[i];
         count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]++;
       }
-      for (int i = 0; i < VectorForSort_.size(); i++) {
+      for (size_t i = 0; i < VectorForSort_.size(); i++) {
         VectorForSort_[i] = temp[i];
       }
     }
@@ -90,7 +91,6 @@ bool RadixSortTaskSequential::run() {
 
 bool RadixSortTaskSequential::post_processing() {
   internal_order_test();
-  for (int i = 0; i < VectorForSort.size(); i++) 
-      reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
+  for (int i = 0; i < VectorForSort.size(); i++) reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
   return true;
 }
