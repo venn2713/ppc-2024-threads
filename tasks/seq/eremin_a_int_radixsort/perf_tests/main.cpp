@@ -7,7 +7,6 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/eremin_a_int_radixsort/include/ops_seq.hpp"
 
-
 std::vector<int> getRandomVector(int size) {
   std::vector<int> randomVector(size);
   std::random_device dev;
@@ -55,7 +54,7 @@ TEST(eremin_a_int_radixsort, test_pipeline_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   std::sort(answer.begin(), answer.end());
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], answer[i]);
   }
 }
@@ -97,7 +96,7 @@ TEST(eremin_a_int_radixsort, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   std::sort(answer.begin(), answer.end());
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], answer[i]);
   }
 }

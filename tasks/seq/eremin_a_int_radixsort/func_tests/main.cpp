@@ -6,8 +6,6 @@
 #include "seq/eremin_a_int_radixsort/include/ops_seq.hpp"
 
 TEST(eremin_a_int_radixsort, simple_test_with_five_values) {
-  const int count = 10;
-
   // Create data
   std::vector<int> in = {5, 4, 3, 2, 1};
   std::vector<int> answer = {1, 2, 3, 4, 5};
@@ -26,14 +24,12 @@ TEST(eremin_a_int_radixsort, simple_test_with_five_values) {
   Task.pre_processing();
   Task.run();
   Task.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], answer[i]);
   }
 }
 
 TEST(eremin_a_int_radixsort, simple_test_with_duplicate) {
-  const int count = 10;
-
   // Create data
   std::vector<int> in = {1, 10, 10, 8, 7, 6, 5, 4, 3, 2, 1, 7, 6};
   std::vector<int> answer = {1, 1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 10, 10};
@@ -52,14 +48,12 @@ TEST(eremin_a_int_radixsort, simple_test_with_duplicate) {
   Task.pre_processing();
   Task.run();
   Task.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], answer[i]);
   }
 }
 
 TEST(eremin_a_int_radixsort, sort_random_vector) {
-  const int count = 10;
-
   // Create data
   std::vector<int> in = {64, 3, 99, 63, 57, 71, 53, 76, 85, 42, 58, 51, 63, 6, 75, 56, 84, 8, 6, 12};
   std::vector<int> answer = {3, 6, 6, 8, 12, 42, 51, 53, 56, 57, 58, 63, 63, 64, 71, 75, 76, 84, 85, 99};
@@ -78,14 +72,12 @@ TEST(eremin_a_int_radixsort, sort_random_vector) {
   Task.pre_processing();
   Task.run();
   Task.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], answer[i]);
   }
 }
 
 TEST(eremin_a_int_radixsort, validation_test_one) {
-  const int count = 10;
-
   // Create data
   std::vector<int> in = {3, 2, 1};
   std::vector<int> answer = {1, 2, 3};
@@ -104,8 +96,6 @@ TEST(eremin_a_int_radixsort, validation_test_one) {
 }
 
 TEST(eremin_a_int_radixsort, validation_test_two) {
-  const int count = 10;
-
   // Create data
   std::vector<int> in;
   std::vector<int> answer = {1, 2, 3};
