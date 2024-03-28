@@ -41,7 +41,9 @@ std::vector<SSobelStl::GrayScale> SSobelStl::convertToGrayScale(const std::vecto
                                                                 size_t width, size_t height) {
   std::vector<SSobelStl::GrayScale> grayImage(width * height);
 
-  for (size_t index = 0; index < width * height; ++index) {
+  int sizeImg = static_cast<int>(width * height);
+
+  for (int index = 0; index < sizeImg; ++index) {
     const auto& pixel = colorImage[index];
     grayImage[index].value = static_cast<uint8_t>(0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b);
   }
@@ -53,19 +55,19 @@ std::vector<SSobelStl::GrayScale> SSobelStl::SobelOperatorStl(const std::vector<
   const int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
   const int Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-  int imgSize = width * height;
-  std::vector<GrayScale> resultImg(imgSize);
+  int sizeImg = width * height;
+  std::vector<GrayScale> resultImg(sizeImg);
 
   auto numCores = std::thread::hardware_concurrency();
   std::vector<std::thread> threads(numCores);
-  auto blockSize = imgSize / numCores;
+  auto blockSize = sizeImg / numCores;
 
   for (unsigned int core = 0; core < numCores; ++core) {
     threads[core] = std::thread([&, core] {
-      size_t startPixel = core * blockSize;
-      size_t endPixel = (core == numCores - 1) ? imgSize : (core + 1) * blockSize;
+      int startPixel = core * blockSize;
+      int endPixel = (core == numCores - 1) ? sizeImg : (core + 1) * blockSize;
 
-      for (size_t index = startPixel; index < endPixel; ++index) {
+      for (int index = startPixel; index < endPixel; ++index) {
         int i = index / width;
         int j = index % width;
         int sumX = 0;
@@ -83,9 +85,9 @@ std::vector<SSobelStl::GrayScale> SSobelStl::SobelOperatorStl(const std::vector<
         }
 
         int sum = std::sqrt(sumX * sumX + sumY * sumY);
-        
+
         sum = sum >= 200 ? 255 : 0;
-        
+
         resultImg[index] = SSobelStl::GrayScale{static_cast<uint8_t>(sum)};
       }
     });
@@ -133,8 +135,8 @@ bool SSobelStl::pre_processing() {
     colored_img.reserve(imgSize);
     uint8_t* rawData = taskData->inputs[0];
 
-    for (size_t i = 0; i < imgSize; ++i) {
-      colored_img[i] = (RGB{rawData[i * 3], rawData[i * 3 + 1], rawData[i * 3 + 2]});
+    for (int i = 0; i < imgSize; ++i) {
+      colored_img[i] = RGB{rawData[i * 3], rawData[i * 3 + 1], rawData[i * 3 + 2]};
     }
 
     grayscale_img = SSobelStl::convertToGrayScale(colored_img, imgWidth, imgHeight);
@@ -160,7 +162,9 @@ bool SSobelStl::post_processing() {
   try {
     internal_order_test();
 
-    for (size_t i = 0; i < grayscale_img.size(); ++i) {
+    int sizeImg = grayscale_img.size();
+
+    for (int i = 0; i < sizeImg; ++i) {
       auto* pixel = reinterpret_cast<SSobelStl::GrayScale*>(taskData->outputs[0] + i);
       *pixel = result[i];
     }
