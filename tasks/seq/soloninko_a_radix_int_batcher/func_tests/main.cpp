@@ -6,7 +6,6 @@
 #include "seq/soloninko_a_radix_int_batcher/include/ops_seq.hpp"
 
 TEST(soloninko_a_Test_Vec, Test_Vec_20) {
-
   // Create data
   std::vector<int> vec = GetRandVector(20);
   std::vector<int> res(vec.size(), 0);
@@ -28,7 +27,6 @@ TEST(soloninko_a_Test_Vec, Test_Vec_20) {
 }
 
 TEST(soloninko_a_Test_Vec, Test_Vec_40) {
-
   // Create data
   std::vector<int> vec = GetRandVector(40);
   std::vector<int> res(vec.size(), 0);
@@ -50,7 +48,6 @@ TEST(soloninko_a_Test_Vec, Test_Vec_40) {
 }
 
 TEST(soloninko_a_Test_Vec, Test_Vec_60) {
-
   // Create data
   std::vector<int> vec = GetRandVector(60);
   std::vector<int> res(vec.size(), 0);
@@ -72,7 +69,6 @@ TEST(soloninko_a_Test_Vec, Test_Vec_60) {
 }
 
 TEST(soloninko_a_Test_Vec, Test_Vec_80) {
-
   // Create data
   std::vector<int> vec = GetRandVector(80);
   std::vector<int> res(vec.size(), 0);
@@ -94,7 +90,6 @@ TEST(soloninko_a_Test_Vec, Test_Vec_80) {
 }
 
 TEST(soloninko_a_Test_Vec, Test_Vec_100) {
-
   // Create data
   std::vector<int> vec = GetRandVector(100);
   std::vector<int> res(vec.size(), 0);

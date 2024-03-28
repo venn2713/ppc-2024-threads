@@ -1,9 +1,9 @@
 // Copyright 2024 Soloninko Andrey
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <chrono>
 #include <thread>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/soloninko_a_radix_int_batcher/include/ops_seq.hpp"
