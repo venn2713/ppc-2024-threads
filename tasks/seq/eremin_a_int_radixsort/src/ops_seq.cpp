@@ -35,7 +35,8 @@ bool RadixSortTaskSequential::run() {
     VectorForSort_ = VectorForSort;
     int numDevider = 0;
     int maxNum = 0;
-    int MinKey, MaxKey;
+    int MinKey;
+    int MaxKey;
 
     for (size_t i = 0; i < VectorForSort_.size(); i++) {
       if (maxNum <= VectorForSort_[i]) {
