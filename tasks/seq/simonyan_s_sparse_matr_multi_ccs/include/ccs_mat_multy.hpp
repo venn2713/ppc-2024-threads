@@ -8,12 +8,11 @@
 
 class SparseMatrixMultiSequential : public ppc::core::Task {
 public:
-  explicit SparseMatrixMultiSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
-      : Task(std::move(taskData_)) {}
+  explicit SparseMatrixMultiSequential(std::shared_ptr<ppc::core::TaskData> taskData_): Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
-bool post_processing() override;
+  bool post_processing() override;
 
 private:
   std::vector<double> values1{};

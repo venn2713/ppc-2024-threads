@@ -55,8 +55,8 @@ bool SparseMatrixMultiSequential::pre_processing() {
 bool SparseMatrixMultiSequential::validation() {
   internal_order_test();
   return taskData->inputs_count[1] == taskData->inputs_count[2] &&
-        taskData->outputs_count[0] == taskData->inputs_count[0] &&
-        taskData->outputs_count[1] == taskData->inputs_count[3];
+          taskData->outputs_count[0] == taskData->inputs_count[0] &&
+          taskData->outputs_count[1] == taskData->inputs_count[3];
 }
 
 bool SparseMatrixMultiSequential::run() {
@@ -96,7 +96,7 @@ bool SparseMatrixMultiSequential::post_processing() {
 
   auto* out_ptr = reinterpret_cast<double*>(taskData->outputs[0]);
   for (int i = 0; i < numRows3 * numCols3; i++) {
-      out_ptr[i] = result[i];
+    out_ptr[i] = result[i];
   }
 
   delete[] result;
