@@ -116,8 +116,8 @@ bool SSobelSeq::pre_processing() {
 
     colored_img.reserve(imgSize);
     uint8_t* rawData = taskData->inputs[0];
-    for (size_t i = 0; i < imgSize; ++i) {
-      colored_img.push_back(RGB{rawData[i * 3], rawData[i * 3 + 1], rawData[i * 3 + 2]});
+    for (int i = 0; i < imgSize; ++i) {
+      colored_img[i] = RGB{rawData[i * 3], rawData[i * 3 + 1], rawData[i * 3 + 2]};
     }
 
     grayscale_img = SSobelSeq::convertToGrayScale(colored_img, imgWidth, imgHeight);
