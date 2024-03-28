@@ -39,12 +39,14 @@ std::vector<SSobelSeq::RGB> SSobelSeq::generateColorImage(size_t width, size_t h
 std::vector<SSobelSeq::GrayScale> SSobelSeq::convertToGrayScale(const std::vector<SSobelSeq::RGB>& colorImage,
                                                                 size_t width, size_t height) {
   std::vector<SSobelSeq::GrayScale> grayImage(width * height);
-  for (size_t i = 0; i < height; ++i) {
-    for (size_t j = 0; j < width; ++j) {
-      const auto& pixel = colorImage[i * width + j];
-      grayImage[i * width + j].value = static_cast<uint8_t>(0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b);
-    }
+
+  int sizeImg = static_cast<int>(width * height);
+
+  for (int index = 0; index < sizeImg; ++index) {
+    const auto& pixel = colorImage[index];
+    grayImage[index].value = static_cast<uint8_t>(0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b);
   }
+  
   return grayImage;
 }
 
