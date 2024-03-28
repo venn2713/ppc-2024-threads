@@ -95,15 +95,15 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, test_multy_correct) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
-  
+
   size_t k = 0;
-  
+
   for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == test[i]) {
       k++;
     }
   }
-  
+
   ASSERT_EQ(k, n1 * m2);
 }
 
@@ -134,15 +134,15 @@ TEST(simonyan_s_sparse_matr_multi_ccs_seq, inverse_matrix) {
   sparseMatrixMultiSequential.pre_processing();
   sparseMatrixMultiSequential.run();
   sparseMatrixMultiSequential.post_processing();
-  
+
   size_t k = 0;
-  
+
   for (size_t i = 0; i < out.size(); ++i) {
     if (out[i] == identity[i]) {
       k++;
     }
   }
-  
+
   ASSERT_EQ(k, n1 * m2);
 }
 
