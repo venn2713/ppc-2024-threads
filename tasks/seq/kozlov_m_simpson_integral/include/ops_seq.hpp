@@ -7,11 +7,9 @@
 #include <utility>
 #include <vector>
 
-
 #include "core/task/include/task.hpp"
 
 typedef double (*FUNC)(double, double);
-
 
 double xy(double x, double y);
 double siny(double x, double y);

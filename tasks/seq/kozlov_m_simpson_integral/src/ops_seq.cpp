@@ -7,7 +7,6 @@ double linear(double x, double y) { return y * 5 - x * 2; }
 double expx(double x, double y) { return std::exp(x); }
 double expy(double x, double y) { return std::exp(y) / 2; }
 
-
 bool KozlovTaskSequential::pre_processing() {
   internal_order_test();
   auto* tmp = reinterpret_cast<double*>(taskData->inputs[0]);
@@ -31,7 +30,7 @@ bool KozlovTaskSequential::run() {
   double q, p;
   double x, y;
   for (uint64_t i = 0; i <= n; i++) {
-   if (i == 0 || i == n) {
+    if (i == 0 || i == n) {
       p = 1;
     } else if (i % 2 == 0) {
       p = 4;
@@ -53,7 +52,6 @@ bool KozlovTaskSequential::run() {
   }
 
   res *= h_x * h_y / 9;
-  
   return true;
 }
 
