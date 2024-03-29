@@ -90,7 +90,7 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
   if (ind2 != arrSize) {
     mch.push_back(pointArr[ind2]);
 
-    int arrSize = pointArr.size();
+    arrSize = pointArr.size();
     int val = 0, mchSize = 0;
 
     for (int i = ind2 + 1; i < arrSize; ++i) {
