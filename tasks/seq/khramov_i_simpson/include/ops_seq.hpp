@@ -1,12 +1,13 @@
 // Copyright 2024 Khramov Ivan
 #pragma once
 
-#include <string>
-#include <vector>
-#include <functional>
+
 #include <cmath>
+#include <functional>
 #include <memory>
+#include <string>
 #include <utility>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 
@@ -15,7 +16,7 @@ using function = double (*)(double, double);
 class TestSimpsonSequential : public ppc::core::Task {
  public:
   explicit TestSimpsonSequential(std::shared_ptr<ppc::core::TaskData> taskData_, function func_)
-  : Task(std::move(taskData_)), func(std::move(func_)) {}
+      : Task(std::move(taskData_)), func(std::move(func_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

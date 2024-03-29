@@ -7,7 +7,8 @@ using namespace std::chrono_literals;
 
 
 double simpson_formula(function func, double Xj0, double Xj1, double Xi) {
-  return func(Xj0, Xi) + 4 * func((Xj0 + Xj1) / 2, Xi) + func(Xj1, Xi);}
+  return func(Xj0, Xi) + 4 * func((Xj0 + Xj1) / 2, Xi) + func(Xj1, Xi);
+}
 
 double simpson_seq(function func, int a1, int a2, int b1, int b2, int numSteps) {
   double res{};
@@ -21,20 +22,20 @@ double simpson_seq(function func, int a1, int a2, int b1, int b2, int numSteps) 
       double Xj0 = a1 + j * h1;
       double Xj1 = a1 + (j + 1) * h1;
 
-      res += (h1 * h2 / 36) * (simpson_formula(func, Xj0, Xj1, Xi0) +
-       4 * simpson_formula(func, Xj0, Xj1, (Xi0 + Xi1) / 2) +
-       simpson_formula(func, Xj0, Xj1, Xi1));
+      res += (h1 * h2 / 36) *
+             (simpson_formula(func, Xj0, Xj1, Xi0) + 4 * simpson_formula(func, Xj0, Xj1, (Xi0 + Xi1) / 2) +
+              simpson_formula(func, Xj0, Xj1, Xi1));
     }
   }
 
   return res;
 }
 
-double linear_f(double x0, double x1) {return 3*x0 - 2* x1;}
-double square_f(double x0, double x1) {return x0*x0 + 2*x1*x1;}
-double sin_f(double x0, double x1) {return sin(x0 + x1);}
-double mult_f(double x0, double x1) {return x0 * x1;}
-double exp_f(double x0, double x1) {return exp(x0 * x1);}
+double linear_f(double x0, double x1) { return 3*x0 - 2* x1; }
+double square_f(double x0, double x1) { return x0*x0 + 2*x1*x1; }
+double sin_f(double x0, double x1) { return sin(x0 + x1); }
+double mult_f(double x0, double x1) { return x0 * x1; }
+double exp_f(double x0, double x1) { return exp(x0 * x1); }
 
 bool TestSimpsonSequential::pre_processing() {
   internal_order_test();
@@ -53,8 +54,7 @@ bool TestSimpsonSequential::pre_processing() {
 bool TestSimpsonSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count[0] == 5 &&
-        taskData->outputs_count[0] == 1;
+  return taskData->inputs_count[0] == 5 && taskData->outputs_count[0] == 1;
 }
 
 bool TestSimpsonSequential::run() {

@@ -5,7 +5,6 @@
 
 #include "seq/khramov_i_simpson/include/ops_seq.hpp"
 
-
 TEST(khramov_i_simpson_seq, Test_Linear_Func) {
   int a1 = 0;
   int a2 = 0;
@@ -121,7 +120,6 @@ TEST(khramov_i_simpson_seq, Test_Mult_Func) {
   ASSERT_EQ(testTaskSequential.post_processing(), true);
   ASSERT_NEAR(result, out[0], 1e-3);
 }
-
 
 TEST(khramov_i_simpson_seq, Test_Exp_Func) {
   int a1 = 0;
