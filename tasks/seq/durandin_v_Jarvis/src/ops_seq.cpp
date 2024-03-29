@@ -3,61 +3,63 @@
 
 #include "seq/durandin_v_Jarvis/include/ops_seq.hpp"
 
-double Jarvis::PolarAngle(Jarvis::Point2d P, Jarvis::Point2d Q) {
-  double dx = Q.x - P.x;
-  double dy = Q.y - P.y;
-  return atan2(dy, dx);
+// Функция для построения выпуклой оболочки методом Джарвиса
+std::vector<Jarvis::Point2d> Jarvis::convexHull(const std::vector<Jarvis::Point2d>& points)
+{
+    size_t n = points.size();
+    if (n < 3) return std::vector<Jarvis::Point2d>{}; // Нужно минимум 3 точки
+
+    // Функция для определения ориентации трёх точек
+    auto orientation = [](Jarvis::Point2d p, Jarvis::Point2d q, Jarvis::Point2d r)
+    {
+      double val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+      if (val == 0.0) return 0;  // Коллинеарные
+        return (val > 0.0) ? 1 : 2; // По часовой стрелке или против
+    };
+
+    // Найдем самую левую нижнюю точку
+    size_t leftmost = 0;
+    for (size_t i = 1; i < n; ++i) {
+        if (points[i].x < points[leftmost].x)
+            leftmost = i;
+        else if (points[i].x == points[leftmost].x && points[i].y < points[leftmost].y)
+            leftmost = i;
+    }
+
+    // Начнем обход с самой левой нижней точки
+    size_t current = leftmost, next;
+    std::vector<Jarvis::Point2d> hull;
+
+    do {
+        hull.push_back(points[current]);
+        next = (current + 1) % n;
+        for (size_t i = 0; i < n; ++i) {
+            if (orientation(points[current], points[i], points[next]) == 2)
+                next = i;
+        }
+        current = next;
+    } while (current != leftmost);
+
+    // Выводим вершины выпуклой оболочки
+    return hull;
 }
 
-Jarvis::Point2d Jarvis::FindNextPoint(std::vector<Jarvis::Point2d>& points, Jarvis::Point2d P) {
-  Jarvis::Point2d next = points[0];
-  double max_angle = Jarvis::PolarAngle(P, points[0]);
-  for (size_t i = 1; i < points.size(); ++i) {
-    double angle = Jarvis::PolarAngle(P, points[i]);
-    if (angle > max_angle) {
-      max_angle = angle;
-      next = points[i];
-    }
-  }
-  return next;
-}
 
-std::vector<Jarvis::Point2d> Jarvis::JarvisAlg(std::vector<Jarvis::Point2d>& points) {
-  // Находим стартовую точку
-  Jarvis::Point2d P = points[0];
-  for (size_t i = 1; i < points.size(); ++i) {
-    if (points[i].x < P.x || (points[i].x == P.x && points[i].y > P.y)) {
-      P = points[i];
-    }
-  }
 
-  // Инициализация оболочки
-  std::vector<Jarvis::Point2d> hull;
-  hull.push_back(P);
 
-  // Поиск вершин оболочки
-  while (true) {
-    Jarvis::Point2d next = FindNextPoint(points, P);
-    if (next == hull[0]) {
-      break;
-    }
-    hull.push_back(next);
-    P = next;
-  }
-  return hull;
-}
+
 
 bool Jarvis::JarvisTestTaskSequential::pre_processing() { 
   internal_order_test();
   try
   {
     points_count = taskData->inputs_count[0];
-    ptr_points = std::make_shared<Jarvis::Point2d>(*reinterpret_cast<Jarvis::Point2d*>(taskData->inputs[0]));
-    Jarvis::Point2d* raw_ptr = ptr_points.get();
-    for(uint32_t i = 0; i < points_count; ++i)
-    {
-      points[i] = raw_ptr[i];
-    }
+    points.resize(points_count);
+    Jarvis::Point2d *ptr_points = reinterpret_cast<Jarvis::Point2d*>(taskData->inputs[0]);
+    std::memcpy(points.data(), ptr_points, points_count * sizeof(Jarvis::Point2d));
+    // ptr_points = std::make_shared<Jarvis::Point2d>(*reinterpret_cast<Jarvis::Point2d*>(taskData->inputs[0]));
+    // Jarvis::Point2d* raw_ptr = ptr_points.get();
+    // std::memcpy(points.data(), raw_ptr, points_count);
   }
   catch(const std::exception& e)
   {
@@ -76,7 +78,7 @@ bool Jarvis::JarvisTestTaskSequential::run() {
   internal_order_test();
   try
   {
-    convex_hull = Jarvis::JarvisAlg(points);
+    convex_hull = convexHull(points);
   }
   catch(const std::exception& e)
   {
@@ -90,9 +92,8 @@ bool Jarvis::JarvisTestTaskSequential::post_processing() {
   internal_order_test();
   try
   {
-    std::shared_ptr<Jarvis::Point2d> convex_hull_data = std::make_shared<Jarvis::Point2d>(*reinterpret_cast<Jarvis::Point2d*>(taskData->outputs[0]));
-    // Jarvis::Point2d* convex_hull_data = reinterpret_cast<Jarvis::Point2d*>(taskData->outputs[0]);
-    convex_hull_data = std::make_shared<Jarvis::Point2d>(convex_hull[0]);
+    Jarvis::Point2d* output_ptr = reinterpret_cast<Jarvis::Point2d*>(taskData->outputs[0]);
+    std::memcpy(output_ptr, convex_hull.data(), convex_hull.size() * sizeof(Jarvis::Point2d));
   }
   catch(const std::exception& e)
   {

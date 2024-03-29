@@ -10,17 +10,19 @@ namespace Jarvis {
 struct Point2d {
   double x, y;
 
-  bool operator==(const Point2d& other) const { return (x == other.x) && (y == other.y); }
+  bool operator==(const Point2d& other) const { return x == other.x && y == other.y; }
 };
 
-// Finds the polar angle of point Q relative to point P
-double PolarAngle(Point2d P, Point2d Q);
+// // Finds the polar angle of point Q relative to point P
+// double PolarAngle(Point2d P, Point2d Q);
 
-// Finds the point with the maximum polar angle
-Point2d FindNextPoint(std::vector<Point2d>& points, Point2d P);
+// // Finds the point with the maximum polar angle
+// Point2d FindNextPoint(std::vector<Point2d>& points, Point2d P);
 
-// Jarvis algorithm
-std::vector<Point2d> JarvisAlg(std::vector<Point2d>& points);
+// // Jarvis algorithm
+// std::vector<Point2d> JarvisAlg(std::vector<Point2d>& points);
+
+std::vector<Point2d> convexHull(const std::vector<Point2d>& points);
 
 class JarvisTestTaskSequential : public ppc::core::Task {
  public:
@@ -33,6 +35,6 @@ class JarvisTestTaskSequential : public ppc::core::Task {
  private:
   uint32_t points_count{};
   std::vector<Point2d> points{}, convex_hull{};
-  std::shared_ptr<Point2d> ptr_points{};
+  // std::shared_ptr<Point2d> ptr_points{};
 };
 }  // namespace Jarvis
