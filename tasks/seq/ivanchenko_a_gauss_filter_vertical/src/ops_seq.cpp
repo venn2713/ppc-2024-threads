@@ -76,6 +76,9 @@ Color GaussFilterSequential::calculateNewPixelColor(size_t x, size_t y) {
       resultB += neighborColor.B * kernel[k + radius][l + radius];
     }
   }
-  Color result((uint8_t)std::ceil(resultR), (uint8_t)std::ceil(resultG), (uint8_t)std::ceil(resultB));
+  Color result;
+  result.R = (uint8_t)std::ceil(resultR);
+  result.G = (uint8_t)std::ceil(resultG);
+  result.B = (uint8_t)std::ceil(resultB);
   return result;
 }
