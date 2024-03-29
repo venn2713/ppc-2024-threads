@@ -95,11 +95,11 @@ TEST(VladimirD_Sequential, Convex_Hull_Circle_10_points) {
 
   Jarvis::Point2d center{0, 0};
   double radius = 5.0;
-  uint32_t numPoints = 10;  // Количество точек для круга
+  uint32_t numPoints = 10;  // Number of points for the circle
 
   std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
-  // Ожидаемый результат: круг должен быть выпуклой оболочкой
-  std::vector<Jarvis::Point2d> expectedHull = points;  // Так как круг - это уже выпуклая оболочка
+  // Expected result: the circle should be a convex hull
+  std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
   std::vector<Jarvis::Point2d> out(points.size());
   // Create TaskData
@@ -116,7 +116,7 @@ TEST(VladimirD_Sequential, Convex_Hull_Circle_10_points) {
   ASSERT_EQ(testTaskSequential.run(), true);
   ASSERT_EQ(testTaskSequential.post_processing(), true);
 
-  // Такая странная проверка из-за того, что мой алгоритм выводит точки в другом порядке
+  // Such a strange check because my algorithm outputs points in a different order
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < 5) {
       EXPECT_EQ(expectedHull[i].x, out[i + 5].x);
@@ -143,11 +143,11 @@ TEST(VladimirD_Sequential, Convex_Hull_Circle_100_points) {
 
   Jarvis::Point2d center{0, 0};
   double radius = 5.0;
-  uint32_t numPoints = 100;  // Количество точек для круга
+  uint32_t numPoints = 100;  // Number of points for the circle
 
   std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
-  // Ожидаемый результат: круг должен быть выпуклой оболочкой
-  std::vector<Jarvis::Point2d> expectedHull = points;  // Так как круг - это уже выпуклая оболочка
+  // Expected result: the circle should be a convex hull
+  std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
   std::vector<Jarvis::Point2d> out(points.size());
   // Create TaskData
@@ -164,7 +164,7 @@ TEST(VladimirD_Sequential, Convex_Hull_Circle_100_points) {
   ASSERT_EQ(testTaskSequential.run(), true);
   ASSERT_EQ(testTaskSequential.post_processing(), true);
 
-  // Такая странная проверка из-за того, что мой алгоритм выводит точки в другом порядке
+  // Such a strange check because my algorithm outputs points in a different order
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < 50) {
       EXPECT_EQ(expectedHull[i].x, out[i + 50].x);

@@ -20,11 +20,11 @@ TEST(VladimirD_Sequential_Perf_Test, test_pipeline_run) {
 
   Jarvis::Point2d center{0, 0};
   double radius = 5.0;
-  uint32_t numPoints = 10'000;  // Количество точек для круга
+  uint32_t numPoints = 10'000;  // Number of points for the circle
 
   std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
-  // Ожидаемый результат: круг должен быть выпуклой оболочкой
-  std::vector<Jarvis::Point2d> expectedHull = points;  // Так как круг - это уже выпуклая оболочка
+  // Expected result: the circle should be a convex hull
+  std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
   std::vector<Jarvis::Point2d> out(points.size());
   // Create TaskData
@@ -55,7 +55,7 @@ TEST(VladimirD_Sequential_Perf_Test, test_pipeline_run) {
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
 
-  // Такая странная проверка из-за того, что мой алгоритм выводит точки в другом порядке
+  // Such a strange check because my algorithm outputs points in a different order
   uint32_t tmp = numPoints >> 1;
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < tmp) {
@@ -83,11 +83,11 @@ TEST(VladimirD_Sequential_Perf_Test, test_task_run) {
 
   Jarvis::Point2d center{0, 0};
   double radius = 5.0;
-  uint32_t numPoints = 10'000;  // Количество точек для круга
+  uint32_t numPoints = 10'000;  // Number of points for the circle
 
   std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
-  // Ожидаемый результат: круг должен быть выпуклой оболочкой
-  std::vector<Jarvis::Point2d> expectedHull = points;  // Так как круг - это уже выпуклая оболочка
+  // Expected result: the circle should be a convex hull
+  std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
   std::vector<Jarvis::Point2d> out(points.size());
   // Create TaskData
@@ -118,7 +118,7 @@ TEST(VladimirD_Sequential_Perf_Test, test_task_run) {
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
 
-  // Такая странная проверка из-за того, что мой алгоритм выводит точки в другом порядке
+  // Such a strange check because my algorithm outputs points in a different order
   uint32_t tmp = numPoints >> 1;
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < tmp) {
