@@ -18,7 +18,7 @@ std::vector<int> getRandom(int size) {
   return randomVector;
 }
 
-TEST(eremin_a_int_radixsort, test_pipeline_run) {
+TEST(eremin_a_int_radixsort_omp, test_pipeline_run) {
   const int count = 5000000;
 
   // Create data
@@ -39,12 +39,7 @@ TEST(eremin_a_int_radixsort, test_pipeline_run) {
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  const auto t0 = std::chrono::high_resolution_clock::now();
-  perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1e-9;
-  };
+  perfAttr->current_timer = [&] { return omp_get_wtime(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
@@ -60,7 +55,7 @@ TEST(eremin_a_int_radixsort, test_pipeline_run) {
   }
 }
 
-TEST(eremin_a_int_radixsort, test_task_run) {
+TEST(eremin_a_int_radixsort_omp, test_task_run) {
   const int count = 5000000;
 
   // Create data
@@ -81,12 +76,7 @@ TEST(eremin_a_int_radixsort, test_task_run) {
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  const auto t0 = std::chrono::high_resolution_clock::now();
-  perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1e-9;
-  };
+  perfAttr->current_timer = [&] { return omp_get_wtime(); };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();

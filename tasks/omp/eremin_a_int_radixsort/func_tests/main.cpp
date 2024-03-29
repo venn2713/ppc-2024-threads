@@ -5,7 +5,7 @@
 
 #include "omp/eremin_a_int_radixsort/include/ops_seq.hpp"
 
-TEST(eremin_a_int_radixsort, simple_test) {
+TEST(eremin_a_int_radixsort_omp, simple_test) {
   // Create data
   std::vector<int> in = {5, 4, 3};
   std::vector<int> answer = {3, 4, 5};
@@ -29,7 +29,7 @@ TEST(eremin_a_int_radixsort, simple_test) {
   }
 }
 
-TEST(eremin_a_int_radixsort, simple_test_with_five_values) {
+TEST(eremin_a_int_radixsort_omp, simple_test_with_five_values) {
   // Create data
   std::vector<int> in = {5, 1, 3, 6, 9, 0};
   std::vector<int> answer = {0, 1, 3, 5, 6, 9};
@@ -53,7 +53,7 @@ TEST(eremin_a_int_radixsort, simple_test_with_five_values) {
   }
 }
 
-TEST(eremin_a_int_radixsort, simple_test_with_eleven_values) {
+TEST(eremin_a_int_radixsort_omp, simple_test_with_eleven_values) {
   // Create data
   std::vector<int> in = {5, 4, 3, 2, 1, 20, 17, 8, 10, 16, 15};
   std::vector<int> answer = {1, 2, 3, 4, 5, 8, 10, 15, 16, 17, 20};
@@ -77,7 +77,7 @@ TEST(eremin_a_int_radixsort, simple_test_with_eleven_values) {
   }
 }
 
-TEST(eremin_a_int_radixsort, simple_test_with_duplicate) {
+TEST(eremin_a_int_radixsort_omp, simple_test_with_duplicate) {
   // Create data
   std::vector<int> in = {1, 10, 10, 8, 7, 6, 5, 4, 3, 2, 1, 7, 6};
   std::vector<int> answer = {1, 1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 10, 10};
@@ -101,7 +101,7 @@ TEST(eremin_a_int_radixsort, simple_test_with_duplicate) {
   }
 }
 
-TEST(eremin_a_int_radixsort, sort_random_vector) {
+TEST(eremin_a_int_radixsort_omp, sort_random_vector) {
   // Create data
   std::vector<int> in = {64, 3, 99, 63, 57, 71, 53, 76, 85, 42, 58, 51, 63, 6, 75, 56, 84, 8, 6, 12};
   std::vector<int> answer = {3, 6, 6, 8, 12, 42, 51, 53, 56, 57, 58, 63, 63, 64, 71, 75, 76, 84, 85, 99};
@@ -125,7 +125,7 @@ TEST(eremin_a_int_radixsort, sort_random_vector) {
   }
 }
 
-TEST(eremin_a_int_radixsort, validation_test_one) {
+TEST(eremin_a_int_radixsort_omp, validation_test_one) {
   // Create data
   std::vector<int> in = {3, 2, 1};
   std::vector<int> answer = {1, 2, 3};
@@ -143,7 +143,7 @@ TEST(eremin_a_int_radixsort, validation_test_one) {
   ASSERT_NE(Task.validation(), true);
 }
 
-TEST(eremin_a_int_radixsort, validation_test_two) {
+TEST(eremin_a_int_radixsort_omp, validation_test_two) {
   // Create data
   std::vector<int> in;
   std::vector<int> answer = {1, 2, 3};
