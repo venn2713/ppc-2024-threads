@@ -29,8 +29,8 @@ TEST(kriseev_m_convex_hull_graham_seq, ThreePoints) {
 
   KriseevMTaskSeq::ConvexHullTask task(data);
 
-  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.validation());
+  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.run());
   ASSERT_TRUE(task.post_processing());
 
@@ -78,8 +78,8 @@ TEST(kriseev_m_convex_hull_graham_seq, Square) {
 
   KriseevMTaskSeq::ConvexHullTask task(data);
 
-  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.validation());
+  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.run());
   ASSERT_TRUE(task.post_processing());
 
@@ -129,8 +129,8 @@ TEST(kriseev_m_convex_hull_graham_seq, SquareWithPointInTheMiddle) {
 
   KriseevMTaskSeq::ConvexHullTask task(data);
 
-  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.validation());
+  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.run());
   ASSERT_TRUE(task.post_processing());
 
@@ -180,8 +180,8 @@ TEST(kriseev_m_convex_hull_graham_seq, SquareWithPointOnEdge) {
 
   KriseevMTaskSeq::ConvexHullTask task(data);
 
-  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.validation());
+  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.run());
   ASSERT_TRUE(task.post_processing());
 
@@ -262,8 +262,8 @@ TEST(kriseev_m_convex_hull_graham_seq, PentagonWithPointsInside) {
 
   KriseevMTaskSeq::ConvexHullTask task(data);
 
-  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.validation());
+  ASSERT_TRUE(task.pre_processing());
   ASSERT_TRUE(task.run());
   ASSERT_TRUE(task.post_processing());
 

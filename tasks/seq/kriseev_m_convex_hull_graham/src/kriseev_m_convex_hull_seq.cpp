@@ -26,9 +26,6 @@ bool checkOrientation(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSe
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::pre_processing() {
-  if (taskData->inputs_count.at(0) != taskData->inputs_count.at(1)) {
-    return false;
-  }
   auto *pointsX = reinterpret_cast<double *>(taskData->inputs.at(0));
   auto *pointsY = reinterpret_cast<double *>(taskData->inputs.at(1));
   points = std::vector<std::pair<double, double>>();
@@ -41,14 +38,21 @@ bool KriseevMTaskSeq::ConvexHullTask::pre_processing() {
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::validation() {
-  if (points.size() < 3) {
+  if (taskData->inputs_count.at(0) != taskData->inputs_count.at(1)) {
     return false;
   }
+  if (taskData->inputs_count[0] < 3) {
+    return false;
+  }
+  auto *pointsX = reinterpret_cast<double *>(taskData->inputs.at(0));
+  auto *pointsY = reinterpret_cast<double *>(taskData->inputs.at(1));
   for (uint32_t i = 0; i < points.size(); ++i) {
-    if (points[i].first == std::numeric_limits<double>::quiet_NaN() ||
-        points[i].second == std::numeric_limits<double>::quiet_NaN() ||
-        points[i].first == std::numeric_limits<double>::infinity() ||
-        points[i].second == std::numeric_limits<double>::infinity()) {
+    if (pointsX[i] == std::numeric_limits<double>::quiet_NaN() ||
+        pointsY[i] == std::numeric_limits<double>::quiet_NaN() ||
+        pointsX[i] == std::numeric_limits<double>::infinity() ||
+        pointsX[i] == -std::numeric_limits<double>::infinity() ||
+        pointsY[i] == std::numeric_limits<double>::infinity() ||
+        pointsY[i] == -std::numeric_limits<double>::infinity()) {
       return false;
     }
   }
