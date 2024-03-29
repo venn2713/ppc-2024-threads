@@ -69,7 +69,7 @@ std::vector<double> cannonMatrixMultiplication_tbb(const std::vector<double>& A,
     }
 
     for (int index  = 0; index  < n * m; ++index ) {
-      C[index ] += local_accumulator[index ];
+      C[index] += local_accumulator[index];
     }
   });
 
