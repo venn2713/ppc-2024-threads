@@ -1,9 +1,9 @@
 // Copyright 2024 Khodyrev Fedor
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 bool isWhite(const std::vector<int>& image, int width, int x, int y) { return image[y * width + x] == 1; }
 
