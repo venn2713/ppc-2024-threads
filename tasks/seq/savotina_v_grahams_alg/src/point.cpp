@@ -1,5 +1,5 @@
 // Copyright 2024 Savotina Valeria
-#include "/home/valerchik/ppc-2024-threads/tasks/seq/savotina_v_grahams_alg/include/point.hpp"
+#include "seq/savotina_v_grahams_alg/include/point.hpp"
 
 Point::Point() {
   x = 0;
