@@ -8,7 +8,8 @@ double angle(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point 
   double dx = point.first - origin.first;
   double dy = point.second - origin.second;
   if (dx == 0.0 && dy == 0.0) {
-    return 0.0;
+    // Return this incorrect value to ensure the origin is always first in sorted array
+    return -1.0;
   }
   // Calculating angle using algorithm from https://stackoverflow.com/a/14675998/14116050
   return (dy >= 0) ? (dx >= 0 ? dy / (dx + dy) : 1 - dx / (-dx + dy))
@@ -63,8 +64,9 @@ bool KriseevMTaskSeq::ConvexHullTask::validation() {
 
 bool KriseevMTaskSeq::ConvexHullTask::run() {
   internal_order_test();
-  Point origin =
-      *std::min_element(points.begin(), points.end(), [](auto &a, auto &b) -> bool { return a.second < b.second; });
+  auto originIt =
+      std::min_element(points.begin(), points.end(), [](auto &a, auto &b) -> bool { return a.second < b.second; });
+  auto origin = *originIt;
   std::sort(points.begin(), points.end(), [origin](auto &a, auto &b) -> bool {
     double angleA = angle(origin, a);
     double angleB = angle(origin, b);

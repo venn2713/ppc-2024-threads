@@ -8,17 +8,30 @@
 #include "seq/kriseev_m_convex_hull_graham/include/kriseev_m_convex_hull_seq.hpp"
 
 TEST(kriseev_m_convex_hull_graham_seq, test_pipeline_run) {
-  const int count = 500000;
+  const int count = 100000;
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
   std::mt19937 gen(1587443);
-  std::uniform_real_distribution<> dis(-3.0, 5.0);
+  std::uniform_real_distribution<> dis(-2.5, 4.0);
   for (int i = 0; i < count; ++i) {
     pX.emplace_back(dis(gen));
     pY.emplace_back(dis(gen));
   }
-
+  std::vector<std::pair<double, double>> expectedPoints = {
+      {-3.0, -3.5},
+      {4.8, -3.2},
+      {4.65, 4.5},
+      {-3.2, 4.25},
+  };
+  pX.emplace_back(expectedPoints[1].first);
+  pY.emplace_back(expectedPoints[1].second);
+  pX.emplace_back(expectedPoints[0].first);
+  pY.emplace_back(expectedPoints[0].second);
+  pX.emplace_back(expectedPoints[3].first);
+  pY.emplace_back(expectedPoints[3].second);
+  pX.emplace_back(expectedPoints[2].first);
+  pY.emplace_back(expectedPoints[2].second);
   std::vector<double> outX(pX.size());
   std::vector<double> outY(pY.size());
 
@@ -54,20 +67,41 @@ TEST(kriseev_m_convex_hull_graham_seq, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(sequentialTask);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
+
+  ASSERT_EQ(expectedPoints.size(), data->outputs_count[0]);
+  ASSERT_EQ(expectedPoints.size(), data->outputs_count[1]);
+
+  for (size_t i = 0; i < expectedPoints.size(); ++i) {
+    EXPECT_EQ(expectedPoints[i].first, outX[i]);
+    EXPECT_EQ(expectedPoints[i].second, outY[i]);
+  }
 }
 
 TEST(kriseev_m_convex_hull_graham_seq, test_task_run) {
-  const int count = 500000;
+  const int count = 100000;
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
   std::mt19937 gen(1587443);
-  std::uniform_real_distribution<> dis(-3.0, 5.0);
+  std::uniform_real_distribution<> dis(-2.5, 4.0);
   for (int i = 0; i < count; ++i) {
     pX.emplace_back(dis(gen));
     pY.emplace_back(dis(gen));
   }
-
+  std::vector<std::pair<double, double>> expectedPoints = {
+      {-3.0, -3.5},
+      {4.8, -3.2},
+      {4.65, 4.5},
+      {-3.2, 4.25},
+  };
+  pX.emplace_back(expectedPoints[1].first);
+  pY.emplace_back(expectedPoints[1].second);
+  pX.emplace_back(expectedPoints[0].first);
+  pY.emplace_back(expectedPoints[0].second);
+  pX.emplace_back(expectedPoints[3].first);
+  pY.emplace_back(expectedPoints[3].second);
+  pX.emplace_back(expectedPoints[2].first);
+  pY.emplace_back(expectedPoints[2].second);
   std::vector<double> outX(pX.size());
   std::vector<double> outY(pY.size());
 
@@ -103,4 +137,12 @@ TEST(kriseev_m_convex_hull_graham_seq, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(sequentialTask);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
+
+  ASSERT_EQ(expectedPoints.size(), data->outputs_count[0]);
+  ASSERT_EQ(expectedPoints.size(), data->outputs_count[1]);
+
+  for (size_t i = 0; i < expectedPoints.size(); ++i) {
+    EXPECT_EQ(expectedPoints[i].first, outX[i]);
+    EXPECT_EQ(expectedPoints[i].second, outY[i]);
+  }
 }
