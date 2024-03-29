@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 bool isWhite(const std::vector<int>& image, int width, int x, int y) { return image[y * width + x] == 1; }
 
