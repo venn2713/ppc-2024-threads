@@ -8,7 +8,9 @@
 
 #include "core/task/include/task.hpp"
 
-constexpr double M_PI = 3.14159265358980;
+namespace Const {
+  constexpr double M_PI = 3.14159265358980;
+} //  namespace Const
 
 namespace Jarvis {
 struct Point2d {
