@@ -91,7 +91,7 @@ bool CRSComplexMult_Sequential::run() {
           }
         }
       }
-      if (abs(T.imag()) > 1e-6 || abs(T.real()) > 1e-6) {
+      if (std::abs(T.imag()) > 1e-6 || std::abs(T.real()) > 1e-6) {
         temp[i].emplace_back(j, T);
       }
     }
