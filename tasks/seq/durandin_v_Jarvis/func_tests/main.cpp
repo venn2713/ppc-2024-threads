@@ -1,5 +1,4 @@
 // Copyright 2024 Durandin Vladimir
-#include <corecrt_math_defines.h>
 #include <gtest/gtest.h>
 
 #include "seq/durandin_v_Jarvis/include/ops_seq.hpp"
