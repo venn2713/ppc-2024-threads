@@ -18,6 +18,7 @@ TEST(khramov_i_simpson_seq, test_pipeline_run) {
   // Create data
   std::vector<int> in{a1, a2, b1, b2, numSteps};
   std::vector<double> out{result};
+  
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
@@ -60,7 +61,6 @@ TEST(khramov_i_simpson_seq, test_task_run) {
   // Create data
   std::vector<int> in{a1, a2, b1, b2, numSteps};
   std::vector<double> out{result};
-
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
