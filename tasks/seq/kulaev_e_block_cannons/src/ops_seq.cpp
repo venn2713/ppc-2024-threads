@@ -67,12 +67,12 @@ bool TestTaskSequentialKulaevCannon::pre_processing() {
   m = *reinterpret_cast<int*>(taskData->inputs[3]);
 
   auto* tmp_ptr_A = reinterpret_cast<double*>(taskData->inputs[0]);
-  for (unsigned i = 0; i < taskData->inputs_count[0]; i++) {
+  for (size_t i = 0; i < taskData->inputs_count[0]; i++) {
     A[i] = tmp_ptr_A[i];
   }
 
   auto* tmp_ptr_B = reinterpret_cast<double*>(taskData->inputs[1]);
-  for (unsigned i = 0; i < taskData->inputs_count[1]; i++) {
+  for (size_t i = 0; i < taskData->inputs_count[1]; i++) {
     B[i] = tmp_ptr_B[i];
   }
   return true;

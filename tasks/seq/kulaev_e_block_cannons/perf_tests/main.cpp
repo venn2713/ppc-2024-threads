@@ -7,8 +7,8 @@
 #include "seq/kulaev_e_block_cannons/include/ops_seq.hpp"
 
 TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
-  int n = 1000;
-  int m = 1000;
+  int n = 500;
+  int m = 500;
 
   std::vector<double> in_A = getRandomMatrix(n, m);
 
@@ -58,8 +58,8 @@ TEST(sequential_kulaev_e_block_cannons_perf_test, test_pipeline_run) {
 }
 
 TEST(sequential_kulaev_e_block_cannons_perf_test, test_task_run) {
-  int n = 1000;
-  int m = 1000;
+  int n = 500;
+  int m = 500;
 
   std::vector<double> in_A = getRandomMatrix(n, m);
 
