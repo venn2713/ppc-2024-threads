@@ -1,9 +1,9 @@
 // Copyright 2024 Durandin Vladimir
 #pragma once
 
+#include <cstring>
 #include <string>
 #include <vector>
-#include <cstring>
 
 #include "core/task/include/task.hpp"
 
