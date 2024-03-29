@@ -5,12 +5,12 @@
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
 
 TEST(ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
-  uint32_t width = 1000, height = 1000; 
+  uint32_t width = 1000, height = 1000;
 
   // Create data
-  std::vector<uint8_t> in(width*height*3, 255);
-  std::vector<uint8_t> out(width*height*3, 0);
-  std::vector<uint8_t> expected(width*height*3, 255);
+  std::vector<uint8_t> in(width * height * 3, 255);
+  std::vector<uint8_t> out(width * height * 3, 0);
+  std::vector<uint8_t> expected(width * height * 3, 255);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -45,12 +45,12 @@ TEST(ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
 }
 
 TEST(ivanchenko_a_gauss_filter_vertical, test_task_run) {
-   uint32_t width = 1000, height = 1000; 
+  uint32_t width = 1000, height = 1000;
 
   // Create data
-  std::vector<uint8_t> in(width*height*3, 255);
-  std::vector<uint8_t> out(width*height*3, 0);
-  std::vector<uint8_t> expected(width*height*3, 255);
+  std::vector<uint8_t> in(width * height * 3, 255);
+  std::vector<uint8_t> out(width * height * 3, 0);
+  std::vector<uint8_t> expected(width * height * 3, 255);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();

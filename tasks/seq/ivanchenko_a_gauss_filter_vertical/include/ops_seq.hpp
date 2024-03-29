@@ -1,20 +1,18 @@
 // Copyright 2024 Ivanchenko Aleksei
 #pragma once
 
-#include <string>
-#include <vector>
 #include <cmath>
 #include <cstring>
+#include <string>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 
 using std::vector;
 
-struct Color
-{
+struct Color {
   uint8_t R, G, B;
 };
-
 
 class GaussFilterSequential : public ppc::core::Task {
  public:
@@ -30,7 +28,7 @@ class GaussFilterSequential : public ppc::core::Task {
   vector<Color> image;
 
   static const size_t kernelSize = 3;
-  double kernel[3][3] = {{0,0,0}, {0,0,0}, {0,0,0}};
+  double kernel[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
   void createKernel(float sigma = 2);
   void applyKernel();
   Color calculateNewPixelColor(size_t x, size_t y);
