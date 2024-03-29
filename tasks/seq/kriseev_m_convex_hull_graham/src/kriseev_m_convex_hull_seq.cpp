@@ -71,19 +71,21 @@ bool KriseevMTaskSeq::ConvexHullTask::run() {
     double dyA = a.second - origin.second;
     double dxB = b.first - origin.first;
     double dyB = b.second - origin.second;
-    return dxA * dxA + dyA * dyA < dxB * dxB + dyB * dyB;
+    // The further point must be first
+    // so the others will be ignored
+    return dxA * dxA + dyA * dyA > dxB * dxB + dyB * dyB;
   });
   std::vector<Point> hull;
   hull.reserve(points.size());
   hull.push_back(points[0]);
   hull.push_back(points[1]);
-  for (uint32_t i = 2; i < points.size() - 1; ++i) {
-    if (checkOrientation(points[i], hull.back(), points[i + 1])) {
-      hull.push_back(points[i]);
+  hull.push_back(points[2]);
+
+  for (uint32_t i = 3; i < points.size(); ++i) {
+    while (hull.size() > 1 && !checkOrientation(hull.back(), *(hull.end() - 2), points[i])) {
+      hull.pop_back();
     }
-  }
-  if (checkOrientation(points.back(), hull.back(), points[0])) {
-    hull.push_back(points.back());
+    hull.push_back(points[i]);
   }
   this->finalHull = hull;
   return true;
