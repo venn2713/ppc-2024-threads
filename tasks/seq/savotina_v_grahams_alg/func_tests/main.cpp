@@ -201,7 +201,7 @@ TEST(savotina_v_grahams_alg_seq, Test6) {
   }
 }
 
-// A lot of same points (10)
+// A lot of same points (in example: 10 points)
 TEST(savotina_v_grahams_alg_seq, Test7) {
   // Create data
   std::vector<Point> points = {
