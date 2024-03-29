@@ -1,17 +1,18 @@
 // Copyright 2024 Sadikov Damir
 #pragma once
 
+#include <complex>
 #include <string>
 #include <vector>
-#include <complex>
 
 #include "core/task/include/task.hpp"
 
 struct matrix_CRS {
-  int n, m;
-  std::vector<int> row_id;
-  std::vector<int> col;
-  std::vector<std::complex<float>> value;
+  int n = 0;
+  int m = 0;
+  std::vector<int> row_id{};
+  std::vector<int> col{};
+  std::vector<std::complex<double>> value{};
 };
 
 class CRSComplexMult_Sequential : public ppc::core::Task {
@@ -23,6 +24,5 @@ class CRSComplexMult_Sequential : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  int input_{}, res{};
-  //matrix_CRS *A, *B, *C;
+  matrix_CRS *A{}, *B{}, *C{};
 };

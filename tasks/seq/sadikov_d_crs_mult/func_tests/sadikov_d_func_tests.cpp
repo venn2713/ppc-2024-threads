@@ -5,117 +5,62 @@
 
 #include "seq/sadikov_d_crs_mult/include/sadikov_d_seq.hpp"
 
-TEST(sadikov_d_crs_mult_seq, Test_Sum_10) {
-  const int count = 10;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+TEST(sadikov_d_crs_mult_seq, test_small_real_matrix) {
+  matrix_CRS A;
+  A.n = 5;
+  A.m = 5;
+  A.row_id = {0, 1, 4, 4, 6, 8};
+  A.col = {0, 1, 3, 4, 0, 4, 1, 3};
+  A.value = {1, 2, 4, 3, 1, -3, 7, 6};
+  matrix_CRS B;
+  B.n = 5;
+  B.m = 5;
+  B.row_id = {0, 1, 3, 4, 6, 7};
+  B.col = {3, 1, 2, 3, 0, 1, 2};
+  B.value = {1, 1, 4, -2, 4, 3, 1};
+  matrix_CRS C;
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&A));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&B));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&C));
 
   // Create Task
   CRSComplexMult_Sequential taskSequential(taskDataSeq);
   ASSERT_EQ(taskSequential.validation(), true);
-  taskSequential.pre_processing();
-  taskSequential.run();
-  taskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
+  ASSERT_EQ(taskSequential.pre_processing(), true);
+  ASSERT_EQ(taskSequential.run(), true);
+  ASSERT_EQ(taskSequential.post_processing(), true);
+  
+  // Check Result
+  matrix_CRS C_expected;
+  C_expected.n = 5;
+  C_expected.m = 5;
+  C_expected.row_id = {0, 1, 4, 4, 6, 9};
+  C_expected.col = {3, 0, 1, 2, 2, 3, 0, 1, 2};
+  C_expected.value = {1, 16, 14, 11, -3, 1, 24, 25, 28};
+
+  ASSERT_EQ(C.n, C_expected.n);
+  ASSERT_EQ(C.m, C_expected.m);
+  ASSERT_EQ(C.row_id, C_expected.row_id);
+  ASSERT_EQ(C.col, C_expected.col);
+  ASSERT_EQ(C.value, C_expected.value);
+  // TODO better comapare with epsilon ???
 }
 
-TEST(sadikov_d_crs_mult_seq, Test_Sum_20) {
-  const int count = 20;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  CRSComplexMult_Sequential taskSequential(taskDataSeq);
-  ASSERT_EQ(taskSequential.validation(), true);
-  taskSequential.pre_processing();
-  taskSequential.run();
-  taskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
+TEST(sadikov_d_crs_mult_seq, test_2) {
+  // TODO test_2
 }
 
-TEST(sadikov_d_crs_mult_seq, Test_Sum_50) {
-  const int count = 50;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  CRSComplexMult_Sequential taskSequential(taskDataSeq);
-  ASSERT_EQ(taskSequential.validation(), true);
-  taskSequential.pre_processing();
-  taskSequential.run();
-  taskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
+TEST(sadikov_d_crs_mult_seq, test_3) {
+  // TODO test_2
 }
 
-TEST(sadikov_d_crs_mult_seq, Test_Sum_70) {
-  const int count = 70;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  CRSComplexMult_Sequential taskSequential(taskDataSeq);
-  ASSERT_EQ(taskSequential.validation(), true);
-  taskSequential.pre_processing();
-  taskSequential.run();
-  taskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
+TEST(sadikov_d_crs_mult_seq, test_4) {
+  // TODO test_4
 }
 
-TEST(sadikov_d_crs_mult_seq, Test_Sum_100) {
-  const int count = 100;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  CRSComplexMult_Sequential taskSequential(taskDataSeq);
-  ASSERT_EQ(taskSequential.validation(), true);
-  taskSequential.pre_processing();
-  taskSequential.run();
-  taskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
+TEST(sadikov_d_crs_mult_seq, test_5) {
+  // TODO test_5
 }
