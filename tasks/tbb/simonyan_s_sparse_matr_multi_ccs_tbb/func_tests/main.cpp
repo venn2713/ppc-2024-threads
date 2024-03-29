@@ -33,7 +33,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_tbb, test_sizes) {
   // Create Task
   SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
   ASSERT_FALSE(sparseTBBMatrixMultiSequential.validation());
-  
+
   // Create data
   std::vector<double> in3(n1 * m1);
 
