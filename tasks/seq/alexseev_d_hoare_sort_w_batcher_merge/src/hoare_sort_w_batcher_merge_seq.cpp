@@ -55,7 +55,6 @@ bool HoareSortWBatcherMergeSequential::post_processing() {
 }
 
 void HoareSortWBatcherMergeSequential::HoareSortWBatcherMergeSeq(std::vector<int> &arr, size_t l, size_t r) {
-  std::sort(arr.begin(), arr.end());
   if (arr.size() <= 1) return;
   int n = r - l + 1;
   for (int p = 1; p < n; p += p)
