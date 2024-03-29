@@ -30,7 +30,7 @@ bool KhodyrevTaskSequential::pre_processing() {
 bool KhodyrevTaskSequential::validation() {
   internal_order_test();
   return taskData->inputs_count[0] == taskData->outputs_count[0] ||
-    taskData->inputs_count[1] == taskData->outputs_count[1];
+       taskData->inputs_count[1] == taskData->outputs_count[1];
 }
 
 bool KhodyrevTaskSequential::run() {
