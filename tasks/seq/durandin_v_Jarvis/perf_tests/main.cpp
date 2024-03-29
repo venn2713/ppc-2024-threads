@@ -57,6 +57,7 @@ TEST(VladimirD_Sequential_Perf_Test, test_pipeline_run) {
 
   // Such a strange check because my algorithm outputs points in a different order
   uint32_t tmp = numPoints >> 1;
+
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < tmp) {
       EXPECT_EQ(expectedHull[i].x, out[i + tmp].x);
