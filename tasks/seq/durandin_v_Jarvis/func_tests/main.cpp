@@ -68,12 +68,6 @@ TEST(VladimirD_Sequential, Convex_Hull_5_Different_Points) {
   ASSERT_EQ(testTaskSequential.run(), true);
   ASSERT_EQ(testTaskSequential.post_processing(), true);
 
-  // std::vector<Jarvis::Point2d> hull = Jarvis::convexHull(in);
-  // for(int i = 0; i < out.size(); ++i)
-  // {
-  //     // std::cout << hull[i].x << " " << hull[i].y << std::endl;
-  //     std::cout << out[i].x << " " << out[i].y << std::endl;
-  // }
   for (size_t i = 0; i < out.size(); ++i) {
     EXPECT_EQ(expectedHull[i].x, out[i].x);
     EXPECT_EQ(expectedHull[i].y, out[i].y);
