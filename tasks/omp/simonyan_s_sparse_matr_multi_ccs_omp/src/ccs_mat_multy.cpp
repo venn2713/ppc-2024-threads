@@ -165,7 +165,6 @@ bool SparseOmpMatrixMultiParallel::run() {
   values3.clear();
   rows3.clear();
   colPtr3.clear();
-
 #pragma omp parallel for
   for (int j = 0; j < numCols1; j++) {
     for (int k = colPtr2[j]; k < colPtr2[j + 1]; k++) {
@@ -176,29 +175,38 @@ bool SparseOmpMatrixMultiParallel::run() {
         double val1 = values1[l];
         double val2 = values2[k];
         int index = row1 * numCols2 + column2;
-
 #pragma omp atomic
         result[index] += val1 * val2;
       }
     }
   }
 
+  std::vector<int> local_colPtr3(numCols2 + 1);
+  std::vector<int> local_rows3;
+  std::vector<double> local_values3;
+
 #pragma omp parallel for
   for (int j = 0; j < numCols2; j++) {
-    colPtr3.push_back(values3.size());
+    std::vector<int> temp_rows3;
+    std::vector<double> temp_values3;
     for (int i = 0; i < numRows1; i++) {
       int ind = i * numCols2 + j;
       if (result[ind] != 0.0) {
-#pragma omp critical
-        {
-          values3.push_back(result[ind]);
-          rows3.push_back(i);
-        }
+        temp_values3.push_back(result[ind]);
+        temp_rows3.push_back(i);
       }
     }
+    local_colPtr3[j + 1] = temp_values3.size();
+#pragma omp critical
+    {
+      local_values3.insert(local_values3.end(), temp_values3.begin(), temp_values3.end());
+      local_rows3.insert(local_rows3.end(), temp_rows3.begin(), temp_rows3.end());
+    }
   }
-  colPtr3.push_back(values3.size());
 
+  colPtr3 = local_colPtr3;
+  values3 = local_values3;
+  rows3 = local_rows3;
   return true;
 }
 
