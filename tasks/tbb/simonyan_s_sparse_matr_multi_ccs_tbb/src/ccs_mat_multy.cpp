@@ -168,34 +168,36 @@ bool SparseTBBMatrixMultiParallel::run() {
   rows3.clear();
   colPtr3.clear();
 
-  tbb::parallel_for(0, numCols1, [&](int j) {
-    for (int k = colPtr2[j]; k < colPtr2[j + 1]; k++) {
-      int column2 = j;
-      int row2 = rows2[k];
-      for (int l = colPtr1[row2]; l < colPtr1[row2 + 1]; l++) {
-        int row1 = rows1[l];
-        double val1 = values1[l];
-        double val2 = values2[k];
-        int index = row1 * numCols2 + column2;
-        result[index] += val1 * val2;
-      }
-    }
-  });
+values3.resize(numCols2 * numRows1); // Выделение памяти заранее для values3
+rows3.reserve(numCols2 * numRows1); // Резервирование места в rows3
+colPtr3.reserve(numCols2 + 1); // Резервирование места в colPtr3
 
-  // Распараллеливание второго цикла
-  tbb::parallel_for(0, numCols2, [&](int j) {
+tbb::parallel_for(0, numCols1, [&](int j) {
+    for (int k = colPtr2[j]; k < colPtr2[j + 1]; k++) {
+        int column2 = j;
+        int row2 = rows2[k];
+        for (int l = colPtr1[row2]; l < colPtr1[row2 + 1]; l++) {
+            int row1 = rows1[l];
+            double val1 = values1[l];
+            double val2 = values2[k];
+            int index = row1 * numCols2 + column2;
+            result[index] += val1 * val2;
+        }
+    }
+});
+
+tbb::parallel_for(0, numCols2, [&](int j) {
     colPtr3.push_back(values3.size());
     for (int i = 0; i < numRows1; i++) {
-      int ind = i * numCols2 + j;
-      if (result[ind] != 0.0) {
-        values3.push_back(result[ind]);
-        rows3.push_back(i);
-      }
+        int ind = i * numCols2 + j;
+        if (result[ind] != 0.0) {
+            values3[ind] = result[ind];
+            rows3.push_back(i);
+        }
     }
-  });
+});
 
-  colPtr3.push_back(values3.size());
-
+colPtr3.push_back(values3.size());
   return true;
 }
 
