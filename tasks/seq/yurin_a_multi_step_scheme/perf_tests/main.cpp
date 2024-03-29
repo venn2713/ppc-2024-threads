@@ -108,7 +108,7 @@ TEST(Yurin_A_Multi_Step_Scheme_Seq, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   for (uint32_t i = 0; i < size; i++) {
-      double x = i * h;
-      EXPECT_NEAR(out[i], 0.5 * ((-1) * exp(-x) + 5 * sin(x) + (3 - 2 * x) * cos(x)), 1e-8);
+    double x = i * h;
+    EXPECT_NEAR(out[i], 0.5 * ((-1) * exp(-x) + 5 * sin(x) + (3 - 2 * x) * cos(x)), 1e-8);
   }
 }
