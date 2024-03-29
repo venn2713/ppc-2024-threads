@@ -2,7 +2,6 @@
 #pragma once
 
 #include <cmath>
-#include <iostream>
 
 struct Point {
   double x;

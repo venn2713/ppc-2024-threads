@@ -1,27 +1,41 @@
 // Copyright 2024 Savotina Valeria
 #include <gtest/gtest.h>
 
-#include <vector>
+#include <thread>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/savotina_v_grahams_alg/include/ops_seq.hpp"
 
-TEST(sequential_example_perf_test, test_pipeline_run) {
-  const int count = 100;
+using namespace std::chrono_literals;
 
+TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<Point> points = {
+      Point(-0.5, 2.2),  Point(1.6, 1.3),  Point(0.3, -0.6),  Point(0.1, 1.3),
+      Point(-1.8, 1.42), Point(-0.3, 0.6), Point(-0.5, -1.2), Point(1.2, -0.8),
+      Point(0.7, 0.4),   Point(1.1, 1.9),  Point(0.4, -1.2),  Point(-1.9, 0.4),
+      Point(-0.6, -0.3), Point(1.8, 0.5),  Point(-1.4, -0.7), Point(-0.9, 1.1),
+      Point(-1.2, 1.9),  Point(0.4, 2.2),  Point(1.7, -0.1)};
+  std::vector<Point> res = {
+      Point(-1.9, 0.4), Point(-1.4, -0.7), Point(-0.5, -1.2), Point(0.4, -1.2),
+      Point(1.2, -0.8), Point(1.7, -0.1),  Point(1.8, 0.5),   Point(1.6, 1.3),
+      Point(1.1, 1.9),  Point(0.4, 2.2),   Point(-0.5, 2.2),  Point(-1.2, 1.9),
+      Point(-1.8, 1.42)};
+  std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
+      std::make_shared<ppc::core::TaskData>();
+  dataGrahamsAlgSeq->inputs.emplace_back(
+      reinterpret_cast<uint8_t *>(points.data()));
+  dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
+  dataGrahamsAlgSeq->outputs.emplace_back(
+      reinterpret_cast<uint8_t *>(mch.data()));
+  dataGrahamsAlgSeq->outputs_count.emplace_back(mch.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<GrahamsAlgorithmSequential>(taskDataSeq);
+  auto testGrahamSequential =
+      std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -29,7 +43,10 @@ TEST(sequential_example_perf_test, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    std::this_thread::sleep_for(60ms);
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                        current_time_point - t0)
+                        .count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -37,28 +54,44 @@ TEST(sequential_example_perf_test, test_pipeline_run) {
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testGrahamSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
+
+  for (size_t i = 0; i < res.size(); ++i) {
+    ASSERT_EQ(mch[i].x, res[i].x);
+    ASSERT_EQ(mch[i].y, res[i].y);
+  }
 }
 
-TEST(sequential_example_perf_test, test_task_run) {
-  const int count = 100;
-
+TEST(savotina_v_grahams_alg_seq, test_task_run) {
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<Point> points = {
+      Point(-0.5, 2.2),  Point(1.6, 1.3),  Point(0.3, -0.6),  Point(0.1, 1.3),
+      Point(-1.8, 1.42), Point(-0.3, 0.6), Point(-0.5, -1.2), Point(1.2, -0.8),
+      Point(0.7, 0.4),   Point(1.1, 1.9),  Point(0.4, -1.2),  Point(-1.9, 0.4),
+      Point(-0.6, -0.3), Point(1.8, 0.5),  Point(-1.4, -0.7), Point(-0.9, 1.1),
+      Point(-1.2, 1.9),  Point(0.4, 2.2),  Point(1.7, -0.1)};
+  std::vector<Point> res = {
+      Point(-1.9, 0.4), Point(-1.4, -0.7), Point(-0.5, -1.2), Point(0.4, -1.2),
+      Point(1.2, -0.8), Point(1.7, -0.1),  Point(1.8, 0.5),   Point(1.6, 1.3),
+      Point(1.1, 1.9),  Point(0.4, 2.2),   Point(-0.5, 2.2),  Point(-1.2, 1.9),
+      Point(-1.8, 1.42)};
+  std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
+      std::make_shared<ppc::core::TaskData>();
+  dataGrahamsAlgSeq->inputs.emplace_back(
+      reinterpret_cast<uint8_t *>(points.data()));
+  dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
+  dataGrahamsAlgSeq->outputs.emplace_back(
+      reinterpret_cast<uint8_t *>(mch.data()));
+  dataGrahamsAlgSeq->outputs_count.emplace_back(mch.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<GrahamsAlgorithmSequential>(taskDataSeq);
+  auto testGrahamSequential =
+      std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -66,7 +99,10 @@ TEST(sequential_example_perf_test, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    std::this_thread::sleep_for(60ms);
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                        current_time_point - t0)
+                        .count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -74,13 +110,12 @@ TEST(sequential_example_perf_test, test_task_run) {
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testGrahamSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
-}
 
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  for (size_t i = 0; i < res.size(); ++i) {
+    ASSERT_EQ(mch[i].x, res[i].x);
+    ASSERT_EQ(mch[i].y, res[i].y);
+  }
 }

@@ -1,9 +1,8 @@
 // Copyright 2024 Savotina Valeria
 #include "seq/savotina_v_grahams_alg/include/ops_seq.hpp"
-#include <stack>
 
 // Quick Sort
-void QuickSort(std::vector<Point> &pointArr, int left, int right) {
+void QuickSort(std::vector<Point>& pointArr, int left, int right) {
   if (left > right) return;  // Leave recursion
 
   int piv = 0, arrSize = right - left + 1, L = left, R = right;
@@ -12,7 +11,7 @@ void QuickSort(std::vector<Point> &pointArr, int left, int right) {
   if ((arrSize % 2) == 0)
     piv = (arrSize / 2 - 1) + left;
   else
-    piv = trunc(arrSize / 2) + left;
+    piv = std::trunc(arrSize / 2) + left;
 
   Point pivot = pointArr[piv];
 
@@ -116,40 +115,48 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
 
 bool GrahamsAlgorithmSequential::pre_processing() {
   internal_order_test();
+
   // Init value for input and output
-  pointsArr = reinterpret_cast<std::vector<Point> *>(taskData->inputs[0])[0];
+  pointsArr = std::vector<Point>(taskData->inputs_count[0]);
+
+  auto* pArray = reinterpret_cast<Point*>(taskData->inputs[0]);
+  for (unsigned i = 0; i < taskData->inputs_count[0]; i++) {
+    pointsArr[i] = pArray[i];
+  }
+
   minConvexHull = pointsArr;
   return true;
 }
 
 bool GrahamsAlgorithmSequential::validation() {
   internal_order_test();
+
   // Check count elements of output
-  return true;
+  return (taskData->outputs_count[0] <= taskData->inputs_count[0]);
 }
 
 bool GrahamsAlgorithmSequential::run() {
   internal_order_test();
+
+  if (pointsArr.size() == 0) return true;
 
   // Step 1: search the minimum point P0
   Point P0 = MinPoint(pointsArr);
   int p0 = PointPosition(P0, pointsArr);
 
   // Step 2: sort all points except P0
-  //minConvexHull = pointsArr;
   minConvexHull[0].Replace(minConvexHull[p0]);
-
-  // Quick Sort
-  QuickSort(minConvexHull, 1, minConvexHull.size() - 1);
+  QuickSort(minConvexHull, 1, minConvexHull.size() - 1);  // Quick Sort
 
   // Step 3: build a minimum convex hull
   minConvexHull = MinConvexHull(minConvexHull);
-
   return true;
 }
 
 bool GrahamsAlgorithmSequential::post_processing() {
   internal_order_test();
-  reinterpret_cast<std::vector<Point> *>(taskData->outputs[0])[0] = minConvexHull;
+
+  std::copy(minConvexHull.begin(), minConvexHull.end(),
+            reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }

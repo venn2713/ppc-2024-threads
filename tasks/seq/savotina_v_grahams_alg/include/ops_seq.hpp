@@ -1,10 +1,11 @@
 // Copyright 2024 Savotina Valeria
 #pragma once
 
+#include <stack>
 #include <vector>
 
 #include "core/task/include/task.hpp"
-#include "tasks/seq/savotina_v_grahams_alg/include/point.hpp"
+#include "point.hpp"
 
 class GrahamsAlgorithmSequential : public ppc::core::Task {
  public:
