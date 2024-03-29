@@ -1,9 +1,9 @@
 // Copyright 2023 Simonyan Suren
 #include <gtest/gtest.h>
-#include <omp.h>
+#include <oneapi/tbb.h>
 
 #include "core/perf/include/perf.hpp"
-#include "omp/simonyan_s_sparse_matr_multi_ccs_omp/include/ccs_mat_multy.hpp"
+#include "tbb/simonyan_s_sparse_matr_multi_ccs_tbb/include/ccs_mat_multy.hpp"
 
 using namespace std;
 
@@ -40,7 +40,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(r);
 
   // Create Task
-  auto testTaskSeq = std::make_shared<SparseOmpMatrixMultiParallel>(taskDataSeq);
+  auto testTaskSeq = std::make_shared<SparseTBBMatrixMultiParallel>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -101,7 +101,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(r);
 
   // Create Task
-  auto testTaskSeq = std::make_shared<SparseOmpMatrixMultiParallel>(taskDataSeq);
+  auto testTaskSeq = std::make_shared<SparseTBBMatrixMultiParallel>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
