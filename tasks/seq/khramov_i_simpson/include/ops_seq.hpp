@@ -1,7 +1,6 @@
 // Copyright 2024 Khramov Ivan
 #pragma once
 
-
 #include <cmath>
 #include <functional>
 #include <memory>

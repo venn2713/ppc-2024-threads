@@ -5,7 +5,6 @@
 
 using namespace std::chrono_literals;
 
-
 double simpson_formula(function func, double Xj0, double Xj1, double Xi) {
   return func(Xj0, Xi) + 4 * func((Xj0 + Xj1) / 2, Xi) + func(Xj1, Xi);
 }
@@ -31,8 +30,8 @@ double simpson_seq(function func, int a1, int a2, int b1, int b2, int numSteps) 
   return res;
 }
 
-double linear_f(double x0, double x1) { return 3*x0 - 2* x1; }
-double square_f(double x0, double x1) { return x0*x0 + 2*x1*x1; }
+double linear_f(double x0, double x1) { return 3 * x0 - 2 * x1; }
+double square_f(double x0, double x1) { return x0 * x0 + 2 * x1 * x1; }
 double sin_f(double x0, double x1) { return sin(x0 + x1); }
 double mult_f(double x0, double x1) { return x0 * x1; }
 double exp_f(double x0, double x1) { return exp(x0 * x1); }

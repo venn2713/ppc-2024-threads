@@ -6,7 +6,6 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/khramov_i_simpson/include/ops_seq.hpp"
 
-
 TEST(khramov_i_simpson_seq, test_pipeline_run) {
   int a1 = 0;
   int a2 = 0;
@@ -19,7 +18,6 @@ TEST(khramov_i_simpson_seq, test_pipeline_run) {
   // Create data
   std::vector<int> in{a1, a2, b1, b2, numSteps};
   std::vector<double> out{result};
-
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
