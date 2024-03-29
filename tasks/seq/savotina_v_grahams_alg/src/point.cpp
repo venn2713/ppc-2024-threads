@@ -18,7 +18,7 @@ Point& Point::operator=(const Point& p2) {
   return *this;
 }
 
-bool Point::operator==(const Point& p2) {
+bool Point::operator==(const Point& p2) const {
   bool res = 0;
   if (x == p2.x && y == p2.y) res = 1;
   return res;

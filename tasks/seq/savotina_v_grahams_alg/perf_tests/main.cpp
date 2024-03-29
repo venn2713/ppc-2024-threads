@@ -50,8 +50,7 @@ TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -97,7 +96,6 @@ TEST(savotina_v_grahams_alg_seq, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }

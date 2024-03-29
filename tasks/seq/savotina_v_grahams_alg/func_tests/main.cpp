@@ -28,8 +28,7 @@ TEST(savotina_v_grahams_alg_seq, Test1) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -61,8 +60,7 @@ TEST(savotina_v_grahams_alg_seq, Test2) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -90,8 +88,7 @@ TEST(savotina_v_grahams_alg_seq, Test3) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -117,8 +114,7 @@ TEST(savotina_v_grahams_alg_seq, Test4) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -144,8 +140,7 @@ TEST(savotina_v_grahams_alg_seq, Test5) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -171,8 +166,7 @@ TEST(savotina_v_grahams_alg_seq, Test6) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }
 
@@ -199,7 +193,6 @@ TEST(savotina_v_grahams_alg_seq, Test7) {
   testGrahamsAlgSeq.post_processing();
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(mch[i].x, res[i].x);
-    ASSERT_EQ(mch[i].y, res[i].y);
+    ASSERT_EQ(mch[i], res[i]);
   }
 }

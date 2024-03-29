@@ -11,7 +11,7 @@ struct Point {
   Point(double X, double Y);
 
   Point& operator=(const Point& p2);
-  bool operator==(const Point& p2);
+  bool operator==(const Point& p2) const;
 
   double Distance(const Point& p);
   void Replace(Point& p2);
