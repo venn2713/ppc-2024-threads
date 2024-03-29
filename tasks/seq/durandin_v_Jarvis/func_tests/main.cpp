@@ -76,7 +76,7 @@ TEST(VladimirD_Sequential, Convex_Hull_5_Different_Points) {
 TEST(VladimirD_Sequential, Convex_Hull_Circle_10_points) {
   auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
-    double angleIncrement = 2 * M_PI / numPoints;
+    double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
       double angle = i * angleIncrement;
       double x = center.x + radius * std::cos(angle);
@@ -124,7 +124,7 @@ TEST(VladimirD_Sequential, Convex_Hull_Circle_10_points) {
 TEST(VladimirD_Sequential, Convex_Hull_Circle_100_points) {
   auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
-    double angleIncrement = 2 * M_PI / numPoints;
+    double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
       double angle = i * angleIncrement;
       double x = center.x + radius * std::cos(angle);

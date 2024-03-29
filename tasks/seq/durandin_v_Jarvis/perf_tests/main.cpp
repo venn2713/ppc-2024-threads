@@ -7,7 +7,7 @@
 TEST(VladimirD_Sequential_Perf_Test, test_pipeline_run) {
   auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
-    double angleIncrement = 2 * Const::M_PI / numPoints;
+    double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
       double angle = i * angleIncrement;
       double x = center.x + radius * std::cos(angle);
@@ -71,7 +71,7 @@ TEST(VladimirD_Sequential_Perf_Test, test_pipeline_run) {
 TEST(VladimirD_Sequential_Perf_Test, test_task_run) {
   auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
-    double angleIncrement = 2 * Const::M_PI / numPoints;
+    double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
       double angle = i * angleIncrement;
       double x = center.x + radius * std::cos(angle);
