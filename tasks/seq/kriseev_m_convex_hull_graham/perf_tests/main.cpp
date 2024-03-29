@@ -12,7 +12,7 @@ TEST(kriseev_m_convex_hull_graham_seq, test_pipeline_run) {
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
-  std::mt19937 gen(1587443.055);
+  std::mt19937 gen(1587443);
   std::uniform_real_distribution<> dis(-3.0, 5.0);
   for (int i = 0; i < count; ++i) {
     pX.emplace_back(dis(gen));
@@ -61,7 +61,7 @@ TEST(kriseev_m_convex_hull_graham_seq, test_task_run) {
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
-  std::mt19937 gen(1587443.055);
+  std::mt19937 gen(1587443);
   std::uniform_real_distribution<> dis(-3.0, 5.0);
   for (int i = 0; i < count; ++i) {
     pX.emplace_back(dis(gen));
