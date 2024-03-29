@@ -1,8 +1,8 @@
 // Copyright 2024 Khodyrev Fedor
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <stack>
+#include <vector>
 #include "core/perf/include/perf.hpp"
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
 
@@ -20,8 +20,7 @@ TEST(khodyrev_f_convex_null_seq, test_pipeline_run) {
   true_result[0] = 1;
   true_result[1] = 1;
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);
@@ -30,16 +29,14 @@ TEST(khodyrev_f_convex_null_seq, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(height_out);
   taskDataSeq->outputs_count.emplace_back(width_out);
 
-  auto testTaskSequential = std::make_shared<KhodyrevTaskSequential>
-  (taskDataSeq);
+  auto testTaskSequential = std::make_shared<KhodyrevTaskSequential>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>
-    (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -68,8 +65,7 @@ TEST(khodyrev_f_convex_null_seq, test_task_run) {
   true_result[0] = 1;
   true_result[1] = 1;
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);
@@ -79,16 +75,14 @@ TEST(khodyrev_f_convex_null_seq, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(width_out);
 
 
-  auto testTaskSequential = std::make_shared<KhodyrevTaskSequential>
-  (taskDataSeq);
+  auto testTaskSequential = std::make_shared<KhodyrevTaskSequential>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>
-    (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

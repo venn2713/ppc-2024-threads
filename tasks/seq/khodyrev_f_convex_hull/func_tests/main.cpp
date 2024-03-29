@@ -1,29 +1,18 @@
 // Copyright 2024 Khodyrev Fedor
 #include <gtest/gtest.h>
-#include <vector>
 #include <stack>
+#include <vector>
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
 
 TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_validation) {
   int height = 4;
   int width = 3;
-  std::vector<int> in = {
-        0, 1, 0,
-        1, 1, 1,
-        1, 1, 1,
-        0, 1, 0
-  };
+  std::vector<int> in = {0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0};
   std::vector<int> out(height * width);
 
-  std::vector<int> true_result = {
-        0, 1, 0,
-        1, 0, 1,
-        1, 0, 1,
-        0, 1, 0
-  };
+  std::vector<int> true_result = {0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height);
   taskDataSeq->inputs_count.emplace_back(width);
@@ -40,23 +29,12 @@ TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_with_small_image) {
   int width_in = 3;
   int height_out = 4;
   int width_out = 3;
-  std::vector<int> in = {
-        0, 1, 0,
-        1, 1, 1,
-        1, 1, 1,
-        0, 1, 0
-  };
+  std::vector<int> in = {0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0};
   std::vector<int> out(height_out * width_out, 0);
 
-  std::vector<int> true_result = {
-        0, 1, 0,
-        1, 0, 1,
-        1, 0, 1,
-        0, 1, 0
-  };
+  std::vector<int> true_result = {0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);
@@ -90,8 +68,7 @@ TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_with_medium_image) {
   true_result[0] = 1;
   true_result[99999] = 1;
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);
@@ -125,8 +102,7 @@ TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_with_big_image) {
   true_result[0] = 1;
   true_result[999999] = 1;
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);
@@ -160,8 +136,7 @@ TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_with_very_big_image) {
   true_result[0] = 1;
   true_result[1] = 1;
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-   std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height_in);

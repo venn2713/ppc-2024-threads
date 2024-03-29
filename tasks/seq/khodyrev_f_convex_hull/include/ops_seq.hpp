@@ -1,23 +1,22 @@
 // Copyright 2024 Khodyrev Fedor
 #pragma once
 
-#include <string>
-#include <vector>
-#include <stack>
-#include <utility>
 #include <memory>
+#include <stack>
+#include <string>
+#include <utility>
+#include <vector>
 #include "core/task/include/task.hpp"
 
 struct Pixel {
-    int x, y;
+  int x, y;
 };
 
 bool isWhite(const std::vector<int>& image, int width, int x, int y);
 
 class KhodyrevTaskSequential : public ppc::core::Task {
  public:
-  explicit KhodyrevTaskSequential(std::shared_ptr<ppc::core::TaskData>
-   taskData_) : Task(std::move(taskData_)) {}
+  explicit KhodyrevTaskSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
