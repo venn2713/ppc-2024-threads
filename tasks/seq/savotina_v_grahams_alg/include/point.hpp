@@ -16,5 +16,5 @@ struct Point {
 
   double Distance(const Point& p) const;
   void Replace(Point& p2);
-  int Compare(const Point& pivot, const Point& P);
+  int Compare(const Point& pivot, const Point& P) const;
 };

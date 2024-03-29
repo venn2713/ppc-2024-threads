@@ -37,7 +37,7 @@ void Point::Replace(Point& p2) {
   p2 = tmp;
 }
 
-int Point::Compare(const Point& pivot, const Point& P) {
+int Point::Compare(const Point& pivot, const Point& P) const {
   int res = 0;  // ==
   double x1 = pivot.x - x;
   double y1 = pivot.y - y;
