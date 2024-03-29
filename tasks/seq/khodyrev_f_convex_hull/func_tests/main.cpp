@@ -1,7 +1,9 @@
 // Copyright 2024 Khodyrev Fedor
 #include <gtest/gtest.h>
+
 #include <stack>
 #include <vector>
+
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
 
 TEST(khodyrev_f_convex_hull_seq, Test_convex_hull_validation) {

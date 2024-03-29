@@ -3,6 +3,7 @@
 
 #include <stack>
 #include <vector>
+
 #include "core/perf/include/perf.hpp"
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
 
@@ -73,7 +74,6 @@ TEST(khodyrev_f_convex_null_seq, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(height_out);
   taskDataSeq->outputs_count.emplace_back(width_out);
-
 
   auto testTaskSequential = std::make_shared<KhodyrevTaskSequential>(taskDataSeq);
 

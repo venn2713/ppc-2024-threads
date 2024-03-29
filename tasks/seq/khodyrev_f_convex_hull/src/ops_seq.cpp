@@ -1,5 +1,6 @@
 // Copyright 2024 Khodyrev Fedor
 #include "seq/khodyrev_f_convex_hull/include/ops_seq.hpp"
+
 #include <iostream>
 #include <vector>
 
@@ -41,10 +42,10 @@ bool KhodyrevTaskSequential::run() {
     for (int y = 0; y < height_in; ++y) {
       for (int x = 0; x < width_in; ++x) {
         if (isWhite(image, width_in, x, y)) {
-            Pixel pixel;
-            pixel.x = x;
-            pixel.y = y;
-            pixels.push_back(pixel);
+          Pixel pixel;
+          pixel.x = x;
+          pixel.y = y;
+          pixels.push_back(pixel);
         }
       }
     }
