@@ -1,8 +1,6 @@
 // Copyright 2024 Ivanchenko Aleksei
 #include <gtest/gtest.h>
-
 #include <vector>
-
 #include "core/perf/include/perf.hpp"
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
 

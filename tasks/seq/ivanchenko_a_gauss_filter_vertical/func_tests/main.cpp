@@ -1,8 +1,6 @@
 // Copyright 2024 Ivanchenko Aleksei
 #include <gtest/gtest.h>
-
 #include <vector>
-
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
 
 TEST(ivanchenko_a_gauss_filter_vertical, black_image) {
