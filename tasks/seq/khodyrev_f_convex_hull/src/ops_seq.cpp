@@ -29,7 +29,8 @@ bool KhodyrevTaskSequential::pre_processing() {
 
 bool KhodyrevTaskSequential::validation() {
   internal_order_test();
-  if (taskData->inputs_count[0] == taskData->outputs_count[0] || taskData->inputs_count[1] == taskData->outputs_count[1]) {
+  if (taskData->inputs_count[0] == taskData->outputs_count[0] ||
+      taskData->inputs_count[1] == taskData->outputs_count[1]) {
     return true;
   }
   return false;
