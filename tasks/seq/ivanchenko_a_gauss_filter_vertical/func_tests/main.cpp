@@ -86,7 +86,7 @@ TEST(ivanchenko_a_gauss_filter_vertical, monotone_image) {
 }
 TEST(ivanchenko_a_gauss_filter_vertical, chessboard_image) {
   uint32_t width = 16, height = 16;
-  
+
   // Create data
   std::vector<uint8_t> in(width * height * 3);
   std::vector<uint8_t> out(width * height * 3, 0);
@@ -116,16 +116,16 @@ TEST(ivanchenko_a_gauss_filter_vertical, chessboard_image) {
   ASSERT_EQ(expected, out);
 }
 TEST(ivanchenko_a_gauss_filter_vertical, image_with_some_noise) {
-  uint32_t width = 16, height = 16; 
+  uint32_t width = 16, height = 16;
   
   // Create data
   std::vector<uint8_t> in(width * height * 3);
   std::vector<uint8_t> out(width * height * 3, 0);
   std::vector<uint8_t> expected(width * height * 3);
-  for (size_t i = 0; i < width * height * 3; i+=3) {
+  for (size_t i = 0; i < width * height * 3; i + = 3) {
     int x = i % width;
     int y = i / width;
-    in[i] = in[i + 1] = in[i + 2] = 128 - 3*((x + y) % 13 == 0);
+    in[i] = in[i + 1] = in[i + 2] = 128 - 3 * ((x + y) % 13 == 0);
     expected[i] = expected[i + 1] = expected[i + 2] = 128;
   }
 

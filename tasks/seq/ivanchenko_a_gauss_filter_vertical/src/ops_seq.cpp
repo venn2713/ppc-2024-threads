@@ -45,7 +45,7 @@ void GaussFilterSequential::createKernel(float sigma) {
     for (int j = -radius; j <= (int)radius; j++) {
       kernel[i + radius][j + radius] = (double)(exp(-(i * i + j * j) / (2 * sigma * sigma)));
       norm += kernel[i + radius][j + radius];
-    }  
+    }
   }
   // нормируем ядро
   for (uint32_t i = 0; i < size; i++) {
