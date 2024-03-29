@@ -6,13 +6,10 @@
 #include <utility>
 #include <vector>
 
-// TODO delete iosteam
-#include <iostream>
-
-bool check_CRS_prproperties(const matrix_CRS& A) {
-  if (A.row_id.size() != A.n + 1) return false;
+bool check_CRS_properties(const matrix_CRS& A) {
+  if (A.row_id.size() != size_t(A.n + 1)) return false;
   int nz = A.value.size();
-  if (A.value.size() != nz || A.col.size() != nz || A.row_id[A.n] != nz) return false;
+  if (A.value.size() != size_t(nz) || A.col.size() != size_t(nz) || A.row_id[A.n] != nz) return false;
   if (A.row_id[0] != 0) return false;
   for (int i = 1; i <= A.n; i++) {
     if (A.row_id[i] < A.row_id[i - 1]) return false;
@@ -65,8 +62,8 @@ bool CRSComplexMult_Sequential::validation() {
   C = reinterpret_cast<matrix_CRS*>(taskData->outputs[0]);
   if (A == nullptr || B == nullptr || C == nullptr) return false;
   // check for CRS properties
-  if (check_CRS_prproperties(*A) == false) return false;
-  if (check_CRS_prproperties(*B) == false) return false;
+  if (check_CRS_properties(*A) == false) return false;
+  if (check_CRS_properties(*B) == false) return false;
   // check for matrices size
   return A->m == B->n;
 }
@@ -79,14 +76,6 @@ bool CRSComplexMult_Sequential::pre_processing() {
   C = reinterpret_cast<matrix_CRS*>(taskData->outputs[0]);
   // transpose B
   *B = transpose_CRS(*B);
-  // TODO delete iosteam
-  std::cout << B->n << " " << B->m << "\n";
-  for (auto& i : B->row_id) std::cout << i << " ";
-  std::cout << "\n";
-  for (auto& i : B->col) std::cout << i << " ";
-  std::cout << "\n";
-  for (auto& i : B->value) std::cout << i << " ";
-  std::cout << "\n";
   return true;
 }
 
@@ -101,16 +90,14 @@ bool CRSComplexMult_Sequential::run() {
     for (int j = 0; j < B->n; j++) {
       // C[i][j] = dot_product(A[i], B[j]);
       std::complex<double> T;
-      bool T_changed = false;
       for (int k_A = A->row_id[i]; k_A < A->row_id[i + 1]; k_A++) {
         for (int k_B = B->row_id[j]; k_B < B->row_id[j + 1]; k_B++) {
           if (A->col[k_A] == B->col[k_B]) {
             T += A->value[k_A] * B->value[k_B];
-            T_changed = true;
           }
         }
       }
-      if (T_changed) {
+      if (abs(T.imag()) > 1e-6 || abs(T.real()) > 1e-6) {
         temp[i].emplace_back(j, T);
       }
     }
@@ -123,14 +110,6 @@ bool CRSComplexMult_Sequential::run() {
       C->row_id[i + 1]++;
     }
   }
-  // TODO delete iosteam
-  std::cout << C->n << " " << C->m << "\n";
-  for (auto& i : C->row_id) std::cout << i << " ";
-  std::cout << "\n";
-  for (auto& i : C->col) std::cout << i << " ";
-  std::cout << "\n";
-  for (auto& i : C->value) std::cout << i << " ";
-  std::cout << "\n";
   return true;
 }
 
