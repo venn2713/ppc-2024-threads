@@ -1,6 +1,7 @@
 // Copyright 2024 Durandin Vladimir
 #pragma once
 
+#include <cmath>
 #include <cstring>
 #include <string>
 #include <vector>
