@@ -26,6 +26,7 @@ bool checkOrientation(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSe
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::pre_processing() {
+  internal_order_test();
   auto *pointsX = reinterpret_cast<double *>(taskData->inputs.at(0));
   auto *pointsY = reinterpret_cast<double *>(taskData->inputs.at(1));
   points = std::vector<std::pair<double, double>>();
@@ -38,6 +39,7 @@ bool KriseevMTaskSeq::ConvexHullTask::pre_processing() {
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::validation() {
+  internal_order_test();
   if (taskData->inputs_count.at(0) != taskData->inputs_count.at(1)) {
     return false;
   }
@@ -60,6 +62,7 @@ bool KriseevMTaskSeq::ConvexHullTask::validation() {
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::run() {
+  internal_order_test();
   Point origin =
       *std::min_element(points.begin(), points.end(), [](auto &a, auto &b) -> bool { return a.second < b.second; });
   std::sort(points.begin(), points.end(), [origin](auto &a, auto &b) -> bool {
@@ -96,6 +99,7 @@ bool KriseevMTaskSeq::ConvexHullTask::run() {
 }
 
 bool KriseevMTaskSeq::ConvexHullTask::post_processing() {
+  internal_order_test();
   auto *resultsX = reinterpret_cast<double *>(taskData->outputs[0]);
   auto *resultsY = reinterpret_cast<double *>(taskData->outputs[1]);
   for (size_t i = 0; i < finalHull.size(); ++i) {
