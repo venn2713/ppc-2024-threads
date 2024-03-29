@@ -40,20 +40,19 @@ bool KhodyrevTaskSequential::run() {
   try {
     for (int y = 0; y < height_in; ++y) {
       for (int x = 0; x < width_in; ++x) {
-          if (isWhite(image, width_in, x, y)) {
-              Pixel pixel;
-              pixel.x = x;
-              pixel.y = y;
-              pixels.push_back(pixel);
-          }
+        if (isWhite(image, width_in, x, y)) {
+            Pixel pixel;
+            pixel.x = x;
+            pixel.y = y;
+            pixels.push_back(pixel);
+        }
       }
     }
 
     start_point = pixels[0];
     for (const Pixel& pixel : pixels) {
-      if (pixel.y < start_point.y || (pixel.y == start_point.y &&
-        pixel.x < start_point.x)) {
-          start_point = pixel;
+      if (pixel.y < start_point.y || (pixel.y == start_point.y && pixel.x < start_point.x)) {
+        start_point = pixel;
       }
     }
 
@@ -75,7 +74,7 @@ bool KhodyrevTaskSequential::run() {
         if ((p2.x - p1.x) * (pixels[i].y - p1.y) - (p2.y - p1.y) * (pixels[i].x - p1.x) < 0) {
           hull.push(p1);
           break;
-            }
+        }
       }
       hull.push(pixels[i]);
     }
