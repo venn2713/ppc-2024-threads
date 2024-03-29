@@ -10,8 +10,8 @@ using namespace std;
 
 bool SparseOmpMatrixMultiSequential::pre_processing() {
   internal_order_test();
-  double* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
-  double* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
+  auto* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
+  auto* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
   numRows1 = taskData->inputs_count[0];
   numCols1 = taskData->inputs_count[1];
   numRows2 = taskData->inputs_count[2];
@@ -110,8 +110,8 @@ bool SparseOmpMatrixMultiSequential::post_processing() {
 
 bool SparseOmpMatrixMultiParallel::pre_processing() {
   internal_order_test();
-  double* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
-  double* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
+  auto* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
+  auto* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
   numRows1 = taskData->inputs_count[0];
   numCols1 = taskData->inputs_count[1];
   numRows2 = taskData->inputs_count[2];
