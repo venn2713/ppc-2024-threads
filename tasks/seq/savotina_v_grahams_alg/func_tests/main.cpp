@@ -106,7 +106,7 @@ TEST(savotina_v_grahams_alg_seq, Test4) {
   std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
   dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
-  dataGrahamsAlgSeq->outputs.emplace_back( reinterpret_cast<uint8_t *>(mch.data()));
+  dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
   dataGrahamsAlgSeq->outputs_count.emplace_back(mch.size());
 
   // Create Task
