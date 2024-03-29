@@ -24,18 +24,14 @@ TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
-  dataGrahamsAlgSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(points.data()));
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
+  dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
-  dataGrahamsAlgSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(mch.data()));
+  dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
   dataGrahamsAlgSeq->outputs_count.emplace_back(mch.size());
 
   // Create Task
-  auto testGrahamSequential =
-      std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
+  auto testGrahamSequential = std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -44,9 +40,7 @@ TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
     std::this_thread::sleep_for(60ms);
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                        current_time_point - t0)
-                        .count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -66,32 +60,25 @@ TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
 
 TEST(savotina_v_grahams_alg_seq, test_task_run) {
   // Create data
-  std::vector<Point> points = {
-      Point(-0.5, 2.2),  Point(1.6, 1.3),  Point(0.3, -0.6),  Point(0.1, 1.3),
-      Point(-1.8, 1.42), Point(-0.3, 0.6), Point(-0.5, -1.2), Point(1.2, -0.8),
-      Point(0.7, 0.4),   Point(1.1, 1.9),  Point(0.4, -1.2),  Point(-1.9, 0.4),
-      Point(-0.6, -0.3), Point(1.8, 0.5),  Point(-1.4, -0.7), Point(-0.9, 1.1),
-      Point(-1.2, 1.9),  Point(0.4, 2.2),  Point(1.7, -0.1)};
-  std::vector<Point> res = {
-      Point(-1.9, 0.4), Point(-1.4, -0.7), Point(-0.5, -1.2), Point(0.4, -1.2),
-      Point(1.2, -0.8), Point(1.7, -0.1),  Point(1.8, 0.5),   Point(1.6, 1.3),
-      Point(1.1, 1.9),  Point(0.4, 2.2),   Point(-0.5, 2.2),  Point(-1.2, 1.9),
-      Point(-1.8, 1.42)};
+  std::vector<Point> points = {Point(-0.5, 2.2),  Point(1.6, 1.3),  Point(0.3, -0.6),  Point(0.1, 1.3),
+                               Point(-1.8, 1.42), Point(-0.3, 0.6), Point(-0.5, -1.2), Point(1.2, -0.8),
+                               Point(0.7, 0.4),   Point(1.1, 1.9),  Point(0.4, -1.2),  Point(-1.9, 0.4),
+                               Point(-0.6, -0.3), Point(1.8, 0.5),  Point(-1.4, -0.7), Point(-0.9, 1.1),
+                               Point(-1.2, 1.9),  Point(0.4, 2.2),  Point(1.7, -0.1)};
+  std::vector<Point> res = {Point(-1.9, 0.4), Point(-1.4, -0.7), Point(-0.5, -1.2), Point(0.4, -1.2), Point(1.2, -0.8),
+                            Point(1.7, -0.1), Point(1.8, 0.5),   Point(1.6, 1.3),   Point(1.1, 1.9),  Point(0.4, 2.2),
+                            Point(-0.5, 2.2), Point(-1.2, 1.9),  Point(-1.8, 1.42)};
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
-  dataGrahamsAlgSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(points.data()));
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
+  dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
-  dataGrahamsAlgSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(mch.data()));
+  dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
   dataGrahamsAlgSeq->outputs_count.emplace_back(mch.size());
 
   // Create Task
-  auto testGrahamSequential =
-      std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
+  auto testGrahamSequential = std::make_shared<GrahamsAlgorithmSequential>(dataGrahamsAlgSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -100,9 +87,7 @@ TEST(savotina_v_grahams_alg_seq, test_task_run) {
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
     std::this_thread::sleep_for(60ms);
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                        current_time_point - t0)
-                        .count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

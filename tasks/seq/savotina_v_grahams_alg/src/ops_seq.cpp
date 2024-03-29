@@ -97,8 +97,7 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
       mchSize = mch.size();
       val = mch[mchSize - 2].Compare(mch[mchSize - 1], pointArr[i]);
 
-      if ((val == -1) ||
-          (val == 2))  // (val == -1) 2 < 1 || (val == 2) dist2 > dist1, 2 > 1
+      if ((val == -1) || (val == 2))  // (val == -1) 2 < 1 || (val == 2) dist2 > dist1, 2 > 1
       {
         mch.erase(mch.end() - 1);
         if (mch.size() < 2) mch.push_back(pointArr[i]);
@@ -156,7 +155,6 @@ bool GrahamsAlgorithmSequential::run() {
 bool GrahamsAlgorithmSequential::post_processing() {
   internal_order_test();
 
-  std::copy(minConvexHull.begin(), minConvexHull.end(),
-            reinterpret_cast<Point*>(taskData->outputs[0]));
+  std::copy(minConvexHull.begin(), minConvexHull.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }

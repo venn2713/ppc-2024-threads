@@ -9,9 +9,7 @@
 
 class GrahamsAlgorithmSequential : public ppc::core::Task {
  public:
-  explicit GrahamsAlgorithmSequential(
-      std::shared_ptr<ppc::core::TaskData> taskData_)
-      : Task(std::move(taskData_)) {}
+  explicit GrahamsAlgorithmSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

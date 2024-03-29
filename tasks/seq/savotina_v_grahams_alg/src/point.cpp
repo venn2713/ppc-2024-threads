@@ -24,9 +24,7 @@ bool Point::operator==(const Point& p2) {
   return res;
 }
 
-double Point::Distance(const Point& p) {
-  return sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-}
+double Point::Distance(const Point& p) { return sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y)); }
 
 void Point::Replace(Point& p2) {
   Point tmp = (*this);
@@ -36,8 +34,7 @@ void Point::Replace(Point& p2) {
 
 int Point::Compare(const Point& pivot, const Point P) {
   int res = 0;  // ==
-  double x1 = pivot.x - x, y1 = pivot.y - y, x2 = P.x - pivot.x,
-         y2 = P.y - pivot.y;
+  double x1 = pivot.x - x, y1 = pivot.y - y, x2 = P.x - pivot.x, y2 = P.y - pivot.y;
   double val = x1 * y2 - y1 * x2;
 
   if (val > 0)
