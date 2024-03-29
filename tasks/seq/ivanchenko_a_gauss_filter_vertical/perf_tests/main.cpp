@@ -6,19 +6,22 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
 
-TEST(DISABLED_ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
-  const int count = 100;
+TEST(ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
+  uint32_t width = 1000, height = 1000; 
 
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<uint8_t> in(width*height*3, 255);
+  std::vector<uint8_t> out(width*height*3, 0);
+  std::vector<uint8_t> expected(width*height*3, 255);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
+  taskDataSeq->inputs_count.emplace_back(width);
+  taskDataSeq->inputs_count.emplace_back(height);
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+  taskDataSeq->outputs_count.emplace_back(width);
+  taskDataSeq->outputs_count.emplace_back(height);
 
   // Create Task
   auto gaussFilterSequential = std::make_shared<GaussFilterSequential>(taskDataSeq);
@@ -40,22 +43,25 @@ TEST(DISABLED_ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(gaussFilterSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
+  ASSERT_EQ(expected, out);
 }
 
-TEST(DISABLED_ivanchenko_a_gauss_filter_vertical, test_task_run) {
-  const int count = 100;
+TEST(ivanchenko_a_gauss_filter_vertical, test_task_run) {
+   uint32_t width = 1000, height = 1000; 
 
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<uint8_t> in(width*height*3, 255);
+  std::vector<uint8_t> out(width*height*3, 0);
+  std::vector<uint8_t> expected(width*height*3, 255);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
+  taskDataSeq->inputs_count.emplace_back(width);
+  taskDataSeq->inputs_count.emplace_back(height);
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+  taskDataSeq->outputs_count.emplace_back(width);
+  taskDataSeq->outputs_count.emplace_back(height);
 
   // Create Task
   auto gaussFilterSequential = std::make_shared<GaussFilterSequential>(taskDataSeq);
@@ -77,5 +83,5 @@ TEST(DISABLED_ivanchenko_a_gauss_filter_vertical, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(gaussFilterSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
+  ASSERT_EQ(expected, out);
 }

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
 
 #include "core/task/include/task.hpp"
 
@@ -26,4 +27,10 @@ class GaussFilterSequential : public ppc::core::Task {
   uint8_t *input, *output;
   uint32_t width, height;
   vector<Color> image;
+
+  static const size_t kernelSize = 3;
+  double kernel[3][3] = {{0,0,0}, {0,0,0}, {0,0,0}};
+  void createKernel(float sigma = 2);
+  void applyKernel();
+  Color calculateNewPixelColor(size_t x, size_t y);
 };
