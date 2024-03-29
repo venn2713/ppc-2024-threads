@@ -117,7 +117,7 @@ TEST(ivanchenko_a_gauss_filter_vertical, chessboard_image) {
 }
 TEST(ivanchenko_a_gauss_filter_vertical, image_with_some_noise) {
   uint32_t width = 16, height = 16;
-  
+
   // Create data
   std::vector<uint8_t> in(width * height * 3);
   std::vector<uint8_t> out(width * height * 3, 0);
