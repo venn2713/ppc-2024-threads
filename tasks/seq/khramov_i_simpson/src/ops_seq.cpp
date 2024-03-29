@@ -26,6 +26,7 @@ double simpson_seq(function func, int a1, int a2, int b1, int b2, int numSteps) 
        simpson_formula(func, Xj0, Xj1, Xi1));
     }
   }
+
   return res;
 }
 
