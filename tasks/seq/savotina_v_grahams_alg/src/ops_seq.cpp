@@ -5,7 +5,10 @@
 void QuickSort(std::vector<Point>& pointArr, int left, int right) {
   if (left > right) return;  // Leave recursion
 
-  int piv = 0, arrSize = right - left + 1, L = left, R = right;
+  int piv = 0;
+  int arrSize = right - left + 1;
+  int L = left;
+  int R = right;
 
   // Index of pivot
   if ((arrSize % 2) == 0)
@@ -32,8 +35,9 @@ void QuickSort(std::vector<Point>& pointArr, int left, int right) {
 }
 
 // A search minimum point in point's array (min x, then min y)
-Point MinPoint(const std::vector<Point> pointArr) {
-  double minX = pointArr[0].x, minY = 0;
+Point MinPoint(const std::vector<Point>& pointArr) {
+  double minX = pointArr[0].x;
+  double minY = 0;
   std::stack<int> S;
   S.push(0);
   int pArrSize = pointArr.size();
@@ -63,8 +67,9 @@ Point MinPoint(const std::vector<Point> pointArr) {
 }
 
 // Determining the number (index) of a point in the array
-int PointPosition(const Point p, const std::vector<Point> pointArr) {
-  int pp = 0, pArrSize = pointArr.size();
+int PointPosition(const Point& p, const std::vector<Point>& pointArr) {
+  int pp = 0;
+  int pArrSize = pointArr.size();
   for (int i = 0; i < pArrSize; ++i) {
     if (pointArr[i].x == p.x && pointArr[i].y == p.y) {
       pp = i;
@@ -79,7 +84,9 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
   if (pointArr.size() < 3) return pointArr;
 
   std::vector<Point> mch;
-  int ind1 = 0, ind2 = 1, arrSize = pointArr.size();
+  int ind1 = 0;
+  int ind2 = 1;
+  int arrSize = pointArr.size();
 
   while (pointArr[ind1] == pointArr[ind2]) {
     ++ind2;
@@ -91,7 +98,8 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
     mch.push_back(pointArr[ind2]);
 
     arrSize = pointArr.size();
-    int val = 0, mchSize = 0;
+    int val = 0;
+    int mchSize = 0;
 
     for (int i = ind2 + 1; i < arrSize; ++i) {
       mchSize = mch.size();
@@ -137,7 +145,7 @@ bool GrahamsAlgorithmSequential::validation() {
 bool GrahamsAlgorithmSequential::run() {
   internal_order_test();
 
-  if (pointsArr.size() == 0) return true;
+  if (pointsArr.empty()) return true;
 
   // Step 1: search the minimum point P0
   Point P0 = MinPoint(pointsArr);

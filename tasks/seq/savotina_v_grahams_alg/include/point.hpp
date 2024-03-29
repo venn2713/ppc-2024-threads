@@ -14,7 +14,7 @@ struct Point {
   Point& operator=(const Point& p2);
   bool operator==(const Point& p2) const;
 
-  double Distance(const Point& p);
+  double Distance(const Point& p) const;
   void Replace(Point& p2);
-  int Compare(const Point& pivot, const Point P);
+  int Compare(const Point& pivot, const Point& P);
 };

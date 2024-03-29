@@ -24,12 +24,12 @@ Point& Point::operator=(const Point& p2) {
 }
 
 bool Point::operator==(const Point& p2) const {
-  bool res = 0;
-  if (x == p2.x && y == p2.y) res = 1;
+  bool res = false;
+  if (x == p2.x && y == p2.y) res = true;
   return res;
 }
 
-double Point::Distance(const Point& p) { return sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y)); }
+double Point::Distance(const Point& p) const { return sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y)); }
 
 void Point::Replace(Point& p2) {
   Point tmp = (*this);
@@ -37,9 +37,12 @@ void Point::Replace(Point& p2) {
   p2 = tmp;
 }
 
-int Point::Compare(const Point& pivot, const Point P) {
+int Point::Compare(const Point& pivot, const Point& P) {
   int res = 0;  // ==
-  double x1 = pivot.x - x, y1 = pivot.y - y, x2 = P.x - pivot.x, y2 = P.y - pivot.y;
+  double x1 = pivot.x - x;
+  double y1 = pivot.y - y;
+  double x2 = P.x - pivot.x;
+  double y2 = P.y - pivot.y;
   double val = x1 * y2 - y1 * x2;
 
   if (val > 0)
@@ -47,9 +50,10 @@ int Point::Compare(const Point& pivot, const Point P) {
   else if (val < 0)
     res = -1;  // 2 downer 1 | 2 < 1
   else {
-    float dist1 = (*this).Distance(pivot), dist2 = (*this).Distance(P);
+    float dist1 = (*this).Distance(pivot);
+    float dist2 = (*this).Distance(P);
 
-    if (!(!dist1 && !dist2)) {
+    if (dist1 != 0.0 || dist2 != 0.0) {
       if (dist2 > dist1)
         res = 2;  // 2 > 1
       else if (dist2 < dist1)
