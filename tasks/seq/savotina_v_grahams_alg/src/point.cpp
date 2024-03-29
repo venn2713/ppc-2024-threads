@@ -11,6 +11,11 @@ Point::Point(double X, double Y) {
   y = Y;
 }
 
+Point::Point(const Point& p2) {
+  x = p2.x;
+  y = p2.y;
+}
+
 Point& Point::operator=(const Point& p2) {
   if (this == &p2) return *this;
   x = p2.x;

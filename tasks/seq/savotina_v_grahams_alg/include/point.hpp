@@ -9,6 +9,7 @@ struct Point {
 
   Point();
   Point(double X, double Y);
+  Point(const Point& p2);
 
   Point& operator=(const Point& p2);
   bool operator==(const Point& p2) const;
