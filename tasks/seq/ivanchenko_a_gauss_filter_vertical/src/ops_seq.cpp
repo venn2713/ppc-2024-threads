@@ -1,6 +1,5 @@
 // Copyright 2024 Ivanchenko Aleksei
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
-
 #include <thread>
 
 using namespace std::chrono_literals;
