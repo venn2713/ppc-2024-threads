@@ -18,11 +18,9 @@ class MultiStepSchemeSequential : public ppc::core::Task {
   void RungeKuttaMethod();
   void AdamsMethod();
 
- private:
   const std::vector<double> _coefficients = {1, 0.5, 0.42, 0.38};
   const uint32_t _numberOfSteps = 4;
 
- private:
   std::vector<double> equation{};
   std::vector<double> boundaryConditions{};
   double h{};

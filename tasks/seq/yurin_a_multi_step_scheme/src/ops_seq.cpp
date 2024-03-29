@@ -8,10 +8,10 @@ using namespace std::chrono_literals;
 bool MultiStepSchemeSequential::pre_processing() {
   internal_order_test();
   // Init value for input and output
-  auto tempEquation = reinterpret_cast<double*>(taskData->inputs[0]);
+  auto* tempEquation = reinterpret_cast<double*>(taskData->inputs[0]);
   equation = std::vector<double>(tempEquation, tempEquation + taskData->inputs_count[0]);
 
-  auto tempBoundaryConditions = reinterpret_cast<double*>(taskData->inputs[1]);
+  auto* tempBoundaryConditions = reinterpret_cast<double*>(taskData->inputs[1]);
   boundaryConditions = std::vector<double>(tempBoundaryConditions, tempBoundaryConditions + taskData->inputs_count[1]);
 
   h = reinterpret_cast<double*>(taskData->inputs[2])[0];
