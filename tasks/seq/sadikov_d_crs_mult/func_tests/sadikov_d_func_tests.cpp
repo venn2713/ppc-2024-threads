@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 #include <complex>
-#include <vector>
 #include <numeric>
+#include <vector>
 
 #include "seq/sadikov_d_crs_mult/include/sadikov_d_seq.hpp"
 
@@ -48,7 +48,7 @@ TEST(sadikov_d_crs_mult_seq, test_small_real_square_matrix) {
   ASSERT_EQ(C.row_id, C_expected.row_id);
   ASSERT_EQ(C.col, C_expected.col);
   ASSERT_EQ(C.value.size(), C_expected.value.size());
-  for (int i = 0; i < C_expected.value.size(); i++) {
+  for (size_t i = 0; i < C_expected.value.size(); i++) {
     std::complex<double> t = C_expected.value[i] - C.value[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-6);
     ASSERT_NEAR(0.0f, t.real(), 1e-6);
@@ -96,7 +96,7 @@ TEST(sadikov_d_crs_mult_seq, test_small_real_nonsquare_matrix) {
   ASSERT_EQ(C.row_id, C_expected.row_id);
   ASSERT_EQ(C.col, C_expected.col);
   ASSERT_EQ(C.value.size(), C_expected.value.size());
-  for (int i = 0; i < C_expected.value.size(); i++) {
+  for (size_t i = 0; i < C_expected.value.size(); i++) {
     std::complex<double> t = C_expected.value[i] - C.value[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-6);
     ASSERT_NEAR(0.0f, t.real(), 1e-6);
@@ -144,7 +144,7 @@ TEST(sadikov_d_crs_mult_seq, test_small_complex_nonsquare_matrix) {
   ASSERT_EQ(C.row_id, C_expected.row_id);
   ASSERT_EQ(C.col, C_expected.col);
   ASSERT_EQ(C.value.size(), C_expected.value.size());
-  for (int i = 0; i < C_expected.value.size(); i++) {
+  for (size_t i = 0; i < C_expected.value.size(); i++) {
     std::complex<double> t = C_expected.value[i] - C.value[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-6);
     ASSERT_NEAR(0.0f, t.real(), 1e-6);
@@ -187,7 +187,7 @@ TEST(sadikov_d_crs_mult_seq, test_diagonal_1_1_matrix) {
   ASSERT_EQ(C.row_id, C_expected.row_id);
   ASSERT_EQ(C.col, C_expected.col);
   ASSERT_EQ(C.value.size(), C_expected.value.size());
-  for (int i = 0; i < C_expected.value.size(); i++) {
+  for (size_t i = 0; i < C_expected.value.size(); i++) {
     std::complex<double> t = C_expected.value[i] - C.value[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-6);
     ASSERT_NEAR(0.0f, t.real(), 1e-6);
@@ -235,7 +235,7 @@ TEST(sadikov_d_crs_mult_seq, test_multiply_by_inverse_matrix) {
   ASSERT_EQ(C.row_id, C_expected.row_id);
   ASSERT_EQ(C.col, C_expected.col);
   ASSERT_EQ(C.value.size(), C_expected.value.size());
-  for (int i = 0; i < C_expected.value.size(); i++) {
+  for (size_t i = 0; i < C_expected.value.size(); i++) {
     std::complex<double> t = C_expected.value[i] - C.value[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-6);
     ASSERT_NEAR(0.0f, t.real(), 1e-6);

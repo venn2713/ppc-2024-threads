@@ -25,26 +25,20 @@ matrix_CRS transpose_CRS(const matrix_CRS& B) {
   B_T.n = B.m;
   B_T.m = B.n;
   B_T.row_id.assign(B_T.n + 1, 0);
-  std::vector<std::pair<int, std::pair<int, std::complex<double>>>> temp;
+  std::vector<std::vector<std::pair<int, std::complex<double>>>> temp(B_T.n);
   for (int i = 0; i < B.n; i++) {
     for (int k = B.row_id[i]; k < B.row_id[i + 1]; k++) {
       int j = B.col[k];
-      temp.push_back({j, {i, B.value[k]}});
+      temp[j].push_back({i, B.value[k]});
     }
   }
-  std::sort(temp.begin(), temp.end(),
-            [&](const std::pair<int, std::pair<int, std::complex<double>>>& a,
-                const std::pair<int, std::pair<int, std::complex<double>>>& b) {
-              if (a.first == b.first) return a.second.first < b.second.first;
-              return a.first < b.first;
-            });
-  for (auto& i : temp) {
-    B_T.row_id[i.first + 1]++;
-    B_T.col.push_back(i.second.first);
-    B_T.value.push_back(i.second.second);
-  }
   for (int i = 0; i < B_T.n; i++) {
-    B_T.row_id[i + 1] += B_T.row_id[i];
+    B_T.row_id[i + 1] = B_T.row_id[i];
+    for (auto& j : temp[i]) {
+      B_T.col.push_back(j.first);
+      B_T.value.push_back(j.second);
+      B_T.row_id[i + 1]++;
+    }
   }
   return B_T;
 }
