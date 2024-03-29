@@ -27,7 +27,7 @@ class TestSimpsonSequential : public ppc::core::Task {
   function func;
 };
 
-double linear_f(double x, double y);
+double linear_f(double x0, double x1);
 double square_f(double x0, double x1);
 double sin_f(double x0, double x1);
 double mult_f(double x0, double x1);
