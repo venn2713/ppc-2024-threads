@@ -12,10 +12,8 @@ bool GaussFilterSequential::pre_processing() {
   output = taskData->outputs[0];
   width = taskData->inputs_count[0];
   height = taskData->inputs_count[1];
-  image.reserve(width*height*3);
-  for(size_t i = 0; i < width*height*3; i+=3) {
-    image.push_back({input[i], input[i + 1], input[i + 2]});
-  }
+  image.resize(width*height*3);
+  std::memcpy(image.data(), input, width*height*3);
   createKernel();
   return true;
 }
@@ -36,12 +34,7 @@ bool GaussFilterSequential::run() {
 
 bool GaussFilterSequential::post_processing() {
   internal_order_test();
-  for(size_t j = 0; j < width*height; j++) {
-    size_t i = 3*j;
-    output[i] = image[j].R;
-    output[i + 1] = image[j].G;
-    output[i + 2] = image[j].B; 
-  }
+  std::memcpy(output, image.data(), width*height*3);
   return true;
 }
 void GaussFilterSequential::createKernel(float sigma) {
