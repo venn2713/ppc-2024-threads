@@ -103,8 +103,7 @@ TEST(savotina_v_grahams_alg_seq, Test4) {
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
   dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
   dataGrahamsAlgSeq->outputs.emplace_back( reinterpret_cast<uint8_t *>(mch.data()));
@@ -131,8 +130,7 @@ TEST(savotina_v_grahams_alg_seq, Test5) {
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
   dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
   dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
@@ -159,8 +157,7 @@ TEST(savotina_v_grahams_alg_seq, Test6) {
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
   dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
   dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
@@ -188,8 +185,7 @@ TEST(savotina_v_grahams_alg_seq, Test7) {
   std::vector<Point> mch(res.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> dataGrahamsAlgSeq = std::make_shared<ppc::core::TaskData>();
   dataGrahamsAlgSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   dataGrahamsAlgSeq->inputs_count.emplace_back(points.size());
   dataGrahamsAlgSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(mch.data()));
