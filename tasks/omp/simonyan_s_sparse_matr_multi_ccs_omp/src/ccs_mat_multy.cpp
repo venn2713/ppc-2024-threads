@@ -2,7 +2,7 @@
 
 #include <thread>
 
-#include "omp\simonyan_s_sparse_matr_multi_ccs_omp\include\ccs_mat_multy.hpp"
+#include "omp/simonyan_s_sparse_matr_multi_ccs_omp/include/ccs_mat_multy.hpp"
 
 using namespace std::chrono_literals;
 
