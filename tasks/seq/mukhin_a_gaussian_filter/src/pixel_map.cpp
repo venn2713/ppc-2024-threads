@@ -2,8 +2,6 @@
 #include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
 
 #include <cstdint>
-#include <cstdlib>
-#include <ctime>
 
 void PixelMap::set_data(uint8_t r, uint8_t g, uint8_t b) {
   data.resize(n * m);

@@ -2,8 +2,6 @@
 #include <gtest/gtest.h>
 
 #include <cstdint>
-#include <cstdlib>
-#include <ctime>
 #include <vector>
 
 #include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
@@ -117,7 +115,6 @@ TEST(mukhin_i_a_gaussian_filter_block, can_work_with_big_pixel_map) {
   // Create data
   uint64_t width = 300;
   uint64_t height = 300;
-  std::srand(std::time(nullptr));
   PixelMap in(width, height);
   PixelMap out(width, height);
   PixelMap expected(width, height);
