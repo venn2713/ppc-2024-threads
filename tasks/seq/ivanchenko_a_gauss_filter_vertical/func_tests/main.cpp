@@ -122,7 +122,7 @@ TEST(ivanchenko_a_gauss_filter_vertical, image_with_some_noise) {
   std::vector<uint8_t> in(width * height * 3);
   std::vector<uint8_t> out(width * height * 3, 0);
   std::vector<uint8_t> expected(width * height * 3);
-  for (size_t i = 0; i < width * height * 3; i + = 3) {
+  for (size_t i = 0; i < width * height * 3; i += 3) {
     int x = i % width;
     int y = i / width;
     in[i] = in[i + 1] = in[i + 2] = 128 - 3 * ((x + y) % 13 == 0);
