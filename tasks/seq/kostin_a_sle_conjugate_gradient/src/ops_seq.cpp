@@ -102,13 +102,19 @@ bool ConjugateGradientMethodSequential::pre_processing() {
   internal_order_test();
   // Init value for input and output
   A = std::vector<double>(taskData->inputs_count[0]);
-  for (unsigned int i = 0; i < taskData->inputs_count[0]; i++) {
-    A[i] = reinterpret_cast<double*>(taskData->inputs[0])[i];
-  }
+  // for (unsigned int i = 0; i < taskData->inputs_count[0]; i++) {
+  //   A[i] = reinterpret_cast<double*>(taskData->inputs[0])[i];
+  // }
+  std::copy(reinterpret_cast<double*>(taskData->inputs[0]),
+            reinterpret_cast<double*>(taskData->inputs[0]) + taskData->inputs_count[0], A.begin());
+
   b = std::vector<double>(taskData->inputs_count[1]);
-  for (unsigned int i = 0; i < taskData->inputs_count[1]; i++) {
-    b[i] = reinterpret_cast<double*>(taskData->inputs[1])[i];
-  }
+  // for (unsigned int i = 0; i < taskData->inputs_count[1]; i++) {
+  //   b[i] = reinterpret_cast<double*>(taskData->inputs[1])[i];
+  // }
+  std::copy(reinterpret_cast<double*>(taskData->inputs[1]),
+            reinterpret_cast<double*>(taskData->inputs[1]) + taskData->inputs_count[1], b.begin());
+
   size = *reinterpret_cast<int*>(taskData->inputs[2]);
   x = std::vector<double>(size, 0);
   return true;
