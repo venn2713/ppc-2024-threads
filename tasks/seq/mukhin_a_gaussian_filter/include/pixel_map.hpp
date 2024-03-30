@@ -8,14 +8,12 @@
 
 class Pixel {
  public:
-
   uint8_t r, g, b;
 
   friend bool operator==(const Pixel& a, const Pixel& b);
 
   friend bool operator!=(const Pixel& a, const Pixel& b) { return !(a == b); }
 };
-
 
 class PixelMap {
  private:
@@ -27,7 +25,7 @@ class PixelMap {
  public:
 
   std::vector<Pixel> data;
-  PixelMap(): n(0), m(0) {};
+  PixelMap() : n(0), m(0){};
 
   PixelMap(uint64_t n_, uint64_t m_, uint8_t r = 0, uint8_t g = 0, uint8_t b = 0);
   uint64_t width() const { return n; }

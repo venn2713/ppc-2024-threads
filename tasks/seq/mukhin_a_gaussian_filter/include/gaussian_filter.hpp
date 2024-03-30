@@ -4,8 +4,8 @@
 
 #include <cstdint>
 
-#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
 #include "core/task/include/task.hpp"
+#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
 
 class GaussianFilterSeq : public ppc::core::Task {
  public:

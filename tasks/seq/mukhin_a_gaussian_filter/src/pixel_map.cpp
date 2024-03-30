@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 
-
 void PixelMap::set_data(uint8_t r, uint8_t g, uint8_t b) {
   std::srand(std::time(nullptr));
   data.resize(n * m);
