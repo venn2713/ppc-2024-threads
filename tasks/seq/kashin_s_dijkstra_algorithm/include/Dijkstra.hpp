@@ -24,4 +24,4 @@ class Dijkstra : public ppc::core::Task {
   int start{};
   int count{};
 };
-} // namespace KashinDijkstraSeq
+} // namespace KashinDijkstraSeq to
