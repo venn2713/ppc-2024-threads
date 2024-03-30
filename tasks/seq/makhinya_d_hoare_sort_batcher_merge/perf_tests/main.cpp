@@ -13,7 +13,7 @@ TEST(MakhinyaPerf, test_pipeline_run) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(SEED);
-  for (HoareSort::sortable_type& x: in_vec) {
+  for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }
 
@@ -52,7 +52,7 @@ TEST(MakhinyaPerf, test_task_run) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(SEED);
-  for (HoareSort::sortable_type& x: in_vec) {
+  for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }
 

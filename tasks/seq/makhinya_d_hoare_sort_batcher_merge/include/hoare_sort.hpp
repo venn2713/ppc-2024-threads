@@ -8,7 +8,6 @@
 #include "core/task/include/task.hpp"
 
 class HoareSort : public ppc::core::Task {
-
  public:  
   using sortable_type = uint32_t;
   using compare_t = std::function<bool(const sortable_type&, const sortable_type&)>;

@@ -1,5 +1,6 @@
 // Copyright 2024 Makhinya Danil
 #include <gtest/gtest.h>
+
 #include <functional>
 #include <vector>
 
@@ -7,16 +8,13 @@
 
 class MakhinyaDTestSort : public ::testing::Test {
  public:
-
   HoareSort testTaskSequential;
   const uint32_t COUNT = 128;
 
-	MakhinyaDTestSort() : testTaskSequential { HoareSort(std::make_shared<ppc::core::TaskData>()) } {
-
-  }
+  MakhinyaDTestSort() : testTaskSequential{HoareSort(std::make_shared<ppc::core::TaskData>())} {}
 
   void set_data(HoareSort::vec_t* in_vec, HoareSort::compare_t* in_comp = nullptr) {
-    std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+    std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
     taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in_vec));
     taskDataSeq->inputs_count.emplace_back(1);
@@ -96,15 +94,13 @@ TEST_F(MakhinyaDTestSort, Random_Vec) {
 TEST_F(MakhinyaDTestSort, Random_Vec_With_Comp) {
   HoareSort::vec_t in_vec(COUNT);
 
-  HoareSort::compare_t in_comp = 
-    [](const HoareSort::sortable_type& a, const HoareSort::sortable_type& b) -> bool {
-      if((a&1) != (b&1))
-        return (a&1) < (b&1);
-      return a > b;
+  HoareSort::compare_t in_comp = [](const HoareSort::sortable_type& a, const HoareSort::sortable_type& b) -> bool {
+    if ((a & 1) != (b & 1)) return (a & 1) < (b & 1);
+    return a > b;
   };
 
   srand(time(0));
-  for (HoareSort::sortable_type& x: in_vec) {
+  for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }
 
