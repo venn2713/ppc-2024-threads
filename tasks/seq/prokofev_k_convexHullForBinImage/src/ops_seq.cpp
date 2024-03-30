@@ -44,21 +44,21 @@ bool BinaryImageConvexHullSeq::post_processing() {
 
 void floodFill(std::vector<int>* image, int height, int width, int yStart, int xStart, int label) {
   std::queue<Point> tasks;
-  tasks.emplace(Point(xStart, yStart));
+  tasks.emplace(xStart, yStart);
   while (!tasks.empty()) {
     int x = tasks.front().x;
     int y = tasks.front().y;
     tasks.pop();
     if (x >= 0 && y >= 0 && y < height && x < width && image->at(y * width + x) == 1) {
       (*image)[y * width + x] = label;
-      tasks.emplace(Point(x - 1, y - 1));
-      tasks.emplace(Point(x - 1, y));
-      tasks.emplace(Point(x - 1, y + 1));
-      tasks.emplace(Point(x, y + 1));
-      tasks.emplace(Point(x + 1, y + 1));
-      tasks.emplace(Point(x + 1, y));
-      tasks.emplace(Point(x, y - 1));
-      tasks.emplace(Point(x + 1, y - 1));
+      tasks.emplace(x - 1, y - 1);
+      tasks.emplace(x - 1, y);
+      tasks.emplace(x - 1, y + 1);
+      tasks.emplace(x, y + 1);
+      tasks.emplace(x + 1, y + 1);
+      tasks.emplace(x + 1, y);
+      tasks.emplace(x, y - 1);
+      tasks.emplace(x + 1, y - 1);
     }
   }
 }
