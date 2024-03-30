@@ -1,8 +1,7 @@
 // Copyright 2024 Durandin Vladimir
-// #include "seq/durandin_v_Jarvis/include/ops_seq.hpp"
-#include <thread>
-
 #include "omp/durandin_v_Jarvis/include/ops_omp.hpp"
+
+#include <thread>
 
 // Function to build convex hull using Jarvis's method
 std::vector<Jarvis::Point2d> Jarvis::convexHullSeq(const std::vector<Jarvis::Point2d>& points) {
