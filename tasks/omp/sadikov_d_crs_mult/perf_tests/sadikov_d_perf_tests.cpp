@@ -1,5 +1,6 @@
 // Copyright 2024 Sadikov Damir
 #include <gtest/gtest.h>
+#include <omp.h>
 
 #include <chrono>
 #include <complex>
@@ -8,8 +9,6 @@
 
 #include "core/perf/include/perf.hpp"
 #include "omp/sadikov_d_crs_mult/include/sadikov_d_omp.hpp"
-
-#include <omp.h>
 
 matrix_CRS generate_random_matrix(int n, int m, int seed, double p) {
   std::mt19937 gen;
