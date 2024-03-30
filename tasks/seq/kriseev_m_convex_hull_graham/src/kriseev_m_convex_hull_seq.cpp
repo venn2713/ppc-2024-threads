@@ -15,6 +15,24 @@ double angle(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point 
   return (dy >= 0) ? (dx >= 0 ? dy / (dx + dy) : 1 - dx / (-dx + dy))
                    : (dx < 0 ? 2 - dy / (-dx - dy) : 3 + dx / (dx - dy));
 }
+bool compareForSort(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point &a,
+                    const KriseevMTaskSeq::Point &b) {
+  double angleA = angle(origin, a);
+  double angleB = angle(origin, b);
+  if (angleA < angleB) {
+    return true;
+  }
+  if (angleA > angleB) {
+    return false;
+  }
+  double dxA = a.first - origin.first;
+  double dyA = a.second - origin.second;
+  double dxB = b.first - origin.first;
+  double dyB = b.second - origin.second;
+  // The further point must be first
+  // so the others will be ignored
+  return dxA * dxA + dyA * dyA > dxB * dxB + dyB * dyB;
+}
 
 bool checkOrientation(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point &a,
                       const KriseevMTaskSeq::Point &b) {
@@ -47,18 +65,6 @@ bool KriseevMTaskSeq::ConvexHullTask::validation() {
   if (taskData->inputs_count[0] < 3) {
     return false;
   }
-  auto *pointsX = reinterpret_cast<double *>(taskData->inputs.at(0));
-  auto *pointsY = reinterpret_cast<double *>(taskData->inputs.at(1));
-  for (uint32_t i = 0; i < points.size(); ++i) {
-    if (pointsX[i] == std::numeric_limits<double>::quiet_NaN() ||
-        pointsY[i] == std::numeric_limits<double>::quiet_NaN() ||
-        pointsX[i] == std::numeric_limits<double>::infinity() ||
-        pointsX[i] == -std::numeric_limits<double>::infinity() ||
-        pointsY[i] == std::numeric_limits<double>::infinity() ||
-        pointsY[i] == -std::numeric_limits<double>::infinity()) {
-      return false;
-    }
-  }
   return true;
 }
 
@@ -67,23 +73,23 @@ bool KriseevMTaskSeq::ConvexHullTask::run() {
   auto originIt =
       std::min_element(points.begin(), points.end(), [](auto &a, auto &b) -> bool { return a.second < b.second; });
   auto origin = *originIt;
-  std::sort(points.begin(), points.end(), [origin](auto &a, auto &b) -> bool {
-    double angleA = angle(origin, a);
-    double angleB = angle(origin, b);
-    if (angleA < angleB) {
-      return true;
+
+  for (size_t phase = 0; phase < points.size(); phase++) {
+    if ((phase & 1) == 0) {
+      for (size_t i = 1; i < points.size(); i += 2) {
+        if (compareForSort(origin, points[i], points[i - 1])) {
+          std::iter_swap(points.begin() + i, points.begin() + i - 1);
+        }
+      }
+    } else {
+      for (size_t i = 1; i < points.size() - 1; i += 2) {
+        if (compareForSort(origin, points[i + 1], points[i])) {
+          std::iter_swap(points.begin() + i, points.begin() + i + 1);
+        }
+      }
     }
-    if (angleA > angleB) {
-      return false;
-    }
-    double dxA = a.first - origin.first;
-    double dyA = a.second - origin.second;
-    double dxB = b.first - origin.first;
-    double dyB = b.second - origin.second;
-    // The further point must be first
-    // so the others will be ignored
-    return dxA * dxA + dyA * dyA > dxB * dxB + dyB * dyB;
-  });
+  }
+
   std::vector<Point> hull;
   hull.reserve(points.size());
   hull.push_back(points[0]);

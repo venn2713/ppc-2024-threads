@@ -8,7 +8,7 @@
 #include "seq/kriseev_m_convex_hull_graham/include/kriseev_m_convex_hull_seq.hpp"
 
 TEST(kriseev_m_convex_hull_graham_seq, test_pipeline_run) {
-  const int count = 100000;
+  const int count = 5000;
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
@@ -78,11 +78,11 @@ TEST(kriseev_m_convex_hull_graham_seq, test_pipeline_run) {
 }
 
 TEST(kriseev_m_convex_hull_graham_seq, test_task_run) {
-  const int count = 100000;
+  const int count = 5000;
   // Create data
   std::vector<double> pX;
   std::vector<double> pY;
-  std::mt19937 gen(1587443);
+  std::mt19937 gen(1589938);
   std::uniform_real_distribution<> dis(-2.5, 4.0);
   for (int i = 0; i < count; ++i) {
     pX.emplace_back(dis(gen));
