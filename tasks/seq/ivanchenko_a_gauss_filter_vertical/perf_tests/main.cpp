@@ -7,7 +7,8 @@
 #include "seq/ivanchenko_a_gauss_filter_vertical/include/ops_seq.hpp"
 
 TEST(ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
-  uint32_t width = 1000, height = 1000;
+  uint32_t width = 1000;
+  uint32_t height = 1000;
 
   // Create data
   std::vector<uint8_t> in(width * height * 3, 255);
@@ -47,7 +48,8 @@ TEST(ivanchenko_a_gauss_filter_vertical, test_pipeline_run) {
 }
 
 TEST(ivanchenko_a_gauss_filter_vertical, test_task_run) {
-  uint32_t width = 1000, height = 1000;
+  uint32_t width = 1000;
+  uint32_t height = 1000;
 
   // Create data
   std::vector<uint8_t> in(width * height * 3, 255);

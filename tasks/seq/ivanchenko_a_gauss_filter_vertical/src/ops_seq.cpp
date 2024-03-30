@@ -43,7 +43,7 @@ void GaussFilterSequential::createKernel(float sigma) {
   float norm = 0;  // коэффициент нормировки ядра
   for (int i = -(int)radius; i <= (int)radius; i++) {
     for (int j = -(int)radius; j <= (int)radius; j++) {
-      kernel[i + radius][j + radius] = (double)(exp(-(i * i + j * j) / (2 * sigma * sigma)));
+      kernel[i + radius][j + radius] = (double)(std::exp(-(i * i + j * j) / (2 * sigma * sigma)));
       norm += kernel[i + radius][j + radius];
     }
   }
@@ -63,10 +63,13 @@ void GaussFilterSequential::applyKernel() {
 }
 Color GaussFilterSequential::calculateNewPixelColor(size_t x, size_t y) {
   uint32_t radius = kernelSize / 2;
-  float resultR = 0, resultG = 0, resultB = 0;
+  float resultR = 0;
+  float resultG = 0;
+  float resultB = 0;
   for (int l = -((int)radius); l <= (int)radius; l++) {
     for (int k = -((int)radius); k <= (int)radius; k++) {
-      size_t idX = x + k, idY = y + l;
+      size_t idX = x + k;
+      size_t idY = y + l;
       if (idX < 0) idX = 0;
       if (idX >= width) idX = width - 1;
       if (idY < 0) idY = 0;
