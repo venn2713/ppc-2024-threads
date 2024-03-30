@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <vector>
+#include <cmath>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/shishkina_v_gauss_block/include/ops_seq.hpp"
@@ -22,7 +23,7 @@ TEST(shishkina_v_gauss_block, test_pipeline_run) {
   std::vector<int> input(in);
   std::vector<int> res(height * width, 0);
 
-  int blockSize = sqrt(input.size());
+  int blockSize = std::sqrt(input.size());
   std::vector<int> gaussianKernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
   int kernelSize = 3;
   for (int i = 0; i < height; i += blockSize) {
@@ -95,7 +96,7 @@ TEST(shishkina_v_gauss_block, test_task_run) {
 
   std::vector<int> input(in_);
   std::vector<int> res(height * width, 0);
-  int blockSize = sqrt(input.size());
+  int blockSize = std::sqrt(input.size());
   std::vector<int> gaussianKernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
   int kernelSize = 3;
   for (int i = 0; i < height; i += blockSize) {

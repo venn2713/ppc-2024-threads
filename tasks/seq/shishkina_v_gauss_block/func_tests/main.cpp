@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <vector>
+#include <cmath>
 
 #include "seq/shishkina_v_gauss_block/include/ops_seq.hpp"
 
@@ -126,7 +127,7 @@ TEST(shishkina_v_gauss_block, test4) {
 
   // Create data
   std::vector<int> tmp = {0,   255, 0,   255, 0,   255, 0,   255, 0,   255, 0,   255, 0,
-                           255, 0,   255, 0,   255, 0,   255, 0,   255, 0,   255, 0};
+                          255, 0,   255, 0,   255, 0,   255, 0,   255, 0,   255, 0};
 
   int min = *std::min_element(tmp.begin(), tmp.end());
   int max = *std::max_element(tmp.begin(), tmp.end());

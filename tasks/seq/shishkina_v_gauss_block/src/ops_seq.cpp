@@ -3,6 +3,7 @@
 
 #include <random>
 #include <thread>
+#include <cmath>
 
 using namespace std::chrono_literals;
 
@@ -41,7 +42,7 @@ bool LinearFilteringGauss::validation() {
 bool LinearFilteringGauss::run() {
   internal_order_test();
   std::vector<int> filteredImage(input.size(), 0);
-  int blockSize = sqrt(input.size());
+  int blockSize = std::sqrt(input.size());
   // std::cout << "blockSize: " << blockSize;
   std::vector<int> gaussianKernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
   int kernelSize = 3;
