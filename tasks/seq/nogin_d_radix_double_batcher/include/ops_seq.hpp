@@ -1,9 +1,9 @@
 // Copyright 2024 Nogin Denis
 #pragma once
 
+#include <algorithm>
 #include <random>
 #include <vector>
-#include <algorithm>
 
 #include "core/task/include/task.hpp"
 
