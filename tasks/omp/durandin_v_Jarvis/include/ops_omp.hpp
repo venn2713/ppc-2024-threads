@@ -1,10 +1,11 @@
 // Copyright 2024 Durandin Vladimir
 #pragma once
 
+#include <omp.h>
+
 #include <algorithm>
 #include <cmath>
 #include <cstring>
-#include <omp.h>
 #include <string>
 #include <vector>
 

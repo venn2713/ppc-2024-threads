@@ -1,12 +1,12 @@
 // Copyright 2024 Durandin Vladimir
 // #include "seq/durandin_v_Jarvis/include/ops_seq.hpp"
-#include "omp/durandin_v_Jarvis/include/ops_omp.hpp"
-
 #include <thread>
+
+#include "omp/durandin_v_Jarvis/include/ops_omp.hpp"
 
 // Function to build convex hull using Jarvis's method
 std::vector<Jarvis::Point2d> Jarvis::convexHullSeq(const std::vector<Jarvis::Point2d>& points) {
-int32_t n = points.size();
+  int32_t n = points.size();
   if (n < 3) return std::vector<Jarvis::Point2d>{};  // Need at least 3 points
 
   // Function to determine orientation of three points
@@ -42,50 +42,47 @@ int32_t n = points.size();
   return hull;
 }
 
-std::vector<Jarvis::Point2d> Jarvis::convexHullOMP(const std::vector<Jarvis::Point2d>& points)
-{
-    int32_t n = points.size();
-    if (n < 3) return std::vector<Jarvis::Point2d>{}; // Need at least 3 points for constructing a convex hull
+std::vector<Jarvis::Point2d> Jarvis::convexHullOMP(const std::vector<Jarvis::Point2d>& points) {
+  int32_t n = points.size();
+  if (n < 3) return std::vector<Jarvis::Point2d>{};  // Need at least 3 points for constructing a convex hull
 
-    // Function to determine the orientation of three points
-    auto orientation = [](Jarvis::Point2d p, Jarvis::Point2d q, Jarvis::Point2d r) {
-        double val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-        if (val == 0.0) return 0;    // Collinear
-        return (val > 0.0) ? 1 : 2;  // Clockwise or counterclockwise
-    };
+  // Function to determine the orientation of three points
+  auto orientation = [](Jarvis::Point2d p, Jarvis::Point2d q, Jarvis::Point2d r) {
+    double val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+    if (val == 0.0) return 0;    // Collinear
+    return (val > 0.0) ? 1 : 2;  // Clockwise or counterclockwise
+  };
 
-    // Find the leftmost lowest point
-    int32_t leftmost = 0;
-    #pragma omp parallel for shared(leftmost)
-    for (int32_t i = 1; i < n; ++i) {
-        if (points[i].x < points[leftmost].x)
-            leftmost = i;
-        else if (points[i].x == points[leftmost].x && points[i].y < points[leftmost].y)
-            leftmost = i;
+  // Find the leftmost lowest point
+  int32_t leftmost = 0;
+// #pragma omp parallel for shared(leftmost)
+  for (int32_t i = 1; i < n; ++i) {
+    if (points[i].x < points[leftmost].x)
+      leftmost = i;
+    else if (points[i].x == points[leftmost].x && points[i].y < points[leftmost].y)
+      leftmost = i;
+  }
+
+  // Start traversal from the leftmost lowest point
+  int32_t current = leftmost, next;
+  std::vector<Jarvis::Point2d> hull;
+  hull.reserve(n);
+  do {
+    hull.push_back(points[current]);
+    next = (current + 1) % n;
+
+#pragma omp parallel for shared(next)
+    for (int32_t i = 0; i < n; ++i) {
+      if (orientation(points[current], points[i], points[next]) == 2) {
+#pragma omp critical
+        { next = i; }
+      }
     }
+    current = next;
+  } while (current != leftmost);
 
-    // Start traversal from the leftmost lowest point
-    int32_t current = leftmost, next;
-    std::vector<Jarvis::Point2d> hull;
-    hull.reserve(n);
-    do {
-        hull.push_back(points[current]);
-        next = (current + 1) % n;
-
-        #pragma omp parallel for shared(next)
-        for (int32_t i = 0; i < n; ++i) {
-            if (orientation(points[current], points[i], points[next]) == 2) {
-                #pragma omp critical
-                {
-                    next = i;
-                }
-            }
-        }
-        current = next;
-    } while (current != leftmost);
-
-    // Output vertices of the convex hull
-    return hull;
+  // Output vertices of the convex hull
+  return hull;
 }
 
 bool Jarvis::JarvisTestTaskSequential::pre_processing() {
@@ -129,7 +126,6 @@ bool Jarvis::JarvisTestTaskSequential::post_processing() {
   }
   return true;
 }
-
 
 bool Jarvis::JarvisTestTaskParallel::pre_processing() {
   internal_order_test();

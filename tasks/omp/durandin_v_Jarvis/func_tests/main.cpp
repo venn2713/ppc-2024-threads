@@ -11,9 +11,9 @@ TEST(VladimirD_OpenMP, No_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(outSeq.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outSeq.data()));
   taskDataSeq->outputs_count.emplace_back(static_cast<uint32_t>(outSeq.size()));
 
   // Create Task
@@ -25,7 +25,7 @@ TEST(VladimirD_OpenMP, No_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataPar->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(outPar.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(outPar.size()));
@@ -43,9 +43,9 @@ TEST(VladimirD_OpenMP, Collinear_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(outSeq.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outSeq.data()));
   taskDataSeq->outputs_count.emplace_back(static_cast<uint32_t>(outSeq.size()));
 
   // Create Task
@@ -60,7 +60,7 @@ TEST(VladimirD_OpenMP, Collinear_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataPar->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(outPar.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(outPar.size()));
@@ -88,9 +88,9 @@ TEST(VladimirD_OpenMP, Convex_Hull_5_Different_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(outSeq.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outSeq.data()));
   taskDataSeq->outputs_count.emplace_back(static_cast<uint32_t>(outSeq.size()));
 
   // Create Task
@@ -105,7 +105,7 @@ TEST(VladimirD_OpenMP, Convex_Hull_5_Different_Points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(in.data()));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataPar->inputs_count.emplace_back(static_cast<uint32_t>(in.size()));
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(outPar.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(outPar.size()));
@@ -117,10 +117,6 @@ TEST(VladimirD_OpenMP, Convex_Hull_5_Different_Points) {
   ASSERT_EQ(testTaskParallel.run(), true);
   ASSERT_EQ(testTaskParallel.post_processing(), true);
 
-  // for (size_t i = 0; i < outPar.size(); ++i)
-  // {
-  //   std::cout << outPar[i].x << " n " << outPar[i].y << std::endl;
-  // }
   for (size_t i = 0; i < expectedHull.size(); ++i) {
     EXPECT_EQ(expectedHull[i].x, outSeq[i].x);
     EXPECT_EQ(outSeq[i].x, outPar[i].x);
@@ -131,7 +127,7 @@ TEST(VladimirD_OpenMP, Convex_Hull_5_Different_Points) {
 }
 
 TEST(VladimirD_OpenMP, Convex_Hull_Circle_10_points) {
-  auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
+  auto generatePointsInCircle = [](const Jarvis::Point2d &center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
     double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
@@ -151,13 +147,13 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_10_points) {
   // Expected result: the circle should be a convex hull
   std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
-   std::vector<Jarvis::Point2d> outSeq(expectedHull.size());
+  std::vector<Jarvis::Point2d> outSeq(expectedHull.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   taskDataSeq->inputs_count.emplace_back(static_cast<uint32_t>(points.size()));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(outSeq.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outSeq.data()));
   taskDataSeq->outputs_count.emplace_back(static_cast<uint32_t>(outSeq.size()));
 
   // Create Task
@@ -172,7 +168,7 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_10_points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   taskDataPar->inputs_count.emplace_back(static_cast<uint32_t>(points.size()));
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(outPar.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(outPar.size()));
@@ -183,26 +179,6 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_10_points) {
   ASSERT_EQ(testTaskParallel.pre_processing(), true);
   ASSERT_EQ(testTaskParallel.run(), true);
   ASSERT_EQ(testTaskParallel.post_processing(), true);
-
-  //   std::cout << "num threads = " << omp_get_num_threads() << std::endl;
-  //   for (size_t i = 0; i < points.size(); ++i)
-  // {
-  //   std::cout << points[i].x << " p " << points[i].y << std::endl;
-  // }
-  // std::cout << std::endl;
-
-  //   for (size_t i = 0; i < outPar.size(); ++i)
-  // {
-  //   std::cout << outPar[i].x << " n " << outPar[i].y << std::endl;
-  // }
-
-  //   std::cout << std::endl;
-
-  //   for (size_t i = 0; i < outSeq.size(); ++i)
-  // {
-  //   std::cout << outSeq[i].x << " n " << outSeq[i].y << std::endl;
-  // }
-
 
   // Such a strange check because my algorithm outputs points in a different order
   for (uint32_t i = 0; i < expectedHull.size(); ++i) {
@@ -223,7 +199,7 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_10_points) {
 }
 
 TEST(VladimirD_OpenMP, Convex_Hull_Circle_100_points) {
-  auto generatePointsInCircle = [](const Jarvis::Point2d& center, double radius, uint32_t numPoints) {
+  auto generatePointsInCircle = [](const Jarvis::Point2d &center, double radius, uint32_t numPoints) {
     std::vector<Jarvis::Point2d> points;
     double angleIncrement = 2 * Const::MY_PI / numPoints;
     for (uint32_t i = 0; i < numPoints; ++i) {
@@ -239,17 +215,17 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_100_points) {
   double radius = 5.0;
   uint32_t numPoints = 100;  // Number of points for the circle
 
-    std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
+  std::vector<Jarvis::Point2d> points = generatePointsInCircle(center, radius, numPoints);
   // Expected result: the circle should be a convex hull
   std::vector<Jarvis::Point2d> expectedHull = points;  // Since the circle is already a convex hull
 
-   std::vector<Jarvis::Point2d> outSeq(expectedHull.size());
+  std::vector<Jarvis::Point2d> outSeq(expectedHull.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   taskDataSeq->inputs_count.emplace_back(static_cast<uint32_t>(points.size()));
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(outSeq.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outSeq.data()));
   taskDataSeq->outputs_count.emplace_back(static_cast<uint32_t>(outSeq.size()));
 
   // Create Task
@@ -264,7 +240,7 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_100_points) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
-  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
+  taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
   taskDataPar->inputs_count.emplace_back(static_cast<uint32_t>(points.size()));
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(outPar.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(outPar.size()));
@@ -275,26 +251,6 @@ TEST(VladimirD_OpenMP, Convex_Hull_Circle_100_points) {
   ASSERT_EQ(testTaskParallel.pre_processing(), true);
   ASSERT_EQ(testTaskParallel.run(), true);
   ASSERT_EQ(testTaskParallel.post_processing(), true);
-
-  //   std::cout << "num threads = " << omp_get_num_threads() << std::endl;
-  //   for (size_t i = 0; i < points.size(); ++i)
-  // {
-  //   std::cout << points[i].x << " p " << points[i].y << std::endl;
-  // }
-  // std::cout << std::endl;
-
-  //   for (size_t i = 0; i < outPar.size(); ++i)
-  // {
-  //   std::cout << outPar[i].x << " n " << outPar[i].y << std::endl;
-  // }
-
-  //   std::cout << std::endl;
-
-  //   for (size_t i = 0; i < outSeq.size(); ++i)
-  // {
-  //   std::cout << outSeq[i].x << " n " << outSeq[i].y << std::endl;
-  // }
-
 
   // Such a strange check because my algorithm outputs points in a different order
   for (uint32_t i = 0; i < expectedHull.size(); ++i) {
