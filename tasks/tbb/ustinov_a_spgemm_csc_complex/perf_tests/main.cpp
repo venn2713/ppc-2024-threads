@@ -8,7 +8,6 @@
 #include "core/perf/include/perf.hpp"
 #include "tbb/ustinov_a_spgemm_csc_complex/include/ops_tbb.hpp"
 
-
 const double PI = 3.14159265358979323846;
 
 sparse_matrix dft_matrix(int n) {
