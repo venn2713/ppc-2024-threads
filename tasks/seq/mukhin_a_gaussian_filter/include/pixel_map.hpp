@@ -23,7 +23,6 @@ class PixelMap {
   void set_data(uint8_t r, uint8_t g, uint8_t b);
 
  public:
-
   std::vector<Pixel> data;
   PixelMap() : n(0), m(0){};
 
