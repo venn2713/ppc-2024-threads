@@ -6,12 +6,11 @@
 #include <ctime>
 
 void PixelMap::set_data(uint8_t r, uint8_t g, uint8_t b) {
-  std::srand(std::time(nullptr));
   data.resize(n * m);
   for (uint64_t i = 0; i < n * m; i++) {
-    data[i].r = 0;
-    data[i].g = 0;
-    data[i].b = 0;
+    data[i].r = r;
+    data[i].g = g;
+    data[i].b = b;
   }
 }
 
