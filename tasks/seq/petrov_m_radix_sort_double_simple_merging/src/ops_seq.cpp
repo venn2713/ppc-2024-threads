@@ -89,8 +89,7 @@ std::vector<double> radixSort(const std::vector<double>& data) {
 
 
 bool RadixSortDoubleSequential::pre_processing() {
-  internal_order_test(); //для проверки порядка вызова методов
-  // Init value for input and output
+  internal_order_test(); 
   try{
   sort = reinterpret_cast<std::vector<double>*>((taskData->inputs[0]));
   data_size = taskData->inputs_count[0];

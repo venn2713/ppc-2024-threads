@@ -1,6 +1,6 @@
 // Copyright 2024 Petrov Maksim
 
-#pragma once //для защиты хедера
+#pragma once 
 
 #include <string>
 #include <vector>
@@ -9,16 +9,14 @@
 
 class RadixSortDoubleSequential : public ppc::core::Task {
  public:
-  explicit RadixSortDoubleSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}//перенос данных(для всех задач один и тот же перенос, т.е. не изменяй)
-  bool pre_processing() override; // подготавливаем данные к вычислениям(усовершенствовать taskdata(универсальный хранитель данных) для  выполнения run)
-  bool validation() override;//проверить, что данные корректны 
-  bool run() override;//запуск 
-  bool post_processing() override;//получаем нужный ответ
+  explicit RadixSortDoubleSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  bool pre_processing() override; 
+  bool validation() override;
+  bool run() override;
+  bool post_processing() override;
 
  private:
-  //int input_{}, res{};
-  //std::vector<double>& input;
-  //std::vector<double>& output;
+  
   int data_size;
   std::vector<double>* sort;
 
