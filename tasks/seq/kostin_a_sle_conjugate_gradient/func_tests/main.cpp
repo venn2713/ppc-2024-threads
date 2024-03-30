@@ -30,7 +30,7 @@ TEST(ConjugateGradientMethodSequential, Test_SLE_size_2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_LE(abs(correct_answer[i] - out[i]), 1e-6);
   }
 }
@@ -61,7 +61,7 @@ TEST(ConjugateGradientMethodSequential, Test_SLE_size_5) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_LE(abs(correct_answer[i] - out[i]), 1e-6);
   }
 }
