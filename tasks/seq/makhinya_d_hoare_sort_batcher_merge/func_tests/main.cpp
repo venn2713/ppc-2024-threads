@@ -83,7 +83,7 @@ TEST_F(MakhinyaDTestSort, Random_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(time(0));
-  for (HoareSort::sortable_type& x: in_vec) {
+  for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }
 
