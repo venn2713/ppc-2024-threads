@@ -1,8 +1,8 @@
 // Copyright 2024 Kostin Artem
 #include "seq/kostin_a_sle_conjugate_gradient/include/ops_seq.hpp"
 
-#include <thread>
 #include <random>
+#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -24,13 +24,14 @@ double dot_product(const std::vector<double>& a, const std::vector<double>& b) {
   return result;
 }
 
-std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, const std::vector<double>& b, double tolerance) {
+std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, const std::vector<double>& b,
+                                       double tolerance) {
   std::vector<double> x(n, 0.0);
   std::vector<double> r = b;
   std::vector<double> p = r;
   std::vector<double> r_prev = b;
 
-  while (true){
+  while (true) {
     std::vector<double> Ap = dense_matrix_vector_multiply(A, n, p);
     double alpha = dot_product(r, r) / dot_product(Ap, p);
 
@@ -75,7 +76,7 @@ std::vector<double> generateSPDMatrix(int size, int max_value) {
   return A;
 }
 
-std::vector<double> generatePDVector (int size, int max_value) {
+std::vector<double> generatePDVector(int size, int max_value) {
   std::vector<double> vec(size);
   std::random_device dev;
   std::mt19937 gen(dev());
@@ -85,7 +86,8 @@ std::vector<double> generatePDVector (int size, int max_value) {
   return vec;
 }
 
-bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x, double tolerance) {
+bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x,
+                    double tolerance) {
   std::vector<double> Ax = dense_matrix_vector_multiply(A, n, x);
 
   for (int i = 0; i < n; ++i) {
@@ -99,11 +101,11 @@ bool check_solution(const std::vector<double>& A, int n, const std::vector<doubl
 bool ConjugateGradientMethodSequential::pre_processing() {
   internal_order_test();
   // Init value for input and output
-  A = std::vector<double> (taskData->inputs_count[0]);
+  A = std::vector<double>(taskData->inputs_count[0]);
   for (unsigned int i = 0; i < taskData->inputs_count[0]; i++) {
     A[i] = reinterpret_cast<double*>(taskData->inputs[0])[i];
   }
-  b = std::vector<double> (taskData->inputs_count[1]);
+  b = std::vector<double>(taskData->inputs_count[1]);
   for (unsigned int i = 0; i < taskData->inputs_count[1]; i++) {
     b[i] = reinterpret_cast<double*>(taskData->inputs[1])[i];
   }

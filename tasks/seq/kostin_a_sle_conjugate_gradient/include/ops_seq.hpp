@@ -8,7 +8,8 @@
 
 class ConjugateGradientMethodSequential : public ppc::core::Task {
  public:
-  explicit ConjugateGradientMethodSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit ConjugateGradientMethodSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
+      : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -25,4 +26,5 @@ std::vector<double> generateSPDMatrix(int size, int max_value);
 
 std::vector<double> generatePDVector(int size, int max_value);
 
-bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x, double tolerance);
+bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x,
+                    double tolerance);

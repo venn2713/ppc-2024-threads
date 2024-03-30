@@ -39,11 +39,8 @@ TEST(ConjugateGradientMethodSequential, Test_SLE_size_5) {
   int size = 5;
 
   // Create data
-  std::vector<double> in_A = {10.0, 15.0, 20.0, 25.0, 30.0,
-                              15.0, 10.0, 15.0, 20.0, 25.0,
-                              20.0, 15.0, 10.0, 15.0, 20.0,
-                              25.0, 20.0, 15.0, 10.0, 15.0,
-                              30.0, 25.0, 20.0, 15.0, 10.0};
+  std::vector<double> in_A = {10.0, 15.0, 20.0, 25.0, 30.0, 15.0, 10.0, 15.0, 20.0, 25.0, 20.0, 15.0, 10.0,
+                              15.0, 20.0, 25.0, 20.0, 15.0, 10.0, 15.0, 30.0, 25.0, 20.0, 15.0, 10.0};
   std::vector<double> in_b = {50.0, 55.0, 60.0, 65.0, 70.0};
   std::vector<double> out(size, 0.0);
   std::vector<double> correct_answer = {2.0, 0.0, 0.0, 0.0, 1.0};
