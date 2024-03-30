@@ -4,8 +4,8 @@
 
 #pragma once
 #include <iostream>
-#include <queue>
 #include <limits>
+#include <queue>
 #include <vector>
 #include "core/task/include/task.hpp"
 namespace KashinDijkstraSeq {
@@ -24,4 +24,4 @@ class Dijkstra : public ppc::core::Task {
   int start{};
   int count{};
 };
-} // namespace KashinDijkstraSeq
+}  // namespace KashinDijkstraSeq

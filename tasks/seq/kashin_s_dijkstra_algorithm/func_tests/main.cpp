@@ -3,8 +3,9 @@
 
 #include <cstdlib>
 #include <numeric>
-#include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 #include <vector>
+
+#include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
 TEST(KashinDijkstraSeqTest, TestGraph10) {
   const int vertexCount = 10, edgeWeight = 100, start = 0;

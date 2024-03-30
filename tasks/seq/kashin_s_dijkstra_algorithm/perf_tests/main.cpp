@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <vector>
+
 #include "core/perf/include/perf.hpp"
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
@@ -12,7 +13,7 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
 
   // Create data
   std::vector<int> in;
-  in.reserve(vertexCount*vertexCount);
+  in.reserve(vertexCount * vertexCount);
   std::vector<int> out(vertexCount);
   for (int i = 0; i < vertexCount * vertexCount; i++) {
     int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
@@ -57,7 +58,7 @@ TEST(KashinDijkstraSeqTest, test_task_run) {
 
   // Create data
   std::vector<int> in;
-  in.reserve(vertexCount*vertexCount);
+  in.reserve(vertexCount * vertexCount);
   std::vector<int> out(vertexCount);
   for (int i = 0; i < vertexCount * vertexCount; i++) {
     int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
