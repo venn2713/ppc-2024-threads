@@ -125,9 +125,8 @@ TEST(shishkina_v_gauss_block, test4) {
   int m = 5;
 
   // Create data
-  std::vector<int> tmp = {0,   255, 0,   255, 0,   255, 0,   255, 0,
-                          255, 0,   255, 0,   255, 0,   255, 0,   255,
-                          0,   255, 0,   255, 0,   255, 0};
+  std::vector<int> tmp = {0,   255, 0,   255, 0,   255, 0,   255, 0, 255, 0,   255, 0,   
+                          255, 0,   255, 0,   255, 0,   255, 0,   255, 0,   255, 0};
 
   int min = *std::min_element(tmp.begin(), tmp.end());
   int max = *std::max_element(tmp.begin(), tmp.end());
@@ -136,9 +135,8 @@ TEST(shishkina_v_gauss_block, test4) {
   std::vector<int> tmp_third = {min, max};
   std::vector<int> out(n * m);
 
-  std::vector<int> res = {255, 255, 255, 255, 255, 255, 255, 255, 255,
-                          255, 255, 255, 255, 255, 255, 255, 255, 255,
-                          255, 255, 255, 255, 255, 255, 255};
+  std::vector<int> res = {255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,  255, 
+                          255, 255, 255, 255, 255,255, 255, 255, 255, 255, 255, 255};
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
