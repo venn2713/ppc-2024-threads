@@ -80,7 +80,7 @@ bool CRSComplexMult_omp::run() {
   C->m = B->n;  // not m because B is transposed
   C->row_id.assign(C->n + 1, 0);
   std::vector<std::vector<std::pair<int, std::complex<double>>>> temp(C->n);
-#pragma omp parallel for
+#pragma omp parallel for num_threads(4)
   for (int i = 0; i < A->n; i++) {
     for (int j = 0; j < B->n; j++) {
       // C[i][j] = dot_product(A[i], B[j]);
