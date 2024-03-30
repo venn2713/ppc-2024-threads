@@ -24,7 +24,7 @@ matrix_CRS generate_random_matrix(int n, int m, int seed, double p) {
     for (int j = 0; j < m; j++) {
       if (bd(gen)) {
         std::complex<double> val(rnd(gen), rnd(gen));
-        temp[i].push_back({j, val});
+        temp[i].emplace_back(j, val);
       }
     }
   }

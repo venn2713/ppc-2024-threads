@@ -29,7 +29,7 @@ matrix_CRS transpose_CRS(const matrix_CRS& B) {
   for (int i = 0; i < B.n; i++) {
     for (int k = B.row_id[i]; k < B.row_id[i + 1]; k++) {
       int j = B.col[k];
-      temp[j].push_back({i, B.value[k]});
+      temp[j].emplace_back(i, B.value[k]);
     }
   }
   for (int i = 0; i < B_T.n; i++) {
@@ -56,8 +56,8 @@ bool CRSComplexMult_Sequential::validation() {
   C = reinterpret_cast<matrix_CRS*>(taskData->outputs[0]);
   if (A == nullptr || B == nullptr || C == nullptr) return false;
   // check for CRS properties
-  if (check_CRS_properties(*A) == false) return false;
-  if (check_CRS_properties(*B) == false) return false;
+  if (!check_CRS_properties(*A)) return false;
+  if (!check_CRS_properties(*B)) return false;
   // check for matrices size
   return A->m == B->n;
 }
