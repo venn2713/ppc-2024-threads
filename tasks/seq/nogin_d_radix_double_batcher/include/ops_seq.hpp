@@ -3,6 +3,7 @@
 
 #include <random>
 #include <vector>
+#include <algorithm>
 
 #include "core/task/include/task.hpp"
 

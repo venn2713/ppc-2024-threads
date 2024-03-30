@@ -56,15 +56,15 @@ std::vector<double> batchersMerge(std::vector<std::vector<double>>& subvectors) 
   return merged;
 }
 
-void partSort(std::vector<std::vector<double>>& parts, std::vector<double>& part) {
+void partSort(std::vector<std::vector<double>>& parts, std::vector<double>& side) {
   for (int i = 0; i < sizeDouble; ++i) {
-    for (auto& j : part) {
+    for (auto& j : side) {
       uint64_t temp = *reinterpret_cast<uint64_t*>(reinterpret_cast<void*>(&j));
       temp >>= i * 8;
       temp &= 255;
       parts[temp].push_back(j);
     }
-    part = batchersMerge(parts);
+    side = batchersMerge(parts);
     for (auto& part : parts) {
       part.clear();
     }
