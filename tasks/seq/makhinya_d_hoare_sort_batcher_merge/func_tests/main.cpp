@@ -19,7 +19,7 @@ class MakhinyaDTestSort : public ::testing::Test {
     taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in_vec));
     taskDataSeq->inputs_count.emplace_back(1);
 
-    if (in_comp) {
+    if (in_comp != nullptr) {
       taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in_comp));
       taskDataSeq->inputs_count.emplace_back(1);
     }
@@ -46,7 +46,7 @@ class MakhinyaDTestSort : public ::testing::Test {
 TEST_F(MakhinyaDTestSort, Reverse_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
-  srand(time(0));
+  srand(time(nullptr));
   for (uint32_t i = 0; i < COUNT; ++i) {
     in_vec[i] = static_cast<HoareSort::sortable_type>(COUNT - i);
   }
@@ -58,7 +58,7 @@ TEST_F(MakhinyaDTestSort, Reverse_Vec) {
 TEST_F(MakhinyaDTestSort, Sorted_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
-  srand(time(0));
+  srand(time(nullptr));
   for (uint32_t i = 0; i < COUNT; ++i) {
     in_vec[i] = static_cast<HoareSort::sortable_type>(i);
   }
@@ -70,7 +70,7 @@ TEST_F(MakhinyaDTestSort, Sorted_Vec) {
 TEST_F(MakhinyaDTestSort, EQ_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
-  srand(time(0));
+  srand(time(nullptr));
   for (uint32_t i = 0; i < COUNT; ++i) {
     in_vec[i] = static_cast<HoareSort::sortable_type>(COUNT);
   }
@@ -82,7 +82,7 @@ TEST_F(MakhinyaDTestSort, EQ_Vec) {
 TEST_F(MakhinyaDTestSort, Random_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
-  srand(time(0));
+  srand(time(nullptr));
   for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }
@@ -99,7 +99,7 @@ TEST_F(MakhinyaDTestSort, Random_Vec_With_Comp) {
     return a > b;
   };
 
-  srand(time(0));
+  srand(time(nullptr));
   for (HoareSort::sortable_type& x : in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
   }

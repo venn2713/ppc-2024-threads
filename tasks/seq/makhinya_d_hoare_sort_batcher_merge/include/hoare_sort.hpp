@@ -13,7 +13,6 @@ class HoareSort : public ppc::core::Task {
   using compare_t = std::function<bool(const sortable_type&, const sortable_type&)>;
   using vec_t = std::vector<sortable_type>;
 
- public:
   explicit HoareSort(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
