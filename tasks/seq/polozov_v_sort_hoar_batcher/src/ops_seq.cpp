@@ -1,8 +1,6 @@
 // Copyright 2024 Polozov Vladislav
 #include "seq/polozov_v_sort_hoar_batcher/include/ops_seq.hpp"
 
-constexpr int sizeDouble = sizeof(double);
-
 bool SortHoarWithMergeBatcher::pre_processing() {
   internal_order_test();
   // Init value for input and output
