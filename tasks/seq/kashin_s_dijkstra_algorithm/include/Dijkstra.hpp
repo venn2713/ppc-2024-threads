@@ -7,6 +7,7 @@
 #include <limits>
 #include <queue>
 #include <vector>
+
 #include "core/task/include/task.hpp"
 namespace KashinDijkstraSeq {
 
