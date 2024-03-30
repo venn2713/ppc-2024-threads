@@ -4,9 +4,9 @@
 
 #pragma once
 #include <iostream>
-#include <vector>
 #include <queue>
 #include <limits>
+#include <vector>
 #include "core/task/include/task.hpp"
 namespace KashinDijkstraSeq {
 

@@ -1,14 +1,14 @@
 // Copyright 2023 Nesterov Alexander
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <cstdlib>
 #include <numeric>
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
+#include <vector>
 
 TEST(KashinDijkstraSeqTest, TestGraph10) {
   const int vertexCount = 10, edgeWeight = 100, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data
@@ -39,7 +39,7 @@ TEST(KashinDijkstraSeqTest, TestGraph10) {
 
 TEST(KashinDijkstraSeqTest, TestGraph100) {
   const int vertexCount = 100, edgeWeight = 100, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data
@@ -70,7 +70,7 @@ TEST(KashinDijkstraSeqTest, TestGraph100) {
 
 TEST(KashinDijkstraSeqTest, TestGraph1000) {
   const int vertexCount = 10, edgeWeight = 1000, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data
@@ -101,7 +101,7 @@ TEST(KashinDijkstraSeqTest, TestGraph1000) {
 
 TEST(KashinDijkstraSeqTest, TestGraph10000) {
   const int vertexCount = 10, edgeWeight = 10000, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data

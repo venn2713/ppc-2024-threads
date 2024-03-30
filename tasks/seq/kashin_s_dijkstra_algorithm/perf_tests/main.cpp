@@ -2,21 +2,20 @@
 #include <gtest/gtest.h>
 
 #include <vector>
-
-#include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 #include "core/perf/include/perf.hpp"
+#include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
 TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data
   std::vector<int> in;
   in.reserve(vertexCount*vertexCount);
   std::vector<int> out(vertexCount);
-  for (int i = 0; i < vertexCount*vertexCount; i++) {
-    int weight = std::rand()%2 == 0 ? -1 : std::rand() % edgeWeight + 1;
+  for (int i = 0; i < vertexCount * vertexCount; i++) {
+    int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
     in.push_back(weight);
   }
 
@@ -53,15 +52,15 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
 
 TEST(KashinDijkstraSeqTest, test_task_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0;
-  //создаем повторяющийся рандом
+  // создаем повторяющийся рандом
   std::srand(0);
 
   // Create data
   std::vector<int> in;
   in.reserve(vertexCount*vertexCount);
   std::vector<int> out(vertexCount);
-  for (int i = 0; i < vertexCount*vertexCount; i++) {
-    int weight = std::rand()%2 == 0 ? -1 : std::rand() % edgeWeight + 1;
+  for (int i = 0; i < vertexCount * vertexCount; i++) {
+    int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
     in.push_back(weight);
   }
 
