@@ -1,6 +1,7 @@
 // Copyright 2024 Travin Maksim
 #include "seq/travin_m_simpson_method/include/ops_seq.hpp"
 
+#include <cmath>
 #include <thread>
 
 using namespace std::chrono_literals;
