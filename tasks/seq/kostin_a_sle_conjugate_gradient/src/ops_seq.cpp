@@ -18,7 +18,7 @@ std::vector<double> dense_matrix_vector_multiply(const std::vector<double>& A, i
 
 double dot_product(const std::vector<double>& a, const std::vector<double>& b) {
   double result = 0.0;
-  for (int i = 0; i < a.size(); ++i) {
+  for (size_t i = 0; i < a.size(); ++i) {
     result += a[i] * b[i];
   }
   return result;
@@ -35,11 +35,11 @@ std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, cons
     std::vector<double> Ap = dense_matrix_vector_multiply(A, n, p);
     double alpha = dot_product(r, r) / dot_product(Ap, p);
 
-    for (int i = 0; i < x.size(); ++i) {
+    for (size_t i = 0; i < x.size(); ++i) {
       x[i] += alpha * p[i];
     }
 
-    for (int i = 0; i < r.size(); ++i) {
+    for (size_t i = 0; i < r.size(); ++i) {
       r[i] = r_prev[i] - alpha * Ap[i];
     }
 
@@ -48,7 +48,7 @@ std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, cons
     }
 
     double beta = dot_product(r, r) / dot_product(r_prev, r_prev);
-    for (int i = 0; i < p.size(); ++i) {
+    for (size_t i = 0; i < p.size(); ++i) {
       p[i] = r[i] + beta * p[i];
     }
 
@@ -129,7 +129,7 @@ bool ConjugateGradientMethodSequential::run() {
 
 bool ConjugateGradientMethodSequential::post_processing() {
   internal_order_test();
-  for (int i = 0; i < x.size(); i++) {
+  for (size_t i = 0; i < x.size(); i++) {
     reinterpret_cast<double*>(taskData->outputs[0])[i] = x[i];
   }
   return true;
