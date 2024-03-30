@@ -1,7 +1,7 @@
 // Copyright 2024 Durandin Vladimir
-#include <thread>
-
 #include "tbb/durandin_v_Jarvis/include/ops_tbb.hpp"
+
+#include <thread>
 
 static tbb::mutex my_mutex;
 
