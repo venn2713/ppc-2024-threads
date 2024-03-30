@@ -96,6 +96,7 @@ int FindCountComponents(const std::vector<int>& image) {
       count_components = image[i];
     }
   }
+  
   return count_components;
 }
 
