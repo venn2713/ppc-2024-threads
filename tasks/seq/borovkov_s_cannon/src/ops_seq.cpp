@@ -1,10 +1,10 @@
 // Copyright 2024 Borovkov Sergey
+#include "seq/borovkov_s_cannon/include/ops_seq.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <random>
 #include <vector>
-
-#include "seq/borovkov_s_cannon/include/ops_seq.hpp"
 
 std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
                                                int m) {
