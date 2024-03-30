@@ -50,7 +50,7 @@ void HoareSort::seq_hoare_sort(sortable_type* first_ptr, sortable_type* last_ptr
   }
 
   sortable_type m = *(first_ptr + (last_ptr + 1UL - first_ptr) / 2UL);
-  sortable_type* ll = first_ptr, *rr = last_ptr;
+  sortable_type *ll = first_ptr, *rr = last_ptr;
   while (ll <= rr) {
 
     while (HoareSort::_comp(*ll, m)) ll++;
@@ -60,8 +60,8 @@ void HoareSort::seq_hoare_sort(sortable_type* first_ptr, sortable_type* last_ptr
       std::swap(*ll, *rr);
       ll++;
       rr--;
-      }
     }
+  }
 
   if (first_ptr < rr) {
     HoareSort::seq_hoare_sort(first_ptr, rr);
