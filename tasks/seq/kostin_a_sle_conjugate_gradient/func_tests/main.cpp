@@ -5,7 +5,7 @@
 
 #include "seq/kostin_a_sle_conjugate_gradient/include/ops_seq.hpp"
 
-TEST(ConjugateGradientMethodSequential, Test_SLE_size_2) {
+TEST(kostin_a_sle_conjugate_gradient_seq, Test_SLE_size_2) {
   int size = 2;
 
   // Create data
@@ -35,7 +35,7 @@ TEST(ConjugateGradientMethodSequential, Test_SLE_size_2) {
   }
 }
 
-TEST(ConjugateGradientMethodSequential, Test_SLE_size_5) {
+TEST(kostin_a_sle_conjugate_gradient_seq, Test_SLE_size_5) {
   int size = 5;
 
   // Create data
@@ -66,7 +66,7 @@ TEST(ConjugateGradientMethodSequential, Test_SLE_size_5) {
   }
 }
 
-TEST(ConjugateGradientMethodSequential, Test_generated_SLE_size_100) {
+TEST(kostin_a_sle_conjugate_gradient_seq, Test_generated_SLE_size_100) {
   int size = 100;
 
   // Create data
@@ -93,7 +93,7 @@ TEST(ConjugateGradientMethodSequential, Test_generated_SLE_size_100) {
   ASSERT_TRUE(check_solution(in_A, size, in_b, out, 1e-6));
 }
 
-TEST(ConjugateGradientMethodSequential, Test_generated_SLE_size_200) {
+TEST(kostin_a_sle_conjugate_gradient_seq, Test_generated_SLE_size_200) {
   int size = 200;
 
   // Create data
@@ -120,7 +120,7 @@ TEST(ConjugateGradientMethodSequential, Test_generated_SLE_size_200) {
   ASSERT_TRUE(check_solution(in_A, size, in_b, out, 1e-6));
 }
 
-TEST(ConjugateGradientMethodSequential, Test_generated_SLE_size_1) {
+TEST(kostin_a_sle_conjugate_gradient_seq, Test_generated_SLE_size_1) {
   int size = 1;
 
   // Create data
