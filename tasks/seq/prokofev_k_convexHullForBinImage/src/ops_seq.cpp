@@ -9,7 +9,7 @@ bool BinaryImageConvexHullSeq::pre_processing() {
   internal_order_test();
   width = taskData->inputs_count[0];
   height = taskData->inputs_count[1];
-  img = reinterpret_cast<typeof(img)>(taskData->inputs[0]);
+  img = reinterpret_cast<decltype(img)>(taskData->inputs[0]);
   img_ = *img;
   res = {};
   return true;
