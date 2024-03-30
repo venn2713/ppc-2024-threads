@@ -1,12 +1,13 @@
 // Copyright 2024 Mukhin Ivan
-#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
 #include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
 
 #include <cmath>
 #include <cstdint>
 #include <cstring>
 
-bool GaussianFilterSeq::pre_processing(){
+#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
+
+bool GaussianFilterSeq::pre_processing() {
   internal_order_test();
   input = taskData->inputs[0];
   output = taskData->outputs[0];
@@ -19,34 +20,34 @@ bool GaussianFilterSeq::pre_processing(){
   return true;
 }
 
-bool GaussianFilterSeq::validation(){
+bool GaussianFilterSeq::validation() {
   internal_order_test();
   return taskData->inputs_count[0] >= 3 && taskData->inputs_count[1] >= 3 &&
          taskData->outputs_count[0] == taskData->inputs_count[0] &&
          taskData->outputs_count[1] == taskData->inputs_count[1];
 }
 
-bool GaussianFilterSeq::post_processing(){
+bool GaussianFilterSeq::post_processing() {
   internal_order_test();
   std::memcpy(output, image.data.data(), width_input * height_input * 3);
   return true;
 }
 
-bool GaussianFilterSeq::run(){
+bool GaussianFilterSeq::run() {
   internal_order_test();
   filter_to_image();
   return true;
 }
 
-void GaussianFilterSeq::filter_to_image(){
-  for (uint64_t i = 0; i < width_input; i++){
-    for (uint64_t j = 0; j < height_input; j++){
+void GaussianFilterSeq::filter_to_image() {
+  for (uint64_t i = 0; i < width_input; i++) {
+    for (uint64_t j = 0; j < height_input; j++) {
       image.get_pixel(i, j) = get_new_pixel(i, j);
     }
   }
 }
 
-Pixel GaussianFilterSeq::get_new_pixel(uint64_t w, uint64_t h){
+Pixel GaussianFilterSeq::get_new_pixel(uint64_t w, uint64_t h) {
   double result_r = 0;
   double result_b = 0;
   double result_g = 0;
@@ -64,25 +65,23 @@ Pixel GaussianFilterSeq::get_new_pixel(uint64_t w, uint64_t h){
   return Pixel({(uint8_t)std::round(result_r), (uint8_t)std::round(result_g), (uint8_t)std::round(result_b)});
 }
 
-uint64_t GaussianFilterSeq::clamp(uint64_t value, uint64_t max){
-  if (value < 0)
-    return 0;
-  if (value >= max)
-    return max - 1;
+uint64_t GaussianFilterSeq::clamp(uint64_t value, uint64_t max) {
+  if (value < 0) return 0;
+  if (value >= max) return max - 1;
   return value;
 }
 
-void GaussianFilterSeq::create_gaussian_kernel(){
+void GaussianFilterSeq::create_gaussian_kernel() {
   double sigm = 2.0;
   double norm = 0.0;
-  for (int i = -rad; i <= rad; i++){
-    for (int j = -rad; j <= rad; j++){
+  for (int i = -rad; i <= rad; i++) {
+    for (int j = -rad; j <= rad; j++) {
       kernel[i + rad][j + rad] = (std::exp(-(i * i + j * j) / (2 * sigm * sigm)));
       norm += kernel[i + rad][j + rad];
     }
   }
-  for (uint64_t i = 0; i < kern_size; i++){
-    for (uint64_t j = 0; j < kern_size; j++){
+  for (uint64_t i = 0; i < kern_size; i++) {
+    for (uint64_t j = 0; j < kern_size; j++) {
       kernel[i][j] /= norm;
     }
   }

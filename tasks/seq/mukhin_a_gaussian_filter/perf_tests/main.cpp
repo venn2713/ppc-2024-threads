@@ -1,18 +1,19 @@
 // Copyright 2024 Mukhin Ivan
-#include "core/perf/include/perf.hpp"
-#include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
-
 #include <gtest/gtest.h>
+
 #include <vector>
 
+#include "core/perf/include/perf.hpp"
+#include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
 
 TEST(mukhin_i_a_gaussian_filter_block, test_pipeline_run) {
   // Create data
   uint64_t width = 512;
-  uint64_t height = 512;    
+  uint64_t height = 512;
   PixelMap in(width, height);
   PixelMap out(width, height);
-  PixelMap expected(width, height);    
+  PixelMap expected(width, height);
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data.data()));
@@ -21,10 +22,10 @@ TEST(mukhin_i_a_gaussian_filter_block, test_pipeline_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data.data()));
   taskDataSeq->outputs_count.emplace_back(width);
   taskDataSeq->outputs_count.emplace_back(height);
-    
+
   // Create Task
   auto testTaskSequential = std::make_shared<GaussianFilterSeq>(taskDataSeq);
-    
+
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
@@ -34,10 +35,10 @@ TEST(mukhin_i_a_gaussian_filter_block, test_pipeline_run) {
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
-    
+
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
-    
+
   // Create Perf analyzer
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
@@ -48,10 +49,11 @@ TEST(mukhin_i_a_gaussian_filter_block, test_pipeline_run) {
 TEST(mukhin_i_a_gaussian_filter_block, test_task_run) {
   // Create data
   uint64_t width = 512;
-  uint64_t height = 512;    
+  uint64_t height = 512;
   PixelMap in(width, height);
   PixelMap out(width, height);
-  PixelMap expected(width, height);    
+  PixelMap expected(width, height);
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data.data()));
@@ -60,7 +62,7 @@ TEST(mukhin_i_a_gaussian_filter_block, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data.data()));
   taskDataSeq->outputs_count.emplace_back(width);
   taskDataSeq->outputs_count.emplace_back(height);
-    
+
   // Create Task
   auto testTaskSequential = std::make_shared<GaussianFilterSeq>(taskDataSeq);
 

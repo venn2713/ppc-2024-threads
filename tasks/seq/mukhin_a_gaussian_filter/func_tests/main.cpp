@@ -1,15 +1,15 @@
 // Copyright 2024 Mukhin Ivan
-#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
-#include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
-
 #include <gtest/gtest.h>
+
 #include <cstdint>
 #include <cstdlib>
 #include <ctime>
 #include <vector>
 
-TEST(mukhin_i_a_gaussian_filter_block, can_work_with_black_pixel_map) {
+#include "seq/mukhin_a_gaussian_filter/include/pixel_map.hpp"
+#include "seq/mukhin_a_gaussian_filter/include/gaussian_filter.hpp"
 
+TEST(mukhin_i_a_gaussian_filter_block, can_work_with_black_pixel_map) {
   // Create data
   uint64_t width = 32;
   uint64_t height = 32;
