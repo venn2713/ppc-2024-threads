@@ -11,20 +11,18 @@ class MakhinyaDTestSort : public ::testing::Test {
   HoareSort testTaskSequential;
   const uint32_t COUNT = 128;
 
-	MakhinyaDTestSort() : 
-        testTaskSequential { HoareSort(std::make_shared<ppc::core::TaskData>()) } {
+	MakhinyaDTestSort() : testTaskSequential { HoareSort(std::make_shared<ppc::core::TaskData>()) } {
 
   }
 
   void set_data(HoareSort::vec_t* in_vec, HoareSort::compare_t* in_comp = nullptr) {
-    std::shared_ptr<ppc::core::TaskData>taskDataSeq = 
-                    std::make_shared<ppc::core::TaskData>();
+    std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_vec));
+    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in_vec));
     taskDataSeq->inputs_count.emplace_back(1);
 
     if (in_comp) {
-      taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_comp));
+      taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(in_comp));
       taskDataSeq->inputs_count.emplace_back(1);
     }
 
@@ -35,8 +33,9 @@ class MakhinyaDTestSort : public ::testing::Test {
   }
 
   bool run_test() {
-    if(!testTaskSequential.validation())
+    if (!testTaskSequential.validation()) {
       return false;
+    }
 
     testTaskSequential.pre_processing();
     testTaskSequential.run();
@@ -86,8 +85,9 @@ TEST_F(MakhinyaDTestSort, Random_Vec) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(time(0));
-  for(HoareSort::sortable_type& x: in_vec) 
+  for(HoareSort::sortable_type& x: in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
+  }
 
   set_data(&in_vec);
   EXPECT_TRUE(run_test());
@@ -104,8 +104,9 @@ TEST_F(MakhinyaDTestSort, Random_Vec_With_Comp) {
   };
 
   srand(time(0));
-  for(HoareSort::sortable_type& x: in_vec) 
+  for (HoareSort::sortable_type& x: in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
+  }
 
   set_data(&in_vec, &in_comp);
   EXPECT_TRUE(run_test());

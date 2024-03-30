@@ -1,9 +1,9 @@
 // Copyright 2024 Makhinya Danil
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
-#include <functional>
 
 #include "core/task/include/task.hpp"
 

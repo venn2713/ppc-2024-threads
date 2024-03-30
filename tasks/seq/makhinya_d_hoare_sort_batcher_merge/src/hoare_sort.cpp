@@ -17,9 +17,7 @@ bool HoareSort::pre_processing() {
 bool HoareSort::validation() {
   internal_order_test();
   // Check count elements of output
-  return (taskData->inputs.size() == 1 ||
-          taskData->inputs.size() == 2) && 
-          taskData->outputs.size() <= 1;
+  return (taskData->inputs.size() == 1 || taskData->inputs.size() == 2) && taskData->outputs.size() <= 1;
 }
 
 bool HoareSort::run() {
@@ -47,19 +45,18 @@ bool HoareSort::check_order() {
 
 void HoareSort::seq_hoare_sort(sortable_type* first_ptr, sortable_type* last_ptr) {
 
-  if (last_ptr <= first_ptr) 
-		return;
+  if (last_ptr <= first_ptr) {
+    return;
+  }
 
 	sortable_type m = *(first_ptr + (last_ptr + 1UL - first_ptr) / 2UL);
 
 	sortable_type* ll = first_ptr, *rr = last_ptr;
 	while (ll <= rr) {
 
-		while (HoareSort::_comp(*ll, m)) 
-			ll++;
+		while (HoareSort::_comp(*ll, m)) ll++;
 
-		while (HoareSort::_comp(m, *rr))
-			rr--;
+		while (HoareSort::_comp(m, *rr)) rr--;
 
 		if (ll <= rr) {
 			std::swap(*ll, *rr);
@@ -68,9 +65,10 @@ void HoareSort::seq_hoare_sort(sortable_type* first_ptr, sortable_type* last_ptr
 		}
 	}
 
-  if(first_ptr < rr)
-		HoareSort::seq_hoare_sort(first_ptr, rr);
-
-  if(ll < last_ptr)  
-		HoareSort::seq_hoare_sort(ll, last_ptr);
+  if (first_ptr < rr) {
+    HoareSort::seq_hoare_sort(first_ptr, rr);
+  }
+  if (ll < last_ptr) {
+    HoareSort::seq_hoare_sort(ll, last_ptr);
+  }
 }

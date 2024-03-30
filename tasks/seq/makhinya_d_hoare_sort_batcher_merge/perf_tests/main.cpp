@@ -13,12 +13,13 @@ TEST(MakhinyaPerf, test_pipeline_run) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(SEED);
-  for(HoareSort::sortable_type& x: in_vec) 
+  for (HoareSort::sortable_type& x: in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
+  }
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&in_vec));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&in_vec));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(nullptr);
@@ -51,12 +52,13 @@ TEST(MakhinyaPerf, test_task_run) {
   HoareSort::vec_t in_vec(COUNT);
 
   srand(SEED);
-  for(HoareSort::sortable_type& x: in_vec) 
+  for (HoareSort::sortable_type& x: in_vec) {
     x = static_cast<HoareSort::sortable_type>(rand());
+  }
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&in_vec));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&in_vec));
   taskDataSeq->inputs_count.emplace_back(1);
 
   taskDataSeq->outputs.emplace_back(nullptr);
