@@ -29,7 +29,6 @@ TEST(polozov_v_sort_hoar_batcher_seq, array_8) {
   }
 }
 
-
 TEST(polozov_v_sort_hoar_batcher_seq, rand_array_16) {
   // Create data
   std::vector<int> array = generate_data(16, 0, 16);

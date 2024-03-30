@@ -4,8 +4,6 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/polozov_v_sort_hoar_batcher/include/ops_seq.hpp"
 
-
-
 TEST(polozov_v_sort_hoar_batcher_seq, test_pipeline_run) {
   // Create data
   constexpr int size = (1 << 20);

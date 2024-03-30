@@ -70,7 +70,7 @@ void CompAndSwap(int& x, int& y) {
 std::vector<int> odd_even_merge_with_hoar(std::vector<int>& my_data) {
   if (my_data.size() < 4) {
     Hoar_sort(my_data, 0, my_data.size() - 1);
-    std:: vector<int> ans = my_data;
+    std::vector<int> ans = my_data;
     sort(ans.begin(), ans.end());
     return ans;
   }
