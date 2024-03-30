@@ -93,5 +93,3 @@ TEST(prokofev_k_convex_hull_seq, test_task_run) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
-
-

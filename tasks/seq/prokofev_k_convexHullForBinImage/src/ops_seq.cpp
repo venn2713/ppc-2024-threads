@@ -239,8 +239,3 @@ std::vector<int> GrahamAlgorithm(std::vector<int> points) {
   }
   return result;
 }
-
-
-
-
-

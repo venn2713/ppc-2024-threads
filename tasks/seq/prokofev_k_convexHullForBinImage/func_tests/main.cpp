@@ -156,4 +156,3 @@ TEST(prokofev_k_convex_hull_seq, BinarImgConvexHullTest5) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
-
