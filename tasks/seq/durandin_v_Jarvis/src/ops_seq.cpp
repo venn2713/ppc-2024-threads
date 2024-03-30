@@ -25,7 +25,8 @@ std::vector<Jarvis::Point2d> Jarvis::convexHull(const std::vector<Jarvis::Point2
   }
 
   // Start traversal from the leftmost lowest point
-  size_t current = leftmost, next;
+  size_t current = leftmost;
+  size_t next = 0;
   std::vector<Jarvis::Point2d> hull;
 
   do {
@@ -46,7 +47,7 @@ bool Jarvis::JarvisTestTaskSequential::pre_processing() {
   try {
     points_count = taskData->inputs_count[0];
     points.resize(points_count);
-    Jarvis::Point2d* ptr_points = reinterpret_cast<Jarvis::Point2d*>(taskData->inputs[0]);
+    auto* ptr_points = reinterpret_cast<Jarvis::Point2d*>(taskData->inputs[0]);
     std::memcpy(points.data(), ptr_points, points_count * sizeof(Jarvis::Point2d));
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
@@ -74,7 +75,7 @@ bool Jarvis::JarvisTestTaskSequential::run() {
 bool Jarvis::JarvisTestTaskSequential::post_processing() {
   internal_order_test();
   try {
-    Jarvis::Point2d* output_ptr = reinterpret_cast<Jarvis::Point2d*>(taskData->outputs[0]);
+    auto* output_ptr = reinterpret_cast<Jarvis::Point2d*>(taskData->outputs[0]);
     std::memcpy(output_ptr, convex_hull.data(), convex_hull.size() * sizeof(Jarvis::Point2d));
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
