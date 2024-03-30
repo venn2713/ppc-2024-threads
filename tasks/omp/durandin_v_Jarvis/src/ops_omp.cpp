@@ -55,12 +55,23 @@ std::vector<Jarvis::Point2d> Jarvis::convexHullOMP(const std::vector<Jarvis::Poi
 
   // Find the leftmost lowest point
   int32_t leftmost = 0;
-// #pragma omp parallel for shared(leftmost)
-  for (int32_t i = 1; i < n; ++i) {
-    if (points[i].x < points[leftmost].x)
-      leftmost = i;
-    else if (points[i].x == points[leftmost].x && points[i].y < points[leftmost].y)
-      leftmost = i;
+#pragma omp parallel for
+  for (int32_t i = 0; i < n; ++i) {
+    int32_t candidate = i;
+    for (int32_t j = i + 1; j < n; ++j) {
+      if (points[j].x < points[candidate].x ||
+          (points[j].x == points[candidate].x && points[j].y < points[candidate].y)) {
+        candidate = j;
+      }
+    }
+
+#pragma omp critical
+    {
+      if (points[candidate].x < points[leftmost].x ||
+          (points[candidate].x == points[leftmost].x && points[candidate].y < points[leftmost].y)) {
+        leftmost = candidate;
+      }
+    }
   }
 
   // Start traversal from the leftmost lowest point

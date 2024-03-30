@@ -33,8 +33,6 @@ TEST(VladimirD_OpenMP_Perf_Test, test_pipeline_run) {
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(out.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(out.size()));
 
-  std::vector<Jarvis::Point2d> convexHull = Jarvis::convexHullSeq(points);
-
   // Create Task
   auto testTaskParallel = std::make_shared<Jarvis::JarvisTestTaskParallel>(taskDataPar);
 
@@ -56,17 +54,11 @@ TEST(VladimirD_OpenMP_Perf_Test, test_pipeline_run) {
 
   for (uint32_t i = 0; i < expectedHull.size(); ++i) {
     if (i < tmp) {
-      EXPECT_EQ(expectedHull[i].x, convexHull[i + tmp].x);
-      EXPECT_EQ(convexHull[i].x, out[i].x);
-
-      EXPECT_EQ(expectedHull[i].y, convexHull[i + tmp].y);
-      EXPECT_EQ(convexHull[i].y, out[i].y);
+      EXPECT_EQ(expectedHull[i].x, out[i + tmp].x);
+      EXPECT_EQ(expectedHull[i].y, out[i + tmp].y);
     } else {
-      EXPECT_EQ(expectedHull[i].x, convexHull[i - tmp].x);
-      EXPECT_EQ(convexHull[i].x, out[i].x);
-
-      EXPECT_EQ(expectedHull[i].y, convexHull[i - tmp].y);
-      EXPECT_EQ(convexHull[i].y, out[i].y);
+      EXPECT_EQ(expectedHull[i].x, out[i - tmp].x);
+      EXPECT_EQ(expectedHull[i].y, out[i - tmp].y);
     }
   }
 }
@@ -100,8 +92,6 @@ TEST(VladimirD_OpenMP_Perf_Test, test_task_run) {
   taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t*>(out.data()));
   taskDataPar->outputs_count.emplace_back(static_cast<uint32_t>(out.size()));
 
-  std::vector<Jarvis::Point2d> convexHull = Jarvis::convexHullSeq(points);
-
   // Create Task
   auto testTaskParallel = std::make_shared<Jarvis::JarvisTestTaskParallel>(taskDataPar);
 
@@ -123,17 +113,11 @@ TEST(VladimirD_OpenMP_Perf_Test, test_task_run) {
 
   for (uint32_t i = 0; i < out.size(); ++i) {
     if (i < tmp) {
-      EXPECT_EQ(expectedHull[i].x, convexHull[i + tmp].x);
-      EXPECT_EQ(convexHull[i].x, out[i].x);
-
+      EXPECT_EQ(expectedHull[i].x, out[i + tmp].x);
       EXPECT_EQ(expectedHull[i].y, out[i + tmp].y);
-      EXPECT_EQ(convexHull[i].y, out[i].y);
     } else {
-      EXPECT_EQ(expectedHull[i].x, convexHull[i - tmp].x);
-      EXPECT_EQ(convexHull[i].x, out[i].x);
-
-      EXPECT_EQ(expectedHull[i].y, convexHull[i - tmp].y);
-      EXPECT_EQ(convexHull[i].y, out[i].y);
+      EXPECT_EQ(expectedHull[i].x, out[i - tmp].x);
+      EXPECT_EQ(expectedHull[i].y, out[i - tmp].y);
     }
   }
 }
