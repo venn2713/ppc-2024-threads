@@ -1,7 +1,7 @@
 // Copyright 2024 Ustinov Alexander
 #include <gtest/gtest.h>
-#include <oneapi/tbb/tick_count.h>
 #include <oneapi/tbb/parallel_for.h>
+#include <oneapi/tbb/tick_count.h>
 
 #include <vector>
 
