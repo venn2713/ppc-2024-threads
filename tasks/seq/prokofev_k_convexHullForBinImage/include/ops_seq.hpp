@@ -22,7 +22,7 @@ std::vector<int> FindComponents(const std::vector<std::vector<int>>& image, int 
 void FloodFill(std::vector<int>* image, int height, int width, int yStart, int xStart, int label);
 int FindCountComponents(const std::vector<int>& image);
 int FindCountPointsInComponent(const std::vector<int>& image);
-std::vector<int> RemoveExtraPoints(const std::vector<int>& image, int width, int height, int component);
+std::vector<int> RemoveExtraPoints(const std::vector<int>& image, int width, int height, int label);
 void Sort(std::vector<int>* points, int xMin, int yMin);
 std::vector<int> GrahamAlgorithm(std::vector<int> points);
 

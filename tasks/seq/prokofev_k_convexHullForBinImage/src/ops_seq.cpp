@@ -28,9 +28,9 @@ bool BinaryImageConvexHullSeq::run() {
     std::vector<int> points = RemoveExtraPoints(local_image, width, height, i);
     std::vector<int> ch = GrahamAlgorithm(points);
     for (size_t j = 0; j < ch.size(); ++j) {
-      res.push_back(ch[j]);
+      res.emplace_back(ch[j]);
     }
-    res.push_back(-1);
+    res.emplace_back(-1);
   }
 
   return true;
@@ -44,21 +44,21 @@ bool BinaryImageConvexHullSeq::post_processing() {
 
 void floodFill(std::vector<int>* image, int height, int width, int yStart, int xStart, int label) {
   std::queue<Point> tasks;
-  tasks.push(Point(xStart, yStart));
+  tasks.emplace(Point(xStart, yStart));
   while (!tasks.empty()) {
     int x = tasks.front().x;
     int y = tasks.front().y;
     tasks.pop();
     if (x >= 0 && y >= 0 && y < height && x < width && image->at(y * width + x) == 1) {
       (*image)[y * width + x] = label;
-      tasks.push(Point(x - 1, y - 1));
-      tasks.push(Point(x - 1, y));
-      tasks.push(Point(x - 1, y + 1));
-      tasks.push(Point(x, y + 1));
-      tasks.push(Point(x + 1, y + 1));
-      tasks.push(Point(x + 1, y));
-      tasks.push(Point(x, y - 1));
-      tasks.push(Point(x + 1, y - 1));
+      tasks.emplace(Point(x - 1, y - 1));
+      tasks.emplace(Point(x - 1, y));
+      tasks.emplace(Point(x - 1, y + 1));
+      tasks.emplace(Point(x, y + 1));
+      tasks.emplace(Point(x + 1, y + 1));
+      tasks.emplace(Point(x + 1, y));
+      tasks.emplace(Point(x, y - 1));
+      tasks.emplace(Point(x + 1, y - 1));
     }
   }
 }
@@ -204,10 +204,10 @@ std::vector<int> GrahamAlgorithm(std::vector<int> points) {
     points.pop_back();
     points.pop_back();
     Sort(&points, x_min, y_min);
-    result.push_back(x_min);
-    result.push_back(y_min);
-    result.push_back(points[0]);
-    result.push_back(points[1]);
+    result.emplace_back(x_min);
+    result.emplace_back(y_min);
+    result.emplace_back(points[0]);
+    result.emplace_back(points[1]);
     for (size_t i = 2; i < points.size(); i += 2) {
       int result_size = result.size();
       int x1 = result[result_size - 4];
@@ -225,11 +225,11 @@ std::vector<int> GrahamAlgorithm(std::vector<int> points) {
         while (Cross(result[(result.size()) - 4], result[(result.size()) - 3], result[(result.size()) - 2],
                      result[(result.size()) - 1], x3, y3) < 0)
           result.pop_back(), result.pop_back();
-        result.push_back(x3);
-        result.push_back(y3);
+        result.emplace_back(x3);
+        result.emplace_back(y3);
       } else {
-        result.push_back(x3);
-        result.push_back(y3);
+        result.emplace_back(x3);
+        result.emplace_back(y3);
       }
     }
   } else {
