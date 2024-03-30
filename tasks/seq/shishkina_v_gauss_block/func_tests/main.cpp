@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 #include <algorithm>
-#include <vector>
 #include <cmath>
+#include <vector>
 
 #include "seq/shishkina_v_gauss_block/include/ops_seq.hpp"
 

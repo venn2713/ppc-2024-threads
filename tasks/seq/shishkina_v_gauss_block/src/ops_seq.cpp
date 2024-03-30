@@ -1,9 +1,9 @@
 // Copyright 2024 Shishkina Valeriya
 #include "seq/shishkina_v_gauss_block/include/ops_seq.hpp"
 
+#include <cmath>
 #include <random>
 #include <thread>
-#include <cmath>
 
 using namespace std::chrono_literals;
 
