@@ -1,7 +1,6 @@
 // Copyright 2024 Lysanova Julia
 #include <gtest/gtest.h>
 
-#include <cmath>
 #include <iostream>
 #include <vector>
 
