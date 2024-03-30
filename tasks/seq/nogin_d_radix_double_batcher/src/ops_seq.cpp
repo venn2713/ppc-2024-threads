@@ -42,7 +42,7 @@ std::vector<double> batchersMerge(std::vector<std::vector<double>>& subvectors) 
   std::vector<std::pair<double, int>> indexedValues;
   for (size_t i = 0; i < subvectors.size(); ++i) {
     for (const auto& val : subvectors[i]) {
-      indexedValues.emplace_back(std::make_pair(val, i));
+      indexedValues.emplace_back(val, i);
     }
   }
 
