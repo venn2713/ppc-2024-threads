@@ -2,6 +2,7 @@
 #include "seq/kostin_a_sle_conjugate_gradient/include/ops_seq.hpp"
 
 #include <thread>
+#include <random>
 
 using namespace std::chrono_literals;
 
@@ -29,7 +30,7 @@ std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, cons
   std::vector<double> p = r;
   std::vector<double> r_prev = b;
 
-  for (int k = 0; k < n; ++k) {
+  while (true){
     std::vector<double> Ap = dense_matrix_vector_multiply(A, n, p);
     double alpha = dot_product(r, r) / dot_product(Ap, p);
 
@@ -41,7 +42,7 @@ std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, cons
       r[i] = r_prev[i] - alpha * Ap[i];
     }
 
-    if (dot_product(r, r) < tolerance) {
+    if (sqrt(dot_product(r, r)) < tolerance) {
       break;
     }
 
@@ -54,6 +55,45 @@ std::vector<double> conjugate_gradient(const std::vector<double>& A, int n, cons
   }
 
   return x;
+}
+
+std::vector<double> generateSPDMatrix(int size, int max_value) {
+  std::vector<double> A(size * size);
+  std::random_device dev;
+  std::mt19937 gen(dev());
+  for (int i = 0; i < size; ++i) {
+    for (int j = i; j < size; ++j) {
+      A[i * size + j] = static_cast<double>(gen() % max_value + 1);
+    }
+  }
+
+  for (int i = 0; i < size; ++i) {
+    for (int j = 0; j < i; ++j) {
+      A[i * size + j] = A[j * size + i];
+    }
+  }
+  return A;
+}
+
+std::vector<double> generatePDVector (int size, int max_value) {
+  std::vector<double> vec(size);
+  std::random_device dev;
+  std::mt19937 gen(dev());
+  for (int i = 0; i < size; ++i) {
+    vec[i] = static_cast<double>(gen() % max_value + 1);
+  }
+  return vec;
+}
+
+bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x, double tolerance) {
+  std::vector<double> Ax = dense_matrix_vector_multiply(A, n, x);
+
+  for (int i = 0; i < n; ++i) {
+    if (std::abs(Ax[i] - b[i]) > tolerance) {
+      return false;
+    }
+  }
+  return true;
 }
 
 bool ConjugateGradientMethodSequential::pre_processing() {

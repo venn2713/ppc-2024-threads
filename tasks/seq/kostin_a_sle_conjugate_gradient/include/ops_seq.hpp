@@ -20,3 +20,9 @@ class ConjugateGradientMethodSequential : public ppc::core::Task {
   std::vector<double> b;
   std::vector<double> x;
 };
+
+std::vector<double> generateSPDMatrix(int size, int max_value);
+
+std::vector<double> generatePDVector(int size, int max_value);
+
+bool check_solution(const std::vector<double>& A, int n, const std::vector<double>& b, const std::vector<double>& x, double tolerance);
