@@ -25,7 +25,7 @@ class GaussianFilterSeq : public ppc::core::Task {
 
   void create_gaussian_kernel();
 
-  uint64_t clamp(uint64_t value, uint64_t max);
+  static uint64_t clamp(uint64_t value, uint64_t max);
 
   void filter_to_image();
 
