@@ -42,8 +42,8 @@ matrix_CRS generate_random_matrix(int n, int m, int seed, double p) {
 }
 
 TEST(sadikov_d_crs_mult_omp, test_pipeline_run) {
-  matrix_CRS A = generate_random_matrix(100, 100, 2024, 0.75);
-  matrix_CRS B = generate_random_matrix(100, 100, 3003, 0.75);
+  matrix_CRS A = generate_random_matrix(123, 123, 2024, 0.75);
+  matrix_CRS B = generate_random_matrix(123, 123, 3003, 0.75);
   matrix_CRS C;
 
   // Create TaskData
@@ -57,7 +57,7 @@ TEST(sadikov_d_crs_mult_omp, test_pipeline_run) {
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
+  perfAttr->num_running = 50;
   const auto t0 = omp_get_wtime();
   perfAttr->current_timer = [&] { return omp_get_wtime() - t0; };
 
@@ -71,8 +71,8 @@ TEST(sadikov_d_crs_mult_omp, test_pipeline_run) {
 }
 
 TEST(sadikov_d_crs_mult_omp, test_task_run) {
-  matrix_CRS A = generate_random_matrix(100, 100, 2024, 0.75);
-  matrix_CRS B = generate_random_matrix(100, 100, 3003, 0.75);
+  matrix_CRS A = generate_random_matrix(123, 123, 2024, 0.75);
+  matrix_CRS B = generate_random_matrix(123, 123, 3003, 0.75);
   matrix_CRS C;
 
   // Create TaskData
@@ -86,7 +86,7 @@ TEST(sadikov_d_crs_mult_omp, test_task_run) {
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
+  perfAttr->num_running = 50;
   const auto t0 = omp_get_wtime();
   perfAttr->current_timer = [&] { return omp_get_wtime() - t0; };
 
