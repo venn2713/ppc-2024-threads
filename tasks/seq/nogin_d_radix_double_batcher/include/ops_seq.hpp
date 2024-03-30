@@ -22,6 +22,6 @@ class RadixSortDoubleBatcherSequential : public ppc::core::Task {
 };
 
 std::vector<double> batchersMerge(std::vector<std::vector<double>>& subvectors);
-void partSort(std::vector<std::vector<double>>& parts, std::vector<double>& part);
+void partSort(std::vector<std::vector<double>>& parts, std::vector<double>& side);
 std::vector<double> radixSortBatcher(std::vector<double> v);
 std::vector<double> randomVector(int sizeVec, double minValue, double maxValue);

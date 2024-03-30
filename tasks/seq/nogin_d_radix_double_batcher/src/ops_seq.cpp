@@ -42,7 +42,7 @@ std::vector<double> batchersMerge(std::vector<std::vector<double>>& subvectors) 
   std::vector<std::pair<double, int>> indexedValues;
   for (size_t i = 0; i < subvectors.size(); ++i) {
     for (const auto& val : subvectors[i]) {
-      indexedValues.push_back(std::make_pair(val, i));
+      indexedValues.emplace_back(std::make_pair(val, i));
     }
   }
 
@@ -77,7 +77,7 @@ std::vector<double> radixSortBatcher(std::vector<double> vec) {
   std::vector<double> negative;
   for (auto& i : vec) {
     uint64_t temp = *reinterpret_cast<uint64_t*>(reinterpret_cast<void*>(&i));
-    if (temp & mask) {
+    if ((temp & mask) != 0) {
       negative.push_back(i);
     } else {
       positive.push_back(i);
