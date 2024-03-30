@@ -9,7 +9,9 @@
 TEST(lysanova_j_matr_fox_seq, test_pipeline_run) {
   size_t n = 640;
   double k = 42.0;
-  std::vector<double> C(n * n), B(n * n), A(n * n);
+  std::vector<double> A(n * n);
+  std::vector<double> B(n * n);
+  std::vector<double> C(n * n);
   RandomFillMatrix(A.data(), A.size());
   EMatrix(B.data(), n, k);
 
@@ -50,7 +52,9 @@ TEST(lysanova_j_matr_fox_seq, test_pipeline_run) {
 TEST(lysanova_j_matr_fox_seq, test_task_run) {
   size_t n = 640;
   double k = 42.0;
-  std::vector<double> C(n * n), B(n * n), A(n * n);
+  std::vector<double> A(n * n);
+  std::vector<double> B(n * n);
+  std::vector<double> C(n * n);
   RandomFillMatrix(A.data(), A.size());
   EMatrix(B.data(), n, k);
 
