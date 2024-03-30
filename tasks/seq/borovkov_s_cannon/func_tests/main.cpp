@@ -1,6 +1,8 @@
 // Copyright 2024 Borovkov Sergey
 #include <gtest/gtest.h>
+
 #include <vector>
+
 #include "seq/borovkov_s_cannon/include/ops_seq.hpp"
 
 // Test case for matrix multiplication with size 2x2
