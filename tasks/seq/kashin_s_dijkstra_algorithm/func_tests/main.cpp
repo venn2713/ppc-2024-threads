@@ -1,8 +1,8 @@
 // Copyright 2023 Nesterov Alexander
 #include <gtest/gtest.h>
 
-#include <random>
 #include <numeric>
+#include <random>
 #include <vector>
 
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
