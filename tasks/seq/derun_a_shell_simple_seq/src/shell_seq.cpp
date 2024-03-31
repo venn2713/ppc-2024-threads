@@ -1,9 +1,9 @@
 // Copyright 2024 Andrey Derun
 #include "seq/derun_a_shell_simple_seq/include/shell_seq.hpp"
 
-#include <thread>
+#include <thread>  // NOLINT
 
-using namespace std::chrono_literals;
+using namespace std::chrono_literals;  // NOLINT
 
 bool ShellSequential::pre_processing() {
   internal_order_test();
@@ -18,7 +18,8 @@ bool ShellSequential::pre_processing() {
 bool ShellSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count.size() == 1 && taskData->inputs_count[0] > 0 && taskData->outputs_count.size() == 1 &&
+  return taskData->inputs_count.size() == 1 && taskData->inputs_count[0] > 0 &&
+         taskData->outputs_count.size() == 1 &&  // NOLINT
          taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
@@ -56,9 +57,9 @@ std::vector<int> ShellSequential::shell_sort(const std::vector<int>& input) {
   return vec;
 }
 
-bool ShellSequential::checkSorted(std::vector<int> input) { return std::is_sorted(input.begin(), input.end()); }
+bool ShellSequential::checkSorted(std::vector<int> input) { return std::is_sorted(input.begin(), input.end()); }  // NOLINT
 
-std::vector<int> ShellSequential::generate_random_vector(int size, int min, int max) {
+std::vector<int> ShellSequential::generate_random_vector(int size, int min, int max) {  // NOLINT
   // First create an instance of an engine.
   std::random_device rnd_device;
   // Specify the engine and distribution.

@@ -1,17 +1,19 @@
 // Copyright 2024 Andrey Derun
 #pragma once
 
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <random>
 #include <iterator>
+#include <memory>
+#include <random>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 
 class ShellSequential : public ppc::core::Task {
  public:
-  explicit ShellSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit ShellSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}  // NOLINT
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
