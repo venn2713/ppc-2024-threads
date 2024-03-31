@@ -1,7 +1,5 @@
 // Copyright 2024 Vanushkin Dmitry
 #include <gtest/gtest.h>
-
-#include <utility>
 #include <vector>
 
 #include "omp/vanushkin_d_sobel_operator/include/sobel_operator_omp.hpp"
@@ -60,7 +58,7 @@ TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo3x3ColorizedImage) {
   size_t height = 3;
   size_t width = 3;
 
-  std::vector<Color> input = std::move(generate_image(width, height));
+  std::vector<Color> input = generate_image(width, height);
 
   std::vector<Grayscale> seqOut((height - 2) * (width - 2), 0);
   std::vector<Grayscale> parallOut((height - 2) * (width - 2), 0);
@@ -104,7 +102,7 @@ TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo4x7ColorizedImage) {
   size_t height = 7;
   size_t width = 4;
 
-  std::vector<Color> input = std::move(generate_image(width, height));
+  std::vector<Color> input = generate_image(width, height);
 
   std::vector<Grayscale> seqOut((height - 2) * (width - 2), 0);
   std::vector<Grayscale> parallOut((height - 2) * (width - 2), 0);
@@ -148,7 +146,7 @@ TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo100x250ColorizedImage) {
   size_t height = 100;
   size_t width = 250;
 
-  std::vector<Color> input = std::move(generate_image(width, height));
+  std::vector<Color> input = generate_image(width, height);
 
   std::vector<Grayscale> seqOut((height - 2) * (width - 2), 0);
   std::vector<Grayscale> parallOut((height - 2) * (width - 2), 0);
@@ -192,7 +190,7 @@ TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo500x500ColorizedImage) {
   size_t height = 500;
   size_t width = 500;
 
-  std::vector<Color> input = std::move(generate_image(width, height));
+  std::vector<Color> input = generate_image(width, height);
 
   std::vector<Grayscale> seqOut((height - 2) * (width - 2), 0);
   std::vector<Grayscale> parallOut((height - 2) * (width - 2), 0);
