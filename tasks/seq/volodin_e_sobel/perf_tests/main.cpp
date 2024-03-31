@@ -1,8 +1,8 @@
 // Copyright 2024 Volodin Evgeniy
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <random>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/volodin_e_sobel/include/sobel.hpp"
