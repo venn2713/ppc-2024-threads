@@ -64,11 +64,10 @@ bool SortRadixDoubleTaskOMP::pre_processing() {
 
 bool SortRadixDoubleTaskOMP::run() {
   internal_order_test();
-  
+
   try {
     constexpr int64_t first_byte_max_val = 128;
-    auto* buckets =
-        reinterpret_cast<double*>(std::malloc(data_size * first_byte_max_val * sizeof(double)));
+    auto* buckets = reinterpret_cast<double*>(std::malloc(data_size * first_byte_max_val * sizeof(double)));
     if (buckets == nullptr) {
       std::cerr << "Cannot allocate buffer\n";
       return false;
@@ -82,10 +81,11 @@ bool SortRadixDoubleTaskOMP::run() {
       buckets[byte_val * data_size + buckets_size[byte_val]++] = data_ptr[i];
       max_bucket_size = std::max<size_t>(max_bucket_size, buckets_size[byte_val]);
     }
-    auto* aux_buckets = reinterpret_cast<double*>(
-        std::malloc(max_bucket_size * max_byte_val * sizeof(double) * omp_get_max_threads()));
+    auto* aux_buckets =
+        reinterpret_cast<double*>(std::malloc(max_bucket_size * max_byte_val * sizeof(double) * omp_get_max_threads()));
 
     if (aux_buckets == nullptr) {
+      free(buckets);
       std::cerr << "Cannot allocate aux_buckets\n";
       return false;
     }
