@@ -91,7 +91,7 @@ uint8_t& BinaryLabellingSequential::_get(std::vector<uint8_t>& v, int n, int x, 
 
 bool BinaryLabellingSequential::_inBounds(int x, int y, int m, int n) { return x >= 0 && x < m && y >= 0 && y < n; }
 
-bool BinaryLabellingSequential::_notPrev(int x, int y, int prevX, int prevY) { return x != prevX && y != prevY; }
+bool BinaryLabellingSequential::_notPrev(int x, int y, int prevX, int prevY) { return x != prevX || y != prevY; }
 
 bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled, 
     std::vector<uint8_t>& checked, int m, int n,
@@ -131,9 +131,7 @@ std::pair<std::vector<uint8_t>, int> BinaryLabellingSequential::_getLabelledImag
 
   for (int i = 0; i < m; i++) {
     for (int j = 0; j < n; j++) {
-      if (!_get(labelled, n, i, j)) {
-        label += static_cast<int>(_markObject(v, labelled, checked, m, n, i, j, -1, -1, label));
-      }
+      label += static_cast<int>(_markObject(v, labelled, checked, m, n, i, j, -1, -1, label));
     }
   }
 
