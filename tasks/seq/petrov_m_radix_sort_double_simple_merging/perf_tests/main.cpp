@@ -1,4 +1,4 @@
-// Copyright 2024 Petrov Maksim
+//Copyright 2024 Petrov Maksim
 
 #include <gtest/gtest.h>
 
@@ -46,7 +46,7 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -90,7 +90,7 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }

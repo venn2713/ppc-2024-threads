@@ -25,7 +25,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Positive_Numbers) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -49,7 +49,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Negative_Numbers) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -73,7 +73,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Positive_and_Negative_Numbers) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -97,7 +97,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Positive_Numbers2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -119,7 +119,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Negative_Numbers2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }
@@ -149,7 +149,7 @@ TEST(Petrov_M_Radix_Sort_Sequential, Test_With_Positive_and_Negative_Numbers3) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < out.size(); i++) {
+  for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(sorted[i], out[i]);
   }
 }

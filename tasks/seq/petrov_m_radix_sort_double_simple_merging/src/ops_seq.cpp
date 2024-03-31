@@ -7,7 +7,7 @@
 using namespace std::chrono_literals;
 
 void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int exp) {
-  unsigned char* buf = reinterpret_cast<unsigned char*>(in);
+  auto* buf = reinterpret_cast<unsigned char*>(in);
   int count[256] = {0};
   for (int i = 0; i < len; i++) {
     count[buf[8 * i + exp]]++;
@@ -21,11 +21,12 @@ void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int 
   for (int i = 0; i < len; i++) {
     out[count[buf[8 * i + exp]]] = in[i];
     count[buf[8 * i + exp]]++;
-  }
+  }     
 }
 
-bool RadixSortDoubleSequential::countSortSigns(double* in, double* out, int len) {
-  bool positiveFlag = false, negativeFlag = false;
+bool RadixSortDoubleSequential::countSortSigns(double *const in, double* out, int len) {
+  bool positiveFlag = false;
+  bool negativeFlag = false;
   int firstNegativeIndex = -1;
   // int firstPositiveIndex = -1;
   for (int i = 0; i < len; i++) {
@@ -57,7 +58,8 @@ bool RadixSortDoubleSequential::countSortSigns(double* in, double* out, int len)
       }
     }
     return true;
-  } else if (!positiveFlag) {
+  } 
+  if (!positiveFlag) {
     for (int i = len - 1, j = 0; i >= 0; i--, j++) {
       out[j] = in[i];
     }
