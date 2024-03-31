@@ -4,6 +4,12 @@
 
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
+struct Compare {
+  bool operator() (std::pair<int, int> a, std::pair<int, int> b) {
+    return a > b;
+  }
+};
+
 bool KashinDijkstraSeq::Dijkstra::pre_processing() {
   internal_order_test();
   graph = reinterpret_cast<int*>(taskData->inputs[0]);
@@ -34,8 +40,8 @@ bool KashinDijkstraSeq::Dijkstra::validation() {
 
 bool KashinDijkstraSeq::Dijkstra::run() {
   internal_order_test();
-  std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
-  pq.emplace(std::pair<int, int>(0, start));
+  std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, Compare> pq;
+  pq.emplace(0, start);
   while (!pq.empty()) {
     std::pair<int, int> vertex = pq.top();
     pq.pop();
@@ -46,7 +52,7 @@ bool KashinDijkstraSeq::Dijkstra::run() {
         int weight = edge.first + vertex.first;
         if (weight < distance[edge.second]) {
           distance[edge.second] = weight;
-          pq.emplace(std::pair<int, int>(weight, edge.second));
+          pq.emplace(weight, edge.second);
         }
       }
     }
