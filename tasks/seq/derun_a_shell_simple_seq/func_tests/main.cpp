@@ -26,6 +26,30 @@ void runTestRandom(int count) {
   ASSERT_TRUE(ShellSequential::checkSorted(out));
 }
 
+TEST(derun_andrey_shell_seq, Shell_Validation_Fail) {
+  const int count = 10;
+
+  // Create data
+  std::vector<int> in1 = ShellSequential::generate_random_vector(count, 1, 100);
+  std::vector<int> in2 = std::vector(5);
+  std::vector<int> out(count, 0);
+
+  // Create TaskData
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();  // NOLINT
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
+  taskDataSeq->inputs_count.emplace_back(in1.size());
+
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
+  taskDataSeq->inputs_count.emplace_back(in2.size());
+
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
+  taskDataSeq->outputs_count.emplace_back(out.size());
+
+  // Create Task
+  ShellSequential testTaskSequential(taskDataSeq);
+  ASSERT_EQ(testTaskSequential.validation(), false);
+}
+
 TEST(derun_andrey_shell_seq, Shell_Random_10) {
   const int count = 10;
 

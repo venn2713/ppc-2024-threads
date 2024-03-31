@@ -26,7 +26,7 @@ bool ShellSequential::validation() {
 bool ShellSequential::run() {
   internal_order_test();
   input_ = shell_sort(input_);
-  std::this_thread::sleep_for(20ms);
+  // std::this_thread::sleep_for(20ms);
   return true;
 }
 
