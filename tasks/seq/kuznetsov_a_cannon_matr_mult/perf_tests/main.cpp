@@ -22,13 +22,11 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
   auto taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   // Add matrOne
-  taskDataSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(inputMatrOne.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inputMatrOne.data()));
   taskDataSeq->inputs_count.emplace_back(inputMatrOne.size());
 
   // Add matrTwo
-  taskDataSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(inputMatrTwo.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inputMatrTwo.data()));
   taskDataSeq->inputs_count.emplace_back(inputMatrTwo.size());
 
   // Add size
@@ -38,15 +36,13 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&block));
 
   // Add out matr
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(outputMatr.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
   auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  auto testTaskSequential =
-      std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -54,9 +50,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                        current_time_point - t0)
-                        .count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -91,13 +85,11 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
   auto taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   // Add matrOne
-  taskDataSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(inputMatrOne.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inputMatrOne.data()));
   taskDataSeq->inputs_count.emplace_back(inputMatrOne.size());
 
   // Add matrTwo
-  taskDataSeq->inputs.emplace_back(
-      reinterpret_cast<uint8_t *>(inputMatrTwo.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inputMatrTwo.data()));
   taskDataSeq->inputs_count.emplace_back(inputMatrTwo.size());
 
   // Add size
@@ -107,15 +99,13 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&block));
 
   // Add out matr
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(outputMatr.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
   auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  auto testTaskSequential =
-      std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -123,9 +113,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                        current_time_point - t0)
-                        .count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

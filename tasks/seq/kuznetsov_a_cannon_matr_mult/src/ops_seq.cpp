@@ -5,27 +5,15 @@
 
 using namespace std::chrono_literals;
 
-enum Order : size_t {
-  MATR_ONE = 0,
-  MATR_TWO = 1,
-  SIZE = 2,
-  BLOCK = 3,
-  MATR_RES = 0
-};
+enum Order : size_t { MATR_ONE = 0, MATR_TWO = 1, SIZE = 2, BLOCK = 3, MATR_RES = 0 };
 
-bool isEqual(double valueOne, double valueTwo, double eps) {
-  return std::fabs(valueOne - valueTwo) <= eps;
-}
+bool isEqual(double valueOne, double valueTwo, double eps) { return std::fabs(valueOne - valueTwo) <= eps; }
 
-bool validateMatrix(size_t sizeOne, size_t sizeTwo) {
-  return sizeOne == sizeTwo && sizeOne != 0;
-}
+bool validateMatrix(size_t sizeOne, size_t sizeTwo) { return sizeOne == sizeTwo && sizeOne != 0; }
 
-std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne,
-                                        const std::vector<double>& matrTwo,
+std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne, const std::vector<double>& matrTwo,
                                         size_t size, size_t block) {
-  if (!validateMatrix(matrOne.size(), matrTwo.size()))
-    throw std::invalid_argument{"invalid matrixs"};
+  if (!validateMatrix(matrOne.size(), matrTwo.size())) throw std::invalid_argument{"invalid matrixs"};
 
   if (block > size) throw std::invalid_argument{"Wrong size block"};
 
@@ -40,34 +28,28 @@ std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne,
 
       for (int i = 0; i < size; ++i)
         for (int k = kb; k < kbMin; ++k)
-          for (int j = jb; j < jbMin; ++j)
-            matrRes[i * size + j] +=
-                matrOne[i * size + k] * matrTwo[k * size + j];
+          for (int j = jb; j < jbMin; ++j) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
     }
   }
 
   return matrRes;
 }
 
-std::vector<double> multMatrSquare(const std::vector<double>& matrOne,
-                                   const std::vector<double>& matrTwo,
+std::vector<double> multMatrSquare(const std::vector<double>& matrOne, const std::vector<double>& matrTwo,
                                    size_t size) {
-  if (!validateMatrix(matrOne.size(), matrTwo.size()))
-    throw std::invalid_argument{"invalid matrixs"};
+  if (!validateMatrix(matrOne.size(), matrTwo.size())) throw std::invalid_argument{"invalid matrixs"};
 
   std::vector<double> matrRes;
   matrRes.resize(size * size, 0.0);
 
   for (size_t i = 0; i < size; ++i)
     for (size_t j = 0; j < size; ++j)
-      for (size_t k = 0; k < size; ++k)
-        matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
+      for (size_t k = 0; k < size; ++k) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
 
   return matrRes;
 }
 
-std::vector<double> getRandomSquareMatrix(size_t size, double minVal,
-                                          double maxVal) {
+std::vector<double> getRandomSquareMatrix(size_t size, double minVal, double maxVal) {
   std::mt19937 gen(std::random_device{}());
   std::uniform_real_distribution<double> dist(minVal, maxVal);
 
@@ -121,7 +103,6 @@ bool KuznetsovCannonMatrMultSeq::run() {
 
 bool KuznetsovCannonMatrMultSeq::post_processing() {
   internal_order_test();
-  std::copy(mMatrRes.begin(), mMatrRes.end(),
-            reinterpret_cast<double*>(taskData->outputs[MATR_RES]));
+  std::copy(mMatrRes.begin(), mMatrRes.end(), reinterpret_cast<double*>(taskData->outputs[MATR_RES]));
   return true;
 }
