@@ -1,8 +1,6 @@
 // Copyright 2024 Zakharov Artem
 #include "seq/zakharov_a_radix_sort/include/ops_seq.hpp"
 
-#include <cstring>
-
 bool ZakharovRadixSortSequential::validation() {
   internal_order_test();
   return taskData->inputs_count[0] == taskData->outputs_count[0];
