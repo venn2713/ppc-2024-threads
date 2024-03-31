@@ -5,7 +5,9 @@ using namespace std::chrono_literals;
 
 std::vector<int> BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() / 2 + arr2.size() / 2 + arr1.size() % 2 + arr2.size() % 2);
-  size_t i = 0, j = 0, k = 0;
+  size_t i = 0;
+  size_t j = 0;
+  size_t k = 0;
 
   while ((j < arr1.size()) && (k < arr2.size())) {
     if (arr1[j] <= arr2[k]) {
@@ -35,7 +37,9 @@ std::vector<int> BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
 
 std::vector<int> BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() / 2 + arr2.size() / 2);
-  size_t i = 0, j = 1, k = 1;
+  size_t i = 0;
+  size_t j = 1;
+  size_t k = 1;
 
   while ((j < arr1.size()) && (k < arr2.size())) {
     if (arr1[j] <= arr2[k]) {
@@ -65,7 +69,9 @@ std::vector<int> BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
 
 std::vector<int> merge(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() + arr2.size());
-  size_t i = 0, j = 0, k = 0;
+  size_t i = 0;
+  size_t j = 0;
+  size_t k = 0;
 
   while ((j < arr1.size()) && (k < arr2.size())) {
     result[i] = arr1[j];
@@ -91,7 +97,7 @@ std::vector<int> merge(std::vector<int> arr1, std::vector<int> arr2) {
   return result;
 }
 
-std::vector<int> BatcherSort(const std::vector<int> arr1, const std::vector<int> arr2) {
+std::vector<int> BatcherSort(const std::vector<int> &arr1, const std::vector<int> &arr2) {
   std::vector<int> even = BatcherEven(arr1, arr2);
   std::vector<int> odd = BatcherOdd(arr1, arr2);
   std::vector<int> result = merge(even, odd);
