@@ -1,6 +1,7 @@
 // Copyright 2023 Nesterov Alexander
 #include <gtest/gtest.h>
 
+#include <numeric>
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
@@ -48,7 +49,7 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(vertexCount, out.size());
+  ASSERT_EQ(14970, std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, test_task_run) {
@@ -93,5 +94,5 @@ TEST(KashinDijkstraSeqTest, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(vertexCount, out.size());
+  ASSERT_EQ(14970, std::accumulate(out.begin(), out.end(), 0));
 }
