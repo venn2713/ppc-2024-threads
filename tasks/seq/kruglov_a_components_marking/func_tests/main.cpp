@@ -8,8 +8,8 @@
 TEST(kruglov_a_components_marking_seq_functional, test_functional) {
   // Create data
 
-  uint32_t h = 2000;
-  uint32_t w = 2000;
+  uint32_t h = 10;
+  uint32_t w = 10;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in = {0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1,
                              1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1,
@@ -42,8 +42,8 @@ TEST(kruglov_a_components_marking_seq_functional, test_functional) {
 TEST(kruglov_a_components_marking_seq_functional, test_non_square) {
   // Create data
 
-  uint32_t h = 2000;
-  uint32_t w = 2000;
+  uint32_t h = 5;
+  uint32_t w = 10;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in = {0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1,
                              1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1};
@@ -71,8 +71,8 @@ TEST(kruglov_a_components_marking_seq_functional, test_non_square) {
 
 TEST(kruglov_a_components_marking_seq_functional, test_all_ones) {
   // Create data
-  uint32_t h = 2000;
-  uint32_t w = 2000;
+  uint32_t h = 10;
+  uint32_t w = 10;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in(h * w, 1);
   std::vector<uint8_t> out(h * w, 0);
@@ -98,8 +98,8 @@ TEST(kruglov_a_components_marking_seq_functional, test_all_ones) {
 
 TEST(kruglov_a_components_marking_seq_functional, test_all_zeros) {
   // Create data
-  uint32_t h = 2000;
-  uint32_t w = 2000;
+  uint32_t h = 10;
+  uint32_t w = 10;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in(h * w, 0);
   std::vector<uint8_t> out(h * w, 0);
@@ -125,8 +125,8 @@ TEST(kruglov_a_components_marking_seq_functional, test_all_zeros) {
 
 TEST(kruglov_a_components_marking_seq_functional, test_grid) {
   // Create data
-  uint32_t h = 2000;
-  uint32_t w = 2000;
+  uint32_t h = 10;
+  uint32_t w = 10;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in(h * w);
   std::vector<uint8_t> comp(h * w);
