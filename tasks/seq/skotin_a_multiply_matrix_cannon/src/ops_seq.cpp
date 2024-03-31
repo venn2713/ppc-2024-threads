@@ -61,7 +61,6 @@ bool MatrixMultiplicationTask::run() {
   return true;
 }
 
-
 bool MatrixMultiplicationTask::post_processing() { return saveResult(); }
 
 bool MatrixMultiplicationTask::loadMatrix(const std::vector<double>& inputData,

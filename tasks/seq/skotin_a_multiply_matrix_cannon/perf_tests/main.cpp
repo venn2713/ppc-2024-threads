@@ -1,9 +1,11 @@
 // Copyright 2024 Skotin Alexander
 #include <gtest/gtest.h>
+
 #include <cmath>
 #include <cstring>
 #include <memory>
 #include <vector>
+
 #include "core/perf/include/perf.hpp"
 #include "seq/skotin_a_multiply_matrix_cannon/include/ops_seq.hpp"
 
@@ -15,8 +17,7 @@ std::vector<uint8_t> createMatrixData(size_t size, double value) {
 }
 
 void checkMatrixResult(const std::vector<uint8_t>& outputData, size_t matrixSize, double expectedValue) {
-  const double* outputMatrix = reinterpret_cast<const double*>(
-      outputData.data());
+  const double* outputMatrix = reinterpret_cast<const double*>(outputData.data());
   for (size_t i = 0; i < matrixSize; ++i) {
     for (size_t j = 0; j < matrixSize; ++j) {
       double actualValue = outputMatrix[i * matrixSize + j];

@@ -1,8 +1,10 @@
 // Copyright 2024 Skotin Alexander
 #include <gtest/gtest.h>
+
+#include <cstring>
 #include <memory>
 #include <vector>
-#include <cstring>
+
 #include "seq/skotin_a_multiply_matrix_cannon/include/ops_seq.hpp"
 
 std::vector<uint8_t> createMatrixData(size_t size, double value) {
