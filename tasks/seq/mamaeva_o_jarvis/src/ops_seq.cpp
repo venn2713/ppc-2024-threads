@@ -1,4 +1,4 @@
- // Copyright 2024 Mamaeva Olga
+// Copyright 2024 Mamaeva Olga
 #include "seq/mamaeva_o_jarvis/include/ops_seq.hpp"
 
 #define M_PI 3.14159265358979323846
@@ -37,7 +37,7 @@ bool JarvisHullSequential::validation() {
   internal_order_test();
   // Check count elements of output
   return (taskData->inputs[0] != nullptr) && (taskData->inputs_count[0] != 0u) && (taskData->outputs[0] != nullptr) &&
-      (taskData->outputs_count[0] != 0u);
+        (taskData->outputs_count[0] != 0u);
 }
 
 void Jarvis(const std::vector<jarvis::r>& points, jarvis::r* hull) {
