@@ -9,9 +9,9 @@
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
 TEST(KashinDijkstraSeqTest, test_pipeline_run) {
-  const int vertexCount = 5000, edgeWeight = 100, start = 0;
+  const int vertexCount = 5000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
-  std::mt19937 rng(42);
+  std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
   std::uniform_int_distribution<int> isEdge(0, 2);
 
@@ -56,9 +56,9 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
 }
 
 TEST(KashinDijkstraSeqTest, test_task_run) {
-  const int vertexCount = 5000, edgeWeight = 100, start = 0;
+  const int vertexCount = 5000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
-  std::mt19937 rng(42);
+  std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
   std::uniform_int_distribution<int> isEdge(0, 2);
 
