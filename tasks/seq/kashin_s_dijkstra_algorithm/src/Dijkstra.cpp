@@ -4,11 +4,7 @@
 
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
-struct Compare {
-  bool operator() (std::pair<int, int> a, std::pair<int, int> b) {
-    return a > b;
-  }
-};
+bool operator()(std::pair<int, int> a, std::pair<int, int> b) { return a > b; }
 
 bool KashinDijkstraSeq::Dijkstra::pre_processing() {
   internal_order_test();
