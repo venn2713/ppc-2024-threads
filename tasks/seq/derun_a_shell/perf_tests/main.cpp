@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "seq/derun_a_shell_simple_seq/include/shell_seq.hpp"
+#include "seq/derun_a_shell/include/shell_seq.hpp"
 
 TEST(derun_andrey_shell_seq, pipeline_run) {
   const int count = 100;

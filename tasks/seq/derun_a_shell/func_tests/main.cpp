@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "seq/derun_a_shell_simple_seq/include/shell_seq.hpp"
+#include "seq/derun_a_shell/include/shell_seq.hpp"
 
 void runTestRandom(int count) {
   // Create data
