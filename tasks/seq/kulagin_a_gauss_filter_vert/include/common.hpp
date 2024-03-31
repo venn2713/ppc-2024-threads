@@ -14,12 +14,12 @@
 namespace kulagin_a_gauss {
 static const uint32_t default_alpha = 0x0;
 
-inline const uint32_t& get_color(const size_t& w, const size_t& h, const uint32_t* img, const size_t& px,
+inline const uint32_t& get_color(const size_t& w, const size_t&, const uint32_t* img, const size_t& px,
                                  const size_t& py) {
   return img[px + py * w];
 }
 
-inline uint32_t& get_color(const size_t& w, const size_t& h, uint32_t* img, const size_t& px, const size_t& py) {
+inline uint32_t& get_color(const size_t& w, const size_t&, uint32_t* img, const size_t& px, const size_t& py) {
   return img[px + py * w];
 }
 
