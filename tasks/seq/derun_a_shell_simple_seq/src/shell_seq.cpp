@@ -8,7 +8,7 @@ using namespace std::chrono_literals;  // NOLINT
 bool ShellSequential::pre_processing() {
   internal_order_test();
   // Init value for input and output
-  for (int i = 0; i < taskData->inputs_count[0]; i++) {
+  for (int i = 0; i < static_cast<int>(taskData->inputs_count[0]); i++) {
     input_.push_back(reinterpret_cast<int*>(taskData->inputs[0])[i]);
   }
   // res = 0;
@@ -33,7 +33,7 @@ bool ShellSequential::run() {
 bool ShellSequential::post_processing() {
   internal_order_test();
   // reinterpret_cast<int*>(taskData->outputs[0])[0] = res;
-  for (int i = 0; i < taskData->inputs_count[0]; i++) {
+  for (int i = 0; i < static_cast<int>(taskData->inputs_count[0]); i++) {
     // input_.push_back(reinterpret_cast<int*>(taskData->inputs[0])[i]);
     reinterpret_cast<int*>(taskData->outputs[0])[i] = input_[i];
   }
@@ -43,7 +43,7 @@ bool ShellSequential::post_processing() {
 std::vector<int> ShellSequential::shell_sort(const std::vector<int>& input) {
   std::vector<int> vec(input);
 
-  for (int interval = vec.size() / 2; interval > 0; interval /= 2) {
+  for (int interval = static_cast<int>(vec.size()) / 2; interval > 0; interval /= 2) {
     for (int i = interval; i < vec.size(); i++) {
       int tmp = vec[i];
       int j = i;
