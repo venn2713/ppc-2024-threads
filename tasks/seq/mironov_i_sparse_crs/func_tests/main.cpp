@@ -127,7 +127,9 @@ TEST(mironov_i_sparse_crs_seq, TestEdin43) {
 }
 
 TEST(mironov_i_sparse_crs_seq, TestRandom) {
-  int n = 15, m = 15, k = 15;
+  int n = 15;
+  int m = 15;
+  int k = 15;
   double ro = 0.3;
   std::vector<double> A(n * m, 0.0);
   MironovISequential::genrateSparseMatrix(A.data(), A.size(), ro);
