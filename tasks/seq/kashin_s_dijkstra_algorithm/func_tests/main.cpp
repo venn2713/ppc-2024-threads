@@ -7,6 +7,12 @@
 
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
+#ifdef __APPLE__
+    const std::vector<int> TEST_CHECKS= {522, 1074, 2914, 34576};
+#else
+    const std::vector<int> TEST_CHECKS = {299, 987, 3831, 6411};
+#endif
+
 TEST(KashinDijkstraSeqTest, TestGraph10) {
   const int vertexCount = 10, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
@@ -37,7 +43,7 @@ TEST(KashinDijkstraSeqTest, TestGraph10) {
   dijkstra.pre_processing();
   dijkstra.run();
   dijkstra.post_processing();
-  ASSERT_EQ(299, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(TEST_CHECKS[0], std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, CheckingIncorrectInputData) {
@@ -99,11 +105,11 @@ TEST(KashinDijkstraSeqTest, TestGraph100) {
   dijkstra.pre_processing();
   dijkstra.run();
   dijkstra.post_processing();
-  ASSERT_EQ(987, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(TEST_CHECKS[1], std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, TestGraph1000) {
-  const int vertexCount = 10, edgeWeight = 1000, start = 0, seed = 42;
+  const int vertexCount = 1000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -132,11 +138,11 @@ TEST(KashinDijkstraSeqTest, TestGraph1000) {
   dijkstra.pre_processing();
   dijkstra.run();
   dijkstra.post_processing();
-  ASSERT_EQ(2863, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(TEST_CHECKS[2], std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, TestGraph10000) {
-  const int vertexCount = 10, edgeWeight = 10000, start = 0, seed = 42;
+  const int vertexCount = 2000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -165,5 +171,5 @@ TEST(KashinDijkstraSeqTest, TestGraph10000) {
   dijkstra.pre_processing();
   dijkstra.run();
   dijkstra.post_processing();
-  ASSERT_EQ(28503, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(TEST_CHECKS[3], std::accumulate(out.begin(), out.end(), 0));
 }
