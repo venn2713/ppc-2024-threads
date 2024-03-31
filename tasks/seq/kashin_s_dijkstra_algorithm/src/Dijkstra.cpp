@@ -34,7 +34,7 @@ bool KashinDijkstraSeq::Dijkstra::validation() {
 
 bool KashinDijkstraSeq::Dijkstra::run() {
   internal_order_test();
-  std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, Compare> pq;
+  std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, KashinDijkstraSeq::Compare> pq;
   pq.emplace(0, start);
   while (!pq.empty()) {
     std::pair<int, int> vertex = pq.top();

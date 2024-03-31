@@ -11,6 +11,10 @@
 #include "core/task/include/task.hpp"
 namespace KashinDijkstraSeq {
 
+struct Compare {
+  bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) { return a > b; }
+};
+
 class Dijkstra : public ppc::core::Task {
  public:
   explicit Dijkstra(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
@@ -20,7 +24,6 @@ class Dijkstra : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) { return a > b; }
   int* graph;
   std::vector<int> distance;
   int start{};
