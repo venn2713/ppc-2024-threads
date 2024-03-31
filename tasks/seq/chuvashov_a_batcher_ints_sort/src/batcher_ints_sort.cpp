@@ -19,12 +19,12 @@ std::vector<int> BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
   }
 
   if (j >= arr1.size()) {
-    for (int l = k; l < arr2.size(); l += 2) {
+    for (size_t l = k; l < arr2.size(); l += 2) {
       result[i] = arr2[l];
       i++;
     }
   } else {
-    for (int l = j; l < arr1.size(); l += 2) {
+    for (size_t l = j; l < arr1.size(); l += 2) {
       result[i] = arr1[l];
       i++;
     }
@@ -49,12 +49,12 @@ std::vector<int> BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
   }
 
   if (j >= arr1.size()) {
-    for (int l = k; l < arr2.size(); l += 2) {
+    for (size_t l = k; l < arr2.size(); l += 2) {
       result[i] = arr2[l];
       i++;
     }
   } else {
-    for (int l = j; l < arr1.size(); l += 2) {
+    for (size_t l = j; l < arr1.size(); l += 2) {
       result[i] = arr1[l];
       i++;
     }
@@ -76,13 +76,13 @@ std::vector<int> merge(std::vector<int> arr1, std::vector<int> arr2) {
   }
 
   if ((k >= arr2.size()) && (j < arr1.size())) {
-    for (int l = i; l < result.size(); l++) {
+    for (size_t l = i; l < result.size(); l++) {
       result[l] = arr1[j];
       j++;
     }
   }
 
-  for (int l = 0; l < result.size() - 1; l++) {
+  for (size_t l = 0; l < result.size() - 1; l++) {
     if (result[l] > result[l + 1]) {
       std::swap(result[l], result[l + 1]);
     }
@@ -108,7 +108,7 @@ bool SequentialBatcherSort::pre_processing() {
   arr1.resize(input.size() / 2);
   arr2.resize(input.size() / 2);
 
-  for (int i = 0; i < (input.size() / 2); i++) {
+  for (size_t i = 0; i < (input.size() / 2); i++) {
     arr1[i] = input[i];
     arr2[i] = input[(input.size() / 2) + i];
   }
