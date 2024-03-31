@@ -24,6 +24,6 @@ class ShellSequential : public ppc::core::Task {
   static std::vector<int> generate_random_vector(int size, int min, int max);
 
  private:
-  std::vector<int> shell_sort(const std::vector<int>& input);
+  static std::vector<int> shell_sort(const std::vector<int>& input);
   std::vector<int> input_;
 };
