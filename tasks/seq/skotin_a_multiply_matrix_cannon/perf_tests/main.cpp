@@ -10,7 +10,7 @@
 std::vector<uint8_t> createMatrixData(size_t size, double value) {
   std::vector<double> matrixData(size * size, value);
   std::vector<uint8_t> byteData(matrixData.size() * sizeof(double));
-  std::memcpy(byteData.data(), matrixData.data(), byteData.size());
+  memcpy(byteData.data(), matrixData.data(), byteData.size());
   return byteData;
 }
 

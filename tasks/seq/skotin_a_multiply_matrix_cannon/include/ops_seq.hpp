@@ -9,8 +9,7 @@
 
 class MatrixMultiplicationTask : public ppc::core::Task {
  public:
-  explicit MatrixMultiplicationTask(std::shared_ptr<
- ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit MatrixMultiplicationTask(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
 
   bool pre_processing() override;
   bool validation() override;

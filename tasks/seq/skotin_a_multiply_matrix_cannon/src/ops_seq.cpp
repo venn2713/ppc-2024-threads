@@ -2,6 +2,7 @@
 #include "seq/skotin_a_multiply_matrix_cannon/include/ops_seq.hpp"
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 
 bool MatrixMultiplicationTask::pre_processing() {
   size_t totalElementsPerMatrix = taskData->inputs_count[0] / sizeof(double);
@@ -13,7 +14,7 @@ bool MatrixMultiplicationTask::pre_processing() {
   }
 
   std::vector<double> matrixAData(matrixSize * matrixSize);
-  std::memcpy(matrixAData.data(), taskData->inputs[0],
+  memcpy(matrixAData.data(), taskData->inputs[0],
       taskData->inputs_count[0]);
 
   if (!loadMatrix(matrixAData, matrixA, matrixSize)) {
@@ -22,7 +23,7 @@ bool MatrixMultiplicationTask::pre_processing() {
   }
 
   std::vector<double> matrixBData(matrixSize * matrixSize);
-  std::memcpy(matrixBData.data(), taskData->inputs[1],
+  memcpy(matrixBData.data(), taskData->inputs[1],
       taskData->inputs_count[1]);
 
   if (!loadMatrix(matrixBData, matrixB, matrixSize)) {
@@ -92,7 +93,7 @@ bool MatrixMultiplicationTask::saveResult() {
   for (size_t i = 0; i < resultMatrix.size(); ++i) {
     for (size_t j = 0; j < resultMatrix[i].size(); ++j) {
       double value = resultMatrix[i][j];
-      std::memcpy(&outputData[(i * resultMatrix[i].size() + j) *
+      memcpy(&outputData[(i * resultMatrix[i].size() + j) *
           sizeof(double)], &value, sizeof(double));
     }
   }
