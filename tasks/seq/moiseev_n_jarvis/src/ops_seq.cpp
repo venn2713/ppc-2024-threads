@@ -58,12 +58,7 @@ bool TestTaskSequentialJarvis::validation() {
   }
 
   std::sort(points.begin(), points.end());
-  auto last = std::unique(points.begin(), points.end());
-  if (last != points.end()) {
-    return false;
-  }
-
-  return true;
+  return std::unique(points.begin(), points.end()) == points.end();
 }
 
 bool TestTaskSequentialJarvis::run() {
