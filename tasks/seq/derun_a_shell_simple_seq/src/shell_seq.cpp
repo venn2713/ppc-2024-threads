@@ -44,7 +44,7 @@ std::vector<int> ShellSequential::shell_sort(const std::vector<int>& input) {
   std::vector<int> vec(input);
 
   for (int interval = static_cast<int>(vec.size()) / 2; interval > 0; interval /= 2) {
-    for (int i = interval; i < vec.size(); i++) {
+    for (int i = interval; i < static_cast<int>(vec.size()); i++) {
       int tmp = vec[i];
       int j = i;
       for (; j >= interval && vec[j - interval] > tmp; j -= interval) {
