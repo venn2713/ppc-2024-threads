@@ -4,8 +4,10 @@
 
 #include <string>
 #include <vector>
+#include <random>
 
 #include "core/task/include/task.hpp"
+
 
 class RadixSortDoubleSequential : public ppc::core::Task {
  public:
@@ -18,10 +20,11 @@ class RadixSortDoubleSequential : public ppc::core::Task {
  private:
   
   int data_size;
-  std::vector<double>* sort;
+  std::vector<double> sort;
 
   void countSort(double* in, double* out, int len, int exp);
   bool countSortSigns(double* in, double* out, int len);
   std::vector<double> radixSort(const std::vector<double>& data1);
 
 };
+

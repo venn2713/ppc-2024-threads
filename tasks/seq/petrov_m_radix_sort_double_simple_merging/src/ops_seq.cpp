@@ -6,7 +6,8 @@
 
 using namespace std::chrono_literals;
 
-void countSort(double* in, double* out, int len, int exp) {
+
+void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int exp) {
     unsigned char* buf = reinterpret_cast<unsigned char*>(in);
     int count[256] = { 0 };
     for (int i = 0; i < len; i++) {
@@ -26,7 +27,7 @@ void countSort(double* in, double* out, int len, int exp) {
     }
 }
 
-bool countSortSigns(double* in, double* out, int len) {
+bool RadixSortDoubleSequential::countSortSigns(double* in, double* out, int len) {
     bool positiveFlag = false, negativeFlag = false;
     int firstNegativeIndex = -1;
     int firstPositiveIndex = -1;
@@ -71,7 +72,7 @@ bool countSortSigns(double* in, double* out, int len) {
     return false;
 }
 
-std::vector<double> radixSort(const std::vector<double>& data) {
+std::vector<double> RadixSortDoubleSequential::radixSort(const std::vector<double>& data) {
     int len = static_cast<int>(data.size());
     std::vector<double> in = data;
     std::vector<double> out(data.size());
@@ -91,8 +92,14 @@ std::vector<double> radixSort(const std::vector<double>& data) {
 bool RadixSortDoubleSequential::pre_processing() {
   internal_order_test(); 
   try{
-  sort = reinterpret_cast<std::vector<double>*>((taskData->inputs[0]));
+  
   data_size = taskData->inputs_count[0];
+
+  while(!sort.empty()) {sort.pop_back();}
+
+  for(int i = 0;i < data_size;i++){
+    sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
+  }
   }catch(...){
      std::cout<<"\n";
     std::cout<<"Double radix sort error";
@@ -111,16 +118,7 @@ bool RadixSortDoubleSequential::run() {
   internal_order_test();
   try{
 
-    for (const double& num : *sort) {
-    std::cout << num << " ";
-    }
-    std::cout<<"\n";
-    *sort = radixSort(*sort); 
-
-    for (const double& num : *sort) {
-    std::cout << num << " ";
-    }
-    std::cout<<"\n";
+    sort = (radixSort(sort));
     
   }
   catch(...){
@@ -135,7 +133,11 @@ bool RadixSortDoubleSequential::run() {
 bool RadixSortDoubleSequential::post_processing() {
   internal_order_test();
   try{
-  *reinterpret_cast<std::vector<double>*>(taskData->outputs[0]) = *sort;
+    auto* outputs = reinterpret_cast<double*>(taskData->outputs[0]);
+    
+    for (int i = 0; i < data_size; i++) {
+    outputs[i] = sort[i];
+  }
   }
   catch(...){ std::cout<<"\n";
     std::cout<<"Double radix sort error";

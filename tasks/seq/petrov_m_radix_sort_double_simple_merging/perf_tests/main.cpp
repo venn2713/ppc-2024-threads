@@ -7,8 +7,17 @@
 #include "seq/petrov_m_radix_sort_double_simple_merging/include/ops_seq.hpp"
 
 TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
- std::vector<double> in{2.55, 3.223, 5.323, 1.116, 2.56, 3.222, 5.322, 1.115};
-  std::vector<double> sorted{1.115,1.116, 2.55,2.56, 3.222,3.223, 5.322,5.323 };
+    std::vector<double> in(1000000);
+    std::random_device rd;
+    std::mt19937 eng(rd());
+    std::uniform_real_distribution<double> distr(-10000, 100000);
+
+    for (auto& num : in) {
+        num = distr(eng);
+    }
+    
+  std::vector<double> sorted = in;
+  std::sort(sorted.begin(), sorted.end());
   std::vector<double> out(in.size());
 
   // Create TaskData
@@ -44,8 +53,18 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
 }
 
 TEST(Petrov_M_Radix_Sort_Sequential1, test_task_run) {
- std::vector<double> in{2.55, 3.223, 5.323, 1.116, 2.56, 3.222, 5.322, 1.115};
-  std::vector<double> sorted{1.115,1.116, 2.55,2.56, 3.222,3.223, 5.322,5.323 };
+ 
+   std::vector<double> in(1000000);
+    std::random_device rd;
+    std::mt19937 eng(rd());
+    std::uniform_real_distribution<double> distr(-10000, 10000);
+
+    for (auto& num : in) {
+        num = distr(eng);
+    }
+    
+  std::vector<double> sorted = in;
+  std::sort(sorted.begin(), sorted.end());
   std::vector<double> out(in.size());
 
   // Create TaskData
