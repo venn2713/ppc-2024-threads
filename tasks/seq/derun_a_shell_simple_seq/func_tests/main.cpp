@@ -8,7 +8,7 @@
 void runTestRandom(int count) {
   // Create data
   std::vector<int> in = ShellSequential::generate_random_vector(count, 1, 100);
-  // std::vector<int> out(1, 0);
+  std::vector<int> out(count, 0);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();  // NOLINT
