@@ -40,7 +40,7 @@ TEST(KashinDijkstraSeqTest, TestGraph10) {
   ASSERT_EQ(299, std::accumulate(out.begin(), out.end(), 0));
 }
 
-TEST(KashinDijkstraSeqTest, СheckingIncorrectInputData) {
+TEST(KashinDijkstraSeqTest, CheckingIncorrectInputData) {
   const int vertexCount = 10, edgeWeight = 10000, start = -1, seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
