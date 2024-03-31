@@ -26,9 +26,9 @@ std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne, cons
       jbMin = std::min(jb + block, size);
       kbMin = std::min(kb + block, size);
 
-      for (int i = 0; i < size; ++i)
-        for (int k = kb; k < kbMin; ++k)
-          for (int j = jb; j < jbMin; ++j) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
+      for (size_t i = 0; i < size; ++i)
+        for (size_t k = kb; k < kbMin; ++k)
+          for (size_t j = jb; j < jbMin; ++j) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
     }
   }
 
