@@ -1,6 +1,7 @@
 // Copyright 2023 Nesterov Alexander
 #include <gtest/gtest.h>
 
+#include <random>
 #include <numeric>
 #include <vector>
 
@@ -10,14 +11,16 @@
 TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0;
   // создаем повторяющийся рандом
-  std::srand(0);
+  std::mt19937 rng(42);
+  std::uniform_int_distribution<int> dist(1, edgeWeight);
+  std::uniform_int_distribution<int> isEdge(0, 2);
 
   // Create data
   std::vector<int> in;
   in.reserve(vertexCount * vertexCount);
   std::vector<int> out(vertexCount);
   for (int i = 0; i < vertexCount * vertexCount; i++) {
-    int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
+    int weight = isEdge(rng) == 0 ? -1 : dist(rng);
     in.push_back(weight);
   }
 
@@ -49,20 +52,22 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(14970, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(13716, std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, test_task_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0;
   // создаем повторяющийся рандом
-  std::srand(0);
+  std::mt19937 rng(42);
+  std::uniform_int_distribution<int> dist(1, edgeWeight);
+  std::uniform_int_distribution<int> isEdge(0, 2);
 
   // Create data
   std::vector<int> in;
   in.reserve(vertexCount * vertexCount);
   std::vector<int> out(vertexCount);
   for (int i = 0; i < vertexCount * vertexCount; i++) {
-    int weight = std::rand() % 2 == 0 ? -1 : std::rand() % edgeWeight + 1;
+    int weight = isEdge(rng) == 0 ? -1 : dist(rng);
     in.push_back(weight);
   }
 
@@ -94,5 +99,5 @@ TEST(KashinDijkstraSeqTest, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(14970, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(13716, std::accumulate(out.begin(), out.end(), 0));
 }
