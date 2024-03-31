@@ -4,16 +4,15 @@
 
 #include <algorithm>
 #include <chrono>
-#include <utility>
 #include <random>
 #include <thread>
+#include <utility>
 #include <vector>
 #include "core/task/include/task.hpp"
 
 class SequentialBatcherSort : public ppc::core::Task {
  public:
-  explicit SequentialBatcherSort(std::shared_ptr
-      <ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit SequentialBatcherSort(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -24,11 +23,11 @@ class SequentialBatcherSort : public ppc::core::Task {
 };
 
 inline std::vector<int> GenerateVector(int size) {
-    if (size < 1) throw -1;
-    std::mt19937 gen;
-    std::vector<int> vec(size);
-    for (int i = 0; i < size; i++) {
-        vec[i] = gen() % 100;
-    }
-    return vec;
+  if (size < 1) throw -1;
+  std::mt19937 gen;
+  std::vector<int> vec(size);
+  for (int i = 0; i < size; i++) {
+    vec[i] = gen() % 100;
+  }
+  return vec;
 }
