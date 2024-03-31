@@ -1,19 +1,18 @@
 // Copyright 2024 Mitin Roman
 #include "omp/mitin_r_double_radix_sort/include/ops_omp.hpp"
 
+#include <omp.h>
+
+#include <cassert>
 #include <cstring>
 #include <iostream>
 #include <thread>
-#include <memory_resource>
-#include <omp.h>
-#include <assert.h>
-#include <sys/mman.h>
 
 using namespace std::chrono_literals;
 
 namespace {
 
-constexpr size_t max_byte_val = 256; 
+constexpr size_t max_byte_val = 256;
 
 uint8_t get_byte_val(double val, size_t byte_num) {
   assert(*(reinterpret_cast<uint8_t*>(&val) + byte_num) < max_byte_val);
@@ -67,7 +66,8 @@ bool SortRadixDoubleTaskOMP::run() {
   constexpr size_t CACHE_LINE_SIZE = 64;
   try {
     constexpr size_t first_byte_max_val = 128;
-    double* buckets = reinterpret_cast<double*>(aligned_alloc(CACHE_LINE_SIZE, data_size * first_byte_max_val * sizeof(double)));
+    auto* buckets =
+        reinterpret_cast<double*>(aligned_alloc(CACHE_LINE_SIZE, data_size * first_byte_max_val * sizeof(double)));
     if (buckets == nullptr) {
       std::cerr << "Cannot allocate buffer\n";
       return false;
@@ -75,23 +75,24 @@ bool SortRadixDoubleTaskOMP::run() {
     size_t buckets_size[first_byte_max_val]{0};
 
     uint64_t max_bucket_size = 0;
-    for (size_t i = 0; i < data_size; i++ ) {
+    for (size_t i = 0; i < data_size; i++) {
       const uint32_t byte_val = get_byte_val(data_ptr[i], 7);
       assert(byte_val < first_byte_max_val);
       buckets[byte_val * data_size + buckets_size[byte_val]++] = data_ptr[i];
       max_bucket_size = std::max(max_bucket_size, buckets_size[byte_val]);
     }
-      double* aux_buckets = reinterpret_cast<double*>(aligned_alloc(CACHE_LINE_SIZE, max_bucket_size * max_byte_val * sizeof(double) * omp_get_max_threads()));
+    auto* aux_buckets = reinterpret_cast<double*>(
+        aligned_alloc(CACHE_LINE_SIZE, max_bucket_size * max_byte_val * sizeof(double) * omp_get_max_threads()));
 
     if (aux_buckets == nullptr) {
       std::cerr << "Cannot allocate aux_buckets\n";
       return false;
     }
 
-    #pragma omp parallel 
+#pragma omp parallel
     {
       double* local_buckets = aux_buckets + max_bucket_size * max_byte_val * omp_get_thread_num();
-      #pragma omp for nowait
+#pragma omp for nowait
       for (size_t i = 0; i < first_byte_max_val; i++) {
         sort_arr(&buckets[i * data_size], buckets_size[i], local_buckets);
       }

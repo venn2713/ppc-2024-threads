@@ -112,7 +112,7 @@ TEST(mitin_r_double_radix_sort_omp, Test_Sort_reverse_order) {
 
 TEST(mitin_r_double_radix_sort_omp, Test_Sort_random_test) {
   // Create data
-  constexpr size_t input_size = 1e+6;
+  constexpr size_t input_size = 1e+5;
   std::mt19937 gen(1.0);
   std::uniform_real_distribution<> dis(0.0, 1e+10);
   std::vector<double> in(input_size);

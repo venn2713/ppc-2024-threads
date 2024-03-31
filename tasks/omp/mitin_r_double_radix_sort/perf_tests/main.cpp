@@ -1,10 +1,10 @@
 // Copyright 2024 Mitin Roman
 #include <gtest/gtest.h>
+#include <omp.h>
 
+#include <limits>
 #include <random>
 #include <vector>
-#include <omp.h>
-#include <limits>
 
 #include "core/perf/include/perf.hpp"
 #include "omp/mitin_r_double_radix_sort/include/ops_omp.hpp"
@@ -15,9 +15,7 @@ constexpr size_t input_size = 5e+6;
 
 }  // namespace
 
-double timer() {
-  return omp_get_wtime();
-}
+double timer() { return omp_get_wtime(); }
 
 TEST(mitin_r_double_radix_sort_seq, test_pipeline_run) {
   // Create data
@@ -74,7 +72,7 @@ TEST(mitin_r_double_radix_sort_seq, test_task_run) {
     memcpy(&expected[i], &rand_val, sizeof(rand_val));
     in[i] = expected[i];
   }
-  
+
   std::vector<double *> out(1);
 
   // Create TaskData
