@@ -3,17 +3,19 @@
 
 #include <string>
 #include <vector>
-
+#include <utility>
+#include <memory>
 #include "core/task/include/task.hpp"
 
-class TestTaskSequential : public ppc::core::Task {
+class RadixSortSequential : public ppc::core::Task {
  public:
-  explicit TestTaskSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
-  bool pre_processing() override;
+  explicit RadixSortSequential(std::shared_ptr<ppc::core::TaskData>
+  taskData_) : Task(std::move(taskData_)) {}
   bool validation() override;
+  bool pre_processing() override;
   bool run() override;
   bool post_processing() override;
 
  private:
-  int input_{}, res{};
+  std::vector<int> work_vector;
 };
