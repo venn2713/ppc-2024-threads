@@ -14,7 +14,10 @@ const std::vector<int> TEST_CHECKS = {299, 987, 3831, 6411};
 #endif
 
 TEST(KashinDijkstraSeqTest, TestGraph10) {
-  const int vertexCount = 10, edgeWeight = 100, start = 0, seed = 42;
+  const int vertexCount = 10;
+  const int edgeWeight = 100;
+  const int start = 0;
+  const int seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -47,7 +50,8 @@ TEST(KashinDijkstraSeqTest, TestGraph10) {
 }
 
 TEST(KashinDijkstraSeqTest, CheckingIncorrectInputData) {
-  const int vertexCount = 10, edgeWeight = 10000, start = -1, seed = 42;
+  const int vertexCount = 10;
+  edgeWeight = 10000, start = -1, seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -76,7 +80,10 @@ TEST(KashinDijkstraSeqTest, CheckingIncorrectInputData) {
 }
 
 TEST(KashinDijkstraSeqTest, TestGraph100) {
-  const int vertexCount = 100, edgeWeight = 100, start = 0, seed = 42;
+  const int vertexCount = 100;
+  const int edgeWeight = 100;
+  const int start = 0;
+  const int seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -109,7 +116,10 @@ TEST(KashinDijkstraSeqTest, TestGraph100) {
 }
 
 TEST(KashinDijkstraSeqTest, TestGraph1000) {
-  const int vertexCount = 1000, edgeWeight = 100, start = 0, seed = 42;
+  const int vertexCount = 1000;
+  const int edgeWeight = 100;
+  const int start = 0;
+  const int seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
@@ -142,7 +152,10 @@ TEST(KashinDijkstraSeqTest, TestGraph1000) {
 }
 
 TEST(KashinDijkstraSeqTest, TestGraph10000) {
-  const int vertexCount = 2000, edgeWeight = 100, start = 0, seed = 42;
+  const int vertexCount = 2000;
+  const int edgeWeight = 100;
+  const int start = 0;
+  const int seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
