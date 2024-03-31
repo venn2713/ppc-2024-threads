@@ -34,8 +34,7 @@ class SobelOperator : public ppc::core::Task {
   static ConvolutionKernel convolutionByY;
 
  public:
-  explicit SobelOperator(std::shared_ptr<ppc::core::TaskData> taskData)
-      : Task(std::move(taskData)) {}
+  explicit SobelOperator(std::shared_ptr<ppc::core::TaskData> taskData) : Task(std::move(taskData)) {}
 
   bool validation() override;
 
@@ -55,7 +54,8 @@ class SobelOperatorSequential : public SobelOperator {
 
 class SobelOperatorParallelOmp : public SobelOperator {
  public:
-  explicit SobelOperatorParallelOmp(std::shared_ptr<ppc::core::TaskData> taskData) : SobelOperator(std::move(taskData)) {}
+  explicit SobelOperatorParallelOmp(std::shared_ptr<ppc::core::TaskData> taskData)
+      : SobelOperator(std::move(taskData)) {}
 
   bool pre_processing() override;
   bool run() override;
