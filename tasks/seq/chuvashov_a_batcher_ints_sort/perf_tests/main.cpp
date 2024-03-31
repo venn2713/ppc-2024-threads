@@ -58,7 +58,6 @@ TEST(ChuvashovABatcherPerfTests, Test_Run_Pipeline) {
   };
 
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
-
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testSeq);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);

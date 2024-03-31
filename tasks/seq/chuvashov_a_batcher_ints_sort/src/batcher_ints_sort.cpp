@@ -126,7 +126,7 @@ bool SequentialBatcherSort::validation() {
 bool SequentialBatcherSort::run() {
   internal_order_test();
   output = BatcherSort(arr1, arr2);
-  std::this_thread::sleep_for(50ms);
+  std::this_thread::sleep_for(35ms);
   return true;
 }
 
