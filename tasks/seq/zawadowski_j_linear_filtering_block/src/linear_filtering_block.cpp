@@ -47,10 +47,8 @@ void LinearFiltering::blockSet(uint16_t _width, uint16_t _height) {
 void LinearFiltering::imageSet(std::vector<uint8_t> _image) { image = std::move(_image); }
 
 void LinearFiltering::kernelSet(const std::vector<int16_t> &kernel) {
-  if (kernel.size() > 9)
-    throw "Error: Kernel larger than 3x3!";
-  if (kernel.size() < 9)
-    throw "Error: Kernel smaller than 3x3!";
+  if (kernel.size() > 9) throw "Error: Kernel larger than 3x3!";
+  if (kernel.size() < 9) throw "Error: Kernel smaller than 3x3!";
   gaussKernel = kernel;
 }
 
