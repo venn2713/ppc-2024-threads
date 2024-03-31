@@ -21,7 +21,6 @@ bool BinaryLabellingSequential::pre_processing() {
 
 bool BinaryLabellingSequential::validation() {
   internal_order_test();
-
   return taskData->inputs_count.size() == 3 && taskData->outputs_count.size() == 2 && taskData->inputs_count[1] == 4 &&
          taskData->inputs_count[2] == 4 && taskData->outputs_count[1] == 4 &&
          taskData->inputs_count[0] == deserializeInt32(taskData->inputs[1]) * deserializeInt32(taskData->inputs[2]);
@@ -29,7 +28,6 @@ bool BinaryLabellingSequential::validation() {
 
 bool BinaryLabellingSequential::run() {
   internal_order_test();
-
   try {
     auto res = _getLabelledImage(_source, _m, _n);
     _result = res.first;
@@ -37,13 +35,11 @@ bool BinaryLabellingSequential::run() {
   } catch (...) {
     return false;
   }
-  
   return true;
 }
 
 bool BinaryLabellingSequential::post_processing() {
   internal_order_test();
-
   try {
     memcpy(taskData->outputs[0], _result.data(), _result.size());
     auto serializedObjectsNum = serializeInt32(_numObjects);
@@ -51,7 +47,6 @@ bool BinaryLabellingSequential::post_processing() {
   } catch (...) {
     return false;
   }
- 
   return true;
 }
 
@@ -86,13 +81,11 @@ bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<
     return false;
   }
   _get(checked, n, x, y) = 1;
-
   if (_get(v, n, x, y)) {
     _get(labelled, n, x, y) = label;
   } else {
     return false;
   }
-
   if (_inBounds(x - 1, y, m, n) && _notPrev(x - 1, y, prevX, prevY)) {
     _markObject(v, labelled, checked, m, n, x - 1, y, x, y, label);
   }
@@ -105,7 +98,6 @@ bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<
   if (_inBounds(x, y + 1, m, n) && _notPrev(x, y + 1, prevX, prevY)) {
     _markObject(v, labelled, checked, m, n, x, y + 1, x, y, label);
   }
-
   return true;
 }
 
@@ -114,13 +106,11 @@ std::pair<std::vector<uint8_t>, int> BinaryLabellingSequential::_getLabelledImag
   std::vector<uint8_t> labelled(v.size());
   std::vector<uint8_t> checked(v.size());
   int label = 1;
-
   for (int i = 0; i < m; i++) {
     for (int j = 0; j < n; j++) {
       label += static_cast<int>(_markObject(v, labelled, checked, m, n, i, j, -1, -1, label));
     }
   }
-
   return std::make_pair(labelled, label - 1);
 }
 

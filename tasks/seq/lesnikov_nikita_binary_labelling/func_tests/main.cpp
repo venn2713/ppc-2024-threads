@@ -103,7 +103,7 @@ TEST(SequentialBinaryLabelling, allSeperatedTest) {
   ASSERT_TRUE(testTaskSequential.run());
   ASSERT_TRUE(testTaskSequential.post_processing());
 
-  std::vector<uint8_t> expected = {1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8,  0, 9, 0, 10, 0, 11, 0, 12, 0, 13};
+  std::vector<uint8_t> expected = {1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13};
   uint32_t expectedObjectsNum = 13;
 
   EXPECT_EQ(outV, expected);
