@@ -51,7 +51,9 @@ TEST(KashinDijkstraSeqTest, TestGraph10) {
 
 TEST(KashinDijkstraSeqTest, CheckingIncorrectInputData) {
   const int vertexCount = 10;
-  edgeWeight = 10000, start = -1, seed = 42;
+  const int edgeWeight = 10000;
+  const int start = -1;
+  const int seed = 42;
   // создаем повторяющийся рандом
   std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
