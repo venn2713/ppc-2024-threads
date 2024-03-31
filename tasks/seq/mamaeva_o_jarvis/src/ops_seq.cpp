@@ -37,7 +37,7 @@ bool JarvisHullSequential::validation() {
   internal_order_test();
   // Check count elements of output
   return (taskData->inputs[0] != nullptr) && (taskData->inputs_count[0] != 0u) && (taskData->outputs[0] != nullptr) &&
-        (taskData->outputs_count[0] != 0u);
+         (taskData->outputs_count[0] != 0u);
 }
 
 void Jarvis(const std::vector<jarvis::r>& points, jarvis::r* hull) {
