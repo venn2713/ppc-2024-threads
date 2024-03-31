@@ -21,10 +21,10 @@ void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int 
   for (int i = 0; i < len; i++) {
     out[count[buf[8 * i + exp]]] = in[i];
     count[buf[8 * i + exp]]++;
-  }     
+  }
 }
 
-bool RadixSortDoubleSequential::countSortSigns(double *const in, double* out, int len) {
+bool RadixSortDoubleSequential::countSortSigns(double* const in, double* out, int len) {
   bool positiveFlag = false;
   bool negativeFlag = false;
   int firstNegativeIndex = -1;
@@ -58,7 +58,7 @@ bool RadixSortDoubleSequential::countSortSigns(double *const in, double* out, in
       }
     }
     return true;
-  } 
+  }
   if (!positiveFlag) {
     for (int i = len - 1, j = 0; i >= 0; i--, j++) {
       out[j] = in[i];

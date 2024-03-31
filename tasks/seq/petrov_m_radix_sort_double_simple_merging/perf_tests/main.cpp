@@ -1,4 +1,4 @@
-//Copyright 2024 Petrov Maksim
+// Copyright 2024 Petrov Maksim
 
 #include <gtest/gtest.h>
 
