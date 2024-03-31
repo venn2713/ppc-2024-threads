@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 
 #include <vector>
-
 #include "seq/moiseev_n_jarvis/include/ops_seq.hpp"
 
 TEST(Sequential_Jarvis, Empty_Input) {
@@ -88,6 +87,30 @@ TEST(Sequential_Jarvis, Duplicate_Points) {
 
   ASSERT_EQ(resHull[0], hull[0]);
   ASSERT_EQ(resHull[1], hull[1]);
+}
+
+TEST(Sequential_Jarvis, Random_Points) {
+  std::vector<Point> points = {{1, 4}, {3, 8}, {8, 2}, {5, 5}, {9, 1}, {4, 7}};
+  std::vector<Point> hull = {{1, 4}, {3, 8}, {4, 7}, {9, 1}};
+  std::vector<Point> resHull(hull.size());
+
+  // Create TaskData
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
+  taskDataSeq->inputs_count.emplace_back(points.size());
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
+  taskDataSeq->outputs_count.emplace_back(resHull.size());
+
+  // Create Task
+  TestTaskSequentialJarvis testTaskSequential(taskDataSeq);
+  ASSERT_EQ(testTaskSequential.validation(), true);
+  testTaskSequential.pre_processing();
+  testTaskSequential.run();
+  testTaskSequential.post_processing();
+
+  for (size_t i = 0; i < hull.size(); ++i) {
+    ASSERT_EQ(resHull[i], hull[i]);
+  }
 }
 
 TEST(Sequential_Jarvis, Rectangle_Points) {

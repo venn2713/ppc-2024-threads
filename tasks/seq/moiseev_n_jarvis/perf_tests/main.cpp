@@ -51,7 +51,6 @@ TEST(Sequential_Jarvis_Perf, test_task_run) {
   }
 
   std::vector<Point> resHull(points.size());
-
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
