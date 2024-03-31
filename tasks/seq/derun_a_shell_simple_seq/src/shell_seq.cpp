@@ -57,9 +57,9 @@ std::vector<int> ShellSequential::shell_sort(const std::vector<int>& input) {
   return vec;
 }
 
-bool ShellSequential::checkSorted(std::vector<int> input) { return std::is_sorted(input.begin(), input.end()); }  // NOLINT
+bool ShellSequential::checkSorted(std::vector<int> input) { return std::is_sorted(input.begin(), input.end()); }
 
-std::vector<int> ShellSequential::generate_random_vector(int size, int min, int max) {  // NOLINT
+std::vector<int> ShellSequential::generate_random_vector(int size, int min, int max) {
   // First create an instance of an engine.
   std::random_device rnd_device;
   // Specify the engine and distribution.
