@@ -14,8 +14,7 @@ std::pair<std::vector<uint8_t>, int> createBigOddSizeImage(int m, int n, std::ve
   std::vector<uint8_t> result(m * n);
   *labelled = std::vector<uint8_t>(m * n);
   int objectsNum = 0;
-  for (int i = 0; i < m * n; i++)
-  {
+  for (int i = 0; i < m * n; i++) {
     if (i % 2 == 0) {
       result[i] = 1;
       objectsNum++;

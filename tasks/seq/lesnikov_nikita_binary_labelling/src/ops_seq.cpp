@@ -22,14 +22,9 @@ bool BinaryLabellingSequential::pre_processing() {
 bool BinaryLabellingSequential::validation() {
   internal_order_test();
 
-  return taskData->inputs_count.size() == 3 
-      && taskData->outputs_count.size() == 2
-      && taskData->inputs_count[1] == 4 
-      && taskData->inputs_count[2] == 4
-      && taskData->outputs_count[1] == 4 &&
-         taskData->inputs_count[0] 
-      == deserializeInt32(taskData->inputs[1]) 
-      * deserializeInt32(taskData->inputs[2]);
+  return taskData->inputs_count.size() == 3 && taskData->outputs_count.size() == 2 && taskData->inputs_count[1] == 4 &&
+         taskData->inputs_count[2] == 4 && taskData->outputs_count[1] == 4 &&
+         taskData->inputs_count[0] == deserializeInt32(taskData->inputs[1]) * deserializeInt32(taskData->inputs[2]);
 }
 
 bool BinaryLabellingSequential::run() {
@@ -60,7 +55,7 @@ bool BinaryLabellingSequential::post_processing() {
   return true;
 }
 
-std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) { 
+std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) {
   std::vector<uint8_t> result;
   for (int i = 3; i >= 0; i--) {
     result.push_back(static_cast<uint8_t>(((num << (3 - i) * 8) >> (3 - i) * 8) >> i * 8));
@@ -84,9 +79,9 @@ bool BinaryLabellingSequential::_inBounds(int x, int y, int m, int n) { return x
 
 bool BinaryLabellingSequential::_notPrev(int x, int y, int prevX, int prevY) { return x != prevX || y != prevY; }
 
-bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled, 
-    std::vector<uint8_t>& checked, int m, int n,
-    int x, int y, int prevX, int prevY, int label) {
+bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled,
+                                            std::vector<uint8_t>& checked, int m, int n, int x, int y, int prevX,
+                                            int prevY, int label) {
   if (_get(checked, n, x, y)) {
     return false;
   }
@@ -115,7 +110,7 @@ bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<
 }
 
 std::pair<std::vector<uint8_t>, int> BinaryLabellingSequential::_getLabelledImage(const std::vector<uint8_t>& v, int m,
-                                                                           int n) {
+                                                                                  int n) {
   std::vector<uint8_t> labelled(v.size());
   std::vector<uint8_t> checked(v.size());
   int label = 1;

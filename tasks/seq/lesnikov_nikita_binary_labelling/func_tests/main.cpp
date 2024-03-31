@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 
 #include <vector>
-#include <iostream>
 
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
@@ -77,16 +76,11 @@ TEST(SequentialBinaryLabelling, all1Test) {
 }
 
 TEST(SequentialBinaryLabelling, allSeperatedTest) { 
-     int m = 5;
+  int m = 5;
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {
-      1, 0, 1, 0, 1,
-      0, 1, 0, 1, 0,
-      1, 0, 1, 0, 1,
-      0, 1, 0, 1, 0,
-      1, 0, 1, 0, 1};
+  std::vector<uint8_t> in = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -109,12 +103,7 @@ TEST(SequentialBinaryLabelling, allSeperatedTest) {
   ASSERT_TRUE(testTaskSequential.run());
   ASSERT_TRUE(testTaskSequential.post_processing());
 
-  std::vector<uint8_t> expected = {
-      1, 0, 2, 0, 3, 
-      0, 4, 0, 5, 0,
-      6, 0, 7, 0, 8, 
-      0, 9, 0, 10, 0, 
-      11, 0, 12, 0, 13};
+  std::vector<uint8_t> expected = {1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8,  0, 9, 0, 10, 0, 11, 0, 12, 0, 13};
   uint32_t expectedObjectsNum = 13;
 
   EXPECT_EQ(outV, expected);
@@ -126,12 +115,7 @@ TEST(SequentialBinaryLabelling, Object2Test) {
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {
-      1, 1, 1, 0, 0,
-      1, 1, 0, 1, 0,
-      1, 0, 1, 1, 1,
-      0, 0, 1, 0, 1,
-      0, 0, 1, 1, 1};
+  std::vector<uint8_t> in = {1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -154,12 +138,7 @@ TEST(SequentialBinaryLabelling, Object2Test) {
   ASSERT_TRUE(testTaskSequential.run());
   ASSERT_TRUE(testTaskSequential.post_processing());
 
-  std::vector<uint8_t> expected = {
-      1, 1, 1, 0, 0, 
-      1, 1, 0, 2, 0, 
-      1, 0, 2, 2, 2, 
-      0, 0, 2, 0, 2, 
-      0, 0, 2, 2, 2};
+  std::vector<uint8_t> expected = {1, 1, 1, 0, 0, 1, 1, 0, 2, 0, 1, 0, 2, 2, 2, 0, 0, 2, 0, 2, 0, 0, 2, 2, 2};
   uint32_t expectedObjectsNum = 2;
 
   EXPECT_EQ(outV, expected);
@@ -171,12 +150,7 @@ TEST(SequentialBinaryLabelling, Object4Test) {
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {
-      1, 1, 0, 1, 1, 
-      1, 1, 0, 1, 1, 
-      0, 0, 0, 0, 0, 
-      1, 1, 0, 1, 1, 
-      1, 1, 0, 1, 1};
+  std::vector<uint8_t> in = {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -199,12 +173,7 @@ TEST(SequentialBinaryLabelling, Object4Test) {
   ASSERT_TRUE(testTaskSequential.run());
   ASSERT_TRUE(testTaskSequential.post_processing());
 
-  std::vector<uint8_t> expected = {
-      1, 1, 0, 2, 2,
-      1, 1, 0, 2, 2,
-      0, 0, 0, 0, 0, 
-      3, 3, 0, 4, 4, 
-      3, 3, 0, 4, 4};
+  std::vector<uint8_t> expected = {1, 1, 0, 2, 2, 1, 1, 0, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 4, 4, 3, 3, 0, 4, 4};
   uint32_t expectedObjectsNum = 4;
 
   EXPECT_EQ(outV, expected);
