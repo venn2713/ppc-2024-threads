@@ -83,16 +83,16 @@ std::vector<double> RadixSortDoubleSequential::radixSort(const std::vector<doubl
 
 
 bool RadixSortDoubleSequential::pre_processing() {
-  internal_order_test(); 
+  internal_order_test();
   try {
     data_size = taskData->inputs_count[0];
-    while(!sort.empty()) {
+    while (!sort.empty()) {
       sort.pop_back();
     }
     for(int i = 0;i < data_size;i++){
-    sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
+      sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
     }
-  } catch(...) {
+  } catch (...) {
     std::cout << "\n";
     std::cout << "Double radix sort error";
     std::cout << "\n";
@@ -110,7 +110,7 @@ bool RadixSortDoubleSequential::run() {
   internal_order_test();
   try {
     sort = (radixSort(sort));
-  } catch(...) {
+  } catch (...) {
     std::cout << "\n";
     std::cout << "Double radix sort error";
     std::cout << "\n";
@@ -124,9 +124,9 @@ bool RadixSortDoubleSequential::post_processing() {
   try {
     auto* outputs = reinterpret_cast<double*>(taskData->outputs[0]);
     for (int i = 0; i < data_size; i++) {
-    outputs[i] = sort[i];
+      outputs[i] = sort[i];
     }
-  } catch(...) {
+  } catch (...) {
     std::cout << "\n";
     std::cout << "Double radix sort error";
     std::cout << "\n";
