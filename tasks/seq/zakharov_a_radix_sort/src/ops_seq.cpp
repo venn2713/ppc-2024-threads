@@ -10,13 +10,12 @@ bool ZakharovRadixSortSequential::pre_processing() {
   internal_order_test();
   try {
     arr_size = taskData->inputs_count[0];
-    auto * inp = reinterpret_cast<Number*>(taskData->inputs[0]);
+    auto* inp = reinterpret_cast<Number*>(taskData->inputs[0]);
     inp_arr.resize(arr_size);
     copy_data(inp, inp_arr.data(), arr_size);
     out_arr = reinterpret_cast<Number*>(taskData->outputs[0]);
     return true;
-  }
-  catch (...) {
+  } catch (...) {
     return false;
   }
 }
@@ -31,35 +30,30 @@ bool ZakharovRadixSortSequential::run() {
       std::swap(inp_arr_p, out_arr_p);
     }
     return true;
-  }
-  catch (...) {
+  } catch (...) {
     return false;
   }
 }
 
 bool ZakharovRadixSortSequential::post_processing() {
-    internal_order_test();
-    try {
-      copy_data(inp_arr.data(), out_arr, arr_size);
-      return true;
-    }
-    catch (...) {
-      return false;
-    }
+  internal_order_test();
+  try {
+    copy_data(inp_arr.data(), out_arr, arr_size);
+    return true;
+  } catch (...) {
+    return false;
+  }
 }
 
-size_t ZakharovRadixSortSequential::get_index(
-    const Number* const arr, std::size_t arr_ind, std::size_t byte_num
-    ) {
+size_t ZakharovRadixSortSequential::get_index(const Number* const arr, std::size_t arr_ind, std::size_t byte_num) {
   if (byte_num == num_bytes - 1) {
     return static_cast<int8_t>(arr[arr_ind].bytes[byte_num]) + 128;
   }
   return arr[arr_ind].bytes[byte_num];
 }
 
-void ZakharovRadixSortSequential::counting_sort_by_bytes(
-    const Number* const src, Number* const dest, std::size_t byte_num
-    ) {
+void ZakharovRadixSortSequential::counting_sort_by_bytes(const Number* const src, Number* const dest,
+                                                         std::size_t byte_num) {
   std::fill(counter.begin(), counter.end(), 0);
 
   // count numbers
@@ -82,8 +76,7 @@ void ZakharovRadixSortSequential::counting_sort_by_bytes(
   }
 }
 
-void ZakharovRadixSortSequential::copy_data(
-    const Number* const src, Number* const dist, std::size_t size) {
+void ZakharovRadixSortSequential::copy_data(const Number* const src, Number* const dist, std::size_t size) {
   for (std::size_t i = 0; i < size; i++) {
     dist[i].number = src[i].number;
   }

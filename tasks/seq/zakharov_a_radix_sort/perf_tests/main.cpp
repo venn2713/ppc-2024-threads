@@ -1,8 +1,8 @@
 // Copyright 2024 Zakharov Artem
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <random>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/zakharov_a_radix_sort/include/ops_seq.hpp"
@@ -12,7 +12,7 @@ std::vector<int> random_vector(std::size_t sz) {
   std::mt19937 gen(dev());
   std::uniform_int_distribution<int> distrib(-100000, 100000);
   std::vector<int> result(sz);
-  for (int& el : result) {
+  for (int &el : result) {
     el = distrib(gen);
   }
   return result;
