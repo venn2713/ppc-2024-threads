@@ -12,8 +12,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Single_Element_Vector_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -39,8 +38,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Two_Element_Vector_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -67,8 +65,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Three_Element_Vector_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -95,8 +92,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Ten_Element_Vector_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -122,8 +118,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_One_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -143,8 +138,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Two_Test) {
   std::vector<int> out(in1.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs_count.emplace_back(in1.size());
@@ -166,8 +160,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Three_Test) {
   std::vector<int> out;
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -186,8 +179,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Four_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -207,8 +199,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Five_Test) {
   std::vector<int> out(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -229,8 +220,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Six_Test) {
   std::vector<int> out2(in.size(), 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
@@ -252,8 +242,7 @@ TEST(Smirnov_L_Radix_Sort_Test, Validation_Seven_Test) {
   std::vector<int> out(4, 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());

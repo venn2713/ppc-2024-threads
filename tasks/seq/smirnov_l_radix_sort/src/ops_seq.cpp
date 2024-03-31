@@ -6,9 +6,7 @@
 bool RadixSortSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  if (!(taskData->inputs_count.size() == 1 &&
-      taskData->outputs_count.size() == 1 &&
-      taskData->inputs.size() == 1 &&
+  if (!(taskData->inputs_count.size() == 1 && taskData->outputs_count.size() == 1 && taskData->inputs.size() == 1 &&
       taskData->outputs.size() == 1)) {
     return false;
   }
@@ -39,10 +37,8 @@ bool RadixSortSequential::run() {
   try {
     std::vector<int> temporaryArray = work_vector;
 
-    int maxElem = *std::max_element(temporaryArray.begin(),
-        temporaryArray.end());
-    int numDigitsMaxElement = maxElem == 0 ? 1 :
-        static_cast<int>(log10(abs(maxElem))) + 1;
+    int maxElem = *std::max_element(temporaryArray.begin(), temporaryArray.end());
+    int numDigitsMaxElement = maxElem == 0 ? 1 : static_cast<int>(log10(abs(maxElem))) + 1;
 
     for (int digitIndex = 0; digitIndex < numDigitsMaxElement; digitIndex++) {
       int devider = static_cast<int>(pow(10, digitIndex));
