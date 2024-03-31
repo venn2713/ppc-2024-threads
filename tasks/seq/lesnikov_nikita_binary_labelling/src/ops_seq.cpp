@@ -22,10 +22,23 @@ bool BinaryLabellingSequential::pre_processing() {
 bool BinaryLabellingSequential::validation() {
   internal_order_test();
 
+  std::cout << taskData->inputs_count.size() << std::endl;
+  std::cout << taskData->outputs_count.size() << std::endl;
+  std::cout << taskData->inputs_count[1] << std::endl;
+  std::cout << taskData->inputs_count[2] << std::endl;
+  std::cout << taskData->outputs_count[1] << std::endl;
+  std::cout << taskData->inputs_count[0] << std::endl;
+  std::cout << deserializeInt32(taskData->inputs[1]) << std::endl;
+  std::cout << deserializeInt32(taskData->inputs[2]) << " valid end" << std::endl;
+
   return taskData->inputs_count.size() == 3 
       && taskData->outputs_count.size() == 2
       && taskData->inputs_count[1] == 4 
-      && taskData->inputs_count[2] == 4;
+      && taskData->inputs_count[2] == 4
+      && taskData->outputs_count[1] == 4 &&
+         taskData->inputs_count[0] 
+      == deserializeInt32(taskData->inputs[1]) 
+      * deserializeInt32(taskData->inputs[2]);
 }
 
 bool BinaryLabellingSequential::run() {
@@ -59,7 +72,7 @@ bool BinaryLabellingSequential::post_processing() {
 std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) { 
   std::vector<uint8_t> result;
   for (int i = 3; i >= 0; i--) {
-    result.push_back(static_cast<uint8_t>(((num << (3 - i)) >> (3 - i)) >> i));
+    result.push_back(static_cast<uint8_t>(((num << (3 - i) * 8) >> (3 - i) * 8) >> i * 8));
   }
   return result;
 }
@@ -67,7 +80,7 @@ std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) {
 uint32_t BinaryLabellingSequential::deserializeInt32(uint8_t* data) {
   uint32_t res = 0;
   for (int i = 3; i >= 0; i--) {
-    res += static_cast<uint32_t>(data[i]) << i * 8;
+    res += static_cast<uint32_t>(data[3 - i]) << i * 8;
   }
   return res;
 }
@@ -125,4 +138,15 @@ std::pair<std::vector<uint8_t>, int> BinaryLabellingSequential::_getLabelledImag
   }
 
   return std::make_pair(labelled, label - 1);
+}
+
+void BinaryLabellingSequential::visualize(std::vector<uint8_t>& v, int m, int n) {
+  std::cout << "\n\n";
+  for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+      std::cout << (int)_get(v, n, i, j) << " ";
+    }
+    std::cout << "\n";
+  }
+  std::cout << "\n";
 }

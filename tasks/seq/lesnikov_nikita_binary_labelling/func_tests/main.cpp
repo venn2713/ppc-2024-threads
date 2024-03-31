@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <vector>
+#include <iostream>
 
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
@@ -15,11 +16,17 @@ TEST(Sequential, ZeroMatrixTest) {
   std::vector<uint8_t> outNum(4);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->state_of_testing = ppc::core::TaskData::FUNC;
   taskDataSeq->inputs.push_back(in.data());
   taskDataSeq->inputs.push_back(serializedM.data());
   taskDataSeq->inputs.push_back(serializedN.data());
+  taskDataSeq->inputs_count.push_back(in.size());
+  taskDataSeq->inputs_count.push_back(4);
+  taskDataSeq->inputs_count.push_back(4);
   taskDataSeq->outputs.push_back(outV.data());
   taskDataSeq->outputs.push_back(outNum.data());
+  taskDataSeq->outputs_count.push_back(outV.size());
+  taskDataSeq->outputs_count.push_back(4);
 
   BinaryLabellingSequential testTaskSequential(taskDataSeq);
   ASSERT_TRUE(testTaskSequential.validation());
@@ -29,6 +36,10 @@ TEST(Sequential, ZeroMatrixTest) {
 
   std::vector<uint8_t> expected = {0, 0, 0, 0};
   uint32_t expectedObjectsNum = 0;
+
+  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum << std::endl;
+
+  BinaryLabellingSequential::visualize(outV, m, n);
 
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
