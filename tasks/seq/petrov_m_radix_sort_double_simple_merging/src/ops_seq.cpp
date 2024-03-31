@@ -24,7 +24,7 @@ void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int 
   }
 }
 
-bool RadixSortDoubleSequential::countSortSigns(double* const in, double* out, int len) {
+bool RadixSortDoubleSequential::countSortSigns(const double* in, double* out, int len) {
   bool positiveFlag = false;
   bool negativeFlag = false;
   int firstNegativeIndex = -1;

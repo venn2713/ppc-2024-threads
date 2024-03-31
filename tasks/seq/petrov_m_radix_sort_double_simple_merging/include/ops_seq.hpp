@@ -18,7 +18,7 @@ class RadixSortDoubleSequential : public ppc::core::Task {
  private:
   int data_size;
   std::vector<double> sort;
-  void countSort(double* const in, double* out, int len, int exp);
-  bool countSortSigns(double* in, double* out, int len);
+  static void countSort(double* in, double* out, int len, int exp);
+  static bool countSortSigns(const double* in, double* out, int len);
   std::vector<double> radixSort(const std::vector<double>& data1);
 };
