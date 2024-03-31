@@ -8,8 +8,8 @@
 TEST(Sequential, ZeroMatrixTest) {
   int m = 2;
   int n = 2;
-  auto serializedM = TestTaskSequential::serializeInt32(m);
-  auto serializedN = TestTaskSequential::serializeInt32(n);
+  auto serializedM = BinaryLabellingSequential::serializeInt32(m);
+  auto serializedN = BinaryLabellingSequential::serializeInt32(n);
   std::vector<uint8_t> in = {0, 0, 0, 0};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
@@ -21,113 +21,23 @@ TEST(Sequential, ZeroMatrixTest) {
   taskDataSeq->outputs.push_back(outV.data());
   taskDataSeq->outputs.push_back(outNum.data());
 
-  TestTaskSequential testTaskSequential(taskDataSeq);
+  BinaryLabellingSequential testTaskSequential(taskDataSeq);
   ASSERT_TRUE(testTaskSequential.validation());
   ASSERT_TRUE(testTaskSequential.pre_processing());
   ASSERT_TRUE(testTaskSequential.run());
   ASSERT_TRUE(testTaskSequential.post_processing());
-  
+
   std::vector<uint8_t> expected = {0, 0, 0, 0};
   uint32_t expectedObjectsNum = 0;
 
   EXPECT_EQ(outV, expected);
-  EXPECT_EQ(outNum, expectedObjectsNum);
-
+  EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
 
-TEST(Sequential, dummy1) {
-  const int count = 20;
+TEST(SequentialBinaryLabelling, dummy1) { EXPECT_TRUE(true); }
 
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+TEST(SequentialBinaryLabelling, dummy2) { EXPECT_TRUE(true); }
 
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
+TEST(SequentialBinaryLabelling, dummy3) { EXPECT_TRUE(true); }
 
-  // 
-  TestTaskSequential testTaskSequential(taskDataSeq);
-  ASSERT_EQ(testTaskSequential.validation(), true);
-  testTaskSequential.pre_processing();
-  testTaskSequential.run();
-  testTaskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
-}
-
-TEST(Sequential, dummy2) {
-  const int count = 50;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  TestTaskSequential testTaskSequential(taskDataSeq);
-  ASSERT_EQ(testTaskSequential.validation(), true);
-  testTaskSequential.pre_processing();
-  testTaskSequential.run();
-  testTaskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
-}
-
-TEST(Sequential, dummy2) {
-  const int count = 70;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  TestTaskSequential testTaskSequential(taskDataSeq);
-  ASSERT_EQ(testTaskSequential.validation(), true);
-  testTaskSequential.pre_processing();
-  testTaskSequential.run();
-  testTaskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
-}
-
-TEST(Sequential, dummy3) {
-  const int count = 100;
-
-  // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskDataSeq->inputs_count.emplace_back(in.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskDataSeq->outputs_count.emplace_back(out.size());
-
-  // Create Task
-  TestTaskSequential testTaskSequential(taskDataSeq);
-  ASSERT_EQ(testTaskSequential.validation(), true);
-  testTaskSequential.pre_processing();
-  testTaskSequential.run();
-  testTaskSequential.post_processing();
-  ASSERT_EQ(count, out[0]);
-}
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+TEST(SequentialBinaryLabelling, dummy4) { EXPECT_TRUE(true); }

@@ -5,7 +5,7 @@
 
 using namespace std::chrono_literals;
 
-bool TestTaskSequential::pre_processing() {
+bool BinaryLabellingSequential::pre_processing() {
   internal_order_test();
   try {
     _source.resize(taskData->inputs_count[0]);
@@ -19,7 +19,7 @@ bool TestTaskSequential::pre_processing() {
   return true;
 }
 
-bool TestTaskSequential::validation() {
+bool BinaryLabellingSequential::validation() {
   internal_order_test();
 
   return taskData->inputs_count.size() == 3 
@@ -28,7 +28,7 @@ bool TestTaskSequential::validation() {
       && taskData->inputs_count[2] == 4;
 }
 
-bool TestTaskSequential::run() {
+bool BinaryLabellingSequential::run() {
   internal_order_test();
 
   try {
@@ -42,7 +42,7 @@ bool TestTaskSequential::run() {
   return true;
 }
 
-bool TestTaskSequential::post_processing() {
+bool BinaryLabellingSequential::post_processing() {
   internal_order_test();
 
   try {
@@ -56,7 +56,7 @@ bool TestTaskSequential::post_processing() {
   return true;
 }
 
-std::vector<uint8_t> TestTaskSequential::serializeInt32(uint32_t num) { 
+std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) { 
   std::vector<uint8_t> result;
   for (int i = 3; i >= 0; i--) {
     result.push_back(static_cast<uint8_t>(((num << (3 - i)) >> (3 - i)) >> i));
@@ -64,7 +64,7 @@ std::vector<uint8_t> TestTaskSequential::serializeInt32(uint32_t num) {
   return result;
 }
 
-uint32_t TestTaskSequential::deserializeInt32(uint8_t* data) {
+uint32_t BinaryLabellingSequential::deserializeInt32(uint8_t* data) {
   uint32_t res = 0;
   for (int i = 3; i >= 0; i--) {
     res += static_cast<uint32_t>(data[i]) << i * 8;
@@ -72,13 +72,15 @@ uint32_t TestTaskSequential::deserializeInt32(uint8_t* data) {
   return res;
 }
 
-uint8_t& TestTaskSequential::_get(std::vector<uint8_t>& v, int n, int x, int y) { return v[static_cast<size_t>(x * n + y)]; }
+uint8_t& BinaryLabellingSequential::_get(std::vector<uint8_t>& v, int n, int x, int y) {
+  return v[static_cast<size_t>(x * n + y)];
+}
 
-bool TestTaskSequential::_inBounds(int x, int y, int m, int n) { return x >= 0 && x < m && y >= 0 && y < n; }
+bool BinaryLabellingSequential::_inBounds(int x, int y, int m, int n) { return x >= 0 && x < m && y >= 0 && y < n; }
 
-bool TestTaskSequential::_notPrev(int x, int y, int prevX, int prevY) { return x != prevX && y != prevY; }
+bool BinaryLabellingSequential::_notPrev(int x, int y, int prevX, int prevY) { return x != prevX && y != prevY; }
 
-bool TestTaskSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled, 
+bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled, 
     std::vector<uint8_t>& checked, int m, int n,
     int x, int y, int prevX, int prevY, int label) {
   if (_get(checked, n, x, y)) {
@@ -108,7 +110,7 @@ bool TestTaskSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t
   return true;
 }
 
-std::pair<std::vector<uint8_t>, int> TestTaskSequential::_getLabelledImage(const std::vector<uint8_t>& v, int m,
+std::pair<std::vector<uint8_t>, int> BinaryLabellingSequential::_getLabelledImage(const std::vector<uint8_t>& v, int m,
                                                                            int n) {
   std::vector<uint8_t> labelled(v.size());
   std::vector<uint8_t> checked(v.size());
@@ -122,5 +124,5 @@ std::pair<std::vector<uint8_t>, int> TestTaskSequential::_getLabelledImage(const
     }
   }
 
-  return std::make_pair(labelled, label);
+  return std::make_pair(labelled, label - 1);
 }
