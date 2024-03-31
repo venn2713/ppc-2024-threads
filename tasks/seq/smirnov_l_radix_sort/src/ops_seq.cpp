@@ -7,7 +7,7 @@
 bool RadixSortSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  if (taskData->inputs_count.size() != 1 || taskData->outputs_count.size() != 1 || taskData->inputs.size() == 1 ||
+  if (taskData->inputs_count.size() != 1 || taskData->outputs_count.size() != 1 || taskData->inputs.size() != 1 ||
       taskData->outputs.size() != 1) {
     return false;
   }
