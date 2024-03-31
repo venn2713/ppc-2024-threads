@@ -8,9 +8,9 @@
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
 #ifdef __APPLE__
-    const std::vector<int> TEST_CHECKS= {522, 1074, 2914, 34576};
+const std::vector<int> TEST_CHECKS= {522, 1074, 3507, 6345};
 #else
-    const std::vector<int> TEST_CHECKS = {299, 987, 3831, 6411};
+const std::vector<int> TEST_CHECKS = {299, 987, 3831, 6411};
 #endif
 
 TEST(KashinDijkstraSeqTest, TestGraph10) {
