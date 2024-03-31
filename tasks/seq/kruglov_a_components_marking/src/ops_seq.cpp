@@ -12,9 +12,7 @@ bool imgMarkingSeq::pre_processing() {
   src.resize(h);
   dst.resize(h);
   for (size_t i = 0; i < h; ++i) {
-    for (size_t j = 0; j < w; ++j)
-      src[i].push_back(
-          reinterpret_cast<uint8_t *>(taskData->inputs[1])[i * w + j]);
+    for (size_t j = 0; j < w; ++j) src[i].push_back(reinterpret_cast<uint8_t *>(taskData->inputs[1])[i * w + j]);
     dst[i].resize(w, 0);
   }
   return true;
@@ -25,8 +23,7 @@ bool imgMarkingSeq::validation() {
   // Check count elements of output
   h = reinterpret_cast<uint32_t *>(taskData->inputs[0])[0];
   w = reinterpret_cast<uint32_t *>(taskData->inputs[0])[1];
-  return (h * w == taskData->inputs_count[1] &&
-          taskData->inputs_count[1] == taskData->outputs_count[0]);
+  return (h * w == taskData->inputs_count[1] && taskData->inputs_count[1] == taskData->outputs_count[0]);
 }
 
 bool imgMarkingSeq::run() {
@@ -38,8 +35,7 @@ bool imgMarkingSeq::run() {
 bool imgMarkingSeq::post_processing() {
   internal_order_test();
   for (size_t i = 0; i < h; ++i)
-    for (size_t j = 0; j < w; ++j)
-      reinterpret_cast<uint8_t *>(taskData->outputs[0])[i * w + j] = dst[i][j];
+    for (size_t j = 0; j < w; ++j) reinterpret_cast<uint8_t *>(taskData->outputs[0])[i * w + j] = dst[i][j];
   return true;
 }
 
