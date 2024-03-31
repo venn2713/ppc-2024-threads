@@ -53,14 +53,14 @@ bool RadixSortSimpleMergeTaskSequential::run() {
       MinKey = copiedVectorForSort[0] % (devider * 10) / devider;
       MaxKey = MinKey;
 
-      for (int i = 0; i < copiedVectorForSort.size(); i++) {
+      for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
         int digit = copiedVectorForSort[i] % (devider * 10) / devider;
         MinKey = std::min(MinKey, digit);
         MaxKey = std::max(MaxKey, digit);
       }
 
       std::vector<int> count(MaxKey - MinKey + 1);
-      for (int i = 0; i < copiedVectorForSort.size(); i++) {
+      for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
         int key = copiedVectorForSort[i] % (devider * 10) / devider;
         count[key - MinKey]++;
       }
@@ -72,7 +72,7 @@ bool RadixSortSimpleMergeTaskSequential::run() {
       }
 
       std::vector<int> temp(copiedVectorForSort.size());
-      for (int i = copiedVectorForSort.size() - 1; i >= 0; i--) {
+      for (size_t i = copiedVectorForSort.size() - 1; i >= 0; i--) {
         int key = copiedVectorForSort[i] % (devider * 10) / devider;
         temp[--count[key - MinKey]] = copiedVectorForSort[i];
       }
