@@ -9,7 +9,7 @@
 
 class RadixSortSequential : public ppc::core::Task {
  public:
-  explicit RadixSortSequential(std::shared_ptr<ppc::core::TaskData>taskData_) : Task(std::move(taskData_)) {}
+  explicit RadixSortSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool validation() override;
   bool pre_processing() override;
   bool run() override;
