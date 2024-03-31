@@ -88,7 +88,7 @@ bool RadixSortDoubleSequential::pre_processing() {
     while (!sort.empty()) {
       sort.pop_back();
     }
-    for (int i = 0; i < data_size; i++){
+    for (int i = 0; i < data_size; i++) {
       sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
     }
   } catch (...) {
