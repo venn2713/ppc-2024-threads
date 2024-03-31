@@ -17,7 +17,7 @@ std::vector<uint8_t> createMatrixData(size_t size, double value) {
 }
 
 void checkMatrixResult(const std::vector<uint8_t>& outputData, size_t matrixSize, double expectedValue) {
-  const double* outputMatrix = reinterpret_cast<const double*>(outputData.data());
+  auto outputMatrix = reinterpret_cast<const double*>(outputData.data());
   for (size_t i = 0; i < matrixSize; ++i) {
     for (size_t j = 0; j < matrixSize; ++j) {
       double actualValue = outputMatrix[i * matrixSize + j];
