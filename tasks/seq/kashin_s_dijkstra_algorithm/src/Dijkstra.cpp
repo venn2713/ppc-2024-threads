@@ -4,8 +4,6 @@
 
 #include "seq/kashin_s_dijkstra_algorithm/include/Dijkstra.hpp"
 
-bool operator()(std::pair<int, int> a, std::pair<int, int> b) { return a > b; }
-
 bool KashinDijkstraSeq::Dijkstra::pre_processing() {
   internal_order_test();
   graph = reinterpret_cast<int*>(taskData->inputs[0]);

@@ -20,6 +20,7 @@ class Dijkstra : public ppc::core::Task {
   bool post_processing() override;
 
  private:
+  bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) { return a > b; }
   int* graph;
   std::vector<int> distance;
   int start{};
