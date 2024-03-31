@@ -54,8 +54,3 @@ TEST(Sequential, Shell_Random_100) {
   const int count = 100;
   runTestRandom(count);
 }
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
