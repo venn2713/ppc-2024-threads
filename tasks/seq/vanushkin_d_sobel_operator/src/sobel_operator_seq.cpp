@@ -1,8 +1,8 @@
 // Copyright 2024 Vanushkin Dmitry3
 
 #include "seq/vanushkin_d_sobel_operator/include/sobel_operator_seq.hpp"
-#include <thread>
 #include <cmath>
+#include <thread>
 
 ConvolutionKernel SobelOperatorSequential::convolutionByX = {{-1, 0, +1}, {-2, 0, +2}, {-1, 0, +1}};
 
