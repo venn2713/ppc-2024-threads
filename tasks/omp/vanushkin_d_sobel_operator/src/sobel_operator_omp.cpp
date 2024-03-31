@@ -19,7 +19,8 @@ bool SobelOperator::validation() {
     return false;
   }
 
-  if (outputsCount[0] == 0 || outputsCount[1] == 0 || inputsCount[0] - outputsCount[0] != 2 || inputsCount[1] - outputsCount[1] != 2) {
+  if (outputsCount[0] == 0 || outputsCount[1] == 0 || inputsCount[0] - outputsCount[0] != 2 ||
+      inputsCount[1] - outputsCount[1] != 2) {
     return false;
   }
 
@@ -104,7 +105,7 @@ bool SobelOperatorParallelOmp::pre_processing() {
     const auto* inputImage = reinterpret_cast<const Color*>(taskData->inputs[0]);
 
 #pragma omp parallel for
-    for (int i = 0; i < square; ++i) {
+    for (int i = 0; i < static_cast<int>(square); ++i) {
       grayscaleImage[i] = inputImage[i].to_grayscale();
     }
 
@@ -118,7 +119,7 @@ bool SobelOperatorParallelOmp::pre_processing() {
 bool SobelOperatorParallelOmp::run() {
   internal_order_test();
 #pragma omp parallel for
-  for (int y = 1; y < imageHeight - 1; ++y) {
+  for (int y = 1; y < static_cast<int>(imageHeight - 1); ++y) {
     for (size_t x = 1; x < imageWidth - 1; ++x) {
       auto resultIntensity = apply_convolution(x, y);
       resultImage[(y - 1) * (imageWidth - 2) + (x - 1)] = resultIntensity;
@@ -132,7 +133,7 @@ bool SobelOperatorParallelOmp::post_processing() {
   try {
     auto* outputImage = reinterpret_cast<Grayscale*>(taskData->outputs[0]);
 #pragma omp parallel for
-    for (int i = 0; i < resultImage.size(); ++i) {
+    for (int i = 0; i < static_cast<int>(resultImage.size()); ++i) {
       outputImage[i] = resultImage[i];
     }
     return true;
@@ -151,7 +152,8 @@ std::vector<Color> generate_image(size_t width, size_t height) {
   result.reserve(square);
 
   for (size_t i = 0; i < square; ++i) {
-    result.emplace_back(static_cast<uint8_t>(gen() % 256), static_cast<uint8_t>(gen() % 256), static_cast<uint8_t>(gen() % 256));
+    result.emplace_back(static_cast<uint8_t>(gen() % 256), static_cast<uint8_t>(gen() % 256),
+                        static_cast<uint8_t>(gen() % 256));
   }
 
   return result;

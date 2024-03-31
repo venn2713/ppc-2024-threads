@@ -2,10 +2,10 @@
 #pragma once
 
 #include <memory>
+#include <random>
 #include <string>
 #include <utility>
 #include <vector>
-#include <random>
 
 #include "core/task/include/task.hpp"
 
@@ -34,7 +34,8 @@ class SobelOperator : public ppc::core::Task {
   static ConvolutionKernel convolutionByY;
 
  public:
-  explicit SobelOperator(std::shared_ptr<ppc::core::TaskData> taskData) : Task(std::move(taskData)) {}
+  explicit SobelOperator(std::shared_ptr<ppc::core::TaskData> taskData)
+      : Task(std::move(taskData)) {}
 
   bool validation() override;
 
@@ -44,7 +45,8 @@ class SobelOperator : public ppc::core::Task {
 
 class SobelOperatorSequential : public SobelOperator {
  public:
-  explicit SobelOperatorSequential(std::shared_ptr<ppc::core::TaskData> taskData) : SobelOperator(std::move(taskData)) {}
+  explicit SobelOperatorSequential(std::shared_ptr<ppc::core::TaskData> taskData)
+      : SobelOperator(std::move(taskData)) {}
 
   bool pre_processing() override;
   bool run() override;

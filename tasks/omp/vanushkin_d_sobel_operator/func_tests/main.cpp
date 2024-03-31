@@ -1,8 +1,8 @@
 // Copyright 2024 Vanushkin Dmitry
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <utility>
+#include <vector>
 
 #include "omp/vanushkin_d_sobel_operator/include/sobel_operator_omp.hpp"
 
@@ -187,7 +187,6 @@ TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo100x250ColorizedImage) {
     ASSERT_EQ(seqOut[i], parallOut[i]);
   }
 }
-
 
 TEST(Vanushkin_D_ParSobelOperator, ApplySobelTo500x500ColorizedImage) {
   size_t height = 500;
