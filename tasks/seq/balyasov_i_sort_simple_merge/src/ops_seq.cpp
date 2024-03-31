@@ -9,15 +9,10 @@ using namespace std::chrono_literals;
 bool RadixSortSimpleMergeTaskSequential::pre_processing() {
   internal_order_test();
 
-  try {
-    int* int_data = reinterpret_cast<int*>(taskData->inputs[0]);
-    SizeVector = taskData->inputs_count[0];
-    VectorForSort.resize(SizeVector);
-    std::copy(int_data, int_data + SizeVector, VectorForSort.begin());
-
-  } catch (...) {
-    return false;
-  }
+  int* int_data = reinterpret_cast<int*>(taskData->inputs[0]);
+  SizeVector = taskData->inputs_count[0];
+  VectorForSort.resize(SizeVector);
+  std::copy(int_data, int_data + SizeVector, VectorForSort.begin());
   return true;
 }
 
@@ -34,56 +29,52 @@ bool RadixSortSimpleMergeTaskSequential::validation() {
 bool RadixSortSimpleMergeTaskSequential::run() {
   internal_order_test();
 
-  try {
-    std::vector<int> copiedVectorForSort = VectorForSort;
-    int numDevider = 0;
-    int maxNum = 0;
-    int MinKey;
-    int MaxKey;
+  std::vector<int> copiedVectorForSort = VectorForSort;
+  int numDevider = 0;
+  int maxNum = 0;
+  int MinKey;
+  int MaxKey;
 
-    for (int num : copiedVectorForSort) {
-      maxNum = std::max(maxNum, num);
-    }
-
-    numDevider = maxNum == 0 ? 1 : static_cast<int>(log10(abs(maxNum))) + 1;
-
-    for (int dev = 0; dev < numDevider; dev++) {
-      int devider = static_cast<int>(pow(10, dev));
-
-      MinKey = copiedVectorForSort[0] % (devider * 10) / devider;
-      MaxKey = MinKey;
-
-      for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
-        int digit = copiedVectorForSort[i] % (devider * 10) / devider;
-        MinKey = std::min(MinKey, digit);
-        MaxKey = std::max(MaxKey, digit);
-      }
-
-      std::vector<int> count(MaxKey - MinKey + 1);
-      for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
-        int key = copiedVectorForSort[i] % (devider * 10) / devider;
-        count[key - MinKey]++;
-      }
-
-      int running_sum = 0;
-      for (int& c : count) {
-        running_sum += c;
-        c = running_sum;
-      }
-
-      std::vector<int> temp(copiedVectorForSort.size());
-      for (size_t i = copiedVectorForSort.size() - 1; i >= 0; i--) {
-        int key = copiedVectorForSort[i] % (devider * 10) / devider;
-        temp[--count[key - MinKey]] = copiedVectorForSort[i];
-      }
-
-      copiedVectorForSort = temp;
-    }
-
-    VectorForSort = copiedVectorForSort;
-  } catch (...) {
-    return false;
+  for (int num : copiedVectorForSort) {
+    maxNum = std::max(maxNum, num);
   }
+
+  numDevider = maxNum == 0 ? 1 : static_cast<int>(log10(abs(maxNum))) + 1;
+
+  for (int dev = 0; dev < numDevider; dev++) {
+    int devider = static_cast<int>(pow(10, dev));
+
+    MinKey = copiedVectorForSort[0] % (devider * 10) / devider;
+    MaxKey = MinKey;
+
+    for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
+      int digit = copiedVectorForSort[i] % (devider * 10) / devider;
+      MinKey = std::min(MinKey, digit);
+      MaxKey = std::max(MaxKey, digit);
+    }
+
+    std::vector<int> count(MaxKey - MinKey + 1);
+    for (size_t i = 0; i < copiedVectorForSort.size(); i++) {
+      int key = copiedVectorForSort[i] % (devider * 10) / devider;
+      count[key - MinKey]++;
+    }
+
+    int running_sum = 0;
+    for (int& c : count) {
+      running_sum += c;
+      c = running_sum;
+    }
+
+    std::vector<int> temp(copiedVectorForSort.size());
+    for (size_t i = copiedVectorForSort.size() - 1; i >= 0; i--) {
+      int key = copiedVectorForSort[i] % (devider * 10) / devider;
+      temp[--count[key - MinKey]] = copiedVectorForSort[i];
+    }
+
+    copiedVectorForSort = temp;
+  }
+
+  VectorForSort = copiedVectorForSort;
 
   return true;
 }
