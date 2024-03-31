@@ -1,7 +1,9 @@
 // Copyright 2024 Chuvashov Andrey
 
 #include <gtest/gtest.h>
+
 #include <vector>
+
 #include "seq/chuvashov_a_batcher_ints_sort/include/batcher_ints_sort.hpp"
 
 TEST(ChuvashovABatcherFuncTests, Test_Simple_Array) {

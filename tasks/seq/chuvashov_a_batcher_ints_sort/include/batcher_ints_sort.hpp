@@ -8,6 +8,7 @@
 #include <thread>
 #include <utility>
 #include <vector>
+
 #include "core/task/include/task.hpp"
 
 class SequentialBatcherSort : public ppc::core::Task {
