@@ -1,6 +1,7 @@
 // Copyright 2024 Smirnov Leonid
 #include "seq/smirnov_l_radix_sort/include/ops_seq.hpp"
 
+#include <algorithm>
 #include <cmath>
 
 bool RadixSortSequential::validation() {
