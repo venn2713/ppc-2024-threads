@@ -8,13 +8,13 @@
 #include "seq/balyasov_i_sort_simple_merge/include/ops_seq.hpp"
 
 std::vector<int> getRandomVector(int size) {
-  std::vector<int> randomVector(size);
+  std::vector<int> randVector(size);
   std::random_device dev;
   std::mt19937 gen(dev());
   for (int i = 0; i < size; i++) {
-    randomVector[i] = gen() % 1000;
+    randVector[i] = gen() % 1000;
   }
-  return randomVector;
+  return randVector;
 }
 
 TEST(balyasov_i_sort_simple_merge, test_pipeline_run) {
