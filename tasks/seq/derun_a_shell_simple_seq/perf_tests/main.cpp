@@ -6,7 +6,7 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/derun_a_shell_simple_seq/include/shell_seq.hpp"
 
-TEST(sequential_shell_perf_test, shell_test_pipeline_run) {
+TEST(derun_andrey_shell_seq, pipeline_run) {
   const int count = 100;
 
   // Create data
@@ -43,7 +43,7 @@ TEST(sequential_shell_perf_test, shell_test_pipeline_run) {
   ASSERT_TRUE(ShellSequential::checkSorted(out));
 }
 
-TEST(sequential_shell_perf_test, shell_test_task_run) {
+TEST(derun_andrey_shell_seq, task_run) {
   const int count = 100;
 
   // Create data

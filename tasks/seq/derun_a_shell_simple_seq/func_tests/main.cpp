@@ -26,31 +26,31 @@ void runTestRandom(int count) {
   ASSERT_TRUE(ShellSequential::checkSorted(out));
 }
 
-TEST(Sequential, Shell_Random_10) {
+TEST(derun_andrey_shell_seq, Shell_Random_10) {
   const int count = 10;
 
   runTestRandom(count);
 }
 
-TEST(Sequential, Shell_Random_20) {
+TEST(derun_andrey_shell_seq, Shell_Random_20) {
   const int count = 20;
 
   runTestRandom(count);
 }
 
-TEST(Sequential, Shell_Random_50) {
+TEST(derun_andrey_shell_seq, Shell_Random_50) {
   const int count = 50;
 
   runTestRandom(count);
 }
 
-TEST(Sequential, Shell_Random_70) {
+TEST(derun_andrey_shell_seq, Shell_Random_70) {
   const int count = 70;
 
   runTestRandom(count);
 }
 
-TEST(Sequential, Shell_Random_100) {
+TEST(derun_andrey_shell_seq, Shell_Random_100) {
   const int count = 100;
   runTestRandom(count);
 }
