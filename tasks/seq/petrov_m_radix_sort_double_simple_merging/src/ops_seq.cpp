@@ -1,26 +1,27 @@
 // Copyright 2024 Petrov Maksim
 
 #include "seq/petrov_m_radix_sort_double_simple_merging/include/ops_seq.hpp"
+
 #include <thread>
 
 using namespace std::chrono_literals;
 
 void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int exp) {
   unsigned char* buf = reinterpret_cast<unsigned char*>(in);
-  int count[256] = { 0 };
+  int count[256] = {0};
   for (int i = 0; i < len; i++) {
-      count[buf[8 * i + exp]]++;
+    count[buf[8 * i + exp]]++;
   }
   int sum = 0;
   for (int i = 0; i < 256; i++) {
-      int temp = count[i];
-      count[i] = sum;
-      sum += temp;
+    int temp = count[i];
+    count[i] = sum;
+    sum += temp;
   }
  
   for (int i = 0; i < len; i++) {
-      out[count[buf[8 * i + exp]]] = in[i];
-      count[buf[8 * i + exp]]++;
+    out[count[buf[8 * i + exp]]] = in[i];
+    count[buf[8 * i + exp]]++;
   }
 }
 
@@ -30,41 +31,41 @@ bool RadixSortDoubleSequential::countSortSigns(double* in, double* out, int len)
   int firstPositiveIndex = -1;
     
   for (int i = 0; i < len; i++) {
-      if (positiveFlag && negativeFlag) {
-          break;
-      }
-      if (in[i] < 0 && !negativeFlag) {
-          negativeFlag = true;
-          firstNegativeIndex = i;
-      }
-      if (in[i] > 0 && !positiveFlag) {
-          positiveFlag = true;
-          firstPositiveIndex = i;
-      }
+    if (positiveFlag && negativeFlag) {
+        break;
+    }
+    if (in[i] < 0 && !negativeFlag) {
+        negativeFlag = true;
+        firstNegativeIndex = i;
+    }
+    if (in[i] > 0 && !positiveFlag) {
+        positiveFlag = true;
+        firstPositiveIndex = i;
+    }
   }
   if (positiveFlag && negativeFlag) {
-      bool forward = false;
-      int j = len - 1;
-      for (int i = 0; i < len; i++) {
-          out[i] = in[j];
-          if (forward) {
-              j++;
-          }
-          else {
-              j--;
-          }
-          if (j == firstNegativeIndex - 1 && !forward) {
-              j = 0;
-              forward = true;
-          }
-      }
-      return true;
+    bool forward = false;
+    int j = len - 1;
+    for (int i = 0; i < len; i++) {
+        out[i] = in[j];
+        if (forward) {
+            j++;
+        }
+        else {
+            j--;
+        }
+        if (j == firstNegativeIndex - 1 && !forward) {
+            j = 0;
+            forward = true;
+        }
+    }
+    return true;
   }
   else if (!positiveFlag) {
-      for (int i = len - 1, j = 0; i >= 0; i--, j++) {
-          out[j] = in[i];
-      }
-      return true;
+    for (int i = len - 1, j = 0; i >= 0; i--, j++) {
+        out[j] = in[i];
+    }
+    return true;
   }
   return false;
 }
@@ -75,11 +76,11 @@ std::vector<double> RadixSortDoubleSequential::radixSort(const std::vector<doubl
   std::vector<double> out(data.size());
 
   for (int i = 0; i < 4; i++) {
-      countSort(in.data(), out.data(), len, 2 * i);
-      countSort(out.data(), in.data(), len, 2 * i + 1);
+    countSort(in.data(), out.data(), len, 2 * i);
+    countSort(out.data(), in.data(), len, 2 * i + 1);
   }
   if (!countSortSigns(in.data(), out.data(), len)) {
-      in.swap(out);
+    in.swap(out);
   }
   return out;
 }
@@ -87,16 +88,16 @@ std::vector<double> RadixSortDoubleSequential::radixSort(const std::vector<doubl
 
 bool RadixSortDoubleSequential::pre_processing() {
   internal_order_test(); 
-  try{
+  try {
   data_size = taskData->inputs_count[0];
   while(!sort.empty()) {sort.pop_back();}
   for(int i = 0;i < data_size;i++){
     sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
   }
   } catch(...) {
-    std::cout<<"\n";
-    std::cout<<"Double radix sort error";
-    std::cout<<"\n";
+    std::cout << "\n";
+    std::cout << "Double radix sort error";
+    std::cout << "\n";
     return false;
   }
   return true;
@@ -109,12 +110,12 @@ bool RadixSortDoubleSequential::validation() {
 
 bool RadixSortDoubleSequential::run() {
   internal_order_test();
-  try{
+  try {
     sort = (radixSort(sort));
   } catch(...) {
-    std::cout<<"\n";
-    std::cout<<"Double radix sort error";
-    std::cout<<"\n";
+    std::cout << "\n";
+    std::cout << "Double radix sort error";
+    std::cout << "\n";
     return false;
   }
   return true;
@@ -122,15 +123,15 @@ bool RadixSortDoubleSequential::run() {
 
 bool RadixSortDoubleSequential::post_processing() {
   internal_order_test();
-  try{
+  try {
     auto* outputs = reinterpret_cast<double*>(taskData->outputs[0]);
     for (int i = 0; i < data_size; i++) {
     outputs[i] = sort[i];
     }
   } catch(...) {
-    std::cout<<"\n";
-    std::cout<<"Double radix sort error";
-    std::cout<<"\n";
+    std::cout << "\n";
+    std::cout << "Double radix sort error";
+    std::cout << "\n";
     return false;
   }
   return true;

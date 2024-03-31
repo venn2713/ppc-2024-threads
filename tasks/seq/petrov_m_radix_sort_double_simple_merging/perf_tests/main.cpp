@@ -12,9 +12,8 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
   std::mt19937 eng(rd());
   std::uniform_real_distribution<double> distr(-10000, 100000);
   for (auto& num : in) {
-      num = distr(eng);
+    num = distr(eng);
   }
-    
   std::vector<double> sorted = in;
   std::sort(sorted.begin(), sorted.end());
   std::vector<double> out(in.size());
@@ -57,11 +56,9 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_task_run) {
   std::random_device rd;
   std::mt19937 eng(rd());
   std::uniform_real_distribution<double> distr(-10000, 10000);
-
   for (auto& num : in) {
-      num = distr(eng);
+    num = distr(eng);
   }
-    
   std::vector<double> sorted = in;
   std::sort(sorted.begin(), sorted.end());
   std::vector<double> out(in.size());
