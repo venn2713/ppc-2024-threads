@@ -4,14 +4,14 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "seq/example/include/shell_seq.hpp"
+#include "seq/derun_a_shell_simple_seq/include/shell_seq.hpp"
 
 TEST(sequential_example_perf_test, test_pipeline_run) {
   const int count = 100;
 
   // Create data
-  std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<int> in = ShellSequential::generate_random_vector(count, 1, 100);
+  std::vector<int> out(count, 0);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -40,7 +40,7 @@ TEST(sequential_example_perf_test, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(count, out[0]);
+  ASSERT_TRUE(ShellSequential::checkSorted(out));
 }
 
 TEST(sequential_example_perf_test, test_task_run) {
@@ -48,7 +48,7 @@ TEST(sequential_example_perf_test, test_task_run) {
 
   // Create data
   std::vector<int> in(1, count);
-  std::vector<int> out(1, 0);
+  std::vector<int> out(count, 0);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
