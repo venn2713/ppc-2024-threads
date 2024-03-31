@@ -11,7 +11,7 @@ bool LinearFiltering::pre_processing() {
   widthOut = taskData->outputs_count[0];
   heightOut = taskData->outputs_count[1];
   image.resize(width * height);
-  std::memcpy(image.data(), input, width * height);
+  memcpy(image.data(), input, width * height);
   return true;
 }
 
@@ -30,7 +30,7 @@ bool LinearFiltering::run() {
 
 bool LinearFiltering::post_processing() {
   internal_order_test();
-  std::memcpy(output, image.data(), width * height);
+  memcpy(output, image.data(), width * height);
   return true;
 }
 
@@ -44,12 +44,12 @@ void LinearFiltering::blockSet(uint16_t _width, uint16_t _height) {
   blockHeight = _height;
 }
 
-void LinearFiltering::imageSet(std::vector<uint8_t> _image) { image = _image; }
+void LinearFiltering::imageSet(std::vector<uint8_t> _image) { image = std::move(_image); }
 
-void LinearFiltering::kernelSet(std::vector<int16_t> kernel) {
+void LinearFiltering::kernelSet(const std::vector<int16_t> &kernel) {
   if (kernel.size() > 9)
     throw "Error: Kernel larger than 3x3!";
-  else if (kernel.size() < 9)
+  if (kernel.size() < 9)
     throw "Error: Kernel smaller than 3x3!";
   gaussKernel = kernel;
 }
@@ -78,7 +78,8 @@ void LinearFiltering::applyGaussianFilter() {
           float sum = 0.0;
           for (int m = 0; m < 3; m++)
             for (int n = 0; n < 3; n++) {
-              int row = k + m, col = l + n;
+              int row = k + m;
+              int col = l + n;
               if (row >= 0 && row < height && col >= 0 && col < width) {
                 int index = row * width + col;
                 sum += gaussKernel[m * 3 + n] * image[index];

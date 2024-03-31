@@ -4,8 +4,11 @@
 
 TEST(zawadowski_j_linear_filtering_block, test_empty_image) {
   // Create data
-  uint16_t width = 6, height = 6;
-  std::vector<uint8_t> image(width * height), result(width * height), sample(width * height);
+  uint16_t width = 6;
+  uint16_t height = 6;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
+  std::vector<uint8_t> sample(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -27,8 +30,10 @@ TEST(zawadowski_j_linear_filtering_block, test_empty_image) {
 
 TEST(zawadowski_j_linear_filtering_block, test_size_smaller_than_kernel) {
   // Create data
-  uint16_t width = 2, height = 2;
-  std::vector<uint8_t> image(width * height), result(width * height);
+  uint16_t width = 2;
+  uint16_t height = 2;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -49,8 +54,10 @@ TEST(zawadowski_j_linear_filtering_block, test_size_smaller_than_kernel) {
 
 TEST(zawadowski_j_linear_filtering_block, test_size_smaller_than_block) {
   // Create data
-  uint16_t width = 3, height = 3;
-  std::vector<uint8_t> image(width * height), result(width * height);
+  uint16_t width = 3;
+  uint16_t height = 3;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -72,8 +79,10 @@ TEST(zawadowski_j_linear_filtering_block, test_size_smaller_than_block) {
 
 TEST(zawadowski_j_linear_filtering_block, test_large_kernel) {
   // Create data
-  uint16_t width = 3, height = 3;
-  std::vector<uint8_t> image(width * height), result(width * height);
+  uint16_t width = 3;
+  uint16_t height = 3;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -95,8 +104,10 @@ TEST(zawadowski_j_linear_filtering_block, test_large_kernel) {
 
 TEST(zawadowski_j_linear_filtering_block, test_small_kernel) {
   // Create data
-  uint16_t width = 3, height = 3;
-  std::vector<uint8_t> image(width * height), result(width * height);
+  uint16_t width = 3;
+  uint16_t height = 3;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();

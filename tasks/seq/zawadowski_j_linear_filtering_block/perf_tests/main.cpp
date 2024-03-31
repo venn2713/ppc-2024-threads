@@ -5,8 +5,11 @@
 
 TEST(zawadowski_j_linear_filtering_block, test_pipeline_run) {
   // Create data
-  uint16_t width = 999, height = 999;
-  std::vector<uint8_t> image(width * height), result(width * height), sample(width * height);
+  uint16_t width = 999;
+  uint16_t height = 999;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
+  std::vector<uint8_t> sample(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -18,23 +21,23 @@ TEST(zawadowski_j_linear_filtering_block, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(height);
 
   // Create Task
-  std::shared_ptr<LinearFiltering> testTaskSequential = std::make_shared<LinearFiltering>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<LinearFiltering>(taskDataSeq);
 
   // Create Perf attributes
-  std::shared_ptr<ppc::core::PerfAttr> perfAttr = std::make_shared<ppc::core::PerfAttr>();
+  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  const std::chrono::steady_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+  const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
-    std::chrono::steady_clock::time_point current_time_point = std::chrono::high_resolution_clock::now();
-    int64_t duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
   // Create and init perf results
-  std::shared_ptr<ppc::core::PerfResults> perfResults = std::make_shared<ppc::core::PerfResults>();
+  auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  std::shared_ptr<ppc::core::Perf> perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
   ASSERT_EQ(result, sample);
@@ -42,8 +45,11 @@ TEST(zawadowski_j_linear_filtering_block, test_pipeline_run) {
 
 TEST(zawadowski_j_linear_filtering_block, test_task_run) {
   // Create data
-  uint16_t width = 999, height = 999;
-  std::vector<uint8_t> image(width * height), result(width * height), sample(width * height);
+  uint16_t width = 999;
+  uint16_t height = 999;
+  std::vector<uint8_t> image(width * height);
+  std::vector<uint8_t> result(width * height);
+  std::vector<uint8_t> sample(width * height);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -55,23 +61,23 @@ TEST(zawadowski_j_linear_filtering_block, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(height);
 
   // Create Task
-  std::shared_ptr<LinearFiltering> testTaskSequential = std::make_shared<LinearFiltering>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<LinearFiltering>(taskDataSeq);
 
   // Create Perf attributes
-  std::shared_ptr<ppc::core::PerfAttr> perfAttr = std::make_shared<ppc::core::PerfAttr>();
+  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
-  const std::chrono::steady_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+  const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
-    std::chrono::steady_clock::time_point current_time_point = std::chrono::high_resolution_clock::now();
-    int64_t duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
   // Create and init perf results
-  std::shared_ptr<ppc::core::PerfResults> perfResults = std::make_shared<ppc::core::PerfResults>();
+  auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
   // Create Perf analyzer
-  std::shared_ptr<ppc::core::Perf> perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
+  auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
   ASSERT_EQ(result, sample);

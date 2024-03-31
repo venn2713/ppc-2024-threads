@@ -23,13 +23,19 @@ class LinearFiltering : public ppc::core::Task {
   void sizeSet(uint16_t _width, uint16_t _height);
   void blockSet(uint16_t _width, uint16_t _height);
   void imageSet(std::vector<uint8_t> _image);
-  void kernelSet(std::vector<int16_t> kernel);
+  void kernelSet(const std::vector<int16_t> &kernel);
   void getRandomImage();
   void applyGaussianFilter();
 
  private:
   std::vector<int16_t> gaussKernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
   std::vector<uint8_t> image;
-  uint16_t width = 3, height = 3, widthOut, heightOut, blockWidth = 3, blockHeight = 3;
-  uint8_t *input, *output;
+  uint16_t width = 3;
+  uint16_t height = 3;
+  uint16_t widthOut;
+  uint16_t heightOut;
+  uint16_t blockWidth = 3;
+  uint16_t blockHeight = 3;
+  uint8_t *input;
+  uint8_t *output;
 };
