@@ -180,7 +180,6 @@ TEST(Vanuskin_D_SeqSobelOperator, ApplySobelTo4x7ColorizedImage) {
   }
 }
 
-
 TEST(Vanuskin_D_SeqSobelOperator, ApplySobelTo9x5ColorizedImage) {
   size_t height = 9;
   size_t width = 5;

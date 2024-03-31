@@ -1,6 +1,7 @@
 // Copyright 2024 Vanushkin Dmitry3
 
 #include "seq/vanushkin_d_sobel_operator/include/sobel_operator_seq.hpp"
+
 #include <cmath>
 #include <thread>
 
