@@ -12,7 +12,6 @@ TEST(Sequential_Jarvis_Perf, test_pipeline_run) {
   for (int i = 0; i < size; i++) {
     points.push_back({i % 100, i % 200});
   }
-
   std::vector<Point> resHull(points.size());
 
   // Create TaskData
