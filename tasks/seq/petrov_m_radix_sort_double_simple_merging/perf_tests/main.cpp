@@ -1,4 +1,5 @@
 // Copyright 2024 Petrov Maksim
+
 #include <gtest/gtest.h>
 
 #include <vector>
@@ -11,7 +12,7 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
   std::random_device rd;
   std::mt19937 eng(rd());
   std::uniform_real_distribution<double> distr(-10000, 100000);
-  for (auto& num : in) {
+  for (auto &num : in) {
     num = distr(eng);
   }
   std::vector<double> sorted = in;
@@ -51,12 +52,11 @@ TEST(Petrov_M_Radix_Sort_Sequential1, test_pipeline_run) {
 }
 
 TEST(Petrov_M_Radix_Sort_Sequential1, test_task_run) {
- 
   std::vector<double> in(1000000);
   std::random_device rd;
   std::mt19937 eng(rd());
   std::uniform_real_distribution<double> distr(-10000, 10000);
-  for (auto& num : in) {
+  for (auto &num : in) {
     num = distr(eng);
   }
   std::vector<double> sorted = in;

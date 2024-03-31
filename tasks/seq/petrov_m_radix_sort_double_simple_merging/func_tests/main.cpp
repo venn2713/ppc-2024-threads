@@ -1,5 +1,7 @@
 // Copyright 2024 Petrov Maksim
+
 #include <gtest/gtest.h>
+
 #include <vector>
 
 #include "seq/petrov_m_radix_sort_double_simple_merging/include/ops_seq.hpp"

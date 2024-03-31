@@ -18,7 +18,6 @@ void RadixSortDoubleSequential::countSort(double* in, double* out, int len, int 
     count[i] = sum;
     sum += temp;
   }
- 
   for (int i = 0; i < len; i++) {
     out[count[buf[8 * i + exp]]] = in[i];
     count[buf[8 * i + exp]]++;
@@ -29,41 +28,38 @@ bool RadixSortDoubleSequential::countSortSigns(double* in, double* out, int len)
   bool positiveFlag = false, negativeFlag = false;
   int firstNegativeIndex = -1;
   int firstPositiveIndex = -1;
-    
   for (int i = 0; i < len; i++) {
     if (positiveFlag && negativeFlag) {
-        break;
+      break;
     }
     if (in[i] < 0 && !negativeFlag) {
-        negativeFlag = true;
-        firstNegativeIndex = i;
+      negativeFlag = true;
+      firstNegativeIndex = i;
     }
     if (in[i] > 0 && !positiveFlag) {
-        positiveFlag = true;
-        firstPositiveIndex = i;
+      positiveFlag = true;
+      firstPositiveIndex = i;
     }
   }
   if (positiveFlag && negativeFlag) {
     bool forward = false;
     int j = len - 1;
     for (int i = 0; i < len; i++) {
-        out[i] = in[j];
-        if (forward) {
-            j++;
-        }
-        else {
-            j--;
-        }
-        if (j == firstNegativeIndex - 1 && !forward) {
-            j = 0;
-            forward = true;
-        }
+      out[i] = in[j];
+      if (forward) {
+        j++;
+      } else {
+        j--;
+      }
+      if (j == firstNegativeIndex - 1 && !forward) {
+        j = 0;
+        forward = true;
+      }
     }
     return true;
-  }
-  else if (!positiveFlag) {
+  } else if (!positiveFlag) {
     for (int i = len - 1, j = 0; i >= 0; i--, j++) {
-        out[j] = in[i];
+      out[j] = in[i];
     }
     return true;
   }
@@ -89,11 +85,13 @@ std::vector<double> RadixSortDoubleSequential::radixSort(const std::vector<doubl
 bool RadixSortDoubleSequential::pre_processing() {
   internal_order_test(); 
   try {
-  data_size = taskData->inputs_count[0];
-  while(!sort.empty()) {sort.pop_back();}
-  for(int i = 0;i < data_size;i++){
+    data_size = taskData->inputs_count[0];
+    while(!sort.empty()) {
+      sort.pop_back();
+    }
+    for(int i = 0;i < data_size;i++){
     sort.push_back((reinterpret_cast<double*>((taskData->inputs[0])))[i]);
-  }
+    }
   } catch(...) {
     std::cout << "\n";
     std::cout << "Double radix sort error";
