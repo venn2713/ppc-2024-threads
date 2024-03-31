@@ -8,7 +8,7 @@
 
 #include "core/task/include/task.hpp"
 
-void ScaledIdentityMatrix(double* matrix, int n, double k = 1.0);  
+void ScaledIdentityMatrix(double* matrix, int n, double k = 1.0);
 void IdentityMatrix(double* matrix, int n, double k = 1.0);
 void GenerateRandomValue(double* matrix, int sz);
 
