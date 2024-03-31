@@ -8,10 +8,10 @@ using namespace std::chrono_literals;
 bool TestTaskSequential::pre_processing() {
   internal_order_test();
   try {
-    source.resize(taskData->inputs_count[0]);
-    memcpy(source.data(), taskData->inputs[0], taskData->inputs_count[0]);
-    m = deserializeInt32(taskData->inputs[1]);
-    n = deserializeInt32(taskData->inputs[2]);
+    _source.resize(taskData->inputs_count[0]);
+    memcpy(_source.data(), taskData->inputs[0], taskData->inputs_count[0]);
+    _m = deserializeInt32(taskData->inputs[1]);
+    _n = deserializeInt32(taskData->inputs[2]);
   } catch (...) {
     return false;
   }
@@ -31,7 +31,13 @@ bool TestTaskSequential::validation() {
 bool TestTaskSequential::run() {
   internal_order_test();
 
-  auto res = _getLabelledImage(source, m, n);
+  try {
+    auto res = _getLabelledImage(_source, _m, _n);
+    _result = res.first;
+    _numObjects = res.second;
+  } catch (...) {
+    return false;
+  }
   
   return true;
 }
@@ -40,8 +46,9 @@ bool TestTaskSequential::post_processing() {
   internal_order_test();
 
   try {
-    taskData->outputs[0] = new uint8_t[result.size()];
-    memcpy(taskData->outputs[0], result.data(), result.size());
+    memcpy(taskData->outputs[0], _result.data(), _result.size());
+    auto serializedObjectsNum = serializeInt32(_numObjects);
+    memcpy(taskData->outputs[1], serializedObjectsNum.data(), serializedObjectsNum.size());
   } catch (...) {
     return false;
   }
@@ -58,13 +65,14 @@ std::vector<uint8_t> TestTaskSequential::serializeInt32(uint32_t num) {
 }
 
 uint32_t TestTaskSequential::deserializeInt32(uint8_t* data) {
-  uint32_t res;
+  uint32_t res = 0;
   for (int i = 3; i >= 0; i--) {
     res += static_cast<uint32_t>(data[i]) << i * 8;
   }
+  return res;
 }
 
-uint8_t& TestTaskSequential::_get(std::vector<uint8_t>& v, int n, int x, int y) { return v[x * n + y]; }
+uint8_t& TestTaskSequential::_get(std::vector<uint8_t>& v, int n, int x, int y) { return v[static_cast<size_t>(x * n + y)]; }
 
 bool TestTaskSequential::_inBounds(int x, int y, int m, int n) { return x >= 0 && x < m && y >= 0 && y < n; }
 
