@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <vector>
+
 #include "seq/moiseev_n_jarvis/include/ops_seq.hpp"
 
 TEST(Sequential_Jarvis, Empty_Input) {

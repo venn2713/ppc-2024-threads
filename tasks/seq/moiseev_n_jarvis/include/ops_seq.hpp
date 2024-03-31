@@ -26,6 +26,7 @@ class TestTaskSequentialJarvis : public ppc::core::Task {
   bool validation() override;
   bool run() override;
   bool post_processing() override;
+
  private:
   std::vector<Point> points;
   std::vector<Point> convexHullPoints;
