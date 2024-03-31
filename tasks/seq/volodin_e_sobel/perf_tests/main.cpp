@@ -16,8 +16,10 @@ TEST(sequential_sobel_perf_test, test_pipeline_run) {
   std::default_random_engine rnd;
   std::uniform_int_distribution<> dist(0, 255);
 
+  inImage.reserve(width * height);
+
   for (int i = 0; i < width * height; ++i) {
-    inImage.push_back(dist(rnd));
+    inImage[i] = (dist(rnd));
   }
 
   std::vector<int> outImage(height * width, 0);
@@ -60,8 +62,10 @@ TEST(sequential_sobel_perf_test, test_task_run) {
   std::default_random_engine rnd;
   std::uniform_int_distribution<> dist(0, 255);
 
+  inImage.reserve(width * height);
+
   for (int i = 0; i < width * height; ++i) {
-    inImage.push_back(dist(rnd));
+    inImage[i] = (dist(rnd));
   }
 
   std::vector<int> outImage(height * width, 0);
