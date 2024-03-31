@@ -11,7 +11,7 @@
 TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
-  std::mt19937_64 rng(seed);
+  std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
   std::uniform_int_distribution<int> isEdge(0, 2);
 
@@ -52,13 +52,13 @@ TEST(KashinDijkstraSeqTest, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(13803, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(13716, std::accumulate(out.begin(), out.end(), 0));
 }
 
 TEST(KashinDijkstraSeqTest, test_task_run) {
   const int vertexCount = 5000, edgeWeight = 100, start = 0, seed = 42;
   // создаем повторяющийся рандом
-  std::mt19937_64 rng(seed);
+  std::mt19937 rng(seed);
   std::uniform_int_distribution<int> dist(1, edgeWeight);
   std::uniform_int_distribution<int> isEdge(0, 2);
 
@@ -99,5 +99,5 @@ TEST(KashinDijkstraSeqTest, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testDijkstraSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  ASSERT_EQ(13803, std::accumulate(out.begin(), out.end(), 0));
+  ASSERT_EQ(13716, std::accumulate(out.begin(), out.end(), 0));
 }
