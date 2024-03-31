@@ -19,5 +19,4 @@ class SortRadixDoubleTaskOMP : public ppc::core::Task {
   double* data_ptr;
   size_t data_size;
   std::vector<double> bucket_arr[sizeof(double) * 256];
-  double* buckets;
 };
