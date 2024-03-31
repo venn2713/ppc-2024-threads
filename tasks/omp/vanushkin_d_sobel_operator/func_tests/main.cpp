@@ -1,5 +1,6 @@
 // Copyright 2024 Vanushkin Dmitry
 #include <gtest/gtest.h>
+
 #include <vector>
 
 #include "omp/vanushkin_d_sobel_operator/include/sobel_operator_omp.hpp"
