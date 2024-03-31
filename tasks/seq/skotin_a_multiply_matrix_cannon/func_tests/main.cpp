@@ -18,7 +18,7 @@ void checkMatrixMultiplicationResult(const std::vector<uint8_t>& outputData, siz
   for (size_t i = 0; i < matrixSize; ++i) {
     for (size_t j = 0; j < matrixSize; ++j) {
       double actualValue;
-      std::memcpy(&actualValue, &outputData[(i * matrixSize + j) * sizeof(double)], sizeof(double));
+      memcpy(&actualValue, &outputData[(i * matrixSize + j) * sizeof(double)], sizeof(double));
       EXPECT_NEAR(actualValue, expectedValue, 1e-8) << "Mismatch at (" << i << "," << j << ")";
     }
   }
