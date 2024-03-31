@@ -20,7 +20,8 @@ std::vector<double> multMatrSquare(const std::vector<double>& matrOne,
                                    const std::vector<double>& matrTwo,
                                    size_t size);
 
-std::vector<double> getRandomSquareMatrix(size_t size, double minVal, double maxVal);
+std::vector<double> getRandomSquareMatrix(size_t size, double minVal,
+                                          double maxVal);
 
 class KuznetsovCannonMatrMultSeq : public ppc::core::Task {
  public:
