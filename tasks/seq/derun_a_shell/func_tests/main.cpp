@@ -31,7 +31,7 @@ TEST(derun_andrey_shell_seq, Shell_Validation_Fail) {
 
   // Create data
   std::vector<int> in1 = ShellSequential::generate_random_vector(count, 1, 100);
-  std::vector<int> in2 = std::vector(5);
+  std::vector<int> in2 = std::vector<int>(5);
   std::vector<int> out(count, 0);
 
   // Create TaskData
