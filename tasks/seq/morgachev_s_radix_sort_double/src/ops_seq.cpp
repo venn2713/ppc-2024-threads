@@ -10,7 +10,7 @@ bool RadixSortDoubleSequential::pre_processing() {
   internal_order_test();
   try {
     dataSize = taskData->inputs_count[0];
-    auto ptrToData = reinterpret_cast<double*>(taskData->inputs[0]);
+    auto *ptrToData = reinterpret_cast<double*>(taskData->inputs[0]);
     data.resize(dataSize);
     std::copy(ptrToData, ptrToData + dataSize, data.begin());
   } catch (...) {
@@ -56,7 +56,7 @@ bool RadixSortDoubleSequential::post_processing() {
 }
 
 void RadixSortDoubleSequential::countSort(double* in, double* out, int length, int exp) {
-  auto buffer = reinterpret_cast<unsigned char*>(in);
+  auto *buffer = reinterpret_cast<unsigned char*>(in);
   int counter[256] = {0};
   int minValue = 0;
   int minPos = 0;
