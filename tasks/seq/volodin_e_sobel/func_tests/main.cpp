@@ -175,15 +175,13 @@ TEST(Sequential_Sobel, Test_Sobel_Random_Image) {
   const int width = 256;
   const int height = 256;
 
-  std::vector<int> inImage;
+  std::vector<int> inImage(width * height, 0);
 
   std::default_random_engine rnd;
   std::uniform_int_distribution<> dist(0, 255);
 
-  inImage.reserve(width * height);
-
   for (int i = 0; i < width * height; ++i) {
-    inImage[i] = (dist(rnd));
+    inImage[i] = dist(rnd);
   }
 
   std::vector<int> outImage(width * height, 0);
@@ -207,15 +205,13 @@ TEST(Sequential_Sobel, Test_Sobel_Random_Image_2) {
   const int width = 300;
   const int height = 128;
 
-  std::vector<int> inImage;
+  std::vector<int> inImage(width * height, 0);
 
   std::default_random_engine rnd;
   std::uniform_int_distribution<> dist(0, 255);
 
-  inImage.reserve(width * height);
-
   for (int i = 0; i < width * height; ++i) {
-    inImage[i] = (dist(rnd));
+    inImage[i] = dist(rnd);
   }
 
   std::vector<int> outImage(width * height, 0);
