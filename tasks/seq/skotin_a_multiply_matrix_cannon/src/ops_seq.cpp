@@ -1,5 +1,6 @@
 // Copyright 2024 Skotin Alexander
 #include "seq/skotin_a_multiply_matrix_cannon/include/ops_seq.hpp"
+
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -14,8 +15,7 @@ bool MatrixMultiplicationTask::pre_processing() {
   }
 
   std::vector<double> matrixAData(matrixSize * matrixSize);
-  memcpy(matrixAData.data(), taskData->inputs[0],
-      taskData->inputs_count[0]);
+  memcpy(matrixAData.data(), taskData->inputs[0], taskData->inputs_count[0]);
 
   if (!loadMatrix(matrixAData, matrixA, matrixSize)) {
     std::cerr << "Failed to load matrix A." << std::endl;
@@ -23,8 +23,7 @@ bool MatrixMultiplicationTask::pre_processing() {
   }
 
   std::vector<double> matrixBData(matrixSize * matrixSize);
-  memcpy(matrixBData.data(), taskData->inputs[1],
-      taskData->inputs_count[1]);
+  memcpy(matrixBData.data(), taskData->inputs[1], taskData->inputs_count[1]);
 
   if (!loadMatrix(matrixBData, matrixB, matrixSize)) {
     std::cerr << "Failed to load matrix B." << std::endl;
@@ -50,8 +49,7 @@ bool MatrixMultiplicationTask::run() {
       for (size_t i = 0; i < n; ++i) {
         for (size_t j = blockCol; j < std::min(blockCol + blockSize, n); ++j) {
           double sum = 0.0;
-          for (size_t k = blockRow; k < std::min(blockRow + blockSize, n);
-              ++k) {
+          for (size_t k = blockRow; k < std::min(blockRow + blockSize, n); ++k) {
             sum += matrixA[i][k] * matrixB[k][j];
           }
           resultMatrix[i][j] += sum;
@@ -67,11 +65,9 @@ bool MatrixMultiplicationTask::run() {
 bool MatrixMultiplicationTask::post_processing() { return saveResult(); }
 
 bool MatrixMultiplicationTask::loadMatrix(const std::vector<double>& inputData,
-                                          std::vector<std::vector<double>>
-    & matrix, size_t size) {
+                                          std::vector<std::vector<double>>& matrix, size_t size) {
   if (inputData.size() != size * size) {
-    std::cerr << "Input data size does not match expected matrix size."
-        << std::endl;
+    std::cerr << "Input data size does not match expected matrix size." << std::endl;
     return false;
   }
   if (inputData.size() != size * size) return false;
@@ -85,16 +81,14 @@ bool MatrixMultiplicationTask::loadMatrix(const std::vector<double>& inputData,
 }
 
 bool MatrixMultiplicationTask::saveResult() {
-  size_t totalBytes = resultMatrix.size() * resultMatrix[0].size()
-      * sizeof(double);
+  size_t totalBytes = resultMatrix.size() * resultMatrix[0].size() * sizeof(double);
 
   std::vector<uint8_t> outputData(totalBytes);
 
   for (size_t i = 0; i < resultMatrix.size(); ++i) {
     for (size_t j = 0; j < resultMatrix[i].size(); ++j) {
       double value = resultMatrix[i][j];
-      memcpy(&outputData[(i * resultMatrix[i].size() + j) *
-          sizeof(double)], &value, sizeof(double));
+      memcpy(&outputData[(i * resultMatrix[i].size() + j) * sizeof(double)], &value, sizeof(double));
     }
   }
 

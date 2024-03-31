@@ -14,15 +14,13 @@ std::vector<uint8_t> createMatrixData(size_t size, double value) {
   return byteData;
 }
 
-void checkMatrixResult(const std::vector<uint8_t>& outputData,
-    size_t matrixSize, double expectedValue) {
+void checkMatrixResult(const std::vector<uint8_t>& outputData, size_t matrixSize, double expectedValue) {
   const double* outputMatrix = reinterpret_cast<const double*>(
       outputData.data());
   for (size_t i = 0; i < matrixSize; ++i) {
     for (size_t j = 0; j < matrixSize; ++j) {
       double actualValue = outputMatrix[i * matrixSize + j];
-      EXPECT_NEAR(actualValue, expectedValue, 1e-8) <<
-          "Mismatch at (" << i << "," << j << ")";
+      EXPECT_NEAR(actualValue, expectedValue, 1e-8) << "Mismatch at (" << i << "," << j << ")";
     }
   }
 }
@@ -51,8 +49,7 @@ TEST(Skotin_A_Multiply_Matrix_Cannon_Seq, test_pipeline_run) {
 
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-        current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -88,8 +85,7 @@ TEST(Skotin_A_Multiply_Matrix_Cannon_Seq, test_task_run) {
 
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(
-        current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

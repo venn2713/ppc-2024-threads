@@ -3,8 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <memory>
-#include <utility>
+
 #include "core/task/include/task.hpp"
 
 class MatrixMultiplicationTask : public ppc::core::Task {
@@ -21,7 +20,6 @@ class MatrixMultiplicationTask : public ppc::core::Task {
   std::vector<std::vector<double>> matrixB;
   std::vector<std::vector<double>> resultMatrix;
 
-  bool loadMatrix(const std::vector<double>& inputData,
-  std::vector<std::vector<double>>& matrix, size_t size);
+  bool loadMatrix(const std::vector<double>& inputData, std::vector<std::vector<double>>& matrix, size_t size);
   bool saveResult();
 };
