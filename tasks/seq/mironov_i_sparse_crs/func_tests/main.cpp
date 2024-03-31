@@ -24,11 +24,11 @@ TEST(mironov_i_sparse_crs_seq, Test1Static) {
   taskDataSeq->outputs_count.emplace_back(C.size());
 
   // Create Task
-  MironovISequential testTaskOpenMP(taskDataSeq);
-  ASSERT_EQ(testTaskOpenMP.validation(), true);
-  testTaskOpenMP.pre_processing();
-  testTaskOpenMP.run();
-  testTaskOpenMP.post_processing();
+  MironovISequential testTask(taskDataSeq);
+  ASSERT_EQ(testTask.validation(), true);
+  testTask.pre_processing();
+  testTask.run();
+  testTask.post_processing();
 
   for (size_t i = 0; i < C.size(); i++) {
     EXPECT_DOUBLE_EQ(res[i], C[i]);
@@ -53,11 +53,11 @@ TEST(mironov_i_sparse_crs_seq, Test2Static) {
   taskDataSeq->outputs_count.emplace_back(C.size());
 
   // Create Task
-  MironovISequential testTaskOpenMP(taskDataSeq);
-  ASSERT_EQ(testTaskOpenMP.validation(), true);
-  testTaskOpenMP.pre_processing();
-  testTaskOpenMP.run();
-  testTaskOpenMP.post_processing();
+  MironovISequential testTask(taskDataSeq);
+  ASSERT_EQ(testTask.validation(), true);
+  testTask.pre_processing();
+  testTask.run();
+  testTask.post_processing();
 
   for (size_t i = 0; i < C.size(); i++) {
     EXPECT_DOUBLE_EQ(res[i], C[i]);
@@ -84,11 +84,11 @@ TEST(mironov_i_sparse_crs_seq, TestEdin34) {
   taskDataSeq->outputs_count.emplace_back(C.size());
 
   // Create Task
-  MironovISequential testTaskOpenMP(taskDataSeq);
-  ASSERT_EQ(testTaskOpenMP.validation(), true);
-  testTaskOpenMP.pre_processing();
-  testTaskOpenMP.run();
-  testTaskOpenMP.post_processing();
+  MironovISequential testTask(taskDataSeq);
+  ASSERT_EQ(testTask.validation(), true);
+  testTask.pre_processing();
+  testTask.run();
+  testTask.post_processing();
 
   for (size_t i = 0; i < C.size(); i++) {
     EXPECT_DOUBLE_EQ(A[i], C[i]);
@@ -115,11 +115,11 @@ TEST(mironov_i_sparse_crs_seq, TestEdin43) {
   taskDataSeq->outputs_count.emplace_back(C.size());
 
   // Create Task
-  MironovISequential testTaskOpenMP(taskDataSeq);
-  ASSERT_EQ(testTaskOpenMP.validation(), true);
-  testTaskOpenMP.pre_processing();
-  testTaskOpenMP.run();
-  testTaskOpenMP.post_processing();
+  MironovISequential testTask(taskDataSeq);
+  ASSERT_EQ(testTask.validation(), true);
+  testTask.pre_processing();
+  testTask.run();
+  testTask.post_processing();
 
   for (size_t i = 0; i < C.size(); i++) {
     EXPECT_DOUBLE_EQ(A[i], C[i]);
@@ -147,9 +147,9 @@ TEST(mironov_i_sparse_crs_seq, TestRandom) {
   taskDataSeq->outputs_count.emplace_back(C.size());
 
   // Create Task
-  MironovISequential testTaskOpenMP(taskDataSeq);
-  ASSERT_EQ(testTaskOpenMP.validation(), true);
-  testTaskOpenMP.pre_processing();
-  testTaskOpenMP.run();
-  testTaskOpenMP.post_processing();
+  MironovISequential testTask(taskDataSeq);
+  ASSERT_EQ(testTask.validation(), true);
+  testTask.pre_processing();
+  testTask.run();
+  testTask.post_processing();
 }
