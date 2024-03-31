@@ -22,15 +22,6 @@ bool BinaryLabellingSequential::pre_processing() {
 bool BinaryLabellingSequential::validation() {
   internal_order_test();
 
-  std::cout << taskData->inputs_count.size() << std::endl;
-  std::cout << taskData->outputs_count.size() << std::endl;
-  std::cout << taskData->inputs_count[1] << std::endl;
-  std::cout << taskData->inputs_count[2] << std::endl;
-  std::cout << taskData->outputs_count[1] << std::endl;
-  std::cout << taskData->inputs_count[0] << std::endl;
-  std::cout << deserializeInt32(taskData->inputs[1]) << std::endl;
-  std::cout << deserializeInt32(taskData->inputs[2]) << " valid end" << std::endl;
-
   return taskData->inputs_count.size() == 3 
       && taskData->outputs_count.size() == 2
       && taskData->inputs_count[1] == 4 

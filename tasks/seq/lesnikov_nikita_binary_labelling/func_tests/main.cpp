@@ -37,10 +37,6 @@ TEST(Sequential, ZeroMatrixTest) {
   std::vector<uint8_t> expected = {0, 0, 0, 0};
   uint32_t expectedObjectsNum = 0;
 
-  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum << std::endl;
-
-  BinaryLabellingSequential::visualize(outV, m, n);
-
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
@@ -75,11 +71,6 @@ TEST(SequentialBinaryLabelling, all1Test) {
 
   std::vector<uint8_t> expected = {1, 1, 1, 1};
   uint32_t expectedObjectsNum = 1;
-
-  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum
-            << std::endl;
-
-  BinaryLabellingSequential::visualize(outV, m, n);
 
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
@@ -126,11 +117,6 @@ TEST(SequentialBinaryLabelling, allSeperatedTest) {
       11, 0, 12, 0, 13};
   uint32_t expectedObjectsNum = 13;
 
-  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum
-            << std::endl;
-
-  BinaryLabellingSequential::visualize(outV, m, n);
-
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
@@ -176,11 +162,6 @@ TEST(SequentialBinaryLabelling, Object2Test) {
       0, 0, 2, 2, 2};
   uint32_t expectedObjectsNum = 2;
 
-  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum
-            << std::endl;
-
-  BinaryLabellingSequential::visualize(outV, m, n);
-
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
@@ -225,11 +206,6 @@ TEST(SequentialBinaryLabelling, Object4Test) {
       3, 3, 0, 4, 4, 
       3, 3, 0, 4, 4};
   uint32_t expectedObjectsNum = 4;
-
-  std::cout << "obj nums: " << BinaryLabellingSequential::deserializeInt32(outNum.data()) << " " << expectedObjectsNum
-            << std::endl;
-
-  BinaryLabellingSequential::visualize(outV, m, n);
 
   EXPECT_EQ(outV, expected);
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
