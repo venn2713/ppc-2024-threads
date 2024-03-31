@@ -9,7 +9,7 @@ using namespace std::chrono_literals;
 bool RadixSortSimpleMergeTaskSequential::pre_processing() {
   internal_order_test();
 
-  int* int_data = reinterpret_cast<int*>(taskData->inputs[0]);
+  auto* int_data = reinterpret_cast<int*>(taskData->inputs[0]);
   SizeVector = taskData->inputs_count[0];
   VectorForSort.resize(SizeVector);
   std::copy(int_data, int_data + SizeVector, VectorForSort.begin());
@@ -66,7 +66,7 @@ bool RadixSortSimpleMergeTaskSequential::run() {
     }
 
     std::vector<int> temp(copiedVectorForSort.size());
-    for (size_t i = copiedVectorForSort.size() - 1; i >= 0; i--) {
+    for (int i = static_cast<int>(copiedVectorForSort.size()) - 1; i >= 0; i--) {
       int key = copiedVectorForSort[i] % (devider * 10) / devider;
       temp[--count[key - MinKey]] = copiedVectorForSort[i];
     }
@@ -82,7 +82,7 @@ bool RadixSortSimpleMergeTaskSequential::run() {
 bool RadixSortSimpleMergeTaskSequential::post_processing() {
   internal_order_test();
 
-  int* outputs = reinterpret_cast<int*>(taskData->outputs[0]);
+  auto* outputs = reinterpret_cast<int*>(taskData->outputs[0]);
   for (size_t i = 0; i < VectorForSort.size(); i++) {
     outputs[i] = VectorForSort[i];
   }
