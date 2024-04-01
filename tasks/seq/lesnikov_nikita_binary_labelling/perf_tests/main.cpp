@@ -6,7 +6,6 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
-
 std::pair<std::vector<uint8_t>, int> createBigOddSizeImage(int m, int n, std::vector<uint8_t>* labelled) {
   if (m % 2 == 0 && n % 2 == 0) {
     return std::make_pair(std::vector<uint8_t>(), -1);
