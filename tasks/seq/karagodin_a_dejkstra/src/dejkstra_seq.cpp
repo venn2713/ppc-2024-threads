@@ -33,7 +33,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
     return graphMap;
 }
 
-void DejkstraTaskSequential::printGraphMap(std::vector<std::vector<int>>& graphMap) {
+void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMap) {
   for (const auto& row : graphMap) {
     for (int value : row) {
       std::cout << value << "  ";
@@ -99,7 +99,11 @@ bool DejkstraTaskSequential::pre_processing() {
   try {
     entryNode = *reinterpret_cast<int*>(taskData->inputs[0]);
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
-    graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
+    size = *reinterpret_cast<int*>(taskData->inputs[2]);
+    graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[3]);
+    if (size != 0 && graphMapInput.data() == NULL) {
+      graphMapInput = initGraphMapRandom(size);
+    }
   } catch (const std::exception& e) {
     return false;
   }

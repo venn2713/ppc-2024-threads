@@ -10,6 +10,7 @@ TEST(karagodin_a_dejkstra_seq, test_correctness) {
   int entryNode = 0;
   int destNode = 1;
   int expectedScore = 7;
+  int size = 0;  // Because we have graph done
   std::vector<int> pathRes = {0, 1};
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
@@ -24,6 +25,7 @@ TEST(karagodin_a_dejkstra_seq, test_correctness) {
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
+    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&size));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
 
@@ -41,6 +43,7 @@ TEST(karagodin_a_dejkstra_seq, test_hard_path) {
   int entryNode = 0;
   int destNode = 8;
   int expectedScore = 50;
+  int size = 0;
   std::vector<int> pathRes = {0, 6, 5, 3, 8};
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
@@ -62,6 +65,7 @@ TEST(karagodin_a_dejkstra_seq, test_hard_path) {
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
+    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&size));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
 
@@ -86,14 +90,16 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
   int entryNode = 4;
   int destNode = 18;
   int expectedScore = 50;
+  int size = 20;
   std::vector<int> pathRes = {0, 6, 5, 3, 8};
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
-  std::vector<std::vector<int>> graphMap = initGraphMapRandom(20);
+  std::vector<std::vector<int>> graphMap;
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
+    taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&size));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
   // Create Task
@@ -110,14 +116,16 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   int entryNode = 0;
   int destNode = 48;
   int expectedScore = 50;
+  int size = 50;
   std::vector<int> pathRes = {0};
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
-  std::vector<std::vector<int>> graphMap = initGraphMapRandom(50);
+  std::vector<std::vector<int>> graphMap;
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&size));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
   // Create Task
