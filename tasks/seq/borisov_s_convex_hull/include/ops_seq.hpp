@@ -12,16 +12,13 @@ struct Point {
   int x, y;
 
   Point() = default;
+  Point(const Point&) = default;
   Point(int x, int y) {
     this->x = x;
     this->y = y;
   }
 
-  const Point operator=(const Point& other) {
-    x = other.x;
-    y = other.y;
-    return *this;
-  }
+  Point& operator=(const Point&) = default;
 
   bool operator==(const Point& other) const {
     if ((x == other.x) && (y == other.y)) {
