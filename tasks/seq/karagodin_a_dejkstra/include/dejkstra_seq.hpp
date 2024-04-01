@@ -29,7 +29,7 @@ class DejkstraTaskSequential : public ppc::core::Task {
   struct CompareNode {
     bool operator()(const Node& n1, const Node& n2) { return n1.cost > n2.cost; }
   };
-  void printGraphMap(std::vector<std::vector<int>>& graphMap);
+  void printGraphMap(const std::vector<std::vector<int>>& graphMap);
 
  private:
   int size, destNode, entryNode, minScore;

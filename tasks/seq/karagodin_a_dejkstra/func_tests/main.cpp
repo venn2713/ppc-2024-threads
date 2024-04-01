@@ -15,10 +15,10 @@ TEST(karagodin_a_dejkstra_seq, test_correctness) {
   std::pair<std::vector<int>, int> result;
 
   std::vector<std::vector<int>> graphMap = {
-      {0, 7, 5, 0, 0}, 
-      {7, 0, 3, 5, 0}, 
-      {5, 3, 0, 0, 4}, 
-      {0, 5, 0, 0, 6}, 
+      {0, 7, 5, 0, 0},
+      {7, 0, 3, 5, 0},
+      {5, 3, 0, 0, 4},
+      {0, 5, 0, 0, 6},
       {0, 0, 4, 6, 0}};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -79,8 +79,6 @@ TEST(karagodin_a_dejkstra_seq, test_not_generating_sizes_lesser_than_2) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
   std::vector<std::vector<int>> graphMap(2);
   ASSERT_ANY_THROW(graphMap = initGraphMapRandom(1));
-  
-
 }
 
 TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
@@ -92,14 +90,12 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap = initGraphMapRandom(20);
-  
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
-
   // Create Task
   DejkstraTaskSequential dejkstra(taskDataSeq);
   ASSERT_EQ(dejkstra.validation(), true);
@@ -118,19 +114,16 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap = initGraphMapRandom(50);
-  
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&entryNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(&destNode));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
-
   // Create Task
   DejkstraTaskSequential dejkstra(taskDataSeq);
   ASSERT_EQ(dejkstra.validation(), true);
   dejkstra.pre_processing();
   ASSERT_NO_THROW(dejkstra.run());
   dejkstra.post_processing();
-
 }

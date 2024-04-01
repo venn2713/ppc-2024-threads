@@ -26,7 +26,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
                 graphMap[i][j] = 0;
                 graphMap[j][i] = 0;
             }
-            if(i == j)
+            if (i == j)
             graphMap[i][j] = 0;
         }
     }
@@ -42,8 +42,9 @@ void DejkstraTaskSequential::printGraphMap(std::vector<std::vector<int>>& graphM
   }
 }
 
-std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(const std::vector<std::vector<int>>& graphMapInput, int entryNode,
-                                          int destNode) {
+std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
+  const std::vector<std::vector<int>>& graphMapInput,
+   int entryNode, int destNode) {
   int size = graphMapInput.size();
   std::vector<int> dist(size, std::numeric_limits<int>::max());
   std::vector<int> prev(size, -1);
@@ -99,7 +100,6 @@ bool DejkstraTaskSequential::pre_processing() {
     entryNode = *reinterpret_cast<int*>(taskData->inputs[0]);
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
     graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
-
   } catch (const std::exception& e) {
     return false;
   }
