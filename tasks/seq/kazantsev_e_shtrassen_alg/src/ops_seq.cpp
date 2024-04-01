@@ -41,7 +41,7 @@ int getNewDimention(std::vector<double>& a) {
 }
 
 // add column and rows if not enough
-std::vector<double> additionSquareMatrix(std::vector<double>& a, int n) { // n res_size
+std::vector<double> additionSquareMatrix(std::vector<double>& a, int n) {
   std::vector<double> res(n * n, 0.0);
   int size = std::sqrt(a.size());
 
@@ -54,25 +54,21 @@ std::vector<double> additionSquareMatrix(std::vector<double>& a, int n) { // n r
 }
 
 // divide into four parts
-void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11,
-std::vector<double>& a12,
-		  std::vector<double>& a21, std::vector<double>& a22) {
+void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11, std::vector<double>& a12,
+		 std::vector<double>& a21, std::vector<double>& a22) {
   int n = std::sqrt(mSplit.size()) / 2;
 
   for (int i = 0; i < n; i++) {
     std::copy(mSplit.begin() + (2 * i) * n, mSplit.begin() + (2 * i + 1) * n, a11.begin() + i * n);
     std::copy(mSplit.begin() + (2 * i + 1) * n, mSplit.begin() + (2 * i + 2) * n, a12.begin() + i * n);
-    std::copy(mSplit.begin() + ((n * n * 2) + (2 * i * n)), mSplit.begin() + ((n * n * 2) +
-    ((2 * i + 1) * n)),
-            a21.begin() + i * n);
-    std::copy(mSplit.begin() + ((n * n * 2) + ((2 * i + 1) * n)), mSplit.begin() + ((n *
-    n * 2) + ((2 * i + 2) * n)),
-    	           a22.begin() + i * n);
+    std::copy(mSplit.begin() + ((n * n * 2) + (2 * i * n)), mSplit.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
+              a21.begin() + i * n);
+    std::copy(mSplit.begin() + ((n * n * 2) + ((2 * i + 1) * n)), mSplit.begin() + ((n * n * 2) + ((2 * i + 2) * n)),
+    	      a22.begin() + i * n);
   }
 }
 
-std::vector<double> mergeMatrix(std::vector<double> a11, std::vector<double> a12,
-std::vector<double> a21,
+std::vector<double> mergeMatrix(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21,
 				std::vector<double> a22) {
   int n = a11.size();
   std::vector<double> res(4 * n, 0.0);
