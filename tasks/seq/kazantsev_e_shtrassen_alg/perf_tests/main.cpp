@@ -81,8 +81,8 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
 
   std::vector<double> res = multMatrixNoShtrassen(A, B, n);
 
-  // Create Task
-  auto testTaskSequential = std::make_shared<MatMulStrassenSec>(taskDataSeq);
+ // Create Task
+ auto testTaskSequential = std::make_shared<MatMulStrassenSec>(taskDataSeq);
 
  // Create Perf attributes
  auto perfAttr = std::make_shared<ppc::core::PerfAttr>();

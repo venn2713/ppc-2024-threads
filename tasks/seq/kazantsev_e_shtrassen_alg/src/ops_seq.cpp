@@ -79,7 +79,6 @@ std::vector<double> mergeMatrix(std::vector<double> a11, std::vector<double> a12
     std::copy(a12.begin() + i * n, a12.begin() + (i + 1) * n, res.begin() + (2 * i + 1) * n);
     std::copy(a21.begin() + i * n, a21.begin() + (i + 1) * n, res.begin() + ((n * n * 2) + (2 * i * n)));
     std::copy(a22.begin() + i * n, a22.begin() + (i + 1) * n, res.begin() + ((n * n * 2) + ((2 * i + 1) * n)));
-
   }
   return res;
 }
