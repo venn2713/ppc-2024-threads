@@ -9,8 +9,6 @@
 #include "seq/vinicuk_t_complex_sparse_matrix_mult_csc/include/csc_complex_matrix.hpp"
 #include "seq/vinicuk_t_complex_sparse_matrix_mult_csc/include/ops_seq.hpp"
 
-const double PI = 3.14159265358979323846;
-
 // check main property of complex numbres
 TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_square_of_the_imaginary_part) {
   CSCComplexMatrix mtrx_A(1, 1);
