@@ -44,7 +44,7 @@ bool verifyCRSAttributes(const SparseMatrixCRS& object) {
              object.pointers[object.numberOfRows] != nonZeroCount) {
     return false;
   }
-    
+
   for (int i = 0; i < nonZeroCount; ++i) {
     if (object.columnIndexes[i] < 0 || object.columnIndexes[i] >= object.numberOfColumns) {
       return false;

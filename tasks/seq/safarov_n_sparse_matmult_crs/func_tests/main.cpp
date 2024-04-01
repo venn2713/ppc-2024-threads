@@ -103,7 +103,6 @@ TEST(Safarov_N_SparseMatMultCRS, TestTwo) {
     double t = correctAnswer.values[i] - oldX.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
   }
-
 }
 
 TEST(Safarov_N_SparseMatMultCRS, TestThree) {
