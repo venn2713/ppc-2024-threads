@@ -5,12 +5,12 @@
 
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
-TEST(SequentialBinaryLabelling, ZeroMatrixTest) {
+TEST(SequentialBinaryLabelling, IdentytyMatrixTest) {
   int m = 2;
   int n = 2;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {0, 0, 0, 0};
+  std::vector<uint8_t> in = {1, 1, 1, 1};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -40,12 +40,12 @@ TEST(SequentialBinaryLabelling, ZeroMatrixTest) {
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
 
-TEST(SequentialBinaryLabelling, all1Test) {
+TEST(SequentialBinaryLabelling, allZeroTest) {
   int m = 2;
   int n = 2;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {1, 1, 1, 1};
+  std::vector<uint8_t> in = {0, 0, 0, 0};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -80,7 +80,7 @@ TEST(SequentialBinaryLabelling, allSeparatedTest) {
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
+  std::vector<uint8_t> in = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -115,7 +115,7 @@ TEST(SequentialBinaryLabelling, Object2Test) {
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1};
+  std::vector<uint8_t> in = {0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 
@@ -150,7 +150,7 @@ TEST(SequentialBinaryLabelling, Object4Test) {
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
   auto serializedN = BinaryLabellingSequential::serializeInt32(n);
-  std::vector<uint8_t> in = {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1};
+  std::vector<uint8_t> in = {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0};
   std::vector<uint8_t> outV(in.size());
   std::vector<uint8_t> outNum(4);
 

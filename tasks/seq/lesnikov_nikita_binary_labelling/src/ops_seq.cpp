@@ -1,6 +1,7 @@
 // Copyright 2024 Lesnikov Nikita
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
+#include <string.h>
 #include <thread>
 
 using namespace std::chrono_literals;
@@ -81,7 +82,7 @@ bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<
     return false;
   }
   _get(checked, n, x, y) = 1;
-  if (_get(v, n, x, y)) {
+  if (!_get(v, n, x, y)) {
     _get(labelled, n, x, y) = label;
   } else {
     return false;

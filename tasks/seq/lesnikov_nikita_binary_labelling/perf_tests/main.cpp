@@ -10,12 +10,12 @@ std::pair<std::vector<uint8_t>, int> createBigOddSizeImage(int m, int n, std::ve
   if (m % 2 == 0 && n % 2 == 0) {
     return std::make_pair(std::vector<uint8_t>(), -1);
   }
-  std::vector<uint8_t> result(m * n);
+  std::vector<uint8_t> result(m * n, 1);
   *labelled = std::vector<uint8_t>(m * n);
   int objectsNum = 0;
   for (int i = 0; i < m * n; i++) {
     if (i % 2 == 0) {
-      result[i] = 1;
+      result[i] = 0;
       objectsNum++;
       (*labelled)[i] = objectsNum;
     }

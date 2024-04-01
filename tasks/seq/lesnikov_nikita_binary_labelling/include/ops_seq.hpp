@@ -26,7 +26,6 @@ class BinaryLabellingSequential : public ppc::core::Task {
                           int n, int x, int y, int prevX, int prevY, int label);
   static std::pair<std::vector<uint8_t>, int> _getLabelledImage(const std::vector<uint8_t>& v, int m, int n);
 
- private:
   std::vector<uint8_t> _source;
   std::vector<uint8_t> _result;
   uint32_t _m = 0;
