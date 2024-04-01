@@ -5,7 +5,7 @@
 
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
-TEST(Sequential, ZeroMatrixTest) {
+TEST(SequentialBinaryLabelling, ZeroMatrixTest) {
   int m = 2;
   int n = 2;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
@@ -75,7 +75,7 @@ TEST(SequentialBinaryLabelling, all1Test) {
   EXPECT_EQ(BinaryLabellingSequential::deserializeInt32(outNum.data()), expectedObjectsNum);
 }
 
-TEST(SequentialBinaryLabelling, allSeperatedTest) { 
+TEST(SequentialBinaryLabelling, allSeparatedTest) {
   int m = 5;
   int n = 5;
   auto serializedM = BinaryLabellingSequential::serializeInt32(m);
