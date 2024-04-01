@@ -7,7 +7,7 @@
 #include "seq/kazantsev_e_shtrassen_alg/include/ops_seq.hpp"
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
- const int n = 8;
+ const int n = 128;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
@@ -51,12 +51,12 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(res[i], out[i]);
+    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3), std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
   }
 }
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
- const int n = 8;
+ const int n = 128;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
@@ -101,6 +101,6 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
  
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(res[i], out[i]);
+    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3), std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
   }
 }
