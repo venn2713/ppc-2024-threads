@@ -55,7 +55,7 @@ std::vector<double> additionSquareMatrix(std::vector<double>& a, int n) {
 
 // divide into four parts
 void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11, std::vector<double>& a12,
-		 std::vector<double>& a21, std::vector<double>& a22) {
+		  std::vector<double>& a21, std::vector<double>& a22) {
   int n = std::sqrt(mSplit.size()) / 2;
 
   for (int i = 0; i < n; i++) {
@@ -64,12 +64,12 @@ void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11, st
     std::copy(mSplit.begin() + ((n * n * 2) + (2 * i * n)), mSplit.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
               a21.begin() + i * n);
     std::copy(mSplit.begin() + ((n * n * 2) + ((2 * i + 1) * n)), mSplit.begin() + ((n * n * 2) + ((2 * i + 2) * n)),
-    	      a22.begin() + i * n);
+    	       a22.begin() + i * n);
   }
 }
 
 std::vector<double> mergeMatrix(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21,
-				std::vector<double> a22) {
+				 std::vector<double> a22) {
   int n = a11.size();
   std::vector<double> res(4 * n, 0.0);
   n = std::sqrt(n);
@@ -105,7 +105,6 @@ std::vector<double> subtraction(const std::vector<double>& a, const std::vector<
   }
   return res;
 }
-
 
 // Algorithm Strassen's
 std::vector<double> StrassenMatMul(const std::vector<double>& a, const std::vector<double>& b, int n) {
@@ -163,7 +162,6 @@ bool MatMulStrassenSec::pre_processing() {
   for (unsigned i = 0; i < taskData->inputs_count[1]; i++) {
     B[i] = tmp_ptr_B[i];
   }
-  
   return true;
 }
 
