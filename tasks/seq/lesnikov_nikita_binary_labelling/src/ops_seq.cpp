@@ -2,6 +2,7 @@
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
 #include <string.h>
+
 #include <thread>
 
 using namespace std::chrono_literals;
