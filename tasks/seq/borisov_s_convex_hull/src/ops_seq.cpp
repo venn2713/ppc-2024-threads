@@ -128,7 +128,7 @@ void ConvexHullSequential::convexHullImage() {
     return;
   }
 
-  std::vector<Point> remainingPoints(points); 
+  std::vector<Point> remainingPoints(points);
   std::vector<Point> convexHull;
   size_t startIndex = 0;
   for (size_t i = 0; i < remainingPoints.size(); i++) {
