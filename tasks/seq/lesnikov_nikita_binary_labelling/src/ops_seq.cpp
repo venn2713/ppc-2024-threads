@@ -22,6 +22,7 @@ bool BinaryLabellingSequential::pre_processing() {
 
 bool BinaryLabellingSequential::validation() {
   internal_order_test();
+
   return taskData->inputs_count.size() == 3 && taskData->outputs_count.size() == 2 && taskData->inputs_count[1] == 4 &&
          taskData->inputs_count[2] == 4 && taskData->outputs_count[1] == 4 &&
          taskData->inputs_count[0] == deserializeInt32(taskData->inputs[1]) * deserializeInt32(taskData->inputs[2]);
