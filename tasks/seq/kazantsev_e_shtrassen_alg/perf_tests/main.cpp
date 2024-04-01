@@ -29,7 +29,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   std::vector<double> res = multMatrixNoShtrassen(A, B, n);
-  
+
   // Create Task
   auto testTaskSequential = std::make_shared<MatMulStrassenSec>(taskDataSeq);
   
@@ -38,8 +38,9 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
   perfAttr->num_running = 10;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now(); 
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>
+(current_time_point - t0).count();
   return static_cast<double>(duration) * 1e-9;
   };
 
@@ -52,7 +53,8 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3), std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
+    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3),
+    	      std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
   }
 }
 
@@ -90,8 +92,8 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
  perfAttr->current_timer = [&] {
    auto current_time_point = std::chrono::high_resolution_clock::now();
    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-   return static_cast<double>(duration) * 1e-9;
-   };
+ return static_cast<double>(duration) * 1e-9;
+ };
 
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
@@ -102,6 +104,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
   ppc::core::Perf::print_perf_statistic(perfResults);
  
   for (size_t i = 0; i < res.size(); ++i) {
-    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3), std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
+    ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3),
+    	      std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
   }
 }
