@@ -16,11 +16,11 @@ std::vector<uint8_t> createMatrixData(size_t size, double value) {
   return byteData;
 }
 
-void checkMatrixResult(const std::vector<uint8_t>& outputData, size_t matrixSize, double expectedValue) {
-  auto outputMatrix = reinterpret_cast<const double*>(outputData.data());
+void checkMatrixMultiplicationResult(const std::vector<uint8_t>& outputData, size_t matrixSize, double expectedValue) {
   for (size_t i = 0; i < matrixSize; ++i) {
     for (size_t j = 0; j < matrixSize; ++j) {
-      double actualValue = outputMatrix[i * matrixSize + j];
+      double actualValue;
+      memcpy(&actualValue, &outputData[(i * matrixSize + j) * sizeof(double)], sizeof(double));
       EXPECT_NEAR(actualValue, expectedValue, 1e-8) << "Mismatch at (" << i << "," << j << ")";
     }
   }
@@ -59,7 +59,7 @@ TEST(Skotin_A_Multiply_Matrix_Cannon_Seq, test_pipeline_run) {
 
   ppc::core::Perf::print_perf_statistic(perfResults);
 
-  checkMatrixResult(outputData, matrixSize, 10000.0);
+  checkMatrixMultiplicationResult(outputData, matrixSize, 10000.0);
 }
 
 TEST(Skotin_A_Multiply_Matrix_Cannon_Seq, test_task_run) {
@@ -95,5 +95,5 @@ TEST(Skotin_A_Multiply_Matrix_Cannon_Seq, test_task_run) {
 
   ppc::core::Perf::print_perf_statistic(perfResults);
 
-  checkMatrixResult(outputData, matrixSize, 11000.0);
+  checkMatrixMultiplicationResult(outputData, matrixSize, 11000.0);
 }
