@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-SparseMatrixCRS sparseMatrixTransposeCRS(const SparseMatrixCRS &object) {
+SparseMatrixCRS sparseMatrixTransposeCRS(const SparseMatrixCRS& object) {
   SparseMatrixCRS transportedObject;
   transportedObject.numberOfColumns = object.numberOfRows;
   transportedObject.numberOfRows = object.numberOfColumns;
@@ -32,7 +32,7 @@ SparseMatrixCRS sparseMatrixTransposeCRS(const SparseMatrixCRS &object) {
   return transportedObject;
 }
 
-bool verifyCRSAttributes(const SparseMatrixCRS &object) {
+bool verifyCRSAttributes(const SparseMatrixCRS& object) {
   int nonZeroCount = object.values.size();
   size_t check = size_t(nonZeroCount);
 
@@ -46,9 +46,9 @@ bool verifyCRSAttributes(const SparseMatrixCRS &object) {
   }
     
   for (int i = 0; i < nonZeroCount; ++i) {
-        if (object.columnIndexes[i] < 0 || object.columnIndexes[i] >= object.numberOfColumns) {
-            return false;
-        }
+    if (object.columnIndexes[i] < 0 || object.columnIndexes[i] >= object.numberOfColumns) {
+      return false;
+    }
   }
 
   for (int j = 1; j <= object.numberOfRows; ++j) {

@@ -48,7 +48,7 @@ TEST(Safarov_N_SparseMatMultCRS, TestOne) {
   ASSERT_EQ(z.pointers, correctAnswer.pointers);
   ASSERT_EQ(z.columnIndexes, correctAnswer.columnIndexes);
   ASSERT_EQ(z.values.size(), correctAnswer.values.size());
-  //ASSERT_EQ(z.values, correctAnswer.values);
+  // ASSERT_EQ(z.values, correctAnswer.values);
   for (size_t i = 0; i < correctAnswer.values.size(); ++i) {
     double t = correctAnswer.values[i] - z.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
@@ -98,7 +98,7 @@ TEST(Safarov_N_SparseMatMultCRS, TestTwo) {
   ASSERT_EQ(oldX.pointers, correctAnswer.pointers);
   ASSERT_EQ(oldX.columnIndexes, correctAnswer.columnIndexes);
   ASSERT_EQ(oldX.values.size(), correctAnswer.values.size());
-  //ASSERT_EQ(oldX.values, correctAnswer.values);
+  // ASSERT_EQ(oldX.values, correctAnswer.values);
   for (size_t i = 0; i < correctAnswer.values.size(); ++i) {
     double t = correctAnswer.values[i] - oldX.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
@@ -148,7 +148,7 @@ TEST(Safarov_N_SparseMatMultCRS, TestThree) {
   ASSERT_EQ(z.pointers, correctAnswer.pointers);
   ASSERT_EQ(z.columnIndexes, correctAnswer.columnIndexes);
   ASSERT_EQ(z.values.size(), correctAnswer.values.size());
-  //ASSERT_EQ(z.values, correctAnswer.values);
+  // ASSERT_EQ(z.values, correctAnswer.values);
   for (size_t i = 0; i < correctAnswer.values.size(); ++i) {
     double t = correctAnswer.values[i] - z.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
@@ -197,7 +197,7 @@ TEST(Safarov_N_SparseMatMultCRS, TestFour) {
   ASSERT_EQ(z.pointers, correctAnswer.pointers);
   ASSERT_EQ(z.columnIndexes, correctAnswer.columnIndexes);
   ASSERT_EQ(z.values.size(), correctAnswer.values.size());
-  //ASSERT_EQ(z.values, correctAnswer.values);
+  // ASSERT_EQ(z.values, correctAnswer.values);
   for (size_t i = 0; i < correctAnswer.values.size(); ++i) {
     double t = correctAnswer.values[i] - z.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
@@ -246,7 +246,7 @@ TEST(Safarov_N_SparseMatMultCRS, TestFive) {
   ASSERT_EQ(z.pointers, correctAnswer.pointers);
   ASSERT_EQ(z.columnIndexes, correctAnswer.columnIndexes);
   ASSERT_EQ(z.values.size(), correctAnswer.values.size());
-  //ASSERT_EQ(z.values, correctAnswer.values);
+  // ASSERT_EQ(z.values, correctAnswer.values);
   for (size_t i = 0; i < correctAnswer.values.size(); ++i) {
     double t = correctAnswer.values[i] - z.values[i];
     ASSERT_NEAR(0.0f, t, 1e-6);
