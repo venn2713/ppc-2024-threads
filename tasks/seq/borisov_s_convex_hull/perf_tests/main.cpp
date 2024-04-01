@@ -9,16 +9,16 @@
 TEST(borisov_s_convex_hull_sequential, test_pipeline_run) {
   size_t width = 50;
   size_t height = 50;
-    
+
   // Create data
   std::vector<uint8_t> in(height * width, 0);
   for (size_t j = 0; j < width; ++j) {
-      in[j] = 1;
-      in[(height - 1) * width + j] = 1;
+    in[j] = 1;
+    in[(height - 1) * width + j] = 1;
   }
   for (size_t i = 0; i < height; ++i) {
-      in[i * width] = 1;
-      in[i * width + width - 1] = 1;
+    in[i * width] = 1;
+    in[i * width + width - 1] = 1;
   }
   std::vector<uint8_t> out(width * height, 0);
   std::vector<uint8_t> expected(width * height, 1);
@@ -40,9 +40,9 @@ TEST(borisov_s_convex_hull_sequential, test_pipeline_run) {
   perfAttr->num_running = 10;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
-      auto current_time_point = std::chrono::high_resolution_clock::now();
-      auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-      return static_cast<double>(duration) * 1e-9;
+    auto current_time_point = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    return static_cast<double>(duration) * 1e-9;
   };
 
   // Create and init perf results

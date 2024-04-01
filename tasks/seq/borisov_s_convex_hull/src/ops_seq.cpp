@@ -62,8 +62,7 @@ int ConvexHullSequential::windingNumber(const std::vector<Point>& polygon, const
       if (p2.y > point.y && isLeft(p1, p2, point) > 0) {
         ++wn;
       }
-    }
-    else {
+    } else {
       if (p2.y <= point.y && isLeft(p1, p2, point) < 0) {
         --wn;
       }
@@ -97,7 +96,7 @@ bool ConvexHullSequential::pointIsToTheRight(const Point& previous, const Point&
 
 std::vector<Point> ConvexHullSequential::convertToPoints(const std::vector<uint8_t>& _image, int _height, int _width) {
   std::vector<Point> _points;
-    
+
   for (int i = 0; i < _height; ++i) {
     for (int j = 0; j < _width; ++j) {
       if (_image[i * _width + j] == 1) {
@@ -109,7 +108,8 @@ std::vector<Point> ConvexHullSequential::convertToPoints(const std::vector<uint8
   return _points;
 }
 
-std::vector<int> ConvexHullSequential::convertToImageVector(const std::vector<Point>& _points, int _height, int _width) {
+std::vector<int> ConvexHullSequential::convertToImageVector(const std::vector<Point>& _points, int _height,
+                                                            int _width) {
   std::vector<int> imageVector(height * width, 0);
 
   for (const Point& point : _points) {
@@ -131,8 +131,8 @@ void ConvexHullSequential::convexHullImage() {
   std::vector<Point> remainingPoints(points), convexHull;
   size_t startIndex = 0;
   for (size_t i = 0; i < remainingPoints.size(); i++) {
-    if (remainingPoints[startIndex].x > remainingPoints[i].x || 
-        ((remainingPoints[startIndex].x == remainingPoints[i].x) && 
+    if (remainingPoints[startIndex].x > remainingPoints[i].x ||
+        ((remainingPoints[startIndex].x == remainingPoints[i].x) &&
          (remainingPoints[startIndex].y > remainingPoints[i].y))) {
       startIndex = i;
     }
@@ -142,29 +142,29 @@ void ConvexHullSequential::convexHullImage() {
   convexHull.push_back(startingPoint);
   Point nextPoint;
   do {
-      nextPoint = remainingPoints[0];
-      if (nextPoint == convexHull.back()) {
-        nextPoint = remainingPoints[1];
+    nextPoint = remainingPoints[0];
+    if (nextPoint == convexHull.back()) {
+      nextPoint = remainingPoints[1];
+    }
+    for (size_t i = 0; i < remainingPoints.size(); i++) {
+      if ((remainingPoints[i] == convexHull.back()) || (convexHull.back() == nextPoint)) {
+        continue;
       }
-      for (size_t i = 0; i < remainingPoints.size(); i++) {
-        if ((remainingPoints[i] == convexHull.back()) || (convexHull.back() == nextPoint)) {
-          continue;
-        }
-        if ((remainingPoints[i] == nextPoint) || pointIsToTheRight(convexHull.back(), nextPoint, remainingPoints[i])) {
-          nextPoint = remainingPoints[i];
-        }
+      if ((remainingPoints[i] == nextPoint) || pointIsToTheRight(convexHull.back(), nextPoint, remainingPoints[i])) {
+        nextPoint = remainingPoints[i];
       }
-      convexHull.push_back(nextPoint);
-      if (convexHull.size() == points.size()) {
-        break;
-      }
+    }
+    convexHull.push_back(nextPoint);
+    if (convexHull.size() == points.size()) {
+      break;
+    }
   } while (convexHull.back() != startingPoint);
 
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; ++j) {
-        if (isInside(convexHull, Point(i, j))) {
-          convexHull.push_back(Point(i, j));
-        }
+      if (isInside(convexHull, Point(i, j))) {
+        convexHull.push_back(Point(i, j));
+      }
     }
   }
 
