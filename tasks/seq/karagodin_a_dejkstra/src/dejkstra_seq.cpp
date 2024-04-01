@@ -90,7 +90,23 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
 
 bool DejkstraTaskSequential::validation() {
   internal_order_test();
-  return 1;
+  if (taskData->inputs[0] == nullptr) {
+    std::cout << "Input 0 is nullptr" << std::endl;
+  }
+  if (taskData->inputs[1] == nullptr) {
+    std::cout << "Input 1 is nullptr" << std::endl;
+  }
+  if (taskData->inputs[2] == nullptr) {
+    std::cout << "Input 2 is nullptr" << std::endl;
+  }
+  if (taskData->inputs_count[0] <= 0) {
+    std::cout << "Input_count is " << taskData->inputs_count[0] << std::endl;
+  }
+  if (taskData->outputs[0] == nullptr) {
+    std::cout << "Outputs 0 is nullptr" << taskData->inputs_count[0] << std::endl;
+  }
+  return taskData->inputs[0] != nullptr && taskData->inputs[1] != nullptr && taskData->inputs[2] != nullptr
+  && taskData->inputs_count[0] > 0 && taskData->outputs[0] != nullptr;
 }
 
 bool DejkstraTaskSequential::pre_processing() {
@@ -99,8 +115,8 @@ bool DejkstraTaskSequential::pre_processing() {
   try {
     entryNode = *reinterpret_cast<int*>(taskData->inputs[0]);
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
-    size = *reinterpret_cast<int*>(taskData->inputs[2]);
-    graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[3]);
+    graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
+    size = *reinterpret_cast<int*>(taskData->inputs_count[0]);
     if (size != 0 && graphMapInput.data() == NULL) {
       graphMapInput = initGraphMapRandom(size);
     }
