@@ -15,7 +15,7 @@ class BinaryLabellingSequential : public ppc::core::Task {
   bool post_processing() override;
 
   static std::vector<uint8_t> serializeInt32(uint32_t num);
-  static uint32_t deserializeInt32(uint8_t* data);
+  static uint32_t deserializeInt32(const uint8_t* data);
   static void visualize(std::vector<uint8_t>& v, int m, int n);
 
  private:

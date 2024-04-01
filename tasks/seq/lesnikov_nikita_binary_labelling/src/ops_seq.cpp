@@ -59,7 +59,7 @@ std::vector<uint8_t> BinaryLabellingSequential::serializeInt32(uint32_t num) {
   return result;
 }
 
-uint32_t BinaryLabellingSequential::deserializeInt32(uint8_t* data) {
+uint32_t BinaryLabellingSequential::deserializeInt32(const uint8_t* data) {
   uint32_t res = 0;
   for (int i = 3; i >= 0; i--) {
     res += static_cast<uint32_t>(data[3 - i]) << i * 8;
