@@ -32,7 +32,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
 
   // Create Task
   auto testTaskSequential = std::make_shared<MatMulStrassenSec>(taskDataSeq);
-  
+
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;

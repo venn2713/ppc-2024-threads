@@ -22,7 +22,6 @@ class MatMulStrassenSec : public ppc::core::Task {
   int n = 0, m = 0;
 };
 
-
 inline std::vector<double> getRandomMatrix(int n) {
   std::random_device dev;
   std::mt19937 gen(dev());
