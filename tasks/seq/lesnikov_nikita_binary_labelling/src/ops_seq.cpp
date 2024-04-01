@@ -1,8 +1,7 @@
 // Copyright 2024 Lesnikov Nikita
 #include "seq/lesnikov_nikita_binary_labelling/include/ops_seq.hpp"
 
-#include <string.h>
-
+#include <cstring>
 #include <thread>
 
 using namespace std::chrono_literals;
@@ -79,11 +78,11 @@ bool BinaryLabellingSequential::_notPrev(int x, int y, int prevX, int prevY) { r
 bool BinaryLabellingSequential::_markObject(std::vector<uint8_t> v, std::vector<uint8_t>& labelled,
                                             std::vector<uint8_t>& checked, int m, int n, int x, int y, int prevX,
                                             int prevY, int label) {
-  if (_get(checked, n, x, y)) {
+  if (_get(checked, n, x, y) != 0) {
     return false;
   }
   _get(checked, n, x, y) = 1;
-  if (!_get(v, n, x, y)) {
+  if (_get(v, n, x, y) == 0) {
     _get(labelled, n, x, y) = label;
   } else {
     return false;
