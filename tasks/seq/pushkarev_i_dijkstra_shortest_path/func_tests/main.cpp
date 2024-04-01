@@ -9,12 +9,7 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_validation_fail) {
   const int count = 4;
 
   // Create data
-  std::vector<std::vector<int>> graph {
-    {0,1,1,1},
-    {1,0,1,1},
-    {1,1,0,1},
-    {1,1,-1,0}
-  };
+  std::vector<std::vector<int>> graph{{0, 1, 1, 1}, {1, 0, 1, 1}, {1, 1, 0, 1}, {1, 1, -1, 0}};
   std::vector<int> distances(count, 0);
   int source = 0;
 
@@ -30,18 +25,13 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_validation_fail) {
   DijkstraTask dijkstraTask(taskDataSeq);
 
   ASSERT_EQ(dijkstraTask.validation(), false);
-  }
+}
 
 TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_chain_graph) {
   const int count = 4;
 
   // Create data
-  std::vector<std::vector<int>> graph {
-    {0,1,9999,9999},
-    {1,0,1,9999},
-    {9999,1,0,1},
-    {9999,9999,1,0}
-  };
+  std::vector<std::vector<int>> graph{{0, 1, 9999, 9999}, {1, 0, 1, 9999}, {9999, 1, 0, 1}, {9999, 9999, 1, 0}};
   std::vector<int> distances(count, 0);
   int source = 0;
 
@@ -65,19 +55,13 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_chain_graph) {
   ASSERT_EQ(distances[1], 1);
   ASSERT_EQ(distances[2], 2);
   ASSERT_EQ(distances[3], 3);
-  }
-
+}
 
 TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_trivial_case_N4) {
   const int count = 4;
 
   // Create data
-  std::vector<std::vector<int>> graph {
-    {0,1,1,1},
-    {1,0,1,1},
-    {1,1,0,1},
-    {1,1,1,0}
-  };
+  std::vector<std::vector<int>> graph{{0, 1, 1, 1}, {1, 0, 1, 1}, {1, 1, 0, 1}, {1, 1, 1, 0}};
   std::vector<int> distances(count, 0);
   int source = 0;
 
@@ -101,22 +85,15 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_trivial_case_N4) {
   ASSERT_EQ(distances[1], 1);
   ASSERT_EQ(distances[2], 1);
   ASSERT_EQ(distances[3], 1);
-
-  }
-
-
+}
 
 TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_random_graph_N6) {
   const int count = 6;
 
   // Create data
-  std::vector<std::vector<int>> graph {
-    {0, 10, 2, 8, 9999, 9999},
-    {10, 0, 5, 9999, 9999, 9999}, 
-    {2, 5, 0, 3, 1, 6}, 
-    {8, 9999, 3, 0, 6, 9999}, 
-    {9999, 9999, 1, 6, 0, 3}, 
-    {9999, 9999, 6, 9999, 3, 0}, 
+  std::vector<std::vector<int>> graph{
+      {0, 10, 2, 8, 9999, 9999}, {10, 0, 5, 9999, 9999, 9999}, {2, 5, 0, 3, 1, 6},
+      {8, 9999, 3, 0, 6, 9999},  {9999, 9999, 1, 6, 0, 3},     {9999, 9999, 6, 9999, 3, 0},
 
   };
   std::vector<int> distances(count, 0);
@@ -144,20 +121,15 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_random_graph_N6) {
   ASSERT_EQ(distances[3], 5);
   ASSERT_EQ(distances[4], 3);
   ASSERT_EQ(distances[5], 6);
+}
 
-  }
-
-  TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_full_graph_N6) {
+TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_full_graph_N6) {
   const int count = 6;
 
   // Create data
-  std::vector<std::vector<int>> graph {
-    {0, 3, 4, 5, 6, 7}, 
-    {3, 0, 2, 2, 2, 1}, 
-    {4, 2, 0, 3, 13, 2}, 
-    {5, 2, 3, 0, 1, 0}, 
-    {6, 2, 13, 1, 0, 2}, 
-    {7, 1, 2, 0, 2, 0}, 
+  std::vector<std::vector<int>> graph{
+      {0, 3, 4, 5, 6, 7}, {3, 0, 2, 2, 2, 1},  {4, 2, 0, 3, 13, 2},
+      {5, 2, 3, 0, 1, 0}, {6, 2, 13, 1, 0, 2}, {7, 1, 2, 0, 2, 0},
 
   };
   std::vector<int> distances(count, 0);
@@ -185,5 +157,4 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, Test_random_graph_N6) {
   ASSERT_EQ(distances[3], 5);
   ASSERT_EQ(distances[4], 5);
   ASSERT_EQ(distances[5], 4);
-
-  }
+}

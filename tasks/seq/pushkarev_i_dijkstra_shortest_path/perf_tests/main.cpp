@@ -7,12 +7,10 @@
 #include "seq/pushkarev_i_dijkstra_shortest_path/include/dijkstra_shortest_path.hpp"
 
 TEST(pushkarev_i_dijkstra_shortest_path_seq, test_pipeline_run) {
-  
   const int count = 1000;
 
   std::vector<std::vector<int>> graph(count, std::vector<int>(count, 1));
-  for (int i =0; i < count; i++)
-  {
+  for (int i = 0; i < count; i++) {
     graph[i][i] = 0;
   }
   std::vector<int> distances(count, 0);
@@ -55,12 +53,10 @@ TEST(pushkarev_i_dijkstra_shortest_path_seq, test_pipeline_run) {
 }
 
 TEST(pushkarev_i_dijkstra_shortest_path_seq, test_task_run) {
-  
   const int count = 2000;
 
   std::vector<std::vector<int>> graph(count, std::vector<int>(count, 1));
-  for (int i =0; i < count; i++)
-  {
+  for (int i = 0; i < count; i++) {
     graph[i][i] = 0;
   }
   std::vector<int> distances(count, 0);
