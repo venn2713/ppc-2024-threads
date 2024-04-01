@@ -22,8 +22,8 @@ bool ConvexHullSequential::validation() {
   internal_order_test();
   // Check count elements of output
   return taskData->inputs_count[0] >= 3 && taskData->inputs_count[1] >= 3 &&
-      taskData->outputs_count[0] == taskData->inputs_count[0] &&
-      taskData->outputs_count[1] == taskData->inputs_count[1];
+         taskData->outputs_count[0] == taskData->inputs_count[0] &&
+         taskData->outputs_count[1] == taskData->inputs_count[1];
 }
 
 bool ConvexHullSequential::run() {
@@ -47,40 +47,39 @@ bool ConvexHullSequential::isCollinear(const Point& p1, const Point& p2, const P
 }
 
 bool ConvexHullSequential::isOnSegment(const Point& p1, const Point& p2, const Point& point) {
-  return (point.x <= std::max(p1.x, p2.x) && point.x >= std::min(p1.x, p2.x) &&
-      point.y <= std::max(p1.y, p2.y) && point.y >= std::min(p1.y, p2.y) &&
-      isCollinear(p1, p2, point));
+  return (point.x <= std::max(p1.x, p2.x) && point.x >= std::min(p1.x, p2.x) && point.y <= std::max(p1.y, p2.y) &&
+          point.y >= std::min(p1.y, p2.y) && isCollinear(p1, p2, point));
 }
 
 int ConvexHullSequential::windingNumber(const std::vector<Point>& polygon, const Point& point) {
-  int wn = 0; // Winding number
+  int wn = 0;
 
   for (size_t i = 0; i < polygon.size(); ++i) {
-      const Point& p1 = polygon[i];
-      const Point& p2 = polygon[(i + 1) % polygon.size()];
+    const Point& p1 = polygon[i];
+    const Point& p2 = polygon[(i + 1) % polygon.size()];
 
-      if (p1.y <= point.y) {
-          if (p2.y > point.y && isLeft(p1, p2, point) > 0) {
-              ++wn;
-          }
+    if (p1.y <= point.y) {
+      if (p2.y > point.y && isLeft(p1, p2, point) > 0) {
+        ++wn;
       }
-      else {
-          if (p2.y <= point.y && isLeft(p1, p2, point) < 0) {
-              --wn;
-          }
+    }
+    else {
+      if (p2.y <= point.y && isLeft(p1, p2, point) < 0) {
+        --wn;
       }
+    }
   }
   return wn;
 }
 
 bool ConvexHullSequential::isInside(const std::vector<Point>& convexHull, const Point& point) {
   for (size_t i = 0; i < convexHull.size(); ++i) {
-      const Point& p1 = convexHull[i];
-      const Point& p2 = convexHull[(i + 1) % convexHull.size()];
+    const Point& p1 = convexHull[i];
+    const Point& p2 = convexHull[(i + 1) % convexHull.size()];
 
-      if (isOnSegment(p1, p2, point)) {
-          return true;
-      }
+    if (isOnSegment(p1, p2, point)) {
+      return true;
+    }
   }
   return windingNumber(convexHull, point) != 0;
 }
@@ -100,11 +99,11 @@ std::vector<Point> ConvexHullSequential::convertToPoints(const std::vector<uint8
   std::vector<Point> _points;
     
   for (int i = 0; i < _height; ++i) {
-      for (int j = 0; j < _width; ++j) {
-          if (_image[i * _width + j] == 1) {
-              _points.push_back(Point(i, j));
-          }
+    for (int j = 0; j < _width; ++j) {
+      if (_image[i * _width + j] == 1) {
+        _points.push_back(Point(i, j));
       }
+    }
   }
 
   return _points;
@@ -114,10 +113,10 @@ std::vector<int> ConvexHullSequential::convertToImageVector(const std::vector<Po
   std::vector<int> imageVector(height * width, 0);
 
   for (const Point& point : _points) {
-      int index = point.x * _width + point.y;
-      if (index < _height * _width) {
-          image[index] = 1;
-      }
+    int index = point.x * _width + point.y;
+    if (index < _height * _width) {
+      image[index] = 1;
+    }
   }
 
   return imageVector;
@@ -126,17 +125,17 @@ std::vector<int> ConvexHullSequential::convertToImageVector(const std::vector<Po
 void ConvexHullSequential::convexHullImage() {
   size_t psize = points.size();
   if (psize <= 2) {
-      return;
+    return;
   }
 
   std::vector<Point> remainingPoints(points), convexHull;
   size_t startIndex = 0;
   for (size_t i = 0; i < remainingPoints.size(); i++) {
-      if (remainingPoints[startIndex].x > remainingPoints[i].x || 
-      ((remainingPoints[startIndex].x == remainingPoints[i].x) && 
-      (remainingPoints[startIndex].y > remainingPoints[i].y))) {
-          startIndex = i;
-      }
+    if (remainingPoints[startIndex].x > remainingPoints[i].x || 
+        ((remainingPoints[startIndex].x == remainingPoints[i].x) && 
+         (remainingPoints[startIndex].y > remainingPoints[i].y))) {
+      startIndex = i;
+    }
   }
 
   Point startingPoint = remainingPoints[startIndex];
@@ -145,28 +144,28 @@ void ConvexHullSequential::convexHullImage() {
   do {
       nextPoint = remainingPoints[0];
       if (nextPoint == convexHull.back()) {
-          nextPoint = remainingPoints[1];
+        nextPoint = remainingPoints[1];
       }
       for (size_t i = 0; i < remainingPoints.size(); i++) {
-          if ((remainingPoints[i] == convexHull.back()) || (convexHull.back() == nextPoint)) {
-              continue;
-          }
-          if ((remainingPoints[i] == nextPoint) || pointIsToTheRight(convexHull.back(), nextPoint, remainingPoints[i])) {
-              nextPoint = remainingPoints[i];
-          }
+        if ((remainingPoints[i] == convexHull.back()) || (convexHull.back() == nextPoint)) {
+          continue;
+        }
+        if ((remainingPoints[i] == nextPoint) || pointIsToTheRight(convexHull.back(), nextPoint, remainingPoints[i])) {
+          nextPoint = remainingPoints[i];
+        }
       }
       convexHull.push_back(nextPoint);
       if (convexHull.size() == points.size()) {
-          break;
+        break;
       }
   } while (convexHull.back() != startingPoint);
 
   for (int i = 0; i < height; ++i) {
-      for (int j = 0; j < width; ++j) {
-          if (isInside(convexHull, Point(i, j))) {
-              convexHull.push_back(Point(i, j));
-          }
-      }
+    for (int j = 0; j < width; ++j) {
+        if (isInside(convexHull, Point(i, j))) {
+          convexHull.push_back(Point(i, j));
+        }
+    }
   }
 
   convertToImageVector(convexHull, height, width);
