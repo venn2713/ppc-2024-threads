@@ -35,7 +35,6 @@ TEST(kazantsev_e_matmul_strassen_seq, multSecShtrassen_4x4) {
   MatMulStrassenSec.pre_processing();
   MatMulStrassenSec.run();
   MatMulStrassenSec.post_processing();
-  //ASSERT_EQ(count, out[0]);
   
   for (size_t i = 0; i < res.size(); ++i) {
     ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3), std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
@@ -217,5 +216,5 @@ TEST(kazantsev_e_matmul_strassen_seq, multSecShtrassen_64xsize) {
   MatMulStrassenSec.run();
   MatMulStrassenSec.post_processing();
 
-    ASSERT_EQ(res.size(), out.size());
+  ASSERT_EQ(res.size(), out.size());
 }

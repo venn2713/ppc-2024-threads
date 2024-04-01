@@ -1,10 +1,10 @@
 // Copyright 2024 Kazantsev Evgeny
 #include "seq/kazantsev_e_shtrassen_alg/include/ops_seq.hpp"
 
-#include <thread>
-#include <vector>
 #include <algorithm>
 #include <cmath>
+#include <thread>
+#include <vector>
 
 using namespace std::chrono_literals;
 
@@ -54,11 +54,7 @@ std::vector<double> additionSquareMatrix(std::vector<double>& a, int n) { //n re
 }
 
 // divide into four parts
-void splitMatrix(const std::vector<double>& mSplit, 
-                  std::vector<double>& a11, 
-                  std::vector<double>& a12, 
-                  std::vector<double>& a21, 
-                  std::vector<double>& a22) {
+void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11, std::vector<double>& a12, std::vector<double>& a21, std::vector<double>& a22) {
   int n = std::sqrt(mSplit.size()) / 2;
 
   for (int i = 0; i < n; i++) {
@@ -70,10 +66,7 @@ void splitMatrix(const std::vector<double>& mSplit,
 
 }
 
-std::vector<double> mergeMatrix(std::vector<double> a11,
-                                std::vector<double> a12,
-                                std::vector<double> a21,
-                                std::vector<double> a22) {
+std::vector<double> mergeMatrix(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21, std::vector<double> a22) {
   int n = a11.size();
   std::vector<double> res(4 * n, 0.0);
   n = std::sqrt(n);
@@ -88,7 +81,7 @@ std::vector<double> mergeMatrix(std::vector<double> a11,
   return res;
 }
 
-//summation
+// summation
 std::vector<double> summation(const std::vector<double>& a, const std::vector<double>& b) {
   int n  = a.size();
   std::vector<double> res(n);
@@ -99,9 +92,9 @@ std::vector<double> summation(const std::vector<double>& a, const std::vector<do
   return res;
 }
 
-//subtraction
+// subtraction
 std::vector<double> subtraction(const std::vector<double>& a, const std::vector<double>& b) {
-  int n  = a.size();
+  int n = a.size();
   std::vector<double> res(n);
 
   for (int i = 0; i < n; i++) {
@@ -146,11 +139,8 @@ std::vector<double> StrassenMatMul(const std::vector<double>& a, const std::vect
   std::vector<double> c12 = summation(p3, p5);
   std::vector<double> c21 = summation(p2, p4);
   std::vector<double> c22 = summation(subtraction(p1, p2), summation(p3, p6));
-
-  
-  return mergeMatrix(c11, c12, c21, c22);;
+  return mergeMatrix(c11, c12, c21, c22);
 }
-
 
 bool MatMulStrassenSec::pre_processing() {
   internal_order_test();

@@ -1,9 +1,9 @@
 // Copyright 2024 kazantsev Evgeny
 #pragma once
 
+#include <random>
 #include <string>
 #include <vector>
-#include <random>
 
 #include "core/task/include/task.hpp"
 
@@ -15,7 +15,7 @@ class MatMulStrassenSec : public ppc::core::Task {
   bool run() override;
   bool post_processing() override;
 
-   private:
+ private:
   std::vector<double> A;
   std::vector<double> B;
   std::vector<double> result;

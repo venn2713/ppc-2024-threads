@@ -7,7 +7,7 @@
 #include "seq/kazantsev_e_shtrassen_alg/include/ops_seq.hpp"
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
- const int n = 64;
+  const int n = 64;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
@@ -38,7 +38,8 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
   perfAttr->num_running = 10;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
-    auto current_time_point = std::chrono::high_resolution_clock::now(); auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point -t0).count();
+    auto current_time_point = std::chrono::high_resolution_clock::now(); 
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
   return static_cast<double>(duration) * 1e-9;
   };
 
@@ -56,7 +57,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
 }
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
- const int n = 64;
+  const int n = 64;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
