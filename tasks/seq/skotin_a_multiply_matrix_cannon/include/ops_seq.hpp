@@ -20,6 +20,6 @@ class MatrixMultiplicationTask : public ppc::core::Task {
   std::vector<std::vector<double>> matrixB;
   std::vector<std::vector<double>> resultMatrix;
 
-  bool loadMatrix(const std::vector<double>& inputData, std::vector<std::vector<double>>& matrix, size_t size);
+  static bool loadMatrix(const std::vector<double>& inputData, std::vector<std::vector<double>>& matrix, size_t size);
   bool saveResult();
 };

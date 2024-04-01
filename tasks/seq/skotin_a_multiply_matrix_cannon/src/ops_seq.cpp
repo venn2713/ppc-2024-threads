@@ -64,7 +64,7 @@ bool MatrixMultiplicationTask::run() {
 bool MatrixMultiplicationTask::post_processing() { return saveResult(); }
 
 bool MatrixMultiplicationTask::loadMatrix(const std::vector<double>& inputData,
-                                          std::vector<std::vector<double>>& matrix, size_t size) {
+                                                 std::vector<std::vector<double>>& matrix, size_t size) {
   if (inputData.size() != size * size) {
     std::cerr << "Input data size does not match expected matrix size." << std::endl;
     return false;
