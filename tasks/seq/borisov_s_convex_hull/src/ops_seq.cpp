@@ -100,7 +100,7 @@ std::vector<Point> ConvexHullSequential::convertToPoints(const std::vector<uint8
   for (int i = 0; i < _height; ++i) {
     for (int j = 0; j < _width; ++j) {
       if (_image[i * _width + j] == 1) {
-        _points.push_back(Point(i, j));
+        _points.emplace_back(i, j);
       }
     }
   }
@@ -128,7 +128,8 @@ void ConvexHullSequential::convexHullImage() {
     return;
   }
 
-  std::vector<Point> remainingPoints(points), convexHull;
+  std::vector<Point> remainingPoints(points); 
+  std::vector<Point> convexHull;
   size_t startIndex = 0;
   for (size_t i = 0; i < remainingPoints.size(); i++) {
     if (remainingPoints[startIndex].x > remainingPoints[i].x ||
@@ -163,7 +164,7 @@ void ConvexHullSequential::convexHullImage() {
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; ++j) {
       if (isInside(convexHull, Point(i, j))) {
-        convexHull.push_back(Point(i, j));
+        convexHull.emplace_back(i, j);
       }
     }
   }

@@ -21,10 +21,7 @@ struct Point {
   Point& operator=(const Point&) = default;
 
   bool operator==(const Point& other) const {
-    if ((x == other.x) && (y == other.y)) {
-      return true;
-    }
-    return false;
+    return (x == other.x) && (y == other.y);
   }
 
   bool operator!=(const Point& other) const { return !(*this == other); }
@@ -45,13 +42,13 @@ class ConvexHullSequential : public ppc::core::Task {
   std::vector<Point> points;
   void convexHullImage();
 
-  std::vector<Point> convertToPoints(const std::vector<uint8_t>& _image, int _height, int _width);
+  static std::vector<Point> convertToPoints(const std::vector<uint8_t>& _image, int _height, int _width);
   std::vector<int> convertToImageVector(const std::vector<Point>& _points, int _height, int _width);
 
-  int isLeft(const Point& p1, const Point& p2, const Point& point);
-  bool isCollinear(const Point& p1, const Point& p2, const Point& p3);
+  static int isLeft(const Point& p1, const Point& p2, const Point& point);
+  static bool isCollinear(const Point& p1, const Point& p2, const Point& p3);
   bool isOnSegment(const Point& p1, const Point& p2, const Point& point);
   int windingNumber(const std::vector<Point>& polygon, const Point& point);
   bool isInside(const std::vector<Point>& convexHull, const Point& point);
-  bool pointIsToTheRight(const Point& previous, const Point& current, const Point& potential);
+  static bool pointIsToTheRight(const Point& previous, const Point& current, const Point& potential);
 };
