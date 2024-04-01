@@ -36,12 +36,12 @@ bool MultMatrixCSCComplex::run() {
   std::vector<size_t> col_ptrs;
   std::complex<double> sum;
   mtrx_res->col_ptrs.push_back(0);
-  for (int j = 0; j < mtrx_B->num_cols; j++) {
-    for (int i = 0; i < mtrx_A->num_rows; i++) {
+  for (size_t j = 0; j < mtrx_B->num_cols; j++) {
+    for (size_t i = 0; i < mtrx_A->num_rows; i++) {
       // if (mtrx_B.col_ptrs[j] - mtrx_B.col_ptrs[j+1] != 0)
       sum.imag(0.0);
       sum.real(0.0);
-      for (int k = mtrx_B->col_ptrs[j]; k < mtrx_B->col_ptrs[j + 1]; k++) {
+      for (size_t k = mtrx_B->col_ptrs[j]; k < mtrx_B->col_ptrs[j + 1]; k++) {
         auto start = mtrx_A->row_indexes.begin() + mtrx_A->col_ptrs[mtrx_B->row_indexes[k]];
         auto end = mtrx_A->row_indexes.begin() + mtrx_A->col_ptrs[mtrx_B->row_indexes[k] + 1];
         auto it = find(start, end, i);
