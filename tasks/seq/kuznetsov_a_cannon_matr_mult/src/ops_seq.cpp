@@ -71,8 +71,8 @@ bool KuznetsovCannonMatrMultSeq::pre_processing() {
 
   size_t countElem = mSize * mSize;
 
-  double* ptrOne = reinterpret_cast<double*>(taskData->inputs[MATR_ONE]);
-  double* ptrTwo = reinterpret_cast<double*>(taskData->inputs[MATR_TWO]);
+  auto* ptrOne = reinterpret_cast<double*>(taskData->inputs[MATR_ONE]);
+  auto* ptrTwo = reinterpret_cast<double*>(taskData->inputs[MATR_TWO]);
 
   for (size_t i = 0; i < countElem; ++i) {
     mMatrOne[i] = ptrOne[i];
