@@ -43,7 +43,7 @@ bool verifyCRSAttributes(const SparseMatrixCRS& object) {
     return false;
   }
   if (object.values.size() != check || object.columnIndexes.size() != check ||
-             object.pointers[object.numberOfRows] != nonZeroCount) {
+      object.pointers[object.numberOfRows] != nonZeroCount) {
     return false;
   }
 
