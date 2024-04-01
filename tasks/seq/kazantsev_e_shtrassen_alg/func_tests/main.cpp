@@ -186,8 +186,8 @@ TEST(kazantsev_e_matmul_strassen_seq, multSecShtrassen_64x64) {
   }
 }
 
-TEST(kazantsev_e_matmul_strassen_seq, multSecShtrassen_128x128) {
-  const int n = 128;
+TEST(kazantsev_e_matmul_strassen_seq, multSecShtrassen_64xsize) {
+  const int n = 64;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);

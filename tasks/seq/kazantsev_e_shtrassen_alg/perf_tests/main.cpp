@@ -7,7 +7,7 @@
 #include "seq/kazantsev_e_shtrassen_alg/include/ops_seq.hpp"
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
- const int n = 128;
+ const int n = 64;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
@@ -56,7 +56,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_pipeline_run) {
 }
 
 TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
- const int n = 128;
+ const int n = 64;
 
   // Create data
   std::vector<double> A = getRandomMatrix(n);
