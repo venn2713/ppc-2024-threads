@@ -101,7 +101,7 @@ TEST(kazantsev_e_matmul_strassen_seq_perf, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(testTaskSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
- 
+
   for (size_t i = 0; i < res.size(); ++i) {
     ASSERT_EQ(std::round(res[i] * std::pow(10, 3)) / std::pow(10, 3),
               std::round(out[i] * std::pow(10, 3)) / std::pow(10, 3));
