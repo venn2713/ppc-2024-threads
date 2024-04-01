@@ -34,13 +34,15 @@ SparseMatrixCRS sparseMatrixTransposeCRS(const SparseMatrixCRS& object) {
 
 bool verifyCRSAttributes(const SparseMatrixCRS& object) {
   int nonZeroCount = object.values.size();
-  size_t check = size_t(nonZeroCount);
+  auto check = size_t(nonZeroCount);
 
   if (object.pointers.size() != size_t(object.numberOfRows + 1)) {
     return false;
-  } else if (object.pointers[0] != 0) {
+  }
+  if (object.pointers[0] != 0) {
     return false;
-  } else if (object.values.size() != check || object.columnIndexes.size() != check ||
+  }
+  if (object.values.size() != check || object.columnIndexes.size() != check ||
              object.pointers[object.numberOfRows] != nonZeroCount) {
     return false;
   }
