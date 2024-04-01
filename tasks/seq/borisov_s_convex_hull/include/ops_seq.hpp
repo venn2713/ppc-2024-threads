@@ -45,8 +45,8 @@ class ConvexHullSequential : public ppc::core::Task {
 
   static int isLeft(const Point& p1, const Point& p2, const Point& point);
   static bool isCollinear(const Point& p1, const Point& p2, const Point& p3);
-  bool isOnSegment(const Point& p1, const Point& p2, const Point& point);
-  int windingNumber(const std::vector<Point>& polygon, const Point& point);
-  bool isInside(const std::vector<Point>& convexHull, const Point& point);
+  static bool isOnSegment(const Point& p1, const Point& p2, const Point& point);
+  static int windingNumber(const std::vector<Point>& polygon, const Point& point);
+  static bool isInside(const std::vector<Point>& convexHull, const Point& point);
   static bool pointIsToTheRight(const Point& previous, const Point& current, const Point& potential);
 };
