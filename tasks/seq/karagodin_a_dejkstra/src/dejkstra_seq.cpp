@@ -32,7 +32,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
   return graphMap;
 }
 
-void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMap) {
+void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
   for (const auto& row : graphMap) {
     for (int value : row) {
       std::cout << value << "  ";
@@ -42,8 +42,11 @@ void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& 
 }
 
 std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
-    const std::vector<std::vector<int>>& graphMapInput, int entryNode, int destNode) {
-  int size = graphMapInput.size();
+    const std::vector<std::vector<int>>& graphMapInput, int start, int end) {
+  graphMap = graphMapInput;
+  entryNode = start;
+  destNode = end;
+  size = graphMapInput.size();
   std::vector<int> dist(size, std::numeric_limits<int>::max());
   std::vector<int> prev(size, -1);
   std::priority_queue<Node, std::vector<Node>, CompareNode> pq;
@@ -62,8 +65,8 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
     }
 
     for (int v = 0; v < size; ++v) {
-      if (graphMapInput[u][v] != 0) {
-        int alt = dist[u] + graphMapInput[u][v];
+      if (graphMap[u][v] != 0) {
+        int alt = dist[u] + graphMap[u][v];
         if (alt < dist[v]) {
           dist[v] = alt;
           prev[v] = u;
@@ -97,7 +100,7 @@ bool DejkstraTaskSequential::pre_processing() {
   try {
     entryNode = *reinterpret_cast<int*>(taskData->inputs[0]);
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
-    graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
+    graphMap = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
     size = (taskData->inputs_count[0]);
   } catch (const std::exception& e) {
     return false;
@@ -108,10 +111,10 @@ bool DejkstraTaskSequential::pre_processing() {
 bool DejkstraTaskSequential::run() {
   try {
     internal_order_test();
-    if (size != 0 && graphMapInput.data() == NULL) {
-      graphMapInput = initGraphMapRandom(size);
+    if (size != 0 && graphMap.data() == NULL) {
+      graphMap = initGraphMapRandom(size);
     }
-    res = getDejMinPath(graphMapInput, entryNode, destNode);
+    res = getDejMinPath(graphMap, entryNode, destNode);
   } catch (...) {
     return false;
   }

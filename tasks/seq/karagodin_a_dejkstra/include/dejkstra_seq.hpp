@@ -19,8 +19,8 @@ class DejkstraTaskSequential : public ppc::core::Task {
   bool validation() override;
   bool run() override;
   bool post_processing() override;
-  std::pair<std::vector<int>, int> getDejMinPath(const std::vector<std::vector<int>>& graphMapInput, int entryNode,
-                                                 int destNode);
+  std::pair<std::vector<int>, int> getDejMinPath(const std::vector<std::vector<int>>& graphMapInput, int start,
+                                                 int end);
   struct Node {
     int vertex;
     int cost;
@@ -30,11 +30,11 @@ class DejkstraTaskSequential : public ppc::core::Task {
   struct CompareNode {
     bool operator()(const Node& n1, const Node& n2) { return n1.cost > n2.cost; }
   };
-  void printGraphMap(const std::vector<std::vector<int>>& graphMap);
+  void printGraphMap(const std::vector<std::vector<int>>& graphMapInput);
 
  private:
   int size, destNode, entryNode, minScore;
-  std::vector<std::vector<int>> graphMapInput;
+  std::vector<std::vector<int>> graphMap;
   std::vector<int> pathOutput;
   std::pair<std::vector<int>, int> res;
   int current = 0;

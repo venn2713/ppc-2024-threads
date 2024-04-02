@@ -1,6 +1,8 @@
 // Copyright Andrey Karagodin 2024
 #include <gtest/gtest.h>
+
 #include <seq/karagodin_a_dejkstra/include/dejkstra_seq.hpp>
+
 #include "core/perf/include/perf.hpp"
 
 TEST(karagodin_a_dejkstra_seq_perf_test, test_pipeline_run) {
