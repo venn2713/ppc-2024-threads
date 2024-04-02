@@ -6,8 +6,8 @@
 TEST(karagodin_a_dejkstra_seq_perf_test, test_pipeline_run) {
   // Create data
   int entryNode = 0;
-  int destNode = 50;
-  int size = 50;
+  int destNode = 499;
+  int size = 500;
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap;
   // Create TaskData
@@ -17,8 +17,6 @@ TEST(karagodin_a_dejkstra_seq_perf_test, test_pipeline_run) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&graphMap));
   taskDataSeq->inputs_count.emplace_back(size);
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(&result));
-
-std::cout << "Alive." << std::endl;
   // Create Task
   auto dejkstra_seq = std::make_shared<DejkstraTaskSequential>(taskDataSeq);
 
@@ -31,7 +29,6 @@ std::cout << "Alive." << std::endl;
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
-std::cout << "Alive." << std::endl;
   // Create and init perf results
   auto perfResults = std::make_shared<ppc::core::PerfResults>();
 
@@ -46,8 +43,8 @@ std::cout << "Alive." << std::endl;
 TEST(karagodin_a_dejkstra_seq_perf_test, test_task_run) {
   // Create data
   int entryNode = 0;
-  int destNode = 50;
-  int size = 50;
+  int destNode = 499;
+  int size = 500;
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap;
   // Create TaskData

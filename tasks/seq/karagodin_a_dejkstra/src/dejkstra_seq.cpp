@@ -49,7 +49,6 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
   std::vector<int> dist(size, std::numeric_limits<int>::max());
   std::vector<int> prev(size, -1);
   std::priority_queue<Node, std::vector<Node>, CompareNode> pq;
-
   dist[entryNode] = 0;
   pq.push(Node(entryNode, 0));
 
@@ -77,7 +76,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
   }
 
   // Reconstruct path
-  int current = destNode;
+  current = destNode;
   while (current != -1) {
     pathOutput.push_back(current);
     current = prev[current];
@@ -101,10 +100,7 @@ bool DejkstraTaskSequential::pre_processing() {
     entryNode = *reinterpret_cast<int*>(taskData->inputs[0]);
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
     graphMapInput = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
-    size = *reinterpret_cast<int*>(taskData->inputs_count[0]);
-    if (size != 0 && graphMapInput.data() == NULL) {
-      graphMapInput = initGraphMapRandom(size);
-    }
+    size = (taskData->inputs_count[0]);
   } catch (const std::exception& e) {
     return false;
   }
@@ -114,6 +110,9 @@ bool DejkstraTaskSequential::pre_processing() {
 bool DejkstraTaskSequential::run() {
   try {
     internal_order_test();
+    if (size != 0 || graphMapInput.data() == NULL) {
+      graphMapInput = initGraphMapRandom(size);
+    }
     res = getDejMinPath(graphMapInput, entryNode, destNode);
   } catch (...) {
     return false;
