@@ -1,6 +1,7 @@
 // Copyright 2024 Karagodin Andrey
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <queue>
@@ -8,20 +9,18 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include <algorithm>
+
 #include "core/task/include/task.hpp"
 
 class DejkstraTaskSequential : public ppc::core::Task {
  public:
-  explicit DejkstraTaskSequential(std::shared_ptr<ppc::core::TaskData>
-   taskData_) : Task(std::move(taskData_)) {}
+  explicit DejkstraTaskSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
   bool post_processing() override;
-  std::pair<std::vector<int>, int> getDejMinPath(
-    const std::vector<std::vector<int>>
-    & graphMapInput, int entryNode, int destNode);
+  std::pair<std::vector<int>, int> getDejMinPath(const std::vector<std::vector<int>>& graphMapInput, int entryNode,
+                                                 int destNode);
   struct Node {
     int vertex;
     int cost;
@@ -29,8 +28,7 @@ class DejkstraTaskSequential : public ppc::core::Task {
   };
 
   struct CompareNode {
-    bool operator()(const Node& n1, const Node& n2)
-     { return n1.cost > n2.cost; }
+    bool operator()(const Node& n1, const Node& n2) { return n1.cost > n2.cost; }
   };
   void printGraphMap(const std::vector<std::vector<int>>& graphMap);
 
