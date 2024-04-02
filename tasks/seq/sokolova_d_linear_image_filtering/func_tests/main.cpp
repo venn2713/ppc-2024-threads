@@ -109,14 +109,14 @@ TEST(sokolova_d_linear_image_filtering, high_resolution_image) {
   ASSERT_EQ(expected, out);
 }
 
-TEST(sokolova_d_linear_image_filtering, floating_point_values) {
-  uint32_t width = 32;
-  uint32_t height = 32;
+TEST(sokolova_d_linear_image_filtering, empty_image) {
+  uint32_t width = 0;
+  uint32_t height = 0;
 
   // Create data
-  std::vector<uint8_t> in(width * height * 3, 127.5);
+  std::vector<uint8_t> in(width * height * 3, 0);
   std::vector<uint8_t> out(width * height * 3, 0);
-  std::vector<uint8_t> expected(width * height * 3, 127);
+  std::vector<uint8_t> expected(width * height * 3, 0);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -129,9 +129,5 @@ TEST(sokolova_d_linear_image_filtering, floating_point_values) {
 
   // Create Task
   GaussFilterHorizontal gaussFilterHorizontal(taskDataSeq);
-  ASSERT_EQ(gaussFilterHorizontal.validation(), true);
-  gaussFilterHorizontal.pre_processing();
-  gaussFilterHorizontal.run();
-  gaussFilterHorizontal.post_processing();
-  ASSERT_EQ(expected, out);
+  ASSERT_EQ(gaussFilterHorizontal.validation(), false);
 }
