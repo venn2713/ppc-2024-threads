@@ -26,7 +26,8 @@ uint8_t HorizontalSplitSequential::NewColor(int i, int j) {
         im_ind_m = m - 1;
       else
         im_ind_m = q + j;
-      res += image[im_ind_n * m + im_ind_m] * gauss_kernel[(k + 1) * ker_size + (q+1)];
+      res += image[im_ind_n * m + im_ind_m] * gauss_kernel[(k + 1) 
+                                              * ker_size + (q+1)];
     }
   }
   res = (uint8_t)(std::clamp(res, 0, 255));
