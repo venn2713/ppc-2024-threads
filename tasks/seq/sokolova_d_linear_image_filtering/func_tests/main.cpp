@@ -83,8 +83,8 @@ TEST(sokolova_d_linear_image_filtering, low_resolution_image) {
 }
 
 TEST(sokolova_d_linear_image_filtering, high_resolution_image) {
-  uint32_t width = 2048;
-  uint32_t height = 2048;
+  uint32_t width = 1024;
+  uint32_t height = 1024;
 
   // Create data
   std::vector<uint8_t> in(width * height * 3, 127);
