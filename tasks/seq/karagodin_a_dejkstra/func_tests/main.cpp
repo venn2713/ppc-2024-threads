@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 #include <iostream>
-#include <vector>
 #include <seq/karagodin_a_dejkstra/include/dejkstra_seq.hpp>
+#include <vector>
 
 TEST(karagodin_a_dejkstra_seq, test_correctness) {
   int entryNode = 0;
