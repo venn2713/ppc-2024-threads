@@ -80,7 +80,6 @@
 //   ASSERT_EQ(count, out[0]);
 // }
 
-
 TEST(vasilev_i_sort_shell_seq, pipeline_run) {
   const int count = 1024;
 

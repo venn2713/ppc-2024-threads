@@ -1,7 +1,9 @@
 // Copyright 2024 Vasilev Ivan
 #include <gtest/gtest.h>
+
 #include <iostream>
 #include <vector>
+
 #include "seq/Vasilev_i_sort_shell/include/ops_seq.hpp"
 
 // TEST(Sequential, Test_Sum_10) {
@@ -120,7 +122,6 @@
 // }
 
 TEST(vasilev_i_sort_shell_seq, Sort_2) {
-  
   std::vector<int> arr = {2, 1};
   std::vector<int> rez(2);
   std::vector<int> expected = {1, 2};
@@ -141,7 +142,6 @@ TEST(vasilev_i_sort_shell_seq, Sort_2) {
 }
 
 TEST(vasilev_i_sort_shell_seq, Sort_4) {
-  
   std::vector<int> arr = {3, 2, 4, 1};
   std::vector<int> rez(4);
   std::vector<int> expected = {1, 2, 3, 4};
@@ -158,11 +158,10 @@ TEST(vasilev_i_sort_shell_seq, Sort_4) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_EQ(rez,expected);
+  ASSERT_EQ(rez, expected);
 }
 
 TEST(vasilev_i_sort_shell_seq, Sort_8) {
-  
   std::vector<int> arr = {5, 3, 8, 6, 2, 7, 1, 4};
   std::vector<int> rez(8);
   std::vector<int> expected = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -183,7 +182,6 @@ TEST(vasilev_i_sort_shell_seq, Sort_8) {
 }
 
 TEST(vasilev_i_sort_shell_seq, Sort_16) {
-  
   std::vector<int> arr = {5, 8, 11, 6, 12, 16, 9, 3, 13, 2, 7, 4, 10, 1, 14, 15};
   std::vector<int> rez(16);
   std::vector<int> expected = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
@@ -224,9 +222,6 @@ TEST(vasilev_i_sort_shell_seq, Sort_32) {
   testTaskSequential.post_processing();
   ASSERT_EQ(rez, expected);
 }
-
-
-
 // int main(int argc, char **argv) {
 //   testing::InitGoogleTest(&argc, argv);
 //   return RUN_ALL_TESTS();
