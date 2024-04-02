@@ -1,8 +1,7 @@
 // Copyright 2024 Vasilev Ivan
 #include <gtest/gtest.h>
-
-#include <vector>
 #include <iostream>
+#include <vector>
 #include "seq/Vasilev_i_sort_shell/include/ops_seq.hpp"
 
 // TEST(Sequential, Test_Sum_10) {
@@ -120,10 +119,10 @@
 //   ASSERT_EQ(count, out[0]);
 // }
 
-TEST(vasilev_i_sort_shell_seq, Sort_2){
+TEST(vasilev_i_sort_shell_seq, Sort_2) {
   
-  std::vector<int> arr = {2,1};
-  std::vector<int> rez (2);
+  std::vector<int> arr = {2, 1};
+  std::vector<int> rez(2);
   std::vector<int> expected = {1, 2};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -138,13 +137,13 @@ TEST(vasilev_i_sort_shell_seq, Sort_2){
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_EQ(rez,expected);
+  ASSERT_EQ(rez, expected);
 }
 
-TEST(vasilev_i_sort_shell_seq, Sort_4){
+TEST(vasilev_i_sort_shell_seq, Sort_4) {
   
   std::vector<int> arr = {3, 2, 4, 1};
-  std::vector<int> rez (4);
+  std::vector<int> rez(4);
   std::vector<int> expected = {1, 2, 3, 4};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -162,10 +161,10 @@ TEST(vasilev_i_sort_shell_seq, Sort_4){
   ASSERT_EQ(rez,expected);
 }
 
-TEST(vasilev_i_sort_shell_seq, Sort_8){
+TEST(vasilev_i_sort_shell_seq, Sort_8) {
   
   std::vector<int> arr = {5, 3, 8, 6, 2, 7, 1, 4};
-  std::vector<int> rez (8);
+  std::vector<int> rez(8);
   std::vector<int> expected = {1, 2, 3, 4, 5, 6, 7, 8};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -180,13 +179,13 @@ TEST(vasilev_i_sort_shell_seq, Sort_8){
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_EQ(rez,expected);
+  ASSERT_EQ(rez, expected);
 }
 
-TEST(vasilev_i_sort_shell_seq, Sort_16){
+TEST(vasilev_i_sort_shell_seq, Sort_16) {
   
   std::vector<int> arr = {5, 8, 11, 6, 12, 16, 9, 3, 13, 2, 7, 4, 10, 1, 14, 15};
-  std::vector<int> rez (16);
+  std::vector<int> rez(16);
   std::vector<int> expected = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -201,14 +200,15 @@ TEST(vasilev_i_sort_shell_seq, Sort_16){
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_EQ(rez,expected);
+  ASSERT_EQ(rez, expected);
 }
 
-TEST(vasilev_i_sort_shell_seq, Sort_32){
-  
-  std::vector<int> arr = {3, 24, 15, 10, 32, 1, 25, 30, 8, 14, 28, 27, 2, 21, 6, 16, 20, 26, 12, 13, 18, 5, 4, 23, 11, 29, 19, 9, 22, 17, 31, 7};
-  std::vector<int> rez (32);
-  std::vector<int> expected = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32};
+TEST(vasilev_i_sort_shell_seq, Sort_32) {
+  std::vector<int> arr = {3,  24, 15, 10, 32, 1, 25, 30, 8,  14, 28, 27, 2,  21, 6,  16,
+                          20, 26, 12, 13, 18, 5, 4,  23, 11, 29, 19, 9,  22, 17, 31, 7};
+  std::vector<int> rez(32);
+  std::vector<int> expected = {1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15, 16,
+                               17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32};
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&arr));
@@ -222,7 +222,7 @@ TEST(vasilev_i_sort_shell_seq, Sort_32){
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  ASSERT_EQ(rez,expected);
+  ASSERT_EQ(rez, expected);
 }
 
 
