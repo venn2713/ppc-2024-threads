@@ -1,9 +1,7 @@
 // Copyright Andrey Karagodin 2024.
-
+#include <gtest/gtest.h>
 #include <iostream>
 #include <vector>
-
-#include <gtest/gtest.h>
 #include <seq/karagodin_a_dejkstra/include/dejkstra_seq.hpp>
 
 TEST(karagodin_a_dejkstra_seq, test_correctness) {
