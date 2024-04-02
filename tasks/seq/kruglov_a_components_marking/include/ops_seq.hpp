@@ -19,7 +19,7 @@ class imgMarkingSeq : public ppc::core::Task {
 
  private:
   std::vector<std::vector<uint8_t>> src = {};
-  std::vector<std::vector<uint8_t>> dst = {};
+  std::vector<std::vector<uint32_t>> dst = {};
   uint32_t h{}, w{};
   void imgMarking();
 };

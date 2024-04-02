@@ -35,7 +35,7 @@ bool imgMarkingSeq::run() {
 bool imgMarkingSeq::post_processing() {
   internal_order_test();
   for (size_t i = 0; i < h; ++i)
-    for (size_t j = 0; j < w; ++j) reinterpret_cast<uint8_t *>(taskData->outputs[0])[i * w + j] = dst[i][j];
+    for (size_t j = 0; j < w; ++j) reinterpret_cast<uint32_t *>(taskData->outputs[0])[i * w + j] = dst[i][j];
   return true;
 }
 
@@ -77,8 +77,8 @@ void imgMarkingSeq::imgMarking() {
           else if (ptrMap[i][j - 1] == nullptr)
             ptrMap[i][j] = ptrMap[i - 1][j];
           else {
-            *(ptrMap[i - 1][j]) = *(ptrMap[i][j - 1]);
-            ptrMap[i][j] = ptrMap[i][j - 1];
+            *(ptrMap[i][j - 1]) = *(ptrMap[i - 1][j]);
+            ptrMap[i][j] = ptrMap[i - 1][j];
           }
         }
       }

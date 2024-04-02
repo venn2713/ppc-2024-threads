@@ -13,8 +13,8 @@ TEST(kruglov_a_components_marking_seq_perf_test, test_pipeline_run) {
   uint32_t w = 2000;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in(h * w, 0);
-  std::vector<uint8_t> out(h * w, 0);
-  std::vector<uint8_t> comp(h * w, 1);
+  std::vector<uint32_t> out(h * w, 0);
+  std::vector<uint32_t> comp(h * w, 1);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -55,8 +55,8 @@ TEST(kruglov_a_components_marking_seq_perf_test, test_task_run) {
   uint32_t w = 2000;
   std::vector<uint32_t> size = {h, w};
   std::vector<uint8_t> in(h * w, 0);
-  std::vector<uint8_t> out(h * w, 0);
-  std::vector<uint8_t> comp(h * w, 1);
+  std::vector<uint32_t> out(h * w, 0);
+  std::vector<uint32_t> comp(h * w, 1);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
