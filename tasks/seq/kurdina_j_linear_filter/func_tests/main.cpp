@@ -13,7 +13,7 @@ TEST(kurdina_j_linear_filter_seq, Image_1) {
   // Create data
   std::vector<uint8_t> in = {0, 0, 0, 0, 0, 0, 0, 0, 0};
   std::vector<int> size_m = {n, m};
-  std::vector<uint8_t> out(n*m);
+  std::vector<uint8_t> out(n * m);
   std::vector<uint8_t> result = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
   // Create TaskData

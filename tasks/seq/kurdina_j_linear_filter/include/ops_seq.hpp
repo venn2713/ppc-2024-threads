@@ -19,6 +19,6 @@ class HorizontalSplitSequential : public ppc::core::Task {
   std::vector<uint8_t> input_ = {};
   std::vector<uint8_t> image = {};
   std::vector<uint8_t> gauss_kernel = {};
-  int n, m;
+  int n{}, m{};
   int ker_size = 3;
 };

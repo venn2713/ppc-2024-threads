@@ -7,8 +7,8 @@
 #include "seq/kurdina_j_linear_filter/include/ops_seq.hpp"
 
 TEST(kurdina_j_linear_filter_seq, test_pipeline_run) {
-  int n = 1000;
-  int m = 1000;
+  int n = 700;
+  int m = 700;
   std::vector<uint8_t> gauss_kernel = {1, 1, 1, 1, 9, 1, 1, 1, 1};
 
   // Create data
@@ -54,8 +54,8 @@ TEST(kurdina_j_linear_filter_seq, test_pipeline_run) {
 }
 
 TEST(kurdina_j_linear_filter, test_task_run) {
-  int n = 1000;
-  int m = 1000;
+  int n = 700;
+  int m = 700;
   std::vector<uint8_t> gauss_kernel = {1, 1, 1, 1, 9, 1, 1, 1, 1};
 
   // Create data

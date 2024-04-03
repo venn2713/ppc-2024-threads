@@ -1,8 +1,8 @@
 // Copyright 2024 Kurdina Julia
 #include "seq/kurdina_j_linear_filter/include/ops_seq.hpp"
 
-#include <thread>
 #include <algorithm>
+#include <thread>
 
 using namespace std::chrono_literals;
 
@@ -26,8 +26,7 @@ uint8_t HorizontalSplitSequential::NewColor(int i, int j) {
         im_ind_m = m - 1;
       else
         im_ind_m = q + j;
-      res += image[im_ind_n * m + im_ind_m] * gauss_kernel[(k + 1) 
-                                              * ker_size + (q+1)];
+      res += image[im_ind_n * m + im_ind_m] * gauss_kernel[(k + 1) * ker_size + (q + 1)];
     }
   }
   res = (uint8_t)(std::clamp(res, 0, 255));
@@ -45,7 +44,8 @@ bool HorizontalSplitSequential::pre_processing() {
     gauss_kernel.push_back(reinterpret_cast<uint8_t *>(taskData->inputs[2])[i]);
   }
   for (int i = 0; i < n * m; i++) {
-    image[i] = input_[i];  
+    
+    image[i] = input_[i];
   }
   return true;
 }
@@ -53,13 +53,12 @@ bool HorizontalSplitSequential::pre_processing() {
 bool HorizontalSplitSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count[0] == taskData->outputs_count[0] &&
-    taskData->inputs_count[2] == 9;
+  return taskData->inputs_count[0] == taskData->outputs_count[0] && taskData->inputs_count[2] == 9;
 }
 
 bool HorizontalSplitSequential::run() {
   internal_order_test();
-  
+
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
       image[i * m + j] = NewColor(i, j);
