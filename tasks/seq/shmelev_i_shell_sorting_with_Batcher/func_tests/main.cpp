@@ -69,7 +69,6 @@ TEST(shmelev_i_shell_sorting_with_Batcher, Sorting_another_small_array) {
   }
 }
 
-
 TEST(shmelev_i_shell_sorting_with_Batcher, Sorting_medium_array) {
   std::vector<int> array = {17, 23, 8, 14, 29, 5, 11, 20, 26, 2, 32, 35, 10, 38, 41, 47};
   std::vector<int> sorted_array(16);
@@ -94,7 +93,7 @@ TEST(shmelev_i_shell_sorting_with_Batcher, Sorting_medium_array) {
 }
 
 TEST(shmelev_i_shell_sorting_with_Batcher, Sorting_big_array) {
-  std::vector<int> array = {33, 56, 45, 30, 11, 47, 62, 19, 36, 58, 51, 14, 40, 8, 27,
+  std::vector<int> array = {33, 56, 45, 30, 11, 47, 62, 19, 36, 58, 51, 14, 40, 8,  27,
                             34, 48, 24, 25, 39, 13, 12, 55, 23, 59, 37, 17, 50, 42, 9};
   std::vector<int> sorted_array(32);
   std::vector<int> expected = {8,  9,  11, 12, 13, 14, 17, 19, 23, 24, 25, 27, 30, 33, 34,
