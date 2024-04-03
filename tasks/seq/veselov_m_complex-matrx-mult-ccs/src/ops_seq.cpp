@@ -1,7 +1,6 @@
 // Copyright 2024 Veselov Mikhail
 #include "seq/veselov_m_complex-matrx-mult-ccs/include/ops_seq.hpp"
 
-#include <complex>
 #include <iostream>
 #include <random>
 #include <unordered_set>
@@ -54,21 +53,26 @@ bool SpgemmCSCComplexSeq::run() {
   C->values.resize(total_nonzeros);
 
   // численный этап
-  std::vector<std::complex<double>> accumulator;
-  accumulator.reserve(C->row_num);
+  std::complex<double> zero;
+  std::complex<double> b_value;
+  std::vector<std::complex<double>> accumulator(C->row_num);
   for (int b_col = 0; b_col < C->col_num; ++b_col) {
-    std::unordered_set<int> counted_rows;
+    // set accumulator values to zero
+    for (int c_row = 0; c_row < C->row_num; ++c_row) {
+      accumulator[c_row] = zero;
+      present_elements[c_row] = 0;
+    }
+    // calculate column into accumulator
     for (int b_idx = B->col_ptr[b_col]; b_idx < B->col_ptr[b_col + 1]; ++b_idx) {
       int b_row = B->rows[b_idx];
+      b_value = B->values[b_idx];
       for (int a_idx = A->col_ptr[b_row]; a_idx < A->col_ptr[b_row + 1]; ++a_idx) {
         int a_row = A->rows[a_idx];
-        if (counted_rows.find(a_row) == counted_rows.end()) {
-          accumulator[a_row] += A->values[a_idx] * B->values[b_idx];
-          counted_rows.insert(a_row);
-        }
+        accumulator[a_row] += A->values[a_idx] * b_value;
+        present_elements[a_row] = 1;
       }
     }
-
+    // write column into matrix C
     int c_pos = C->col_ptr[b_col];
     for (int c_row = 0; c_row < C->row_num; ++c_row) {
       if (present_elements[c_row] != 0) {
