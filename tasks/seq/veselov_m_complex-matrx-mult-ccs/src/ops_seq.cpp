@@ -54,8 +54,6 @@ bool SpgemmCSCComplexSeq::run() {
   C->values.resize(total_nonzeros);
 
   // численный этап
-  std::complex<double> zero;
-  std::complex<double> b_value;
   std::vector<std::complex<double>> accumulator;
   accumulator.reserve(C->row_num);
   for (int b_col = 0; b_col < C->col_num; ++b_col) {
