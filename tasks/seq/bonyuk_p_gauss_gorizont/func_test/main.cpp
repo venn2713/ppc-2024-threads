@@ -33,10 +33,10 @@ TEST(bonyuk_p_gauss_gorizont, one_test) {
   task_data->outputs_count.emplace_back(out.size());
 
   LinearGaussianFiltering test_task(task_data);
-  ASSERT_EQ(test_task.examination(), true);
-  test_task.pre_proc();
+  ASSERT_EQ(test_task.validation(), true);
+  test_task.pre_processing();
   ASSERT_EQ(test_task.run(), true);
-  test_task.post_proc();
+  test_task.post_processing();
   for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(result[i], out[i]);
   }
@@ -68,10 +68,10 @@ TEST(bonyuk_p_gauss_gorizont, two_test) {
   task_data->outputs_count.emplace_back(out.size());
 
   LinearGaussianFiltering test_task(task_data);
-  ASSERT_EQ(test_task.examination(), true);
-  test_task.pre_proc();
+  ASSERT_EQ(test_task.validation(), true);
+  test_task.pre_processing();
   ASSERT_EQ(test_task.run(), true);
-  test_task.post_proc();
+  test_task.post_processing();
   for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(result[i], out[i]);
   }
@@ -102,10 +102,10 @@ TEST(bonyuk_p_gauss_gorizont, three_test) {
   task_data->outputs_count.emplace_back(out.size());
 
   LinearGaussianFiltering test_task(task_data);
-  ASSERT_EQ(test_task.examination(), true);
-  test_task.pre_proc();
+  ASSERT_EQ(test_task.validation(), true);
+  test_task.pre_processing();
   ASSERT_EQ(test_task.run(), true);
-  test_task.post_proc();
+  test_task.post_processing();
   for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(result[i], out[i]);
   }
@@ -139,10 +139,10 @@ TEST(bonyuk_p_gauss_gorizont, four_test) {
   task_data->outputs_count.emplace_back(out.size());
 
   LinearGaussianFiltering test_task(task_data);
-  ASSERT_EQ(test_task.examination(), true);
-  test_task.pre_proc();
+  ASSERT_EQ(test_task.validation(), true);
+  test_task.pre_processing();
   ASSERT_EQ(test_task.run(), true);
-  test_task.post_proc();
+  test_task.post_processing();
   for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(result[i], out[i]);
   }
@@ -182,10 +182,10 @@ TEST(bonyuk_p_gauss_gorizont, five_test) {
   task_data->outputs_count.emplace_back(out.size());
 
   LinearGaussianFiltering test_task(task_data);
-  ASSERT_EQ(test_task.examination(), true);
-  test_task.pre_proc();
+  ASSERT_EQ(test_task.validation(), true);
+  test_task.pre_processing();
   ASSERT_EQ(test_task.run(), true);
-  test_task.post_proc();
+  test_task.post_processing();
   for (int i = 0; i < n * m; i++) {
     ASSERT_EQ(result[i], out[i]);
   }

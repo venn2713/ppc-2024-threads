@@ -19,7 +19,7 @@ std::vector<int> getImage(int n, int m, uint8_t min, uint8_t max) {
   return picture;
 }
 
-bool LinearGaussianFiltering::pre_proc() {
+bool LinearGaussianFiltering::pre_processing() {
   internal_order_test();
   height = reinterpret_cast<int *>(taskData->inputs[0])[0];
   width = reinterpret_cast<int *>(taskData->inputs[0])[1];
@@ -64,7 +64,7 @@ bool LinearGaussianFiltering::run() {
   return true;
 }
 
-bool LinearGaussianFiltering::post_proc() {
+bool LinearGaussianFiltering::post_processing() {
   internal_order_test();
   for (int i = 0; i < height * width; i++) {
     reinterpret_cast<int *>(taskData->outputs[0])[i] = res[i];
