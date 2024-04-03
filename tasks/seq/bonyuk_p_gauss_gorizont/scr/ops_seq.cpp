@@ -1,5 +1,3 @@
-// Copyright 2024 Bonyuk Peter
-
 #include "seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
 
 #include <cmath>
@@ -20,14 +18,14 @@ std::vector<int> getImage(int n, int m, uint8_t min, uint8_t max) {
   return image;
 }
 
-bool LinearGaussianFiltering::examination() {
+bool LinearGaussianFiltering::examination() override {
   internal_order_test();
   bool flag = false;
   if (taskData->inputs_count[1] == taskData->outputs_count[0]) flag = true;
   return flag;
 }
 
-bool LinearGaussianFiltering::pre_proc() {
+bool LinearGaussianFiltering::pre_proc() override {
   internal_order_test();
   height = reinterpret_cast<int *>(taskData->inputs[0])[0];
   width = reinterpret_cast<int *>(taskData->inputs[0])[1];
@@ -40,7 +38,7 @@ bool LinearGaussianFiltering::pre_proc() {
   return true;
 }
 
-bool LinearGaussianFiltering::post_proc() {
+bool LinearGaussianFiltering::post_proc() override {
   internal_order_test();
   for (int i = 0; i < height * width; i++) {
     reinterpret_cast<int *>(taskData->outputs[0])[i] = res[i];
@@ -48,7 +46,7 @@ bool LinearGaussianFiltering::post_proc() {
   return true;
 }
 
-bool LinearGaussianFiltering::run() {
+bool LinearGaussianFiltering::run() override {
   internal_order_test();
   std::vector<int> filteredImage(input.size(), 0);
   std::vector<int> gauss_kernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
