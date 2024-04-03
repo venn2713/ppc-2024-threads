@@ -1,3 +1,4 @@
+// Copyright 2024 Bonyuk Peter
 #include "seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
 
 #include <cmath>
@@ -6,26 +7,19 @@
 
 using namespace std::chrono_literals;
 
-std::vector<int> getImage(int n, int m, uint8_t min, uint8_t max) {
+std::vector<int> getPicture(int n, int m, uint8_t min, uint8_t max) {
   int size = n * m;
   std::random_device dev;
   std::mt19937 gen(dev());
   std::uniform_int_distribution<int> distrib(min, max);
-  std::vector<int> image(size);
+  std::vector<int> picture(size);
   for (int i = 0; i < size; i++) {
-    image[i] = static_cast<int>(distrib(gen));
+    picture[i] = static_cast<int>(distrib(gen));
   }
-  return image;
+  return picture;
 }
 
-bool LinearGaussianFiltering::examination() override {
-  internal_order_test();
-  bool flag = false;
-  if (taskData->inputs_count[1] == taskData->outputs_count[0]) flag = true;
-  return flag;
-}
-
-bool LinearGaussianFiltering::pre_proc() override {
+bool LinearGaussianFiltering::pre_proc() {
   internal_order_test();
   height = reinterpret_cast<int *>(taskData->inputs[0])[0];
   width = reinterpret_cast<int *>(taskData->inputs[0])[1];
@@ -38,12 +32,11 @@ bool LinearGaussianFiltering::pre_proc() override {
   return true;
 }
 
-bool LinearGaussianFiltering::post_proc() override {
+bool LinearGaussianFiltering::validation() {
   internal_order_test();
-  for (int i = 0; i < height * width; i++) {
-    reinterpret_cast<int *>(taskData->outputs[0])[i] = res[i];
-  }
-  return true;
+  bool flag = false;
+  if (taskData->inputs_count[1] == taskData->outputs_count[0]) flag = true;
+  return flag;
 }
 
 bool LinearGaussianFiltering::run() override {
@@ -67,6 +60,14 @@ bool LinearGaussianFiltering::run() override {
       sum = std::min(sum, 255);
       setPixel(i, j, sum);
     }
+  }
+  return true;
+}
+
+bool LinearGaussianFiltering::post_proc() {
+  internal_order_test();
+  for (int i = 0; i < height * width; i++) {
+    reinterpret_cast<int *>(taskData->outputs[0])[i] = res[i];
   }
   return true;
 }

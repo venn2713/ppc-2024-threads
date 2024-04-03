@@ -1,4 +1,4 @@
-// Copyright 2023 Bonyuk Peter
+// Copyright 2024 Bonyuk Peter
 #include <gtest/gtest.h>
 
 #include <cmath>
