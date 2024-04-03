@@ -40,7 +40,7 @@ sparse_matrix dft_conj_matrix(int n) {
   return dft_conj;
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_pipeline_run_dft384x384) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_pipeline_run_dft384x384) {
   int n = 384;
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);
@@ -69,7 +69,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_pipeline_run_dft384x384) {
   ppc::core::Perf::print_perf_statistic(perfResults);
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_task_run_dft384x384) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_task_run_dft384x384) {
   int n = 384;
   sparse_matrix A = dft_matrix(n);
   sparse_matrix B = dft_conj_matrix(n);

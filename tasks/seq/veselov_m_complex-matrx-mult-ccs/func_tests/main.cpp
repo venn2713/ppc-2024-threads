@@ -42,7 +42,7 @@ sparse_matrix dft_conj_matrix(int n) {
   return dft_conj;
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_scalar_matrix) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_scalar_matrix) {
   sparse_matrix A(1, 1, 1);
   sparse_matrix B(1, 1, 1);
   sparse_matrix C;
@@ -67,7 +67,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_scalar_matrix) {
   ASSERT_NEAR(std::abs(C.values[0] - answer), 0.0, 1e-6);
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_dft2x2) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_dft2x2) {
   double N = 2.0;
   std::complex<double> exponent{0, -2.0 * PI / N};
   sparse_matrix A(2, 2, 4);
@@ -99,7 +99,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_dft2x2) {
   }
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_dft16x16) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_dft16x16) {
   int n = 16;
   double N = 16.0;
   sparse_matrix A = dft_matrix(n);
@@ -126,7 +126,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_dft16x16) {
   }
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_dft64x64) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_dft64x64) {
   int n = 64;
   double N = 64.0;
   sparse_matrix A = dft_matrix(n);
@@ -153,7 +153,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_dft64x64) {
   }
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_shifting_diagonal) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_shifting_diagonal) {
   int n = 256;
   sparse_matrix A(n, n, n - 1);
   sparse_matrix C;
@@ -187,7 +187,7 @@ TEST(veselov_m_complex_matrx_mult_ccs, test_shifting_diagonal) {
   }
 }
 
-TEST(veselov_m_complex_matrx_mult_ccs, test_permutation_matrix) {
+TEST(veselov_m_complex_matrx_mult_ccs_seq, test_permutation_matrix) {
   int n = 257;
   sparse_matrix A(n, n, n);
   sparse_matrix B(n, n, n);
