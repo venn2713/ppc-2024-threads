@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-std::vector<int> getPicture(int n, int m, uint8_t min, uint8_t max) {
+std::vector<int> getImage(int n, int m, uint8_t min, uint8_t max) {
   int size = n * m;
   std::random_device dev;
   std::mt19937 gen(dev());
@@ -39,7 +39,7 @@ bool LinearGaussianFiltering::examination() {
   return flag;
 }
 
-bool LinearGaussianFiltering::run() override {
+bool LinearGaussianFiltering::run() {
   internal_order_test();
   std::vector<int> filteredImage(input.size(), 0);
   std::vector<int> gauss_kernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
