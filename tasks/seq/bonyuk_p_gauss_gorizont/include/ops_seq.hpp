@@ -13,7 +13,7 @@ class LinearGaussianFiltering : public ppc::core::Task {
  public:
   explicit LinearGaussianFiltering(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_proc() override;
-  bool validation() override;
+  bool examination() override;
   bool run() override;
   bool post_proc() override;
   int getPixel(int x, int y) { return input[x * width + y]; }
