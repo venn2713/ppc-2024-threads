@@ -7,7 +7,6 @@
 
 #include "core/task/include/task.hpp"
 
-
 struct sparse_matrix {
   int row_num, col_num;
   int nonzeros;

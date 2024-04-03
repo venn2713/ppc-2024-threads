@@ -1,12 +1,11 @@
 // Copyright 2024 Veselov Mikhail
 #include "seq/veselov_m_complex-matrx-mult-ccs/include/ops_seq.hpp"
 
-#include <iostream>
 #include <complex>
+#include <iostream>
 #include <random>
-#include <vector>
 #include <unordered_set>
-
+#include <vector>
 
 bool SpgemmCSCComplexSeq::pre_processing() {
   internal_order_test();
@@ -65,17 +64,17 @@ bool SpgemmCSCComplexSeq::run() {
       int b_row = B->rows[b_idx];
       for (int a_idx = A->col_ptr[b_row]; a_idx < A->col_ptr[b_row + 1]; ++a_idx) {
         int a_row = A->rows[a_idx];
-          if (counted_rows.find(a_row) == counted_rows.end()) {
-            accumulator[a_row] += A->values[a_idx] * B->values[b_idx];
-            counted_rows.insert(a_row);
-          }
+        if (counted_rows.find(a_row) == counted_rows.end()) {
+          accumulator[a_row] += A->values[a_idx] * B->values[b_idx];
+          counted_rows.insert(a_row);
+        }
       }
     }
 
     int c_pos = C->col_ptr[b_col];
     for (int c_row = 0; c_row < C->row_num; ++c_row) {
       if (present_elements[c_row] != 0) {
-       C->rows[c_pos] = c_row;
+        C->rows[c_pos] = c_row;
         C->values[c_pos++] = accumulator[c_row];
       }
     }
