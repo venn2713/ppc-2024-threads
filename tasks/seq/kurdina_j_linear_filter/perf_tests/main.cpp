@@ -53,7 +53,7 @@ TEST(kurdina_j_linear_filter_seq, test_pipeline_run) {
   }
 }
 
-TEST(kurdina_j_linear_filter, test_task_run) {
+TEST(kurdina_j_linear_filter_seq, test_task_run) {
   int n = 700;
   int m = 700;
   std::vector<uint8_t> gauss_kernel = {1, 1, 1, 1, 9, 1, 1, 1, 1};
