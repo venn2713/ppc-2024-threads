@@ -13,7 +13,6 @@ bool ShmelevTaskSequential::pre_processing() {
 
 bool ShmelevTaskSequential::validation() {
   internal_order_test();
-  //return taskData->inputs_count[0] == 1 && taskData->outputs_count[0] == 1;
   return taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
