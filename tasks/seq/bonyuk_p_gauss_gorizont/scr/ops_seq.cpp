@@ -32,7 +32,7 @@ bool LinearGaussianFiltering::pre_processing() {
   return true;
 }
 
-bool LinearGaussianFiltering::examination() {
+bool LinearGaussianFiltering::validation() {
   internal_order_test();
   bool flag = false;
   if (taskData->inputs_count[1] == taskData->outputs_count[0]) flag = true;
