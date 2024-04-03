@@ -53,7 +53,6 @@ bool LinearGaussianFiltering::run() {
   std::vector<int> filteredImage(input.size(), 0);
   std::vector<int> gauss_kernel = {1, 2, 1, 2, 4, 2, 1, 2, 1};
   int kSize = 3;
-  int stride = width;
 
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
