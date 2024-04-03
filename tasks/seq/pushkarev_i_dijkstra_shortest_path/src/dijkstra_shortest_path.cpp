@@ -39,7 +39,7 @@ bool DijkstraTask::run() {
     size_t u = getMinDistanceVertex(processed);
     processed[u] = true;
     for (size_t v = 0; v < n; v++) {
-      if (!processed[v] && graph[u][v] && (distances_[u] != std::numeric_limits<int>::max()) &&
+      if (!processed[v] && (graph[u][v] != 0) && (distances_[u] != std::numeric_limits<int>::max()) &&
           distances_[u] + graph[u][v] < distances_[v]) {
         relaxVertex(u, v);
       }
