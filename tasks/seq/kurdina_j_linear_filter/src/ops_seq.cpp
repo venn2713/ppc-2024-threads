@@ -44,7 +44,6 @@ bool HorizontalSplitSequential::pre_processing() {
     gauss_kernel.push_back(reinterpret_cast<uint8_t *>(taskData->inputs[2])[i]);
   }
   for (int i = 0; i < n * m; i++) {
-    
     image[i] = input_[i];
   }
   return true;
