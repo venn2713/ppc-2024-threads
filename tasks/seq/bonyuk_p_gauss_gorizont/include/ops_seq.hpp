@@ -12,9 +12,9 @@ std::vector<int> getImage(int n, int m, uint8_t min, uint8_t max);
 class LinearGaussianFiltering : public ppc::core::Task {
  public:
   explicit LinearGaussianFiltering(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
-  bool examination() override;
-  bool pre_proc() override;
-  bool post_proc() override;
+  bool examination();
+  bool pre_proc();
+  bool post_proc();
   bool run() override;
 
   int getPixel(int x, int y) { return input[x * width + y]; }

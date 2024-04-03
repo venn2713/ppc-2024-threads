@@ -1,5 +1,6 @@
 // Copyright 2024 Bonyuk Peter
-#include "tasks/seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
+
+#include "seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
 
 #include <cmath>
 #include <random>

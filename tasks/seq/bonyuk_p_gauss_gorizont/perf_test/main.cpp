@@ -5,9 +5,9 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "tasks/seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
+#include "seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
 
-TEST(gauss_gorizont, test_one) {
+TEST(bonyuk_p_gauss_gorizont, test_one) {
   int n = 1000;
   int m = 1000;
   int min = 100;
@@ -69,7 +69,7 @@ TEST(gauss_gorizont, test_one) {
   }
 }
 
-TEST(gauss_gorizont, test_two) {
+TEST(bonyuk_p_gauss_gorizont, test_two) {
   int n = 1000;
   int m = 1000;
   int min = 100;

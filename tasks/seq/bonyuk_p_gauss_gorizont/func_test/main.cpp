@@ -5,9 +5,9 @@
 #include <cmath>
 #include <vector>
 
-#include "tasks/seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
+#include "seq/bonyuk_p_gauss_gorizont/include/ops_seq.hpp"
 
-TEST(gauss_gorizont, one_test) {
+TEST(bonyuk_p_gauss_gorizont, one_test) {
   int n = 3;
   int m = 3;
 
@@ -42,7 +42,7 @@ TEST(gauss_gorizont, one_test) {
   }
 }
 
-TEST(gauss_gorizont, two_test) {
+TEST(bonyuk_p_gauss_gorizont, two_test) {
   int n = 3;
   int m = 3;
 
@@ -76,7 +76,7 @@ TEST(gauss_gorizont, two_test) {
     ASSERT_EQ(result[i], out[i]);
   }
 }
-TEST(gauss_gorizont, three_test) {
+TEST(bonyuk_p_gauss_gorizont, three_test) {
   int n = 3;
   int m = 3;
 
@@ -111,7 +111,7 @@ TEST(gauss_gorizont, three_test) {
   }
 }
 
-TEST(gauss_gorizont, four_test) {
+TEST(bonyuk_p_gauss_gorizont, four_test) {
   int n = 5;
   int m = 5;
 
@@ -148,7 +148,7 @@ TEST(gauss_gorizont, four_test) {
   }
 }
 
-TEST(gauss_gorizont, five_test) {
+TEST(bonyuk_p_gauss_gorizont, five_test) {
   int n = 5;
   int m = 5;
 
