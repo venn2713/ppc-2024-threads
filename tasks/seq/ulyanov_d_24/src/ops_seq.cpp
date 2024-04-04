@@ -50,7 +50,7 @@ bool FilterGaussHorizontalSequential::validation() {
          taskData->inputs_count[1] != 0 && taskData->outputs_count[0] != 0 && taskData->outputs_count[1] != 0;
 }
 
-Pixel calcPixel(std::vector<Pixel> image, int width, int height, int i, int j, std::vector<float> kernel) {
+Pixel calcPixel(std::vector<Pixel> image, int height, int i, int j, std::vector<float> kernel) {
   Pixel resPixel = Pixel();
   float R = 0.0;
   float G = 0.0;
@@ -76,7 +76,7 @@ bool FilterGaussHorizontalSequential::run() {
       if (i == 0 || i == height - 1 || j == 0 || j == width - 1) {
         resultImage[i * height + j] = inputImage[i * height + j];
       } else {
-        resultImage[i * height + j] = calcPixel(inputImage, width, height, i, j, kernel);
+        resultImage[i * height + j] = calcPixel(inputImage, height, i, j, kernel);
       }
     }
   }
