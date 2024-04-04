@@ -58,7 +58,6 @@ inline std::vector<double> sub(const std::vector<double>& a, const std::vector<d
   return result;
 }
 
-
 bool Strssn_alg::post_processing() {
   internal_order_test();
   std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
