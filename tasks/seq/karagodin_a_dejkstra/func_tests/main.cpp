@@ -238,7 +238,6 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_10) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
   int entryNode = 0;
   int destNode = 9;
-  int expectedScore = 50;
   int size = 10;
   std::vector<int> pathRes = {0, 6, 5, 3, 8};
   std::pair<std::vector<int>, int> result;
