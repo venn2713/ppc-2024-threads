@@ -1,10 +1,11 @@
 // Copyright 2024 Kudinov Nikita
 #include "seq/kudinov_n_image_filter_gauss_vertical/include/image_filter_gauss_vertical_task.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <thread>
 
-GaussKernel::GaussKernel() : _radius(), _sigma(), _data(), _size() {}
+GaussKernel::GaussKernel() : _radius(), _sigma(), _size() {}
 
 GaussKernel::GaussKernel(std::size_t radius, double sigma) : _radius(radius), _sigma(sigma), _size(radius * 2 + 1) {
   this->_data = std::vector(this->_size * this->_size, 0.0);
@@ -42,7 +43,7 @@ double GaussKernel::get(std::size_t y, std::size_t x) const {
   return this->_data[y * this->_size + x];
 }
 
-Image::Image() : _height(), _width(), _pixels() {}
+Image::Image() : _height(), _width() {}
 Image::Image(std::size_t height, std::size_t width, const std::vector<Pixel>& pixels)
     : _height(height), _width(width), _pixels(pixels) {}
 
