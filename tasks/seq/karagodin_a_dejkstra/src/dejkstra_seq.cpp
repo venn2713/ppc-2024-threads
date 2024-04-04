@@ -49,10 +49,10 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
   pq.push(Node(entryNode, 0));
 
   while (!pq.empty()) {
-    Node current = pq.top();
+    Node currentnode = pq.top();
     pq.pop();
 
-    int u = current.vertex;
+    int u = currentnode.vertex;
 
     if (u == destNode) {
       minScore = dist[u];
@@ -72,7 +72,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
   }
 
   // Reconstruct path
-  current = destNode;
+  int current = destNode;
   while (current != -1) {
     pathOutput.push_back(current);
     current = prev[current];

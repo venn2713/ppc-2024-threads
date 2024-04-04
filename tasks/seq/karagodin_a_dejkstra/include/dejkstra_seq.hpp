@@ -36,7 +36,6 @@ class DejkstraTaskSequential : public ppc::core::Task {
   std::vector<int> pathOutput;
   std::vector<std::vector<int>> graphMap;
   std::pair<std::vector<int>, int> res;
-  int current = -1;
 };
 
 std::vector<std::vector<int>> initGraphMapRandom(int16_t size);
