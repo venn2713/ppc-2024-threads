@@ -7,15 +7,14 @@
 
 TEST(martynov_a_strassen_alg_seq, multSecShtrassen_4x4) {
   const int n = 4;
-  int m = n *n;
+  int m = n * n;
   // Create data
   std::vector<double> first_matrix = fillMatrix(n);
   std::vector<double> second_matrix = fillMatrix(n);
   std::vector<double> result(m);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
@@ -50,8 +49,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_8x8) {
   std::vector<double> res = ijkalgorithm(first_matrix,second_matrix, n);
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (first_matrix.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(second_matrix.data()));
@@ -84,8 +82,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_16x16) {
   std::vector<double> result(m);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
@@ -119,8 +116,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_32x32) {
   std::vector<double> result(m);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
@@ -154,8 +150,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_64x64) {
   std::vector<double> result(m);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
@@ -188,8 +183,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_64xsize) {
   std::vector<double> result(m);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 

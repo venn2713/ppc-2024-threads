@@ -1,11 +1,12 @@
 
 // Copyright 2024 Martynov Aleksandr
 #pragma once
+#include <memory>
 #include <random>
 #include <string>
-#include <vector>
-#include <memory>
 #include <utility>
+#include <vector>
+
 #include "core/task/include/task.hpp"
 inline std::vector<double> fillMatrix(int n) {
   std::random_device seed;
@@ -20,7 +21,8 @@ inline std::vector<double> fillMatrix(int n) {
   }
   return result;
 }
-std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix, const std::vector<double>& second_matrix, int n);
+std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix, const std::vector<double>& second_matrix,
+                                 int n);
 
 class Strssn_alg : public ppc::core::Task {
  public:
