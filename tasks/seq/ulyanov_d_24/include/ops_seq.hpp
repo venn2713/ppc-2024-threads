@@ -7,7 +7,7 @@
 #include "core/task/include/task.hpp"
 
 class Pixel {
-  public:
+ public:
   Pixel() {
     r = 0;
     g = 0;
