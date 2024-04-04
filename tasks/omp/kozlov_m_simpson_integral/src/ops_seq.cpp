@@ -31,8 +31,8 @@ bool KozlovTaskSequential::run() {
   double p;
   double x;
   double y;
-  double res_=0;
-  #pragma omp parallel for reduction(+:res_)
+  double res_ = 0;
+#pragma omp parallel for reduction(+:res_)
   for (uint64_t i = 0; i <= n; i++) {
     if (i == 0 || i == n) {
       p = 1;
@@ -56,7 +56,7 @@ bool KozlovTaskSequential::run() {
   }
 
   res_ *= h_x * h_y / 9;
-  res=res_;
+  res = res_;
   return true;
 }
 
