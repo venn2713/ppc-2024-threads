@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include"seq/martynov_a_strassen_algorithm/include/ops_seq.hpp"
+#include "seq/martynov_a_strassen_algorithm/include/ops_seq.hpp"
 
 TEST(martynov_a_strassen_alg_seq_perf, test_pipeline_run) {
   const int n = 64;
@@ -14,26 +14,19 @@ TEST(martynov_a_strassen_alg_seq_perf, test_pipeline_run) {
   std::vector<double> first_matrix = fillMatrix(n);
   std::vector<double> second_matrix = fillMatrix(n);
   std::vector<double> result(m);
-  std::vector<double> res = ijkalgorithm(first_matrix,
-    second_matrix, n);
+  std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (first_matrix.data()));
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (second_matrix.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(second_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(second_matrix.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (const_cast<int *>(&n)));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (const_cast<int *>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>
-    (result.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
 
   // Create Task
@@ -44,8 +37,7 @@ TEST(martynov_a_strassen_alg_seq_perf, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>
-      (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -71,23 +63,17 @@ TEST(martynov_a_strassen_alg_seq_perf, test_task_run) {
   std::vector<double> second_matrix = fillMatrix(n);
   std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (first_matrix.data()));
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(first_matrix.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (second_matrix.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(second_matrix.data()));
   taskDataSeq->inputs_count.emplace_back(second_matrix.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (const_cast<int *>(&n)));
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>
-    (const_cast<int *>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>
-    (result.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   taskDataSeq->outputs_count.emplace_back(result.size());
 
   // Create Task
@@ -99,8 +85,7 @@ TEST(martynov_a_strassen_alg_seq_perf, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>
-      (current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

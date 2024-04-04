@@ -20,14 +20,11 @@ inline std::vector<double> fillMatrix(int n) {
   }
   return result;
 }
-std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix,
-  const std::vector<double>& second_matrix,
-                                 int n);
+std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix, const std::vector<double>& second_matrix, int n);
 
 class Strssn_alg : public ppc::core::Task {
  public:
-  explicit Strssn_alg(std::shared_ptr<ppc::core::TaskData> taskData_) :
-    Task(std::move(taskData_)) {}
+  explicit Strssn_alg(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

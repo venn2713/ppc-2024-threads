@@ -1,6 +1,6 @@
 
 // Copyright 2024 Martynov Aleksandr
-#include"seq/martynov_a_strassen_algorithm/include/ops_seq.hpp"
+#include "seq/martynov_a_strassen_algorithm/include/ops_seq.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -19,35 +19,22 @@ void toSubmatrices(const std::vector<double>& initialMatrix,
   int n = int(std::sqrt(initialMatrix.size()) / 2);
 
   for (int i = 0; i < n; i++) {
-    std::copy(initialMatrix.begin() + (2 * i) * n, initialMatrix.begin()
-      + (2 * i + 1) * n, a11.begin() + i * n);
-    std::copy(initialMatrix.begin() + (2 * i + 1) * n, initialMatrix.begin()
-      + (2 * i + 2) * n, a12.begin() + i * n);
-    std::copy(initialMatrix.begin() + ((n * n * 2) + (2 * i * n)),
-              initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
-              a21.begin() + i * n);
-    std::copy(initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
-              initialMatrix.begin() + ((n * n * 2) + ((2 * i + 2) * n)),
-              a22.begin() + i * n);
+    std::copy(initialMatrix.begin() + (2 * i) * n, initialMatrix.begin() + (2 * i + 1) * n, a11.begin() + i * n);
+    std::copy(initialMatrix.begin() + (2 * i + 1) * n, initialMatrix.begin() + (2 * i + 2) * n, a12.begin() + i * n);
+    std::copy(initialMatrix.begin() + ((n * n * 2) + (2 * i * n)), initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)), a21.begin() + i * n);
+    std::copy(initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)), initialMatrix.begin() + ((n * n * 2) + ((2 * i + 2) * n)), a22.begin() + i * n);
   }
 }
-inline std::vector<double> tojoin(std::vector<double> a11,
-  std::vector<double> a12,
-  std::vector<double> a21,
-                                std::vector<double> a22) {
+inline std::vector<double> tojoin(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21, std::vector<double> a22) {
   int n = a11.size();
   std::vector<double>result(4 * n, 0.0);
   n = (int)(std::sqrt(n));
 
   for (int i = 0; i < n; i++) {
-    std::copy(a11.begin() + i * n, a11.begin() + (i + 1) * n, result.begin() +
-      (2 * i * n));
-    std::copy(a12.begin() + i * n, a12.begin() + (i + 1) * n, result.begin() +
-      (2 * i + 1) * n);
-    std::copy(a21.begin() + i * n, a21.begin() + (i + 1) * n, result.begin() +
-      ((n * n * 2) + (2 * i * n)));
-    std::copy(a22.begin() + i * n, a22.begin() + (i + 1) * n, result.begin() +
-      ((n * n * 2) + ((2 * i + 1) * n)));
+    std::copy(a11.begin() + i * n, a11.begin() + (i + 1) * n, result.begin() + (2 * i * n));
+    std::copy(a12.begin() + i * n, a12.begin() + (i + 1) * n, result.begin() + (2 * i + 1) * n);
+    std::copy(a21.begin() + i * n, a21.begin() + (i + 1) * n, result.begin() + ((n * n * 2) + (2 * i * n)));
+    std::copy(a22.begin() + i * n, a22.begin() + (i + 1) * n, result.begin() + ((n * n * 2) + ((2 * i + 1) * n)));
   }
   return result;
 }
@@ -77,8 +64,7 @@ inline std::vector<double> sub(const std::vector<double>& a,
 
 bool Strssn_alg::post_processing() {
   internal_order_test();
-  std::copy(result.begin(), result.end(), reinterpret_cast<double*>
-    (taskData->outputs[0]));
+  std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
   return true;
 }
 
