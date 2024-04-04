@@ -10,25 +10,23 @@ using namespace std::chrono_literals;
 
 inline int get_size(std::vector<double>& a) { return (int)(round(std::sqrt(a.size()))); }
 
-void toSubmatrices(const std::vector<double>& initialMatrix,std::vector<double>& a11, std::vector<double>& a12,
+void toSubmatrices(const std::vector<double>& initialMatrix, std::vector<double>& a11, std::vector<double>& a12,
                    std::vector<double>& a21, std::vector<double>& a22) {
   int n = int(std::sqrt(initialMatrix.size()) / 2);
 
   for (int i = 0; i < n; i++) {
-    std::copy(initialMatrix.begin() + (2 * i) * n,
-	      initialMatrix.begin() + (2 * i + 1) * n, a11.begin() + i * n);
-    std::copy(initialMatrix.begin() + (2 * i + 1) * n,
-	      initialMatrix.begin() + (2 * i + 2) * n, a12.begin() + i * n);
+    std::copy(initialMatrix.begin() + (2 * i) * n, initialMatrix.begin() + (2 * i + 1) * n, a11.begin() + i * n);
+    std::copy(initialMatrix.begin() + (2 * i + 1) * n, initialMatrix.begin() + (2 * i + 2) * n, a12.begin() + i * n);
     std::copy(initialMatrix.begin() + ((n * n * 2) + (2 * i * n)),
               initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)), a21.begin() + i * n);
     std::copy(initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
 	      initialMatrix.begin() + ((n * n * 2) + ((2 * i + 2) * n)), a22.begin() + i * n);
   }
 }
-inline std::vector<double> tojoin(std::vector<double> a11, std::vector<double> a12,
-				  std::vector<double> a21, std::vector<double> a22) {
+inline std::vector<double> tojoin(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21,
+				  std::vector<double> a22) {
   int n = a11.size();
-  std::vector<double>result(4 * n, 0.0);
+  std::vector<double> result(4 * n, 0.0);
   n = (int)(std::sqrt(n));
 
   for (int i = 0; i < n; i++) {
@@ -40,8 +38,7 @@ inline std::vector<double> tojoin(std::vector<double> a11, std::vector<double> a
   return result;
 }
 
-inline std::vector<double> sum_matrix(const std::vector<double>& a,
-  const std::vector<double>& b) {
+inline std::vector<double> sum_matrix(const std::vector<double>& a, const std::vector<double>& b) {
   int n = a.size();
   std::vector<double> result(n);
 
@@ -91,8 +88,7 @@ bool Strssn_alg::pre_processing() {
   }
   return true;
 }
-std::vector<double> strassen(const std::vector<double>& a,
-  const std::vector<double>& b, int n) {
+std::vector<double> strassen(const std::vector<double>& a, const std::vector<double>& b, int n) {
   int size = n;
 
   if (size <= 2) {
@@ -111,7 +107,7 @@ std::vector<double> strassen(const std::vector<double>& a,
   toSubmatrices(a, a11, a12, a21, a22);
   toSubmatrices(b, b11, b12, b21, b22);
 
-  std::vector<double> p1 = strassen(sum_matrix(a11, a22), sum_matrix(b11,b22), size);
+  std::vector<double> p1 = strassen(sum_matrix(a11, a22), sum_matrix(b11, b22), size);
   std::vector<double> p2 = strassen(sum_matrix(a21, a22), b11, size);
   std::vector<double> p3 = strassen(a11, sub(b12, b22), size);
   std::vector<double> p4 = strassen(a22, sub(b21, b11), size);
@@ -138,8 +134,7 @@ std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix, const 
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
       for (int k = 0; k < n; ++k) {
-        result_matrix[i * n + j] += first_matrix[i * n + k] *
-          second_matrix[k * n + j];
+        result_matrix[i * n + j] += first_matrix[i * n + k] * second_matrix[k * n + j];
       }
     }
   }

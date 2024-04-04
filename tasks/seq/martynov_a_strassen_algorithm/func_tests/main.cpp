@@ -46,7 +46,7 @@ TEST(martynov_a_strassen_alg_seq, multSecShtrassen_8x8) {
   std::vector<double> first_matrix = fillMatrix(n);
   std::vector<double> second_matrix = fillMatrix(n);
   std::vector<double> result(m);
-  std::vector<double> res = ijkalgorithm(first_matrix,second_matrix, n);
+  std::vector<double> res = ijkalgorithm(first_matrix, second_matrix, n);
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(first_matrix.data()));
