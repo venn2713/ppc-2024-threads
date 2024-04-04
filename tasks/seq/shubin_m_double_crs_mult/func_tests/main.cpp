@@ -31,11 +31,11 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_1_zero) {
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
   double *z_mat = new double[mat_in_1_row * mat_in_1_col];
-  for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
+  for (size_t i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     z_mat[i] = 0.0;
   }
   double *nz_mat = new double[mat_in_2_row * mat_in_2_col];
-  for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
+  for (size_t i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i) : (0.0);
   }
 
@@ -67,11 +67,11 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_2_zero) {
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
   double *nz_mat = new double[mat_in_1_row * mat_in_1_col];
-  for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
+  for (size_t i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
   double *z_mat = new double[mat_in_2_row * mat_in_2_col];
-  for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
+  for (size_t i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     z_mat[i] = 0.0;
   }
 
@@ -103,7 +103,7 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_1_ident) {
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
   double *nz_mat = new double[mat_in_2_row * mat_in_2_col];
-  for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
+  for (size_t i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
 
@@ -135,7 +135,7 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_2_ident) {
   // size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
   double *nz_mat = new double[mat_in_1_row * mat_in_1_col];
-  for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
+  for (size_t i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
 
@@ -174,17 +174,17 @@ TEST(shubin_m_double_crs_mult_seq, random_small_dim_mat_mult) {
   std::uniform_int_distribution<size_t> ind_dist_2(0, mat_in_2_row * mat_in_2_col - 1);
 
   std::vector<double> A(mat_in_1_row * mat_in_1_col, 0.0);
-  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_1_row * mat_in_1_col); i++) {
+  for (size_t i = 0; i < static_cast<size_t>(0.1 * mat_in_1_row * mat_in_1_col); i++) {
     A[ind_dist_1(gen)] = val_dist(gen);
   }
   std::vector<double> B(mat_in_2_row * mat_in_2_col, 0.0);
-  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_2_row * mat_in_2_col); i++) {
+  for (size_t i = 0; i < static_cast<size_t>(0.1 * mat_in_2_row * mat_in_2_col); i++) {
     B[ind_dist_2(gen)] = val_dist(gen);
   }
   std::vector<double> C(mat_in_1_row * mat_in_2_col, 0.0);
-  for (int i = 0; i < mat_in_1_row; i++) {
-    for (int j = 0; j < mat_in_2_col; j++) {
-      for (int k = 0; k < mat_in_1_col; k++) {
+  for (size_t i = 0; i < mat_in_1_row; i++) {
+    for (size_t j = 0; j < mat_in_2_col; j++) {
+      for (size_t k = 0; k < mat_in_1_col; k++) {
         C[i * mat_in_1_col + j] += A[i * mat_in_1_col + k] * B[k * mat_in_2_col + j];
       }
     }
