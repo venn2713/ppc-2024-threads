@@ -59,10 +59,10 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_small_image) {
 
   // clang-format off
   std::vector<Pixel> expected_pixels = {
-	  31, 56, 96, 124,
-	  56, 66, 98, 127,
-	  72, 73, 84, 94,
-	  71, 72, 68, 59,
+    31, 56, 96, 124,
+    56, 66, 98, 127,
+    72, 73, 84, 94,
+    71, 72, 68, 59,
   };
   // clang-format on
 
@@ -98,6 +98,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_small_image) {
 
   std::size_t height = 5;
   std::size_t width = 3;
+  // clang-format off
   std::vector<Pixel> pixels = {
     10, 20, 30,
     40, 50, 60,
@@ -105,9 +106,11 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_small_image) {
     100, 110, 120,
     130, 140, 150,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, std::vector<Pixel>(height * width, 0));
 
+  // clang-format off
   std::vector<Pixel> expected_pixels = {
     22, 29, 36,
     43, 49, 56,
@@ -115,6 +118,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_small_image) {
     103, 110, 116,
     123, 130, 137,
   };
+  // clang-format on
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();
@@ -148,6 +152,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_medium_image) {
 
   std::size_t height = 10;
   std::size_t width = 10;
+  // clang-format off
   std::vector<Pixel> pixels = {
     222, 216, 180,  92,  32, 152, 214, 164, 186,  13,
     219,  74, 134, 163,  34,  40, 248,  97, 218, 126,
@@ -160,9 +165,11 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_medium_image) {
     150,  40, 108,  21, 108,  94,  32, 182, 189, 232,
      23,  51,  45, 109, 159, 250,  48, 227,  61, 179,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, std::vector<Pixel>(height * width, 0));
 
+  // clang-format off
   std::vector<Pixel> expected_pixels = {
     184, 164, 134, 113, 118, 131, 157, 162, 140, 104,
     169, 150, 129, 117, 129, 141, 161, 164, 148, 123,
@@ -175,6 +182,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_medium_image) {
     92, 79, 82, 99, 116, 131, 136, 139, 146, 159,
     70, 68, 78, 105, 121, 139, 138, 140, 145, 167,
   };
+  // clang-format on
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();

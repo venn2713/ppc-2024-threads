@@ -7,7 +7,7 @@
 GaussKernel::GaussKernel() : _radius(), _sigma(), _data(), _size() {}
 
 GaussKernel::GaussKernel(std::size_t radius, double sigma) : _radius(radius), _sigma(sigma), _size(radius * 2 + 1) {
-  this->_data = std::vector(this->_size*this->_size, 0.0);
+  this->_data = std::vector(this->_size * this->_size, 0.0);
 
   double sum = 0.0;
   for (std::size_t i = 0; i < this->_size; i += 1) {
@@ -44,7 +44,7 @@ double GaussKernel::get(std::size_t y, std::size_t x) const {
 
 Image::Image() : _height(), _width(), _pixels() {}
 Image::Image(std::size_t height, std::size_t width, const std::vector<Pixel>& pixels)
-  : _height(height), _width(width), _pixels(pixels) {}
+    : _height(height), _width(width), _pixels(pixels) {}
 
 Pixel Image::get_pixel(std::size_t y, std::size_t x) const {
   if (y >= this->_height || x >= this->_width) {
@@ -68,15 +68,15 @@ Pixel Image::_get_gauss_filtered_pixel(std::size_t y, std::size_t x, const Gauss
   for (std::size_t i = 0; i < gauss_kernel.size(); i += 1) {
     for (std::size_t j = 0; j < gauss_kernel.size(); j += 1) {
       Pixel pixel = this->get_pixel(
-        static_cast<std::size_t>(std::clamp<double>(
-	  static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i), 0,
-	  this->_height - 1)),
-        static_cast<std::size_t>(std::clamp<double>(
-	  static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j), 0,
-	  this->_width - 1)));
+          static_cast<std::size_t>(std::clamp<double>(
+            static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i), 0,
+            this->_height - 1)),
+          static_cast<std::size_t>(std::clamp<double>(
+            static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j), 0,
+            this->_width - 1)));
 
       result_pixel_value +=
-        std::clamp<double>( static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel), 0, UINT8_MAX);
+          std::clamp<double>( static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel), 0, UINT8_MAX);
     }
   }
 
