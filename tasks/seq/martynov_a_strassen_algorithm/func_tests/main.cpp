@@ -2,7 +2,9 @@
 // Copyright 2024 Martynov Aleksandr
 
 #include <gtest/gtest.h>
+
 #include <vector>
+
 #include "seq/martynov_a_strassen_algorithm/include/ops_seq.hpp"
 
 TEST(martynov_a_strassen_alg_seq, multSecShtrassen_4x4) {
