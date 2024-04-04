@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "seq/kozlov_m_simpson_integral/include/ops_seq.hpp"
+#include "omp/kozlov_m_simpson_integral/include/ops_omp.hpp"
 
 TEST(kozlov_m_simpson_integral_seq, Test_linear) {
   double res = 1.5;

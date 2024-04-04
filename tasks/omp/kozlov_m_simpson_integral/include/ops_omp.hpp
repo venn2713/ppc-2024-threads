@@ -1,12 +1,13 @@
 // Copyright 2024 Kozlov Mikhail
 #pragma once
 
+#include <omp.h>
+
 #include <cmath>
 #include <functional>
 #include <memory>
 #include <utility>
 #include <vector>
-#include <omp.h>
 
 #include "core/task/include/task.hpp"
 
