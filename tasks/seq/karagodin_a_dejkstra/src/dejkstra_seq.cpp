@@ -9,7 +9,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
   graphMap.clear();
   std::random_device dev;
   std::mt19937 rng(dev());
-  std::uniform_int_distribution<std::mt19937::result_type> randNullChance(1, 2);
+  std::uniform_int_distribution<std::mt19937::result_type> randNullChance(2, 5);
   std::uniform_int_distribution<std::mt19937::result_type> randomization(0, 42);
   int cost = 0;
   graphMap.resize(size);
@@ -33,7 +33,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
 }
 
 void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
-  for (const auto& row : graphMap) {
+  for (const auto& row : graphMapInput) {
     for (int value : row) {
       std::cout << value << "  ";
     }
@@ -41,12 +41,7 @@ void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& 
   }
 }
 
-std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath(
-    const std::vector<std::vector<int>>& graphMapInput, int start, int end) {
-  graphMap = graphMapInput;
-  entryNode = start;
-  destNode = end;
-  size = graphMapInput.size();
+std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
   std::vector<int> dist(size, std::numeric_limits<int>::max());
   std::vector<int> prev(size, -1);
   std::priority_queue<Node, std::vector<Node>, CompareNode> pq;
@@ -102,6 +97,9 @@ bool DejkstraTaskSequential::pre_processing() {
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
     graphMap = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
     size = (taskData->inputs_count[0]);
+        if (size != 0 && graphMap.data() == NULL) {
+      graphMap = initGraphMapRandom(size);
+    }
   } catch (const std::exception& e) {
     return false;
   }
@@ -111,10 +109,7 @@ bool DejkstraTaskSequential::pre_processing() {
 bool DejkstraTaskSequential::run() {
   try {
     internal_order_test();
-    if (size != 0 && graphMap.data() == NULL) {
-      graphMap = initGraphMapRandom(size);
-    }
-    res = getDejMinPath(graphMap, entryNode, destNode);
+    res = getDejMinPath();
   } catch (...) {
     return false;
   }

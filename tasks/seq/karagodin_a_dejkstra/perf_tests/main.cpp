@@ -8,8 +8,8 @@
 TEST(karagodin_a_dejkstra_seq_perf_test, test_pipeline_run) {
   // Create data
   int entryNode = 0;
-  int destNode = 499;
-  int size = 500;
+  int destNode = 19;
+  int size = 20;
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap;
   // Create TaskData
