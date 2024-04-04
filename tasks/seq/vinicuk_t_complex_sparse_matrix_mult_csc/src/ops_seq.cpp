@@ -51,9 +51,9 @@ bool MultMatrixCSCComplex::run() {
         }
       }
       if (sum.imag() != 0.0 || sum.real() != 0.0) {
-          mtrx_res->values.push_back(sum);
-          mtrx_res->row_indexes.push_back(i);
-        }
+        mtrx_res->values.push_back(sum);
+        mtrx_res->row_indexes.push_back(i);
+      }
     }
     mtrx_res->col_ptrs.push_back(mtrx_res->values.size());
   }
