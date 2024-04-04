@@ -7,7 +7,7 @@
 #include "seq/kasimtcev_r_monte_carlo/include/ops_seq.hpp"
 #define ESTIMATE 0.2
 
-TEST(kasimtcev_r_monte_carlo_Sequential, test_pipe) {
+TEST(sequential_kasimtcev_r_perf_test, test_pipe) {
   double res = 8;
   func f = flinear;
 
@@ -45,7 +45,7 @@ TEST(kasimtcev_r_monte_carlo_Sequential, test_pipe) {
   ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
-TEST(kasimtcev_r_monte_carlo_Sequential, test_task) {
+TEST(sequential_kasimtcev_r_perf_test, test_task) {
   double res = 8;
   func f = flinear;
 
@@ -83,9 +83,9 @@ TEST(kasimtcev_r_monte_carlo_Sequential, test_task) {
   ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
-TEST(kasimtcev_r_monte_carlo_Sequential, test_mulit) {
-  double res = 8;
-  func f = flinear;
+TEST(sequential_kasimtcev_r_perf_test, test_mulit) {
+  double res = 2.25;
+  func f = fxy;
 
   std::vector<double> a1 = {0, 2};
   std::vector<double> a2 = {0, 2};
@@ -121,9 +121,9 @@ TEST(kasimtcev_r_monte_carlo_Sequential, test_mulit) {
   ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
-TEST(kasimtcev_r_monte_carlo_Sequential, test_add) {
-  double res = 8;
-  func f = flinear;
+TEST(sequential_kasimtcev_r_perf_test, test_add) {
+  double res = 1.5;
+  func f = fxyy;
 
   std::vector<double> a1 = {0, 2};
   std::vector<double> a2 = {0, 2};
@@ -159,9 +159,9 @@ TEST(kasimtcev_r_monte_carlo_Sequential, test_add) {
   ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
-TEST(kasimtcev_r_monte_carlo_Sequential, test_miltmilt) {
-  double res = 8;
-  func f = flinear;
+TEST(sequential_kasimtcev_r_perf_test, test_miltmilt) {
+  double res = 5.67369;
+  func f = fsinxsiny;
 
   std::vector<double> a1 = {0, 2};
   std::vector<double> a2 = {0, 2};
