@@ -10,21 +10,21 @@
 
 class SparseMat_CRS {
  public:
-    std::vector<double> val;
-    std::vector<size_t> col_ind;
-    std::vector<size_t> row_ind;
-    size_t row_c;
-    size_t col_c;
-    size_t nz_c;
+  std::vector<double> val;
+  std::vector<size_t> col_ind;
+  std::vector<size_t> row_ind;
+  size_t row_c;
+  size_t col_c;
+  size_t nz_c;
 
-    SparseMat_CRS(size_t _row_c, size_t _col_c);
-    SparseMat_CRS(size_t _row_c, size_t _col_c, size_t _nz_c);
-    SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c);
-    ~SparseMat_CRS() = default;
+  SparseMat_CRS(size_t _row_c, size_t _col_c);
+  SparseMat_CRS(size_t _row_c, size_t _col_c, size_t _nz_c);
+  SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c);
+  ~SparseMat_CRS() = default;
 };
 
-SparseMat_CRS random_CRS_mat(size_t _row_c, size_t _col_c, double dens = 0.1,
-                             double _min = -100.0, double _max = 100.0);
+SparseMat_CRS random_CRS_mat(size_t _row_c, size_t _col_c, double dens = 0.1, double _min = -100.0,
+                             double _max = 100.0);
 
 SparseMat_CRS ident_CRS_mat(size_t _size);
 

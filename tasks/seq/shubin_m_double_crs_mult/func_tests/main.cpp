@@ -2,8 +2,8 @@
 
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 #include "seq/shubin_m_double_crs_mult/include/ops_seq.hpp"
 
@@ -30,11 +30,11 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_1_zero) {
   size_t mat_in_1_col = 3;
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
-  double* z_mat = new double[mat_in_1_row * mat_in_1_col];
+  double *z_mat = new double[mat_in_1_row * mat_in_1_col];
   for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     z_mat[i] = 0.0;
   }
-  double* nz_mat = new double[mat_in_2_row * mat_in_2_col];
+  double *nz_mat = new double[mat_in_2_row * mat_in_2_col];
   for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i) : (0.0);
   }
@@ -66,11 +66,11 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_2_zero) {
   size_t mat_in_1_col = 3;
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
-  double* nz_mat = new double[mat_in_1_row * mat_in_1_col];
+  double *nz_mat = new double[mat_in_1_row * mat_in_1_col];
   for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
-  double* z_mat = new double[mat_in_2_row * mat_in_2_col];
+  double *z_mat = new double[mat_in_2_row * mat_in_2_col];
   for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     z_mat[i] = 0.0;
   }
@@ -111,8 +111,7 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_1_ident) {
   SparseMat_CRS mat_in_2(nz_mat, mat_in_2_row, mat_in_2_col);
   SparseMat_CRS mat_out(mat_in_1_row, mat_in_2_col);
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-    std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&mat_in_1));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&mat_in_2));
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(&mat_out));
@@ -135,7 +134,7 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_2_ident) {
   size_t mat_in_1_col = 3;
   // size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
-  double* nz_mat = new double[mat_in_1_row * mat_in_1_col];
+  double *nz_mat = new double[mat_in_1_row * mat_in_1_col];
   for (int i = 0; i < mat_in_1_row * mat_in_1_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
@@ -171,27 +170,22 @@ TEST(shubin_m_double_crs_mult_seq, random_small_dim_mat_mult) {
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> val_dist(-100.0, 100.0);
-  std::uniform_int_distribution<size_t> ind_dist_1(0,
-    mat_in_1_row * mat_in_1_col - 1);
-  std::uniform_int_distribution<size_t> ind_dist_2(0,
-    mat_in_2_row * mat_in_2_col - 1);
+  std::uniform_int_distribution<size_t> ind_dist_1(0, mat_in_1_row * mat_in_1_col - 1);
+  std::uniform_int_distribution<size_t> ind_dist_2(0, mat_in_2_row * mat_in_2_col - 1);
 
   std::vector<double> A(mat_in_1_row * mat_in_1_col, 0.0);
-  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_1_row * mat_in_1_col);
-       i++) {
+  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_1_row * mat_in_1_col); i++) {
     A[ind_dist_1(gen)] = val_dist(gen);
   }
   std::vector<double> B(mat_in_2_row * mat_in_2_col, 0.0);
-  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_2_row * mat_in_2_col);
-       i++) {
+  for (int i = 0; i < static_cast<size_t>(0.1 * mat_in_2_row * mat_in_2_col); i++) {
     B[ind_dist_2(gen)] = val_dist(gen);
   }
   std::vector<double> C(mat_in_1_row * mat_in_2_col, 0.0);
   for (int i = 0; i < mat_in_1_row; i++) {
     for (int j = 0; j < mat_in_2_col; j++) {
       for (int k = 0; k < mat_in_1_col; k++) {
-        C[i * mat_in_1_col + j] += A[i * mat_in_1_col + k] *
-                                   B[k * mat_in_2_col + j];
+        C[i * mat_in_1_col + j] += A[i * mat_in_1_col + k] * B[k * mat_in_2_col + j];
       }
     }
   }

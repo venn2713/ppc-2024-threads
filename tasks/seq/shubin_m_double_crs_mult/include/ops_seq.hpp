@@ -13,8 +13,7 @@ class SparseMat_CRS_Mult_Seq : public ppc::core::Task {
   SparseMat_CRS* mat_out;
 
  public:
-  explicit SparseMat_CRS_Mult_Seq(std::shared_ptr<ppc::core::TaskData> taskData_) :
-                      Task(std::move(taskData_)) {}
+  explicit SparseMat_CRS_Mult_Seq(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

@@ -15,8 +15,7 @@ SparseMat_CRS::SparseMat_CRS(size_t _row_c, size_t _col_c, size_t _nz_c) {
   nz_c = _nz_c;
 }
 
-SparseMat_CRS::SparseMat_CRS(const double* matrix, size_t _row_c,
-                             size_t _col_c) {
+SparseMat_CRS::SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c) {
   row_c = _row_c;
   col_c = _col_c;
   nz_c = 0;
@@ -34,10 +33,8 @@ SparseMat_CRS::SparseMat_CRS(const double* matrix, size_t _row_c,
   row_ind.push_back(val.size());
 }
 
-SparseMat_CRS random_CRS_mat(size_t _row_c, size_t _col_c,
-                             double dens, double _min, double _max) {
-  size_t nz_max = static_cast<size_t>(static_cast<double>(_row_c * _col_c)
-                                      * dens);
+SparseMat_CRS random_CRS_mat(size_t _row_c, size_t _col_c, double dens, double _min, double _max) {
+  size_t nz_max = static_cast<size_t>(static_cast<double>(_row_c * _col_c) * dens);
   double* matrix = new double[_row_c * _col_c];
 
   std::random_device rd;

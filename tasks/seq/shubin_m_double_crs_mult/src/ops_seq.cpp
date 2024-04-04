@@ -5,10 +5,8 @@
 bool SparseMat_CRS_Mult_Seq::validation() {
   internal_order_test();
 
-  size_t mat_in_1_col_c =
-         reinterpret_cast<SparseMat_CRS*>(taskData->inputs[0])->col_c;
-  size_t mat_in_2_row_c =
-         reinterpret_cast<SparseMat_CRS*>(taskData->inputs[1])->row_c;
+  size_t mat_in_1_col_c = reinterpret_cast<SparseMat_CRS*>(taskData->inputs[0])->col_c;
+  size_t mat_in_2_row_c = reinterpret_cast<SparseMat_CRS*>(taskData->inputs[1])->row_c;
 
   return (mat_in_1_col_c == mat_in_2_row_c);
 }
@@ -28,12 +26,10 @@ bool SparseMat_CRS_Mult_Seq::run() {
 
   std::vector<double> curr_row(mat_out->col_c, 0.0);
   for (size_t i = 0; i < mat_in_1->row_c; i++) {
-    for (size_t j = mat_in_1->row_ind[i];
-         j < mat_in_1->row_ind[i + 1]; j++) {
+    for (size_t j = mat_in_1->row_ind[i]; j < mat_in_1->row_ind[i + 1]; j++) {
       size_t col = mat_in_1->col_ind[j];
       double temp = mat_in_1->val[j];
-      for (size_t k = mat_in_2->row_ind[col];
-           k < mat_in_2->row_ind[col + 1]; k++) {
+      for (size_t k = mat_in_2->row_ind[col]; k < mat_in_2->row_ind[col + 1]; k++) {
         curr_row[mat_in_2->col_ind[k]] += temp * mat_in_2->val[k];
       }
     }
