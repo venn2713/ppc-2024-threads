@@ -1,6 +1,9 @@
 // Copyright 2024 Tushentsova Karina
+
 #include <gtest/gtest.h>
+
 #include <vector>
+
 #include "seq/tushentsova_k_marking_bin_image/include/ops_seq.hpp"
 
 TEST(tushentsova_k_marking_bin_image_seq_func, test_ones) {

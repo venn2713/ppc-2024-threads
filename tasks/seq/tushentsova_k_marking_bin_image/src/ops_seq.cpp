@@ -23,8 +23,8 @@ bool markingImageSeq::pre_processing() {
   destination.resize(height);
 
   for (size_t i = 0; i < height; ++i) {
-    for (size_t j = 0; j < width; ++j) 
-        sourse[i].push_back(reinterpret_cast<uint8_t *>(taskData->inputs[1])[i * width + j]);
+    for (size_t j = 0; j < width; ++j)
+      sourse[i].push_back(reinterpret_cast<uint8_t *>(taskData->inputs[1])[i * width + j]);
     destination[i].resize(width, 0);
   }
   return true;
@@ -33,8 +33,8 @@ bool markingImageSeq::pre_processing() {
 bool markingImageSeq::post_processing() {
   internal_order_test();
   for (size_t i = 0; i < height; ++i)
-    for (size_t j = 0; j < width; ++j) 
-        reinterpret_cast<uint8_t *>(taskData->outputs[0])[i * width + j] = destination[i][j];
+    for (size_t j = 0; j < width; ++j)
+      reinterpret_cast<uint8_t *>(taskData->outputs[0])[i * width + j] = destination[i][j];
   return true;
 }
 
@@ -97,6 +97,5 @@ void markingImageSeq::markingImage() {
 
   for (size_t i = 0; i < height; ++i)
     for (size_t j = 0; j < width; ++j)
-      if (arr[i][j] != nullptr) 
-          destination[i][j] = *(arr[i][j]);
+      if (arr[i][j] != nullptr) destination[i][j] = *(arr[i][j]);
 }
