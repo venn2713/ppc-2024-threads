@@ -144,7 +144,7 @@ TEST(smirnova_d_complex_matrix_crs_seq, test_non_square_matrix) {
   ASSERT_EQ(Result.n_cols, Expected.n_cols);
   ASSERT_EQ(Result.pointer, Expected.pointer);
   ASSERT_EQ(Result.col_indexes, Expected.col_indexes);
-  (Result.non_zero_values.size(), Expected.non_zero_values.size());
+  ASSERT_EQ(Result.non_zero_values.size(), Expected.non_zero_values.size());
   for (size_t i = 0; i < Expected.non_zero_values.size(); i++) {
     std::complex<double> t = Expected.non_zero_values[i] - Result.non_zero_values[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-3);
@@ -193,7 +193,7 @@ TEST(smirnova_d_complex_matrix_crs_seq, test_inverse_matrix) {
   ASSERT_EQ(Result.n_cols, Expected.n_cols);
   ASSERT_EQ(Result.pointer, Expected.pointer);
   ASSERT_EQ(Result.col_indexes, Expected.col_indexes);
-  (Result.non_zero_values.size(), Expected.non_zero_values.size());
+  ASSERT_EQ(Result.non_zero_values.size(), Expected.non_zero_values.size());
   for (size_t i = 0; i < Expected.non_zero_values.size(); i++) {
     std::complex<double> t = Expected.non_zero_values[i] - Result.non_zero_values[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-3);
@@ -242,7 +242,7 @@ TEST(smirnova_d_complex_matrix_crs_seq, test_complex_matrix) {
   ASSERT_EQ(Result.n_cols, Expected.n_cols);
   ASSERT_EQ(Result.pointer, Expected.pointer);
   ASSERT_EQ(Result.col_indexes, Expected.col_indexes);
-  (Result.non_zero_values.size(), Expected.non_zero_values.size());
+  ASSERT_EQ(Result.non_zero_values.size(), Expected.non_zero_values.size());
   for (size_t i = 0; i < Expected.non_zero_values.size(); i++) {
     std::complex<double> t = Expected.non_zero_values[i] - Result.non_zero_values[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-3);
@@ -291,7 +291,7 @@ TEST(smirnova_d_complex_matrix_crs_seq, test_complex_matrix_diagonal) {
   ASSERT_EQ(Result.n_cols, Expected.n_cols);
   ASSERT_EQ(Result.pointer, Expected.pointer);
   ASSERT_EQ(Result.col_indexes, Expected.col_indexes);
-  (Result.non_zero_values.size(), Expected.non_zero_values.size());
+  ASSERT_EQ(Result.non_zero_values.size(), Expected.non_zero_values.size());
   for (size_t i = 0; i < Expected.non_zero_values.size(); i++) {
     std::complex<double> t = Expected.non_zero_values[i] - Result.non_zero_values[i];
     ASSERT_NEAR(0.0f, t.imag(), 1e-3);
