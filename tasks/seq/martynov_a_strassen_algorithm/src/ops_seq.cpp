@@ -6,7 +6,6 @@
 #include <cmath>
 #include <thread>
 #include <vector>
-
 using namespace std::chrono_literals;
 
 inline int get_size(std::vector<double>& a) {
