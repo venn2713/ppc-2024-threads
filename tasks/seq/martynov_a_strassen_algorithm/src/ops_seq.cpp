@@ -20,11 +20,11 @@ void toSubmatrices(const std::vector<double>& initialMatrix, std::vector<double>
     std::copy(initialMatrix.begin() + ((n * n * 2) + (2 * i * n)),
               initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)), a21.begin() + i * n);
     std::copy(initialMatrix.begin() + ((n * n * 2) + ((2 * i + 1) * n)),
-	      initialMatrix.begin() + ((n * n * 2) + ((2 * i + 2) * n)), a22.begin() + i * n);
+	       initialMatrix.begin() + ((n * n * 2) + ((2 * i + 2) * n)), a22.begin() + i * n);
   }
 }
 inline std::vector<double> tojoin(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21,
-				  std::vector<double> a22) {
+				   std::vector<double> a22) {
   int n = a11.size();
   std::vector<double> result(4 * n, 0.0);
   n = (int)(std::sqrt(n));
