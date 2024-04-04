@@ -4,7 +4,7 @@
 #include <iostream>
 #include <seq/karagodin_a_dejkstra/include/dejkstra_seq.hpp>
 #include <vector>
-/*
+
 TEST(karagodin_a_dejkstra_seq, test_correctness) {
   int entryNode = 0;
   int destNode = 1;
@@ -33,7 +33,7 @@ TEST(karagodin_a_dejkstra_seq, test_correctness) {
   ASSERT_EQ(resultExpected.first, result.first);
   ASSERT_EQ(resultExpected.second, result.second);
 }
-
+/*
 TEST(karagodin_a_dejkstra_seq, test_hard_path) {
   int entryNode = 0;
   int destNode = 8;

@@ -100,7 +100,7 @@ bool DejkstraTaskSequential::pre_processing() {
     if (size != 0 && graphMap.data() == NULL) {
       graphMap = initGraphMapRandom(size);
     }
-  } catch (const std::exception& e) {
+  } catch (...) {
     return false;
   }
   return true;
