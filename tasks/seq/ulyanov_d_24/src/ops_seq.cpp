@@ -1,12 +1,12 @@
 // Copyright 2024 Ulyanov Daniil
 #include "seq/ulyanov_d_24/include/ops_seq.hpp"
 
-#include <thread>
 #include <cmath>
+#include <thread>
 
 using namespace std::chrono_literals;
 
-std::vector<float>& createKernel(std::vector<float> &kernel, float sigma) {
+std::vector<float>& createKernel(std::vector<float>& kernel, float sigma) {
   float norm = 0.0;
   for (int i = -1; i < 2; i++) {
     for (int j = -1; j < 2; j++) {
@@ -46,9 +46,8 @@ bool FilterGaussHorizontalSequential::pre_processing() {
 bool FilterGaussHorizontalSequential::validation() {
   internal_order_test();
   
-  return taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr &&
-  taskData->inputs_count[0] != 0 && taskData->inputs_count[1] != 0 &&
-  taskData->outputs_count[0] != 0 && taskData->outputs_count[1] != 0;
+  return taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr && taskData->inputs_count[0] != 0 &&
+  taskData->inputs_count[1] != 0 && taskData->outputs_count[0] != 0 && taskData->outputs_count[1] != 0;
 }
 
 Pixel calcPixel(std::vector<Pixel> image, int width, int height, int i, int j, std::vector<float> kernel) {

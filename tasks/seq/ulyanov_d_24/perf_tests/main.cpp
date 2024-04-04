@@ -57,7 +57,7 @@ TEST(sequential_ulyanov_perf_test, test_task_run) {
     in[i] = i;
   }
 
-// Create TaskData
+  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(height);
