@@ -15,7 +15,7 @@ SparseMat_CRS::SparseMat_CRS(size_t _row_c, size_t _col_c, size_t _nz_c) {
   nz_c = _nz_c;
 }
 
-SparseMat_CRS::SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c) {
+SparseMat_CRS::SparseMat_CRS(const std::vector<double>& matrix, size_t _row_c, size_t _col_c) {
   row_c = _row_c;
   col_c = _col_c;
   nz_c = 0;
@@ -34,19 +34,13 @@ SparseMat_CRS::SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c)
 }
 
 SparseMat_CRS random_CRS_mat(size_t _row_c, size_t _col_c, double dens, double _min, double _max) {
-  size_t nz_max = static_cast<size_t>(static_cast<double>(_row_c * _col_c) * dens);
-  double* matrix = new double[_row_c * _col_c];
+  auto nz_max = static_cast<size_t>(static_cast<double>(_row_c * _col_c) * dens);
+  std::vector<double> matrix(_row_c * _col_c, 0.0);
 
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<double> value_dist(_min, _max);
   std::uniform_int_distribution<size_t> index_dist(0, _row_c * _col_c - 1);
-
-  for (size_t i = 0; i < _row_c; i++) {
-    for (size_t j = 0; j < _col_c; j++) {
-      matrix[i * _col_c + j] = 0.0;
-    }
-  }
 
   for (size_t i = 0; i < nz_max; i++) {
     matrix[index_dist(gen)] = value_dist(gen);

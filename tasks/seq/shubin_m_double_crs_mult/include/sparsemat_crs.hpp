@@ -19,7 +19,7 @@ class SparseMat_CRS {
 
   SparseMat_CRS(size_t _row_c, size_t _col_c);
   SparseMat_CRS(size_t _row_c, size_t _col_c, size_t _nz_c);
-  SparseMat_CRS(const double* matrix, size_t _row_c, size_t _col_c);
+  SparseMat_CRS(const std::vector<double>& matrix, size_t _row_c, size_t _col_c);
   ~SparseMat_CRS() = default;
 };
 

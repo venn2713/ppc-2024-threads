@@ -26,8 +26,8 @@ TEST(shubin_m_double_crs_mult_seq, test_pipeline_run) {
     }
   }
 
-  SparseMat_CRS mat_in_1(A.data(), mat_in_1_row, mat_in_cr);
-  SparseMat_CRS mat_in_2(B.data(), mat_in_cr, mat_in_2_col);
+  SparseMat_CRS mat_in_1(A, mat_in_1_row, mat_in_cr);
+  SparseMat_CRS mat_in_2(B, mat_in_cr, mat_in_2_col);
   SparseMat_CRS mat_out(mat_in_1_row, mat_in_2_col);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -85,8 +85,8 @@ TEST(shubin_m_double_crs_mult_seq, test_task_run) {
     }
   }
 
-  SparseMat_CRS mat_in_1(A.data(), mat_in_1_row, mat_in_cr);
-  SparseMat_CRS mat_in_2(B.data(), mat_in_cr, mat_in_2_col);
+  SparseMat_CRS mat_in_1(A, mat_in_1_row, mat_in_cr);
+  SparseMat_CRS mat_in_2(B, mat_in_cr, mat_in_2_col);
   SparseMat_CRS mat_out(mat_in_1_row, mat_in_2_col);
 
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
