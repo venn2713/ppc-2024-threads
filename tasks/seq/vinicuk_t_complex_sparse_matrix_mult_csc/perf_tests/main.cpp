@@ -12,6 +12,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_pipeline_run_dft384x384)
   CSCComplexMatrix mtrx_A(n, n);
   CSCComplexMatrix mtrx_B(1, n);
   CSCComplexMatrix mtrx_res(1, n);
+  std::complex<double> a(2.0, 1.0);
 
   int k = 1;
   int p = 0;
@@ -24,7 +25,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_pipeline_run_dft384x384)
   k = 1;
   p = 0;
   for (size_t i = 0; i < mtrx_A.col_ptrs[n]; i++) {
-    mtrx_A.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_A.values.emplace_back(a);
     if (p >= k) {
       p = 0;
       k++;
@@ -35,7 +36,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_pipeline_run_dft384x384)
 
   mtrx_B.col_ptrs = {0, n};
   for (size_t i = 0; i < n; i++) {
-    mtrx_B.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_B.values.emplace_back(a);
     mtrx_B.row_indexes.push_back(i);
   }
 
@@ -72,6 +73,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_task_run_dft384x384) {
   CSCComplexMatrix mtrx_A(n, n);
   CSCComplexMatrix mtrx_B(1, n);
   CSCComplexMatrix mtrx_res(1, n);
+  std::complex<double> a(2.0, 1.0);
 
   int k = 1;
   int p = 0;
@@ -85,7 +87,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_task_run_dft384x384) {
   k = 1;
   p = 0;
   for (size_t i = 0; i < mtrx_A.col_ptrs[n]; i++) {
-    mtrx_A.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_A.values.emplace_back(a);
     if (p >= k) {
       p = 0;
       k++;
@@ -96,7 +98,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_task_run_dft384x384) {
 
   mtrx_B.col_ptrs = {0, n};
   for (size_t i = 0; i < n; i++) {
-    mtrx_B.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_B.values.emplace_back(a);
     mtrx_B.row_indexes.push_back(i);
   }
 

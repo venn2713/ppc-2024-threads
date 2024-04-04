@@ -43,15 +43,16 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_vectors) {
   CSCComplexMatrix mtrx_A(1, n);
   CSCComplexMatrix mtrx_B(n, 1);
   CSCComplexMatrix mtrx_res(n, n);
+  std::complex<double> a(1.0, 1.0);
 
   mtrx_A.col_ptrs = {0, n};
   // mtrx_B.col_ptrs = {0, 1, 2, 3};
   for (size_t i = 0; i <= n; i++) mtrx_B.col_ptrs.push_back(i);
   for (size_t i = 0; i < n; i++) {
     mtrx_A.row_indexes.push_back((double)i);
-    mtrx_A.values.emplace_back(std::complex<double>(1.0, 1.0));
+    mtrx_A.values.emplace_back(a);
     mtrx_B.row_indexes.push_back(0.0);
-    mtrx_B.values.emplace_back(std::complex<double>(1.0, 1.0));
+    mtrx_B.values.emplace_back(a);
   };
 
   // Create TaskData
@@ -75,6 +76,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_diganal_square_
   CSCComplexMatrix mtrx_A(n, n);
   CSCComplexMatrix mtrx_B(n, n);
   CSCComplexMatrix mtrx_res(n, n);
+  std::complex<double> a(2.0, 1.0);
 
   for (int i = 0; i <= n; i++) {
     mtrx_A.col_ptrs.push_back(i);
@@ -83,9 +85,9 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_diganal_square_
 
   for (int i = 0; i < n; i++) {
     mtrx_A.row_indexes.push_back(i);
-    mtrx_A.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_A.values.emplace_back(a);
     mtrx_B.row_indexes.push_back(i);
-    mtrx_B.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_B.values.emplace_back(a);
   };
 
   // Create TaskData
@@ -110,7 +112,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_triangle_square
   CSCComplexMatrix mtrx_A(n, n);
   CSCComplexMatrix mtrx_B(1, n);
   CSCComplexMatrix mtrx_res(1, n);
-
+  std::complex<double> a(2.0, 1.0);
   int k = 1;
   int p = 0;
   for (size_t i = 0; i <= n; i++) {
@@ -122,7 +124,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_triangle_square
   k = 1;
   p = 0;
   for (size_t i = 0; i < mtrx_A.col_ptrs[n]; i++) {
-    mtrx_A.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_A.values.emplace_back(a);
     if (p >= k) {
       p = 0;
       k++;
@@ -133,7 +135,7 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_multiply_triangle_square
 
   mtrx_B.col_ptrs = {0, n};
   for (size_t i = 0; i < n; i++) {
-    mtrx_B.values.emplace_back(std::complex<double>(2.0, 1.0));
+    mtrx_B.values.emplace_back(a);
     mtrx_B.row_indexes.push_back(i);
   }
 
@@ -161,13 +163,15 @@ TEST(vinicuk_t_complex_sparse_matrix_mult_csc_seq, test_single_element) {
   CSCComplexMatrix mtrx_A(5, 5);
   CSCComplexMatrix mtrx_B(5, 5);
   CSCComplexMatrix mtrx_res(5, 5);
+  std::complex<double> a1(2.0, 1.0);
+  std::complex<double> a2(3.0, 4.0);
 
   mtrx_A.col_ptrs = {0, 0, 1, 1, 1, 1};
   mtrx_B.col_ptrs = {0, 0, 1, 1, 1, 1};
 
-  mtrx_A.values = {std::complex<double>(2.0, 1.0)};
+  mtrx_A.values = {a1};
   mtrx_A.row_indexes = {1};
-  mtrx_B.values = {std::complex<double>(3.0, 4.0)};
+  mtrx_B.values = {a2};
   mtrx_B.row_indexes = {1};
 
   // Create TaskData
