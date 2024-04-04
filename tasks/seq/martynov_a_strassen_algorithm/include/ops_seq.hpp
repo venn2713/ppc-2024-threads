@@ -33,7 +33,7 @@ class Strssn_alg : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  int n = 0, m = 0;
+  int n = 0;
   std::vector<double> first_matrix;
   std::vector<double> second_matrix;
   std::vector<double> result;
