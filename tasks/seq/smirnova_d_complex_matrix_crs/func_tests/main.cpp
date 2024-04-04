@@ -165,7 +165,8 @@ TEST(smirnova_d_complex_matrix_crs_seq, test_inverse_matrix) {
   B.n_cols = 4;
   B.pointer = {0, 1, 4, 6, 9};
   B.col_indexes = {0, 0, 1, 3, 0, 2, 0, 1, 3};
-  B.non_zero_values = {1, {-1, 1}, {1.5, 0.5}, {0.5, -0.5}, {-0.5, 0.5}, {0.5, -0.5}, {1, -1}, {-1.5, -1.5}, {-0.5, 0.5}};
+  B.non_zero_values = {1,           {-1, 1}, {1.5, 0.5},   {0.5, -0.5}, {-0.5, 0.5},
+                       {0.5, -0.5}, {1, -1}, {-1.5, -1.5}, {-0.5, 0.5}};
 
   crs_matrix Result;
   crs_matrix Expected;

@@ -1,10 +1,10 @@
 // Copyright 2024 Smirnova Daria
 #include <gtest/gtest.h>
 
-#include <vector>
-#include <random>
 #include <chrono>
 #include <complex>
+#include <random>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/smirnova_d_complex_matrix_crs/include/ops_seq.hpp"

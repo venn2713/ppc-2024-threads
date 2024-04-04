@@ -8,7 +8,6 @@
 
 using namespace std::chrono_literals;
 
-
 crs_matrix T(const crs_matrix& M) {
   crs_matrix temp_matrix;
   temp_matrix.n_rows = M.n_cols;
