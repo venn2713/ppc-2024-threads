@@ -97,7 +97,7 @@ bool DejkstraTaskSequential::pre_processing() {
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
     graphMap = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
     size = (taskData->inputs_count[0]);
-        if (size != 0 && graphMap.data() == NULL) {
+    if (size != 0 && graphMap.data() == NULL) {
       graphMap = initGraphMapRandom(size);
     }
   } catch (const std::exception& e) {
