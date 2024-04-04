@@ -102,7 +102,7 @@ TEST(shubin_m_double_crs_mult_seq, mat_in_1_ident) {
   // size_t mat_in_1_col = 3;
   size_t mat_in_2_row = 3;
   size_t mat_in_2_col = 3;
-  double* nz_mat = new double[mat_in_2_row * mat_in_2_col];
+  double *nz_mat = new double[mat_in_2_row * mat_in_2_col];
   for (int i = 0; i < mat_in_2_row * mat_in_2_col; i++) {
     nz_mat[i] = (i % 3 == 0) ? (i + 1.0) : (0.0);
   }
