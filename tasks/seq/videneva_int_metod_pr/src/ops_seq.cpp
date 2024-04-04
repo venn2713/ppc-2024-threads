@@ -16,7 +16,6 @@ bool Videneva_seq_task::validation() {
   return taskData->inputs_count[0] == 5 && taskData->outputs_count[0] == 2;
 }
 
-
 bool Videneva_seq_task::run() {
   internal_order_test();
   try {

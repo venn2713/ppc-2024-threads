@@ -15,8 +15,6 @@ class Videneva_seq_task : public ppc::core::Task {
   bool post_processing() override;
 
  private:
- 
   double xLimL, xLimU, yLimL, yLimU, result, error, hX, hY;
   uint64_t number;
-  
 };
