@@ -69,14 +69,14 @@ Pixel Image::_get_gauss_filtered_pixel(std::size_t y, std::size_t x, const Gauss
     for (std::size_t j = 0; j < gauss_kernel.size(); j += 1) {
       Pixel pixel = this->get_pixel(
           static_cast<std::size_t>(std::clamp<double>(
-            static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i), 0,
-            this->_height - 1)),
+              static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i), 0,
+              this->_height - 1)),
           static_cast<std::size_t>(std::clamp<double>(
-            static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j), 0,
-            this->_width - 1)));
+              static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j), 0,
+              this->_width - 1)));
 
       result_pixel_value +=
-          std::clamp<double>( static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel), 0, UINT8_MAX);
+          std::clamp<double>(static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel), 0, UINT8_MAX);
     }
   }
 
