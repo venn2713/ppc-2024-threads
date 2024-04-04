@@ -233,11 +233,11 @@ TEST(karagodin_a_dejkstra_seq, test_not_generating_sizes_lesser_than_2) {
   std::vector<std::vector<int>> graphMap(2);
   ASSERT_ANY_THROW(graphMap = initGraphMapRandom(0));
 }
-/*
+
 TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
-  int entryNode = 4;
-  int destNode = 18;
+  int entryNode = 0;
+  int destNode = 19;
   int expectedScore = 50;
   int size = 20;
   std::vector<int> pathRes = {0, 6, 5, 3, 8};
@@ -258,7 +258,7 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
   ASSERT_NO_THROW(dejkstra.run());
   dejkstra.post_processing();
 }
-
+/*
 TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
   int entryNode = 0;
