@@ -37,7 +37,7 @@ TEST(Sequential, test_ulyanov_1) {
   TaskSequential.pre_processing();
   TaskSequential.run();
   TaskSequential.post_processing();
-  
+
   for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], res[i]);
   }
@@ -77,7 +77,7 @@ TEST(Sequential, test_ulyanov_2) {
   TaskSequential.pre_processing();
   TaskSequential.run();
   TaskSequential.post_processing();
-  
+
   for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], res[i]);
   }
@@ -113,7 +113,7 @@ TEST(Sequential, test_ulyanov_3) {
   TaskSequential.pre_processing();
   TaskSequential.run();
   TaskSequential.post_processing();
-  
+
   for (size_t i = 0; i < out.size(); i++) {
     ASSERT_EQ(out[i], res[i]);
   }
@@ -166,7 +166,7 @@ TEST(Sequential, test_ulyanov_5) {
       0,   0,   0,   0,   0,   0,   0,   0,   0, 0, 0,   0,   0,   0,   0,   0,   0,   0,   128,
       128, 128, 128, 128, 128, 128, 128, 128, 0, 0, 0,   0,   0,   0,   128, 128, 128, 128, 128,
       128, 128, 128, 128, 0,   0,   0,   0,   0, 0, 128, 128, 128, 128, 128, 128, 128, 128, 128,
-    0,   0,   0,   0,   0,   0,   0,   0,   0, 0, 0,   0,   0,   0,   0,   0,   0,   0,
+      0,   0,   0,   0,   0,   0,   0,   0,   0, 0, 0,   0,   0,   0,   0,   0,   0,   0,
   };
   std::vector<int> out(height * width * 3, 0);
   std::vector<int> res = {

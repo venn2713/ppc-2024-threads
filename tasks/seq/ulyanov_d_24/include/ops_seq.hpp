@@ -7,7 +7,7 @@
 #include "core/task/include/task.hpp"
 
 class Pixel {
-public:
+  public:
   Pixel() {
     r = 0;
     g = 0;
@@ -21,7 +21,7 @@ public:
 
 class FilterGaussHorizontalSequential : public ppc::core::Task {
  public:
-  explicit FilterGaussHorizontalSequential(std::shared_ptr<ppc::core::TaskData> taskData_) 
+  explicit FilterGaussHorizontalSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
       : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;

@@ -55,7 +55,7 @@ Pixel calcPixel(std::vector<Pixel> image, int width, int height, int i, int j, s
   float R = 0.0;
   float G = 0.0;
   float B = 0.0;
-  
+
   for (int l = -1; l < 2; l++) {
     for (int k = -1; k < 2; k++) {
       R += image[((i + l) * height) + (j + k)].r * kernel[((l + 1) * 3) + (k + 1)];
