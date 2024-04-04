@@ -9,6 +9,7 @@ TEST(videneva_int_metod_pr, small) {
   std::vector<double> in{0.0, 1.0, 0.0, 1.0, 1e2};
   std::vector<double> out(2);
 
+
   std::shared_ptr<ppc::core::TaskData> data_seq = std::make_shared<ppc::core::TaskData>();
   data_seq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   data_seq->inputs_count.emplace_back(in.size());
