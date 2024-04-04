@@ -6,7 +6,7 @@
 #include "seq/kasimtcev_r_monte_carlo/include/ops_seq.hpp"
 #define ESTIMATE 0.5
 
-TEST(kasimtcev_r_monte_carlo_seq, tested_linear_function) {
+TEST(kasimtcev_r_monte_carlo_sequential, tested_linear_function) {
   double res = 8;
   func f = flinear;
 
@@ -33,7 +33,7 @@ TEST(kasimtcev_r_monte_carlo_seq, tested_linear_function) {
   ASSERT_LT(std::abs(res - out[0]), ESTIMATE);
 }
 
-TEST(kasimtcev_r_monte_carlo_seq, tested_of_x_multiply_y) {
+TEST(kasimtcev_r_monte_carlo_sequential, tested_of_x_multiply_y) {
   double res = 2.25;
   func f = fxy;
 
