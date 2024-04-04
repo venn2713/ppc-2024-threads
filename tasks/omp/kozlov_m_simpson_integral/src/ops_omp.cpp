@@ -33,7 +33,7 @@ bool KozlovTaskSequential::run() {
   double y;
   double res_ = 0;
 #pragma omp parallel for reduction(+ : res_)
-  for (uint64_t i = 0; i <= n; i++) {
+  for (int i = 0; i <= n; i++) {
     if (i == 0 || i == n) {
       p = 1;
     } else if (i % 2 == 0) {
@@ -41,7 +41,7 @@ bool KozlovTaskSequential::run() {
     } else {
       p = 2;
     }
-    for (uint64_t j = 0; j <= m; j++) {
+    for (int j = 0; j <= m; j++) {
       if (j == 0 || j == m) {
         q = 1;
       } else if (i % 2 == 0) {
