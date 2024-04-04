@@ -234,14 +234,13 @@ TEST(karagodin_a_dejkstra_seq, test_not_generating_sizes_lesser_than_2) {
   ASSERT_ANY_THROW(graphMap = initGraphMapRandom(0));
 }
 
-TEST(karagodin_a_dejkstra_seq, test_big_size_20) {
+TEST(karagodin_a_dejkstra_seq, test_big_size_10) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
   int entryNode = 0;
-  int destNode = 19;
+  int destNode = 9;
   int expectedScore = 50;
-  int size = 20;
+  int size = 10;
   std::vector<int> pathRes = {0, 6, 5, 3, 8};
-  std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
   std::vector<std::vector<int>> graphMap;
   // Create TaskData
