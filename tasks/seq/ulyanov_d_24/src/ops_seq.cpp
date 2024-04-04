@@ -45,14 +45,17 @@ bool FilterGaussHorizontalSequential::pre_processing() {
 
 bool FilterGaussHorizontalSequential::validation() {
   internal_order_test();
-  
+
   return taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr && taskData->inputs_count[0] != 0 &&
-  taskData->inputs_count[1] != 0 && taskData->outputs_count[0] != 0 && taskData->outputs_count[1] != 0;
+         taskData->inputs_count[1] != 0 && taskData->outputs_count[0] != 0 && taskData->outputs_count[1] != 0;
 }
 
 Pixel calcPixel(std::vector<Pixel> image, int width, int height, int i, int j, std::vector<float> kernel) {
   Pixel resPixel = Pixel();
-  float R = 0.0, G = 0.0, B = 0.0;
+  float R = 0.0;
+  float G = 0.0;
+  float B = 0.0;
+  
   for (int l = -1; l < 2; l++) {
     for (int k = -1; k < 2; k++) {
       R += image[((i + l) * height) + (j + k)].r * kernel[((l + 1) * 3) + (k + 1)];

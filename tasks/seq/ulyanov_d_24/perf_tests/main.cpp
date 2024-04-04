@@ -7,7 +7,8 @@
 #include "seq/ulyanov_d_24/include/ops_seq.hpp"
 
 TEST(sequential_ulyanov_perf_test, test_pipeline_run) {
-  const int height = 100, width = 100;
+  const int height = 100;
+  const int width = 100;
 
   // Create data
   std::vector<int> in(height * width * 3, 0);
@@ -48,7 +49,8 @@ TEST(sequential_ulyanov_perf_test, test_pipeline_run) {
 }
 
 TEST(sequential_ulyanov_perf_test, test_task_run) {
-  const int height = 100, width = 100;
+  const int height = 100;
+  const int width = 100;
 
   // Create data
   std::vector<int> in(height * width * 3, 0);
