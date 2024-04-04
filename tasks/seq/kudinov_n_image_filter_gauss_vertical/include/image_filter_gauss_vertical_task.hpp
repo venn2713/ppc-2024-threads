@@ -32,7 +32,7 @@ class Image {
   Image(std::size_t height, std::size_t _width, const std::vector<Pixel>& _pixels);
   Pixel get_pixel(std::size_t y, std::size_t x) const;
   void set_pixel(std::size_t y, std::size_t x, Pixel pixel);
-  
+
   Image gauss_filtered(const GaussKernel& gauss_kernel) const;
   std::size_t height() const;
   std::size_t width() const;
@@ -44,11 +44,7 @@ class Image {
   std::size_t _width;
   std::vector<Pixel> _pixels;
 
-  Pixel _get_gauss_filtered_pixel(
-    std::size_t y,
-    std::size_t x,
-    const GaussKernel& gauss_kernel
-  ) const;
+  Pixel _get_gauss_filtered_pixel(std::size_t y, std::size_t x, const GaussKernel& gauss_kernel) const;
 };
 
 class ImageFilterGaussVerticalTask : public ppc::core::Task {

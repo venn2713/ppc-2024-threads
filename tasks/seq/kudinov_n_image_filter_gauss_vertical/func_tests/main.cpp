@@ -13,10 +13,12 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, validation_error) {
 
   std::size_t height = 5;
   std::size_t width = 3;
+  // clang-format off
   std::vector<Pixel> pixels = {
     11, 22, 33,
     12, 23, 34,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, pixels);
 
@@ -44,21 +46,25 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_small_image) {
 
   std::size_t height = 4;
   std::size_t width = 4;
+  // clang-format off
   std::vector<Pixel> pixels = {
     1, 50, 100, 150,
     50, 100, 50, 125,
     100, 50, 100, 175,
     50, 100, 50, 4,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, std::vector<Pixel>(height * width, 0));
 
+  // clang-format off
   std::vector<Pixel> expected_pixels = {
 	  31, 56, 96, 124,
 	  56, 66, 98, 127,
 	  72, 73, 84, 94,
 	  71, 72, 68, 59,
   };
+  // clang-format on
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();
@@ -202,6 +208,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_medium_image) {
 
   std::size_t height = 10;
   std::size_t width = 8;
+  // clang-format off
   std::vector<Pixel> pixels = {
     100, 161, 132, 159, 181, 243,  22, 154,
     156, 208, 157,  29, 222,  11, 224,  13,
@@ -214,9 +221,11 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_medium_image) {
     130, 252, 163, 178, 178,  52, 130, 230,
     100, 100, 243,  47,   5, 112,  51,  83,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, std::vector<Pixel>(height * width, 0));
 
+  // clang-format off
   std::vector<Pixel> expected_pixels = {
     119, 126, 139, 148, 141, 138, 132, 120,
     126, 132, 143, 142, 135, 128, 120, 107,
@@ -229,6 +238,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, non_square_medium_image) {
     132, 144, 147, 138, 119, 110, 116, 128,
     139, 145, 139, 127, 108, 94, 101, 112,
   };
+  // clang-format on
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();
@@ -262,6 +272,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_large_image) {
 
   std::size_t height = 16;
   std::size_t width = 16;
+  // clang-format off
   std::vector<Pixel> pixels = {
     154, 124, 124, 142, 206, 253,  91,  64, 205, 171, 164,  26, 200, 240, 109, 109,
     131, 190, 145, 117, 173,  15, 167, 156, 214,  24, 236, 209, 180, 87, 133,  50,
@@ -280,9 +291,11 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_large_image) {
      78, 233,  55, 151,  24, 251,  94,  46,  76, 212,  43,  39, 206, 34,  89,  69,
     243, 137,  84, 206,  34,   4, 201, 108, 185,  85,  47, 142,  56, 42,   1, 217,
   };
+  // clang-format on
   auto input_image = Image(height, width, pixels);
   auto output_image = Image(height, width, std::vector<Pixel>(height * width, 0));
 
+  // clang-format off
   std::vector<Pixel> expected_pixels = {
     129, 132, 138, 147, 153, 154, 148, 144, 141, 139, 137, 139, 141, 141, 130, 117,
     118, 124, 131, 139, 146, 149, 147, 145, 138, 132, 128, 128, 130, 129, 122, 113,
@@ -301,6 +314,7 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_large_image) {
     140, 134, 131, 131, 129, 129, 128, 124, 121, 115, 108, 99, 93, 93, 104, 122,
     165, 148, 132, 121, 114, 115, 121, 123, 122, 113, 102, 91, 83, 85, 101, 127,
   };
+  // clang-format on
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();
@@ -321,7 +335,6 @@ TEST(kudinov_n_image_filter_gauss_vertical_seq, square_large_image) {
   ASSERT_TRUE(task.post_processing());
 
   std::vector<Pixel> output_image_pixels = output_image.pixels();
-  //std::cout << std::hash<std::string>{}(std::string(output_image_pixels.begin(), output_image_pixels.end())) << ' ' << std::hash<std::string>{}("asdf") << "\n";
   for (std::size_t i = 0; i < output_image_pixels.size(); i++) {
     ASSERT_EQ(output_image_pixels[i], expected_pixels[i]);
   }

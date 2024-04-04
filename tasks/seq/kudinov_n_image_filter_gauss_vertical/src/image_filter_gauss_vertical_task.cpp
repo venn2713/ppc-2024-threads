@@ -1,17 +1,12 @@
 // Copyright 2024 Kudinov Nikita
 #include "seq/kudinov_n_image_filter_gauss_vertical/include/image_filter_gauss_vertical_task.hpp"
 
-#include <thread>
 #include <cmath>
+#include <thread>
 
-GaussKernel::GaussKernel(): _radius(), _sigma(), _data(), _size() {}
+GaussKernel::GaussKernel() : _radius(), _sigma(), _data(), _size() {}
 
-GaussKernel::GaussKernel(
-  std::size_t radius,
-  double sigma):
-  _radius(radius),
-  _sigma(sigma),
-  _size(radius * 2 + 1) {
+GaussKernel::GaussKernel(std::size_t radius, double sigma) : _radius(radius), _sigma(sigma), _size(radius * 2 + 1) {
   this->_data = std::vector(this->_size*this->_size, 0.0);
 
   double sum = 0.0;
@@ -33,28 +28,23 @@ GaussKernel::GaussKernel(
   }
 }
 
-std::size_t GaussKernel::radius() const {
-  return this->_radius;
-}
+std::size_t GaussKernel::radius() const { return this->_radius; }
 
-std::size_t GaussKernel::size() const {
-  return this->_size;
-}
+std::size_t GaussKernel::size() const { return this->_size; }
 
-double GaussKernel::sigma() const {
-  return this->_sigma;
-}
+double GaussKernel::sigma() const { return this->_sigma; }
 
 double GaussKernel::get(std::size_t y, std::size_t x) const {
   if (y >= this->_size || x >= this->_size) {
     throw std::runtime_error("Out of bounds");
   }
-  
+
   return this->_data[y * this->_size + x];
 }
 
-Image::Image(): _height(), _width(), _pixels() {}
-Image::Image(std::size_t height, std::size_t width, const std::vector<Pixel>& pixels): _height(height), _width(width), _pixels(pixels) {}
+Image::Image() : _height(), _width(), _pixels() {}
+Image::Image(std::size_t height, std::size_t width, const std::vector<Pixel>& pixels)
+  : _height(height), _width(width), _pixels(pixels) {}
 
 Pixel Image::get_pixel(std::size_t y, std::size_t x) const {
   if (y >= this->_height || x >= this->_width) {
@@ -72,28 +62,21 @@ void Image::set_pixel(std::size_t y, std::size_t x, Pixel pixel) {
   this->_pixels[y * this->_width + x] = pixel;
 }
 
-Pixel Image::_get_gauss_filtered_pixel(
-  std::size_t y,
-  std::size_t x,
-  const GaussKernel& gauss_kernel) const {
+Pixel Image::_get_gauss_filtered_pixel(std::size_t y, std::size_t x, const GaussKernel& gauss_kernel) const {
   double result_pixel_value = 0;
 
   for (std::size_t i = 0; i < gauss_kernel.size(); i += 1) {
     for (std::size_t j = 0; j < gauss_kernel.size(); j += 1) {
       Pixel pixel = this->get_pixel(
         static_cast<std::size_t>(std::clamp<double>(
-	  static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i),
-	  0,
+	  static_cast<double>(y) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(i), 0,
 	  this->_height - 1)),
         static_cast<std::size_t>(std::clamp<double>(
-	  static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j),
-	  0,
+	  static_cast<double>(x) - static_cast<double>(gauss_kernel.radius()) + static_cast<double>(j), 0,
 	  this->_width - 1)));
 
-      result_pixel_value += std::clamp<double>(
-        static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel),
-        0,
-        UINT8_MAX);
+      result_pixel_value +=
+        std::clamp<double>( static_cast<double>(gauss_kernel.get(i, j)) * static_cast<double>(pixel), 0, UINT8_MAX);
     }
   }
 
@@ -112,17 +95,11 @@ Image Image::gauss_filtered(const GaussKernel& gauss_kernel) const {
   return out;
 }
 
-std::size_t Image::height() const {
-  return this->_height;
-}
+std::size_t Image::height() const { return this->_height; }
 
-std::size_t Image::width() const {
-  return this->_width;
-}
+std::size_t Image::width() const { return this->_width; }
 
-const std::vector<Pixel>& Image::pixels() const {
-  return this->_pixels;
-}
+const std::vector<Pixel>& Image::pixels() const { return this->_pixels; }
 
 std::size_t Image::hash() const {
   return std::hash<std::string>{}(std::string(this->_pixels.begin(), this->_pixels.end()));

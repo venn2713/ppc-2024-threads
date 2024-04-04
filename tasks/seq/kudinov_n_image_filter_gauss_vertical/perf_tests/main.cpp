@@ -1,8 +1,8 @@
-// Copyright 2023 Nesterov Alexander
+// Copyright 2024 Kudinov Nikita
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <random>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/kudinov_n_image_filter_gauss_vertical/include/image_filter_gauss_vertical_task.hpp"
