@@ -256,7 +256,7 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_10) {
   ASSERT_NO_THROW(dejkstra.run());
   dejkstra.post_processing();
 }
-/*
+
 TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   // Any numbers really. Checking if algorithm crashes on large data sample.
   int entryNode = 0;
@@ -281,4 +281,4 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   ASSERT_NO_THROW(dejkstra.run());
   dejkstra.post_processing();
 }
-*/
+/**/
