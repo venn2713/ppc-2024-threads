@@ -235,7 +235,6 @@ TEST(karagodin_a_dejkstra_seq, test_not_generating_sizes_lesser_than_2) {
 }
 
 TEST(karagodin_a_dejkstra_seq, test_big_size_10) {
-  /*
   // Any numbers really. Checking if algorithm crashes on large data sample.
   int entryNode = 0;
   int destNode = 9;
@@ -254,10 +253,8 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_10) {
   DejkstraTaskSequential dejkstra(taskDataSeq);
   ASSERT_EQ(dejkstra.validation(), true);
   dejkstra.pre_processing();
-  dejkstra.run();
+  ASSERT_NO_FATAL_FAILURE(dejkstra.run());
   dejkstra.post_processing();
-  */
-  ASSERT_NO_FATAL_FAILURE();
 }
 
 TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
@@ -281,8 +278,6 @@ TEST(karagodin_a_dejkstra_seq, test_big_size_50) {
   DejkstraTaskSequential dejkstra(taskDataSeq);
   ASSERT_EQ(dejkstra.validation(), true);
   dejkstra.pre_processing();
-  dejkstra.run();
+  ASSERT_NO_FATAL_FAILURE(dejkstra.run());
   dejkstra.post_processing();
-  ASSERT_NO_FATAL_FAILURE();
 }
-/**/
