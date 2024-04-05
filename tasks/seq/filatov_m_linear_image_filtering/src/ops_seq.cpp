@@ -105,7 +105,7 @@ void GaussFilterHorizontal::calculateSingleColorComponent(uint8_t neighborColor,
 }
 
 void GaussFilterHorizontal::calculateColorsComponents(Color* neighborColor, int64_t k, int64_t l, int64_t halfSize,
-                                                        ColorF* color) {
+                                                      ColorF* color) {
     calculateSingleColorComponent(neighborColor->R, kernel[k + halfSize][l + halfSize], &color->R);
     calculateSingleColorComponent(neighborColor->G, kernel[k + halfSize][l + halfSize], &color->G);
     calculateSingleColorComponent(neighborColor->B, kernel[k + halfSize][l + halfSize], &color->B);
