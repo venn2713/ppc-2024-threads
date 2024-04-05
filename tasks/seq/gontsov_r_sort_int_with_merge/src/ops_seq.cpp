@@ -1,7 +1,7 @@
 // Copyright 2024 Gontsov Roman
 #include "seq/gontsov_r_sort_int_with_merge/include/ops_seq.hpp"
 #include <cmath>
-#include <thread> // NOLINT
+#include <thread>
 
 bool RadixSortTaskSequential::pre_processing() {
   internal_order_test();
@@ -20,8 +20,7 @@ bool RadixSortTaskSequential::pre_processing() {
 bool RadixSortTaskSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count[0] == taskData->outputs_count[0]
-  && taskData->outputs[0] != nullptr &&
+  return taskData->inputs_count[0] == taskData->outputs_count[0]&& taskData->outputs[0] != nullptr &&
          taskData->inputs[0] != nullptr && taskData->inputs_count[0] != 0;
 }
 
@@ -74,8 +73,7 @@ bool RadixSortTaskSequential::run() {
       }
       std::vector<int> temp(VectorForSort_.size());
       for (size_t i = 0; i < VectorForSort_.size(); i++) {
-        temp[count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]] =
-        VectorForSort_[i];
+        temp[count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]] = VectorForSort_[i];
         count[(VectorForSort_[i] % (devider * 10) / devider) - MinKey]++;
       }
       for (size_t i = 0; i < VectorForSort_.size(); i++) {
@@ -91,7 +89,6 @@ bool RadixSortTaskSequential::run() {
 
 bool RadixSortTaskSequential::post_processing() {
   internal_order_test();
-  for (size_t i = 0; i < VectorForSort.size(); i++)
-  reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
+  for (size_t i = 0; i < VectorForSort.size(); i++) reinterpret_cast<int*>(taskData->outputs[0])[i] = VectorForSort[i];
   return true;
 }
