@@ -64,7 +64,7 @@ void shell(int* arr, int n) {
 void BenduyzhkoSequential::get_random_numbers(int* arr, int n, int a, int b, int seed) {
   std::uniform_int_distribution<int> dist(a, b);
   std::random_device dev;
-  std::mt19937 gen(seed ? seed : dev());
+  std::mt19937 gen(seed != 0 ? seed : dev());
   for (int i = 0; i < n; i++) {
     arr[i] = dist(gen);
   }
