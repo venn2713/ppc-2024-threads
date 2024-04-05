@@ -13,8 +13,8 @@ TEST(bozin_d_trapez_seq, test_pipeline_run) {
   double ay = 0.0; 
   double by = 1.0; 
 
-  int nx = 50;
-  int ny = 50; 
+  int nx = 3000;
+  int ny = 3000; 
   
   double res = 0.25;
 
@@ -63,8 +63,8 @@ TEST(bozin_d_trapez_seq, test_task_run) {
   double ay = 0.0; 
   double by = 1.0; 
 
-  int nx = 50;
-  int ny = 50; 
+  int nx = 3000;
+  int ny = 3000; 
   
   double res = 0.25;
 

@@ -6,8 +6,6 @@
 #include <thread>
 #include <cmath>
 
-using namespace std::chrono_literals;
-
 double multiDimensionalIntegral(const std::function<double(double, double)>& func,
 double ax, double bx, double ay, double by, int nx, int ny) {
     double stepx = (bx - ax) / nx;
@@ -58,7 +56,6 @@ bool BozinTaskSequential::validation() {
 bool BozinTaskSequential::run() {
   internal_order_test();
   res = multiDimensionalIntegral(func, ax, bx, ay, by, nx, ny);
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
