@@ -32,7 +32,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
   return graphMap;
 }
 
-void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
+static void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
   for (const auto& row : graphMapInput) {
     for (int value : row) {
       std::cout << value << "  ";
@@ -46,7 +46,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
   std::vector<int> prev(size, -1);
   std::priority_queue<Node, std::vector<Node>, CompareNode> pq;
   dist[entryNode] = 0;
-  pq.push(Node(entryNode, 0));
+  pq.emplace(Node(entryNode, 0));
 
   while (!pq.empty()) {
     Node currentnode = pq.top();
@@ -65,7 +65,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
         if (alt < dist[v]) {
           dist[v] = alt;
           prev[v] = u;
-          pq.push(Node(v, alt));
+          pq.emplace(Node(v, alt));
         }
       }
     }
@@ -97,7 +97,7 @@ bool DejkstraTaskSequential::pre_processing() {
     destNode = *reinterpret_cast<int*>(taskData->inputs[1]);
     graphMap = *reinterpret_cast<std::vector<std::vector<int>>*>(taskData->inputs[2]);
     size = (taskData->inputs_count[0]);
-    if (size != 0 && graphMap.data() == NULL) {
+    if (size != 0 && graphMap.data() == nullptr) {
       graphMap = initGraphMapRandom(size);
     }
   } catch (...) {
