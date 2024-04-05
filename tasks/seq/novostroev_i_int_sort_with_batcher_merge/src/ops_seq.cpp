@@ -98,8 +98,8 @@ bool BatcherMergeSeq::preProcessing() {
     vector[i] = tmp_ptr_A[i];
   }
 
-  part1.resultize(vector.size() / 2);
-  part2.resultize(vector.size() / 2);
+  part1.resize(vector.size() / 2);
+  part2.resize(vector.size() / 2);
 
   for (size_t i = 0; i < (vector.size() / 2); i++) {
     part1[i] = vector[i];
