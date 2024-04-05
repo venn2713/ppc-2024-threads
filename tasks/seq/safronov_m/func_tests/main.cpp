@@ -156,4 +156,3 @@ TEST(Safronov_mult_m_fox, mult5) {
     }
   }
 }
-
