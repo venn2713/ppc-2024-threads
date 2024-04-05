@@ -65,6 +65,8 @@ TEST(semenova_v_fil_Gauss_omp, test_pipeline_run) {
       }
     }
   }
+  delete[] image;
+  delete[] filteredImage;
 }
 
 TEST(semenova_v_fil_Gauss_omp, test_task_run) {
@@ -125,4 +127,6 @@ TEST(semenova_v_fil_Gauss_omp, test_task_run) {
       }
     }
   }
+  delete[] image;
+  delete[] filteredImage;
 }
