@@ -205,9 +205,8 @@ TEST(semenova_v_fil_Gauss_seq, Creat_task_with_outputs_and_inputs1) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ASSERT_TRUE(ImageFilGauss.pre_processing());
-  }
+  ASSERT_TRUE(mageFilGauss.validation());
+  ASSERT_TRUE(ImageFilGauss.pre_processing());
   delete[] image;
   delete[] filteredImage;
 }
@@ -228,9 +227,8 @@ TEST(semenova_v_fil_Gauss_seq, Creat_task_with_outputs_and_inputs2) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ASSERT_TRUE(ImageFilGauss.pre_processing());
-  }
+  ASSERT_TRUE(ImageFilGauss.validation());
+  ASSERT_TRUE(ImageFilGauss.pre_processing());
   delete[] filteredImage;
 }
 TEST(semenova_v_fil_Gauss_seq, Run_task1) {
@@ -250,10 +248,9 @@ TEST(semenova_v_fil_Gauss_seq, Run_task1) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ASSERT_TRUE(ImageFilGauss.run());
-  }
+  ASSERT_TRUE(ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ASSERT_TRUE(ImageFilGauss.run());
   delete[] image;
   delete[] filteredImage;
 }
@@ -274,10 +271,9 @@ TEST(semenova_v_fil_Gauss_seq, Run_task2) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ASSERT_TRUE(ImageFilGauss.run());
-  }
+  ASSERT_TRUE((ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ASSERT_TRUE(ImageFilGauss.run());
   delete[] filteredImage;
 }
 TEST(semenova_v_fil_Gauss_seq, Task_post_processing1) {
@@ -297,11 +293,10 @@ TEST(semenova_v_fil_Gauss_seq, Task_post_processing1) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ImageFilGauss.run();
-    ASSERT_TRUE(ImageFilGauss.post_processing());
-  }
+  ASSERT_TRUE((ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ImageFilGauss.run();
+  ASSERT_TRUE(ImageFilGauss.post_processing());
   delete[] image;
   delete[] filteredImage;
 }
@@ -322,11 +317,10 @@ TEST(semenova_v_fil_Gauss_seq, Task_post_processing2) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ImageFilGauss.run();
-    ASSERT_TRUE(ImageFilGauss.post_processing());
-  }
+  ASSERT_TRUE(ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ImageFilGauss.run();
+  ASSERT_TRUE(ImageFilGauss.post_processing());
   delete[] filteredImage;
 }
 TEST(semenova_v_fil_Gauss_seq, Task_run_correct1) {
@@ -348,10 +342,10 @@ TEST(semenova_v_fil_Gauss_seq, Task_run_correct1) {
   int res[9] = {1, 50, 3, 4, 15, 0, 7, 8, 98};
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ImageFilGauss.run();
-    ImageFilGauss.post_processing();
+  ASSERT_TRUE(ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ImageFilGauss.run();
+  ImageFilGauss.post_processing();
 
     for (int i = 0; i < n * m; ++i) {
       EXPECT_EQ(filteredImage[i], res[i]);
@@ -378,10 +372,10 @@ TEST(semenova_v_fil_Gauss_seq, Task_run_correct2) {
   int res[16] = {1, 50, 3, 125, 1, 9, 28, 69, 0, 3, 19, 98, 0, 0, 0, 0};
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
-    ImageFilGauss.pre_processing();
-    ImageFilGauss.run();
-    ImageFilGauss.post_processing();
+  ASSERT_TRUE(ImageFilGauss.validation());
+  ImageFilGauss.pre_processing();
+  ImageFilGauss.run();
+  ImageFilGauss.post_processing();
 
     for (int i = 0; i < n * m; ++i) {
       EXPECT_EQ(filteredImage[i], res[i]);
@@ -408,7 +402,8 @@ TEST(semenova_v_fil_Gauss_seq, Task_correct_pre_processing) {
   int res[16] = {255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255};
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
+  ASSERT_TRUE(ImageFilGauss.validation()); 
+  {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
     ImageFilGauss.post_processing();
@@ -437,7 +432,8 @@ TEST(semenova_v_fil_Gauss_seq, Task_correct_with_random_image) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  if (ImageFilGauss.validation()) {
+  ASSERT_TRUE(ImageFilGauss.validation()); 
+  {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
     ASSERT_TRUE(ImageFilGauss.post_processing());
