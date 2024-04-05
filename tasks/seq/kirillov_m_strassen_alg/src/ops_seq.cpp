@@ -110,7 +110,6 @@ std::vector<double> generateRandomMatrix(int n) {
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dis(1.0, 5.0);
-
   std::vector<double> matrix(n * n);
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
