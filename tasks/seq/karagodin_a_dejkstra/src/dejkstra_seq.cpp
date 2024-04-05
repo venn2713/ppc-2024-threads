@@ -46,7 +46,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
   std::vector<int> prev(size, -1);
   std::priority_queue<Node, std::vector<Node>, CompareNode> pq;
   dist[entryNode] = 0;
-  pq.emplace(Node(entryNode, 0));
+  pq.emplace(entryNode, 0);
 
   while (!pq.empty()) {
     Node currentnode = pq.top();
@@ -65,7 +65,7 @@ std::pair<std::vector<int>, int> DejkstraTaskSequential::getDejMinPath() {
         if (alt < dist[v]) {
           dist[v] = alt;
           prev[v] = u;
-          pq.emplace(Node(v, alt));
+          pq.emplace(v, alt);
         }
       }
     }
