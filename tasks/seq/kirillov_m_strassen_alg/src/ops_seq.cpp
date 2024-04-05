@@ -41,6 +41,7 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   std::vector<double> C12 = add(p3, p5);
   std::vector<double> C21 = add(p2, p4);
   std::vector<double> C22 = add(sub(p1, p2), add(p3, p6));
+
   return joinMatrices(C11, C12, C21, C22, n);
 }
 
