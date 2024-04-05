@@ -144,9 +144,11 @@ Color GaussFilterHorizontal::calculateNewPixelColor(size_t x, size_t y) {
 
 template <typename T>
 T GaussFilterHorizontal::clamp(const T& val, const T& min, const T& max) {
-  if (val < min)
+  if (val < min) {
     return min;
-  if (val > max)
+  }
+  if (val > max) {
     return max;
+  }
   return val;
 }
