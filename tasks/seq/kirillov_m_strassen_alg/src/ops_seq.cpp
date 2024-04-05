@@ -9,6 +9,7 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   if ((n == 0) || ((n & (n - 1)) != 0)) {
     throw std::invalid_argument("Matrix size is not 2^n");
   }
+
   if (n <= 2) {
     return mul(A, B, 2);
   }
