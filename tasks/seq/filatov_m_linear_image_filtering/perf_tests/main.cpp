@@ -26,8 +26,7 @@ TEST(filatov_m_linear_image_filtering, test_pipeline_run) {
   taskImageData->outputs_count.emplace_back(height);
 
   // Create Task
-  auto gaussFilterHorizontal =
-  std::make_shared<GaussFilterHorizontal>(taskImageData);
+  auto gaussFilterHorizontal = std::make_shared<GaussFilterHorizontal>(taskImageData);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -35,8 +34,7 @@ TEST(filatov_m_linear_image_filtering, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -70,8 +68,7 @@ TEST(filatov_m_linear_image_filtering, test_task_run) {
   taskImageData->outputs_count.emplace_back(height);
 
   // Create Task
-  auto gaussFilterHorizontal =
-  std::make_shared<GaussFilterHorizontal>(taskImageData);
+  auto gaussFilterHorizontal = std::make_shared<GaussFilterHorizontal>(taskImageData);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -79,8 +76,7 @@ TEST(filatov_m_linear_image_filtering, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1000000000;
   };
 
@@ -126,9 +122,8 @@ TEST(filatov_m_linear_image_filtering, test_pipeline_run_with_blue_image) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1e-9;
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
+    return static_cast<double>(duration) * 1000000000;
   };
 
   // Create and init perf results
@@ -173,8 +168,7 @@ TEST(filatov_m_linear_image_filtering, test_task_run_with_green_image) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

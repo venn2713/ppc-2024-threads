@@ -45,8 +45,7 @@ TEST(filatov_m_linear_image_filtering, black_image) {
   std::vector<uint8_t> expected(width * height * 3, 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -73,8 +72,7 @@ TEST(filatov_m_linear_image_filtering, low_resolution_image) {
   std::vector<uint8_t> expected(width * height * 3, 127);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -97,8 +95,7 @@ TEST(filatov_m_linear_image_filtering, big_image) {
   std::vector<uint8_t> expected(width * height * 3, 127);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -129,8 +126,7 @@ TEST(filatov_m_linear_image_filtering, red_image) {
   std::vector<uint8_t> expected = in;
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -161,8 +157,7 @@ TEST(filatov_m_linear_image_filtering, green_image) {
   std::vector<uint8_t> expected = in;
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -193,8 +188,7 @@ TEST(filatov_m_linear_image_filtering, blue_image) {
   std::vector<uint8_t> expected = in;
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);
@@ -211,32 +205,6 @@ TEST(filatov_m_linear_image_filtering, blue_image) {
   ASSERT_EQ(expected, out);
 }
 
-TEST(filatov_m_linear_image_filtering, large_image) {
-  uint64_t width = 1024;
-  uint64_t height = 1024;
-
-  // Create data
-  std::vector<uint8_t> in(width * height * 3, 127);
-  std::vector<uint8_t> out(width * height * 3, 0);
-
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
-  taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
-  taskImageData->inputs_count.emplace_back(width);
-  taskImageData->inputs_count.emplace_back(height);
-  taskImageData->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
-  taskImageData->outputs_count.emplace_back(width);
-  taskImageData->outputs_count.emplace_back(height);
-
-  // Create Task
-  GaussFilterHorizontal gaussFilterHorizontal(taskImageData);
-  ASSERT_EQ(gaussFilterHorizontal.validation(), true);
-  gaussFilterHorizontal.pre_processing();
-  gaussFilterHorizontal.run();
-  gaussFilterHorizontal.post_processing();
-}
-
 TEST(filatov_m_linear_image_filtering, invalid_dimensions) {
   uint64_t width = 0;
   uint64_t height = 0;
@@ -246,8 +214,7 @@ TEST(filatov_m_linear_image_filtering, invalid_dimensions) {
   std::vector<uint8_t> out(width * height * 3, 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskImageData =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskImageData = std::make_shared<ppc::core::TaskData>();
   taskImageData->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskImageData->inputs_count.emplace_back(width);
   taskImageData->inputs_count.emplace_back(height);

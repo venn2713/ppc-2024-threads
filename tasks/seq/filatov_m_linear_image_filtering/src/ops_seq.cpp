@@ -3,13 +3,9 @@
 
 #include <cstdint>
 
-Color::Color() {
-    R = G = B = 0;
-}
+Color::Color() { R = G = B = 0; }
 
-ColorF::ColorF() {
-    R = G = B = .0f;
-}
+ColorF::ColorF() { R = G = B = .0f; }
 
 void GaussFilterHorizontal::initializeData() {
   input = taskData->inputs[0];
@@ -72,8 +68,7 @@ void GaussFilterHorizontal::calculateGaussianValues(float sigma, float* normaliz
   int64_t halfSize = kSize * .5f;
   for (int64_t row = -halfSize; row <= halfSize; row++) {
     for (int64_t col = -halfSize; col <= halfSize; col++) {
-      double gaussianValue =
-      std::exp(-(row * row + col * col) / (2 * sigma * sigma));
+      double gaussianValue = std::exp(-(row * row + col * col) / (2 * sigma * sigma));
       kernel[row + halfSize][col + halfSize] = gaussianValue;
       *normalizationFactor += gaussianValue;
     }
@@ -104,11 +99,13 @@ void GaussFilterHorizontal::applyKernel() {
   }
 }
 
-void GaussFilterHorizontal::calculateSingleColorComponent(uint8_t neighborColor, float kernelValue, float* newColorComponent) {
+void GaussFilterHorizontal::calculateSingleColorComponent(uint8_t neighborColor, float kernelValue,
+  float* newColorComponent) {
   *newColorComponent += neighborColor * kernelValue;
 }
 
-void GaussFilterHorizontal::calculateColorsComponents(Color* neighborColor, int64_t k, int64_t l, int64_t halfSize, ColorF* color) {
+void GaussFilterHorizontal::calculateColorsComponents(Color* neighborColor, int64_t k, int64_t l, int64_t halfSize,
+ColorF* color) {
     calculateSingleColorComponent(neighborColor->R, kernel[k + halfSize][l + halfSize], &color->R);
     calculateSingleColorComponent(neighborColor->G, kernel[k + halfSize][l + halfSize], &color->G);
     calculateSingleColorComponent(neighborColor->B, kernel[k + halfSize][l + halfSize], &color->B);
@@ -147,11 +144,11 @@ Color GaussFilterHorizontal::calculateNewPixelColor(size_t x, size_t y) {
 
 template <typename T>
 T GaussFilterHorizontal::clamp(const T& val, const T& min, const T& max) {
-    if (val < min) {
-        return min;
-    } else if (val > max) {
-        return max;
-    } else {
-        return val;
-    }
+  if (val < min) {
+    return min;
+  } else if (val > max) {
+    return max;
+  } else {
+    return val;
+  }
 }

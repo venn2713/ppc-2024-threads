@@ -3,10 +3,10 @@
 
 #include <cmath>
 #include <cstring>
-#include <string>
-#include <vector>
 #include <memory>
+#include <string>
 #include <utility>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 
@@ -24,8 +24,7 @@ struct ColorF {
 
 class GaussFilterHorizontal : public ppc::core::Task {
  public:
-  explicit GaussFilterHorizontal(std::shared_ptr<ppc::core::TaskData> taskData_)
-  : Task(std::move(taskData_)) {}
+  explicit GaussFilterHorizontal(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   void initializeData();
   void copyInputToImage();
