@@ -27,7 +27,7 @@ bool TaskSequential::run() {
   for (int i = 1; i <= components; ++i) {
     std::vector<int> points = remove_extra_points(img, w, h, i);
     std::vector<int> ch = Algorithm_Graham(points);
-    for (int j = 0; j < ch.size(); ++j) {
+    for (size_t j = 0; j < ch.size(); ++j) {
       hull.emplace_back(ch[j]);
     }
     hull.emplace_back(-1);
@@ -95,7 +95,7 @@ std::vector<int> find_components(const std::vector<std::vector<int>>& image, int
 
 int count_components(const std::vector<int>& image) {
   int c = 0;
-  for (int i = 0; i < image.size(); ++i) {
+  for (size_t i = 0; i < image.size(); ++i) {
     if (image[i] > c) {
       c = image[i];
     }
@@ -105,7 +105,7 @@ int count_components(const std::vector<int>& image) {
 
 int count_points_component(const std::vector<int>& image) {
   int count_points = 0;
-  for (int i = 0; i < image.size(); ++i) {
+  for (size_t i = 0; i < image.size(); ++i) {
     if (image[i] != 0) {
       count_points++;
     }
@@ -197,7 +197,7 @@ std::vector<int> Algorithm_Graham(std::vector<int> points) {
 
     int min_index = 0;
 
-    for (int i = 2; i < points.size(); i += 2) {
+    for (size_t i = 2; i < points.size(); i += 2) {
       if (points[i] < x_min || (points[i] == x_min && points[i + 1] < y_min)) {
         x_min = points[i];
 
@@ -225,7 +225,7 @@ std::vector<int> Algorithm_Graham(std::vector<int> points) {
     result.emplace_back(points[0]);
     result.emplace_back(points[1]);
 
-    for (int i = 2; i < points.size(); i += 2) {
+    for (size_t i = 2; i < points.size(); i += 2) {
       int result_size = result.size();
 
       int x1 = result[result_size - 4];
