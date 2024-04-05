@@ -205,7 +205,7 @@ TEST(semenova_v_fil_Gauss_seq, Creat_task_with_outputs_and_inputs1) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  ASSERT_TRUE(mageFilGauss.validation());
+  ASSERT_TRUE(ImageFilGauss.validation());
   ASSERT_TRUE(ImageFilGauss.pre_processing());
   delete[] image;
   delete[] filteredImage;
