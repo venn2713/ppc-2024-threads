@@ -130,6 +130,7 @@ void GaussFilterHorizontal::calculateColorComponents(size_t x, size_t y, ColorF*
 
 Color GaussFilterHorizontal::calculateCeilColorF(ColorF preparedColor) {
   Color resultColor;
+  
   resultColor.R = (uint8_t)std::ceil(preparedColor.R);
   resultColor.G = (uint8_t)std::ceil(preparedColor.G);
   resultColor.B = (uint8_t)std::ceil(preparedColor.B);
