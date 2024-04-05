@@ -1,21 +1,21 @@
 // Copyright 2024 Bozin Dmitry
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <cmath>
+#include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "seq/bozin_d_trapez/include/ops_seq.hpp"
 
 TEST(bozin_d_trapez_seq, test_pipeline_run) {
-  double ax = 0.0;  
-  double bx = 1.0; 
-  double ay = 0.0; 
-  double by = 1.0; 
+  double ax = 0.0;
+  double bx = 1.0;
+  double ay = 0.0;
+  double by = 1.0;
 
   int nx = 3000;
-  int ny = 3000; 
-  
+  int ny = 3000;
+
   double res = 0.25;
 
   auto mul_x_y = [](double x, double y) { return x * y; };
@@ -58,14 +58,14 @@ TEST(bozin_d_trapez_seq, test_pipeline_run) {
 }
 
 TEST(bozin_d_trapez_seq, test_task_run) {
-  double ax = 0.0;  
-  double bx = 1.0; 
-  double ay = 0.0; 
-  double by = 1.0; 
+  double ax = 0.0;
+  double bx = 1.0;
+  double ay = 0.0;
+  double by = 1.0;
 
   int nx = 3000;
-  int ny = 3000; 
-  
+  int ny = 3000;
+
   double res = 0.25;
 
   auto mul_x_y = [](double x, double y) { return x * y; };

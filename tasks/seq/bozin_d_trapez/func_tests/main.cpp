@@ -1,20 +1,20 @@
 // Copyright 2024 Bozin Dmitry
 #include <gtest/gtest.h>
 
-#include <vector>
 #include <cmath>
+#include <vector>
 
 #include "seq/bozin_d_trapez/include/ops_seq.hpp"
 
 TEST(bozin_d_trapez_seq, Test1) {
-  double ax = 0.0;  
-  double bx = 0.0; 
-  double ay = 0.0; 
-  double by = 0.0; 
+  double ax = 0.0;
+  double bx = 0.0;
+  double ay = 0.0;
+  double by = 0.0;
 
   int nx = 20;
-  int ny = 20; 
-  
+  int ny = 20;
+
   double res = 0;
 
   auto sqr_x_y = [](double x, double y) { return sqrt(x * x + y * y); };
@@ -43,14 +43,14 @@ TEST(bozin_d_trapez_seq, Test1) {
 }
 
 TEST(bozin_d_trapez_seq, Test2) {
-  double ax = 0.0;  
-  double bx = 1.0; 
-  double ay = 0.0; 
-  double by = 1.0; 
+  double ax = 0.0;
+  double bx = 1.0;
+  double ay = 0.0;
+  double by = 1.0;
 
   int nx = 10;
-  int ny = 10; 
-  
+  int ny = 10;
+
   double res = 0.25;
 
   auto mul_x_y = [](double x, double y) { return x * y; };
@@ -79,14 +79,14 @@ TEST(bozin_d_trapez_seq, Test2) {
 }
 
 TEST(bozin_d_trapez_seq, Test3) {
-  double ax = 0.0;  
-  double bx = 3.14159265358979323846; 
-  double ay = 0.0; 
-  double by = 3.14159265358979323846; 
+  double ax = 0.0;
+  double bx = 3.14159265358979323846;
+  double ay = 0.0;
+  double by = 3.14159265358979323846;
 
   int nx = 100;
-  int ny = 100; 
-  
+  int ny = 100;
+
   double res = 2 * 3.14159265358979323846;
 
   auto trigm_x_y = [](double x, double y) { return cos(x) + sin(y); };
@@ -115,15 +115,15 @@ TEST(bozin_d_trapez_seq, Test3) {
 }
 
 TEST(bozin_d_trapez_seq, Test4) {
-  const double ax = 0.0;  
-  double bx = 3.14159265358979323846; 
-  double ay = 0.0; 
-  double by = 1.0; 
+  const double ax = 0.0;
+  double bx = 3.14159265358979323846;
+  double ay = 0.0;
+  double by = 1.0;
 
   int nx = 50;
-  int ny = 50; 
-  
-  double res = 2.2685; 
+  int ny = 50;
+
+  double res = 2.2685;
 
   auto trigmul_x_y = [](double x, double y) { return x * sin(y); };
 
@@ -151,15 +151,15 @@ TEST(bozin_d_trapez_seq, Test4) {
 }
 
 TEST(bozin_d_trapez_seq, Test5) {
-  double ax = 1.0;  
-  double bx = 2.0; 
-  double ay = 1.0; 
-  double by = 2.0; 
+  double ax = 1.0;
+  double bx = 2.0;
+  double ay = 1.0;
+  double by = 2.0;
 
   int nx = 300;
-  int ny = 300; 
-  
-  double res = 1.039; 
+  int ny = 300;
+
+  double res = 1.039;
 
   auto divide_x_y = [](double x, double y) { return x / y; };
 
