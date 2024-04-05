@@ -4,7 +4,7 @@
 #include <random>
 #include <vector>
 
-#include "tbb/semenova_v_fil_Gauss/include/ops_tbb.hpp"
+#include "seq/semenova_v_fil_Gauss/include/ops_seq.hpp"
 
 void CreateRandomVector(int *vec, int n) {
   // std::srand(0);
@@ -13,138 +13,138 @@ void CreateRandomVector(int *vec, int n) {
   }
 }
 
-TEST(semenova_v_fil_Gauss_tbb, Creat_empty_task) {
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+TEST(semenova_v_fil_Gauss_seq, Creat_empty_task) {
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_empty_outputs_and_inputs) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_with_empty_outputs_and_inputs) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_TRUE(ImageFilGauss.validation());
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_inputs1) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_inputs1) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_inputs2) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_inputs2) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_inputs3) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_inputs3) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_outputs1) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_outputs1) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_outputs2) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_outputs2) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_without_outputs3) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_without_outputs3) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_wrong_matrix_size1) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_with_wrong_matrix_size1) {
   int n = 3;
   int m = 3;
   int a = 6;
@@ -152,104 +152,104 @@ TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_wrong_matrix_size1) {
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(a);
-  taskDataTbb->outputs_count.emplace_back(b);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(a);
+  taskDataSeq->outputs_count.emplace_back(b);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_wrong_matrix_size2) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_with_wrong_matrix_size2) {
   int n = 2;
   int m = 2;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   ASSERT_FALSE(ImageFilGauss.validation());
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_outputs_and_inputs1) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_with_outputs_and_inputs1) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ASSERT_TRUE(ImageFilGauss.pre_processing());
   }
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Creat_task_with_outputs_and_inputs2) {
+TEST(semenova_v_fil_Gauss_seq, Creat_task_with_outputs_and_inputs2) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
   int image[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ASSERT_TRUE(ImageFilGauss.pre_processing());
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Run_task1) {
+TEST(semenova_v_fil_Gauss_seq, Run_task1) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ASSERT_TRUE(ImageFilGauss.run());
@@ -257,46 +257,46 @@ TEST(semenova_v_fil_Gauss_tbb, Run_task1) {
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Run_task2) {
+TEST(semenova_v_fil_Gauss_seq, Run_task2) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
   int image[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ASSERT_TRUE(ImageFilGauss.run());
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_post_processing1) {
+TEST(semenova_v_fil_Gauss_seq, Task_post_processing1) {
   int n = 3;
   int m = 3;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
@@ -305,23 +305,23 @@ TEST(semenova_v_fil_Gauss_tbb, Task_post_processing1) {
   delete[] image;
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_post_processing2) {
+TEST(semenova_v_fil_Gauss_seq, Task_post_processing2) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
   int image[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
@@ -329,25 +329,25 @@ TEST(semenova_v_fil_Gauss_tbb, Task_post_processing2) {
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_run_correct1) {
+TEST(semenova_v_fil_Gauss_seq, Task_run_correct1) {
   int n = 3;
   int m = 3;
   int *filteredImage = new int[n * m];
   int image[9] = {1, 50, 3, 4, 4, 0, 7, 8, 98};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
   int res[9] = {1, 50, 3, 4, 15, 0, 7, 8, 98};
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
@@ -359,25 +359,25 @@ TEST(semenova_v_fil_Gauss_tbb, Task_run_correct1) {
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_run_correct2) {
+TEST(semenova_v_fil_Gauss_seq, Task_run_correct2) {
   int n = 4;
   int m = 4;
   int *filteredImage = new int[n * m];
   int image[16] = {1, 50, 3, 125, 1, 4, 0, 69, 0, 7, 8, 98, 0, 0, 0, 0};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
   int res[16] = {1, 50, 3, 125, 1, 9, 28, 69, 0, 3, 19, 98, 0, 0, 0, 0};
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
@@ -389,25 +389,25 @@ TEST(semenova_v_fil_Gauss_tbb, Task_run_correct2) {
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_correct_pre_processing) {
+TEST(semenova_v_fil_Gauss_seq, Task_correct_pre_processing) {
   int n = 4;
   int m = 4;
   int *filteredImage = new int[n * m];
   int image[16] = {285, 285, 285, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255};
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
   int res[16] = {255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255};
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
@@ -419,24 +419,24 @@ TEST(semenova_v_fil_Gauss_tbb, Task_correct_pre_processing) {
   }
   delete[] filteredImage;
 }
-TEST(semenova_v_fil_Gauss_tbb, Task_correct_with_random_image) {
+TEST(semenova_v_fil_Gauss_seq, Task_correct_with_random_image) {
   int n = 10;
   int m = 10;
   int *image = new int[n * m];
   int *filteredImage = new int[n * m];
   CreateRandomVector(image, n * m);
 
-  std::shared_ptr<ppc::core::TaskData> taskDataTbb = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
 
-  taskDataTbb->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
-  taskDataTbb->inputs_count.emplace_back(n);
-  taskDataTbb->inputs_count.emplace_back(m);
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(image));
+  taskDataSeq->inputs_count.emplace_back(n);
+  taskDataSeq->inputs_count.emplace_back(m);
 
-  taskDataTbb->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
-  taskDataTbb->outputs_count.emplace_back(n);
-  taskDataTbb->outputs_count.emplace_back(m);
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(filteredImage));
+  taskDataSeq->outputs_count.emplace_back(n);
+  taskDataSeq->outputs_count.emplace_back(m);
 
-  ImageFilGauss ImageFilGauss(taskDataTbb);
+  ImageFilGauss ImageFilGauss(taskDataSeq);
   if (ImageFilGauss.validation()) {
     ImageFilGauss.pre_processing();
     ImageFilGauss.run();
