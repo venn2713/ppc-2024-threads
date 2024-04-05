@@ -1,8 +1,8 @@
 // Copyright 2024 Kutarin Alexander
+#include "seq/kutarin_a_image_sobel_operator/include/ops_seq.hpp"
 
 #include <cmath>
 #include <iostream>
-#include "seq/kutarin_a_image_sobel_operator/include/ops_seq.hpp"
 
 bool SobelTaskSequential::validation() {
   internal_order_test();

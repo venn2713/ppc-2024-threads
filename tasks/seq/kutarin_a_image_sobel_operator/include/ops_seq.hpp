@@ -1,9 +1,9 @@
 // Copyright 2024 Kutarin Alexander
 #pragma once
 
-#include <utility>
-#include <string>
 #include <memory>
+#include <string>
+#include <utility>
 #include <vector>
 #include "core/task/include/task.hpp"
 
