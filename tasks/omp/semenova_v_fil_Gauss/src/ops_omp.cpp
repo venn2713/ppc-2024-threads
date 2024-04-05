@@ -1,7 +1,7 @@
 // Copyright 2024 Semenova Veronika
-#include <omp.h>
-
 #include "omp/semenova_v_fil_Gauss/include/ops_omp.hpp"
+
+#include <omp.h>
 
 bool ImageFilGauss::validation() {
   internal_order_test();
