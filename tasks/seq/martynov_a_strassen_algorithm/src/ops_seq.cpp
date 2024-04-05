@@ -79,8 +79,8 @@ bool Strssn_alg::pre_processing() {
   first_matrix = std::vector<double>(taskData->inputs_count[0]);
   second_matrix = std::vector<double>(taskData->inputs_count[1]);
 
-  double* temporary1 = reinterpret_cast<double*>(taskData->inputs[0]);
-  double* temporary2 = reinterpret_cast<double*>(taskData->inputs[1]);
+  auto* temporary1 = reinterpret_cast<double*>(taskData->inputs[0]);
+  auto* temporary2 = reinterpret_cast<double*>(taskData->inputs[1]);
   for (unsigned i = 0; i < taskData->inputs_count[0]; i++) {
     first_matrix[i] = temporary1[i];
     second_matrix[i] = temporary2[i];
