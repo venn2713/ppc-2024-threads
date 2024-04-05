@@ -1,10 +1,10 @@
 // Copyright 2024 Safronov Mikhail
+#include "seq/safronov_m/include/ops_seq.hpp"
+
 #include <cmath>
 #include <cstring>
 #include <iostream>
 #include <random>
-
-#include "seq/safronov_m/include/ops_seq.hpp"
 
 using namespace std::chrono_literals;
 
