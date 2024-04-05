@@ -22,19 +22,15 @@ TEST(kutarin_a_image_sobel_operator, test_pipeline_run) {
 
   std::vector<int> outImage(height * width, 0);
 
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq
-  = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back
-  (reinterpret_cast<uint8_t *>(inImage.data()));
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inImage.data()));
   taskDataSeq->inputs_count.emplace_back(width);
   taskDataSeq->inputs_count.emplace_back(height);
-  taskDataSeq->outputs.emplace_back
-  (reinterpret_cast<uint8_t *>(outImage.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outImage.data()));
   taskDataSeq->outputs_count.emplace_back(width);
   taskDataSeq->outputs_count.emplace_back(height);
 
-  auto sobelTaskSequential
-  = std::make_shared<SobelTaskSequential>(taskDataSeq);
+  auto sobelTaskSequential = std::make_shared<SobelTaskSequential>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -42,8 +38,7 @@ TEST(kutarin_a_image_sobel_operator, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 
@@ -72,19 +67,16 @@ TEST(kutarin_a_image_sobel_operator, test_task_run) {
   std::vector<int> outImage(height * width, 0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq
-  = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(inImage.data()));
   taskDataSeq->inputs_count.emplace_back(width);
   taskDataSeq->inputs_count.emplace_back(height);
-  taskDataSeq->outputs.emplace_back
-  (reinterpret_cast<uint8_t *>(outImage.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outImage.data()));
   taskDataSeq->outputs_count.emplace_back(width);
   taskDataSeq->outputs_count.emplace_back(height);
 
   // Create Task
-  auto sobelTaskSequential = std::make_shared
-  <SobelTaskSequential>(taskDataSeq);
+  auto sobelTaskSequential = std::make_shared<SobelTaskSequential>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -92,8 +84,7 @@ TEST(kutarin_a_image_sobel_operator, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

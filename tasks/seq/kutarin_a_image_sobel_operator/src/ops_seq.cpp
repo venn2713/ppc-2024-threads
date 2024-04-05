@@ -6,8 +6,7 @@
 
 bool SobelTaskSequential::validation() {
   internal_order_test();
-  return (taskData->inputs_count.size() == 2) &&
-  (taskData->outputs_count.size() == 2);
+  return (taskData->inputs_count.size() == 2) && (taskData->outputs_count.size() == 2);
 }
 
 bool SobelTaskSequential::pre_processing() {
@@ -34,46 +33,27 @@ bool SobelTaskSequential::run() {
         int resultX = 0;
         int resultY = 0;
 
-        resultX += sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-         + clamp((i - 1), 0, width_ - 1)] * kernel_x[0] +
-                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_x[1] +
-                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_x[2] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp((i - 1), 0, width_ - 1)] * kernel_x[3] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_x[4] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_x[5] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp((i - 1), 0, width_ - 1)] * kernel_x[6] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_x[7] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_x[8];
+        resultX += sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_x[0] +
+                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_x[1] +
+                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_x[2] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_x[3] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_x[4] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_x[5] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_x[6] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_x[7] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_x[8];
 
-        resultY += sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-         + clamp((i - 1), 0, width_ - 1)] * kernel_y[0] +
-                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_y[1] +
-                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_y[2] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp((i - 1), 0, width_ - 1)] * kernel_y[3] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_y[4] +
-                   sourceImage[clamp(j, 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_y[5] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp((i - 1), 0, width_ - 1)] * kernel_y[6] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp(i, 0, width_ - 1)] * kernel_y[7] +
-                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_
-                    + clamp((i + 1), 0, width_ - 1)] * kernel_y[8];
+        resultY += sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_y[0] +
+                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_y[1] +
+                   sourceImage[clamp((j - 1), 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_y[2] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_y[3] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_y[4] +
+                   sourceImage[clamp(j, 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_y[5] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp((i - 1), 0, width_ - 1)] * kernel_y[6] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp(i, 0, width_ - 1)] * kernel_y[7] +
+                   sourceImage[clamp((j + 1), 0, height_ - 1) * width_ + clamp((i + 1), 0, width_ - 1)] * kernel_y[8];
 
-        resultImage[j * width_ + i] = clamp(static_cast<int>(sqrt(resultX *
-         resultX + resultY * resultY)), 0, 255);
+        resultImage[j * width_ + i] = clamp((int)sqrt(resultX * resultX + resultY * resultY), 0, 255);
       }
     }
     return true;
