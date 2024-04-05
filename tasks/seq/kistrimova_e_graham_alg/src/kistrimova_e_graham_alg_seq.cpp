@@ -1,4 +1,4 @@
-// Copyright 2024 Kistrimova Katerina
+// Copyright 2024 Kistrimova Ekaterina
 #include "seq/kistrimova_e_graham_alg/include/kistrimova_e_graham_alg_seq.hpp"
 
 #include <algorithm>
