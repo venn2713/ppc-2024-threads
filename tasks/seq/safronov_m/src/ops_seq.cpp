@@ -1,5 +1,4 @@
 // Copyright 2024 Safronov Mikhail
-
 #include <cmath>
 #include <cstring>
 #include <iostream>
