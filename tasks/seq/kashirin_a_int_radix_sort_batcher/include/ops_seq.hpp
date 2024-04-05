@@ -1,10 +1,10 @@
 // Copyright 2024 Kashirin Alexander
 #pragma once
-#include <iostream>
-#include <thread>
-#include <string>
-#include <vector>
 #include <algorithm>
+#include <iostream>
+#include <string>
+#include <thread>
+#include <vector>
 #include "core/task/include/task.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
@@ -19,7 +19,7 @@ class SeqIntRadixSortWithBatcherMerge : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  //int input_{}, res{};
+  // int input_{}, res{};
   std::vector<int> input, result;
 };
 

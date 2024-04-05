@@ -3,13 +3,10 @@
 #include <thread>
 #include <vector>
 #include "core/perf/include/perf.hpp"
-//#include "seq/example/include/ops_seq.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
 TEST(kashirin_a_int_radix_sort_batcher_seq, test_pipeline_run) {
-
   // Create data
-   
   std::vector<int> in = RandomVector(100000);
   std::vector<int> res(in.size(), 0);
 
@@ -81,8 +78,3 @@ TEST(kashirin_a_int_radix_sort_batcher_seq, test_task_run) {
   bool flag = std::is_sorted(res.begin(), res.end());
   EXPECT_TRUE(flag);
 }
-
-//int main(int argc, char **argv) {
-//  testing::InitGoogleTest(&argc, argv);
-//  return RUN_ALL_TESTS();
-//}

@@ -1,8 +1,6 @@
 // Copyright 2024 kashirin Alexander
 #include <gtest/gtest.h>
 #include <vector>
-
-//#include "seq/example/include/ops_seq.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
 
@@ -120,8 +118,3 @@ TEST(kashirin_a_int_radix_sort_batcher_seq, Test_sort_100) {
   testTaskSequential.post_processing();
   ASSERT_TRUE(std::is_sorted(out.begin(), out.end()));
 }
-
-//int main(int argc, char **argv) {
-//  testing::InitGoogleTest(&argc, argv);
-//  return RUN_ALL_TESTS();
-//}

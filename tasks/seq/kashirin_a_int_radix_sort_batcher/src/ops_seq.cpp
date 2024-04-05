@@ -1,6 +1,5 @@
 // Copyright 2024 Kashirin Alexander
 
-//#include "seq/example/include/ops_seq.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 using namespace std::chrono_literals;
 
@@ -26,11 +25,12 @@ void merge(std::vector<int>& a, size_t left, size_t mid, size_t right) {
     } else if (((i > mid) || (a[i] > a[j])) && (j <= right)) {
       b[k++] = a[j++];
     } else {
-      b[k++] = b[k++] = a[i++];
+      b[k] = b[k + 1] = a[i++];
+      k += 2;
       j++;
     }
   }
-  for (int q = left; q <= right; q++) {
+  for (size_t q = left; q <= right; q++) {
     a[q] = b[q];
   }
 }
@@ -80,7 +80,6 @@ bool SeqIntRadixSortWithBatcherMerge::pre_processing() {
     input[i] = tmp[i];
   }
   result = std::vector<int>(taskData->outputs_count[0]);
-  
   return true;
 }
 
@@ -89,8 +88,8 @@ bool SeqIntRadixSortWithBatcherMerge::validation() {
 
   // Check count elements of output
   return taskData->inputs_count[0] == taskData->outputs_count[0];
-  //return taskData->inputs_count.size() == taskData->outputs_count.size();
-  //return true;
+  // return taskData->inputs_count.size() == taskData->outputs_count.size();
+  // return true;
 }
 
 bool SeqIntRadixSortWithBatcherMerge::run() {
@@ -100,7 +99,7 @@ bool SeqIntRadixSortWithBatcherMerge::run() {
   } catch (...) {
     return false;
   }
-  //std::this_thread::sleep_for(20ms);
+  // std::this_thread::sleep_for(20ms);
   return true;
 }
 
@@ -109,5 +108,5 @@ bool SeqIntRadixSortWithBatcherMerge::post_processing() {
   std::copy(result.begin(), result.end(), reinterpret_cast<int*>(taskData->outputs[0]));
 
   return true;
-  //return std::is_sorted(result.begin(), result.end());
+  // return std::is_sorted(result.begin(), result.end());
 }
