@@ -1,5 +1,6 @@
 // Copyright 2024 Gontsov Roman
 #include "seq/gontsov_r_sort_int_with_merge/include/ops_seq.hpp"
+
 #include <cmath>
 #include <thread>
 
