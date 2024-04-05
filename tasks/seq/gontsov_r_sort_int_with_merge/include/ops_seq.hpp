@@ -1,10 +1,10 @@
 // Copyright 2024 Gontsov Roman
 #pragma once
 
-#include <string>
-#include <vector>
-#include <utility>
 #include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "core/task/include/task.hpp"
 

@@ -12,8 +12,7 @@ TEST(gontsov_r_sort_int_with_merge, simple_test_with_five_values) {
   std::vector<int> out(5);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -37,8 +36,7 @@ TEST(gontsov_r_sort_int_with_merge, simple_test_with_duplicate) {
   std::vector<int> out(13);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -57,15 +55,12 @@ TEST(gontsov_r_sort_int_with_merge, simple_test_with_duplicate) {
 
 TEST(gontsov_r_sort_int_with_merge, sort_random_vector) {
   // Create data
-  std::vector<int> in =
-  {64, 3, 99, 63, 57, 71, 53, 76, 85, 42, 58, 51, 63, 6, 75, 56, 84, 8, 6, 12};
-  std::vector<int> answer =
-  {3, 6, 6, 8, 12, 42, 51, 53, 56, 57, 58, 63, 63, 64, 71, 75, 76, 84, 85, 99};
+  std::vector<int> in = {64, 3, 99, 63, 57, 71, 53, 76, 85, 42, 58, 51, 63, 6, 75, 56, 84, 8, 6, 12};
+  std::vector<int> answer = {3, 6, 6, 8, 12, 42, 51, 53, 56, 57, 58, 63, 63, 64, 71, 75, 76, 84, 85, 99};
   std::vector<int> out(20);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -89,8 +84,7 @@ TEST(gontsov_r_sort_int_with_merge, validation_test_one) {
   std::vector<int> out(4);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -108,8 +102,7 @@ TEST(gontsov_r_sort_int_with_merge, validation_test_two) {
   std::vector<int> out(0);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));

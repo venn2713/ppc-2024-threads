@@ -26,8 +26,7 @@ TEST(gontsov_r_sort_int_with_merge, test_pipeline_run) {
   std::vector<int> out(count);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
@@ -70,8 +69,7 @@ TEST(gontsov_r_sort_int_with_merge, test_task_run) {
   std::vector<int> out(count);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-  std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
   taskDataSeq->inputs_count.emplace_back(in.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
