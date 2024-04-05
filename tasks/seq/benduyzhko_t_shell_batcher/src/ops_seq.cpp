@@ -35,7 +35,6 @@ bool BenduyzhkoSequential::run() {
       }
     }
   }
-
   return true;
 }
 
