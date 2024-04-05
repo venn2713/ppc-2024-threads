@@ -1,4 +1,4 @@
-// Copyright 2024 Kutarin Alexandr
+// Copyright 2024 Kutarin Alexander
 #include <gtest/gtest.h>
 
 #include <random>
