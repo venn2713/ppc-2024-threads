@@ -4,11 +4,11 @@
 using namespace std::chrono_literals;
 
 int remainder(int num, int k) {
-    while (k > 1) {
-      num = num / 10;
-      k--;
-    }
-    return num % 10;
+  while (k > 1) {
+    num = num / 10;
+    k--;
+  }
+  return num % 10;
 }
 
 void merge(std::vector<int>& a, size_t left, size_t mid, size_t right) {
