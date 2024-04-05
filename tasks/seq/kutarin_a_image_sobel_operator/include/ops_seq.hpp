@@ -1,4 +1,4 @@
-// Copyright 2024 Kutarin Alexander
+// Copyright 2024 Kutarin Alexandr
 #pragma once
 
 #include <memory>

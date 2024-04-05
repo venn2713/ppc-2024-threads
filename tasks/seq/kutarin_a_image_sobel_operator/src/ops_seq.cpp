@@ -1,4 +1,4 @@
-// Copyright 2024 Kutarin Alexander
+// Copyright 2024 Kutarin Alexandr
 #include "seq/kutarin_a_image_sobel_operator/include/ops_seq.hpp"
 
 #include <cmath>
