@@ -15,7 +15,7 @@ TEST(sequential_nikitin_k_perf_test, test_add) {
   std::vector<double> a2 = {0, 2};
   std::vector<double> out(1, res);
 
-  std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a1.data()));
   taskDataSeq->inputs_count.emplace_back(a1.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a2.data()));
@@ -33,8 +33,7 @@ TEST(sequential_nikitin_k_perf_test, test_add) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast
-    <std::chrono::nanoseconds>(current_time_point - t0).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
 

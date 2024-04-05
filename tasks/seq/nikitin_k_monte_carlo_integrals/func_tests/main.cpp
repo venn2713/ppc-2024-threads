@@ -41,7 +41,7 @@ TEST(nikitin_k_monte_carlo_integrals_seq, tested_of_x_multiply_y) {
   std::vector<double> a2 = {0, 3};
   std::vector<double> out(1, res);
 
-  std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a1.data()));
   taskDataSeq->inputs_count.emplace_back(a1.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a2.data()));
@@ -68,7 +68,7 @@ TEST(nikitin_k_monte_carlo_integrals_seq, tested_x_multiply_y_y) {
   std::vector<double> a2 = {0, 1};
   std::vector<double> out(1, res);
 
-  std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a1.data()));
   taskDataSeq->inputs_count.emplace_back(a1.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a2.data()));
@@ -95,7 +95,7 @@ TEST(nikitin_k_monte_carlo_integrals_seq, testes_summ_of_sin) {
   std::vector<double> a2 = {-1, 2};
   std::vector<double> out(1, res);
 
-  std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a1.data()));
   taskDataSeq->inputs_count.emplace_back(a1.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a2.data()));
@@ -122,7 +122,7 @@ TEST(nikitin_k_monte_carlo_integrals_seq, tested_summ_of_cos) {
   std::vector<double> a2 = {0, 2};
   std::vector<double> out(1, res);
 
-  std::shared_ptr<ppc::core::TaskData>taskDataSeq = std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a1.data()));
   taskDataSeq->inputs_count.emplace_back(a1.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(a2.data()));
