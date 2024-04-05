@@ -1,6 +1,5 @@
 // Copyright 2024 kashirin Alexander
 #include <gtest/gtest.h>
-
 #include <vector>
 
 //#include "seq/example/include/ops_seq.hpp"

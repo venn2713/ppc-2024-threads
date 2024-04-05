@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include <thread>
 #include <vector>
-
 #include "core/perf/include/perf.hpp"
 //#include "seq/example/include/ops_seq.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"

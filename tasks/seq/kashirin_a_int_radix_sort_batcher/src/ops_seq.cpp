@@ -2,10 +2,7 @@
 
 //#include "seq/example/include/ops_seq.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
-
-
 using namespace std::chrono_literals;
-
 
 int remainder(int num, int k) {
   if (k == 1)
