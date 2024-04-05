@@ -24,7 +24,6 @@ bool BenduyzhkoSequential::run() {
   int p = n >> 1;  // n = 2 * p;
   shell(in_out, p);
   shell(in_out + p, n - p);
-
   for (int k = p; k >= 1; k >>= 1) {
     for (int j = k % p; j < n - k + 1; j += 2 * k) {
       for (int i = 0; i < std::min(k - 1, n - j - k - 1) + 1; ++i) {
