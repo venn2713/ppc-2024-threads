@@ -26,7 +26,7 @@ TEST(vetoshnikova_k_hull_bin_image_seq, Test1) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < trueRes.size(); i++) {
+  for (size_t i = 0; i < trueRes.size(); i++) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
@@ -55,7 +55,7 @@ TEST(vetoshnikova_k_hull_bin_image_seq, Test2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < trueRes.size(); i++) {
+  for (size_t i = 0; i < trueRes.size(); i++) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
@@ -81,7 +81,7 @@ TEST(vetoshnikova_k_hull_bin_image_seq, Test3) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < trueRes.size(); i++) {
+  for (size_t i = 0; i < trueRes.size(); i++) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
@@ -107,7 +107,7 @@ TEST(vetoshnikova_k_hull_bin_image_seq, Test4) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < trueRes.size(); i++) {
+  for (size_t i = 0; i < trueRes.size(); i++) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
@@ -138,7 +138,7 @@ TEST(vetoshnikova_k_hull_bin_image_seq, Test5) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  for (int i = 0; i < trueRes.size(); i++) {
+  for (size_t i = 0; i < trueRes.size(); i++) {
     ASSERT_EQ(trueRes[i], out[i]);
   }
 }
