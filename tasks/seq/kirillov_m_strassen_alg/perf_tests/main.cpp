@@ -48,7 +48,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(strassenMatrixMultSequential);
   perfAnalyzer->pipeline_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
@@ -95,7 +95,7 @@ TEST(Kirillov_M_strassen_seq_perf_tests, test_task_run) {
   auto perfAnalyzer = std::make_shared<ppc::core::Perf>(strassenMatrixMultSequential);
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }

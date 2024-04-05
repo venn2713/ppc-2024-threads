@@ -35,7 +35,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult4x4) {
   strassenMatrixMultSequential.run();
   strassenMatrixMultSequential.post_processing();
 
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
@@ -70,7 +70,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult8x8) {
   strassenMatrixMultSequential.run();
   strassenMatrixMultSequential.post_processing();
 
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
@@ -105,7 +105,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult16x16) {
   strassenMatrixMultSequential.run();
   strassenMatrixMultSequential.post_processing();
 
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
@@ -140,7 +140,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult32x32) {
   strassenMatrixMultSequential.run();
   strassenMatrixMultSequential.post_processing();
 
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
@@ -175,7 +175,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult64x64) {
   strassenMatrixMultSequential.run();
   strassenMatrixMultSequential.post_processing();
 
-  for (int i = 0; i < res.size(); i++) {
+  for (size_t i = 0; i < res.size(); i++) {
     EXPECT_NEAR(res[i], out[i], 10e-6);
   }
 }
