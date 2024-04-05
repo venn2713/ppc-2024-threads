@@ -4,7 +4,8 @@
 
 using namespace std::chrono_literals;
 
-void fillMissing(std::vector<int> &result, std::vector<int> part1, std::vector<int> part2, size_t i, size_t j, size_t k) {
+void fillMissing(std::vector<int> &result, std::vector<int> part1, std::vector<int> part2, size_t i, size_t j,
+                 size_t k) {
   if (j >= part1.size()) {
     for (size_t l = k; l < part2.size(); l += 2) {
       result[i] = part2[l];
@@ -18,7 +19,8 @@ void fillMissing(std::vector<int> &result, std::vector<int> part1, std::vector<i
   }
 }
 
-void fillResult(std::vector<int> &result, std::vector<int> part1, std::vector<int> part2, size_t &i, size_t &j, size_t &k) {
+void fillResult(std::vector<int> &result, std::vector<int> part1, std::vector<int> part2, size_t &i, size_t &j,
+                size_t &k) {
   for (i = 0; (j < part1.size()) && (k < part2.size()); i++) {
     if (part1[j] <= part2[k]) {
       result[i] = part1[j];
