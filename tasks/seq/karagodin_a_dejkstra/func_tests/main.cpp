@@ -13,7 +13,6 @@ TEST(karagodin_a_dejkstra_seq, test_correctness) {
   std::vector<int> pathRes = {0, 1};
   std::pair<std::vector<int>, int> resultExpected(pathRes, expectedScore);
   std::pair<std::vector<int>, int> result;
-
   std::vector<std::vector<int>> graphMap = {
       {0, 7, 5, 0, 0}, {7, 0, 3, 5, 0}, {5, 3, 0, 0, 4}, {0, 5, 0, 0, 6}, {0, 0, 4, 6, 0}};
   // Create TaskData
