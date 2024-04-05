@@ -20,7 +20,7 @@ bool RadixSortTaskSequential::pre_processing() {
 bool RadixSortTaskSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count[0] == taskData->outputs_count[0]&& taskData->outputs[0] != nullptr &&
+  return taskData->inputs_count[0] == taskData->outputs_count[0] && taskData->outputs[0] != nullptr &&
          taskData->inputs[0] != nullptr && taskData->inputs_count[0] != 0;
 }
 
