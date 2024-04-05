@@ -15,7 +15,8 @@ class ImageFilGauss : public ppc::core::Task {
   bool post_processing() override;
 
  private:
-  double kernel[3][3] = {{1.0 / 16, 2.0 / 16, 1.0 / 16}, {2.0 / 16, 4.0 / 16, 2.0 / 16}, {1.0 / 16, 2.0 / 16, 1.0 / 16}};
+    double kernel[3][3] = {
+      {1.0 / 16, 2.0 / 16, 1.0 / 16}, {2.0 / 16, 4.0 / 16, 2.0 / 16}, {1.0 / 16, 2.0 / 16, 1.0 / 16}};
   int* image;
   int* filteredImage;
   int n, m;
