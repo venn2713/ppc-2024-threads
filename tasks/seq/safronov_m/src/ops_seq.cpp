@@ -1,10 +1,11 @@
 // Copyright 2024 Safronov Mikhail
-#include "seq/safronov_m/include/ops_seq.hpp"
 
 #include <cmath>
 #include <cstring>
 #include <iostream>
 #include <random>
+
+#include "seq/safronov_m/include/ops_seq.hpp"
 
 using namespace std::chrono_literals;
 
@@ -175,7 +176,7 @@ void ModifidentityMatrix(double *m, int n, double k) {
   }
 }
 
-std::vector<double> mul(const std::vector<double>& A, const std::vector<double>& B, int n) {
+std::vector<double> mul(const std::vector<double> &A, const std::vector<double> &B, int n) {
   if (n == 0) {
     return std::vector<double>();
   }
