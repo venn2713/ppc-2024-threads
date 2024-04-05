@@ -7,7 +7,8 @@ bool ImageFilGauss::validation() {
   return !taskData->inputs.empty() && !taskData->outputs.empty() && !taskData->inputs_count.empty() &&
          !taskData->outputs_count.empty() && taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr &&
          taskData->outputs_count[1] == taskData->inputs_count[1] && taskData->outputs_count[0] >= 3 &&
-         taskData->outputs_count[1] >= 3;  // the image size <>= size of filter core}
+         taskData->outputs_count[1] >= 3;  // the image size <>= size of filter core
+}
 
 bool ImageFilGauss::pre_processing() {
   internal_order_test();
@@ -44,7 +45,7 @@ bool ImageFilGauss::run() {
               *imageIndex(i, j) * kernel[1][1] + *imageIndex(i, j + 1) * kernel[1][2] +
               *imageIndex(i + 1, j - 1) * kernel[2][0] + *imageIndex(i + 1, j) * kernel[2][1] +
               *imageIndex(i + 1, j + 1) * kernel[2][2];
-        *filteredIndex(i, j) = (int)sum;
+         *filteredIndex(i, j) = (int)sum;
       }
     }
   } catch (...) {
