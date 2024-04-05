@@ -148,7 +148,7 @@ T GaussFilterHorizontal::clamp(const T& val, const T& min, const T& max) {
     return min;
   }
   if (val > max) {
-      return max;
+    return max;
   }
   return val;
 }
