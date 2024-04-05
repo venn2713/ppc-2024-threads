@@ -1,4 +1,4 @@
-// Copyright 2024 Kistrimova Ekaterina
+// Copyright 2024 Kistrimova Katerina
 #include <gtest/gtest.h>
 
 #include <random>
