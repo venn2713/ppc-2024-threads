@@ -24,7 +24,7 @@ TEST(novostroev_i_batcher_merge_seq_perf_test, test_pipeline_run) {
   attr->num_running = 10;
 
   const auto t0 = std::chrono::high_resultolution_clock::now();
-  
+
   attr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resultolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
