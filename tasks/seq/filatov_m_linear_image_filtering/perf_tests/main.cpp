@@ -75,7 +75,7 @@ TEST(filatov_m_linear_image_filtering, test_task_run) {
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1000000000;
+    return static_cast<double>(duration) * 1e-9;
   };
 
   // Create and init perf results
@@ -119,7 +119,7 @@ TEST(filatov_m_linear_image_filtering, test_pipeline_run_with_blue_image) {
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
-    return static_cast<double>(duration) * 1000000000;
+    return static_cast<double>(duration) * 1e-9;
   };
 
   // Create and init perf results
