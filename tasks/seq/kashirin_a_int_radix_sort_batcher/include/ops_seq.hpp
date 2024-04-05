@@ -5,9 +5,9 @@
 #include <string>
 #include <thread>
 #include <vector>
+
 #include "core/task/include/task.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
-
 
 class SeqIntRadixSortWithBatcherMerge : public ppc::core::Task {
  public:

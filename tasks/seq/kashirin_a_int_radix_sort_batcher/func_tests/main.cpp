@@ -1,8 +1,9 @@
 // Copyright 2024 kashirin Alexander
 #include <gtest/gtest.h>
-#include <vector>
-#include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
+#include <vector>
+
+#include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
 TEST(kashirin_a_int_radix_sort_batcher_seq, Test_sort_10) {
   const int count = 10;

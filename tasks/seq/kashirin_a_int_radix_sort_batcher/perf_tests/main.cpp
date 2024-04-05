@@ -1,7 +1,9 @@
 // Copyright 2024 Kashirin Alexander
 #include <gtest/gtest.h>
+
 #include <thread>
 #include <vector>
+
 #include "core/perf/include/perf.hpp"
 #include "seq/kashirin_a_int_radix_sort_batcher/include/ops_seq.hpp"
 
@@ -43,11 +45,10 @@ TEST(kashirin_a_int_radix_sort_batcher_seq, test_pipeline_run) {
 }
 
 TEST(kashirin_a_int_radix_sort_batcher_seq, test_task_run) {
-
   // Create data
   std::vector<int> in = RandomVector(100000);
   std::vector<int> res(in.size(), 0);
-  
+
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in.data()));
