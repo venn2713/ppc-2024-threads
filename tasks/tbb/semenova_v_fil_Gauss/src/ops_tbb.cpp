@@ -1,7 +1,7 @@
 // Copyright 2024 Semenova Veronika
-#include <tbb/tbb.h>
-
 #include "tbb/semenova_v_fil_Gauss/include/ops_tbb.hpp"
+
+#include <tbb/tbb.h>
 
 int Min(int b, int c) { return (b < c) ? b : c; }
 
@@ -10,8 +10,10 @@ int Max(int a, int b) { return (a > b) ? a : b; }
 bool ImageFilGauss::validation() {
   internal_order_test();
 
-  return !taskData->inputs.empty() && !taskData->outputs.empty() && !taskData->inputs_count.empty() && !taskData->outputs_count.empty() && taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr && taskData->outputs_count[1] == taskData->inputs_count[1] && taskData->outputs_count[0] >= 3 && +taskData->outputs_count[1] >= 3;  // the image size <>= size of filter core
-}
+  return !taskData->inputs.empty() && !taskData->outputs.empty() && !taskData->inputs_count.empty() &&
+         !taskData->outputs_count.empty() && taskData->inputs[0] != nullptr && taskData->outputs[0] != nullptr &&
+         taskData->outputs_count[1] == taskData->inputs_count[1] && taskData->outputs_count[0] >= 3 &&
+         +taskData->outputs_count[1] >= 3;  // the image size <>= size of filter core}
 
 bool ImageFilGauss::pre_processing() {
   internal_order_test();
