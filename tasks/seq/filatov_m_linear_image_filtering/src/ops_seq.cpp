@@ -114,8 +114,8 @@ void GaussFilterHorizontal::calculateColorsComponents(Color* neighborColor, int6
 void GaussFilterHorizontal::calculateColorComponentsForRow(int64_t l, size_t x, size_t y, ColorF* color) {
   int64_t halfSize = kSize * .5f;
   for (int64_t k = -halfSize; k <= halfSize; k++) {
-    size_t idX = clamp<size_t>((x + k), 0, width - 1);
-    size_t idY = clamp<size_t>((y + l), 0, height - 1);
+    auto idX = clamp<size_t>((x + k), 0, width - 1);
+    auto idY = clamp<size_t>((y + l), 0, height - 1);
     Color neighborColor = image[idX * width + idY];
     calculateColorsComponents(&neighborColor, k, l, halfSize, color);
   }
@@ -146,9 +146,9 @@ template <typename T>
 T GaussFilterHorizontal::clamp(const T& val, const T& min, const T& max) {
   if (val < min) {
     return min;
-  } else if (val > max) {
-    return max;
-  } else {
-    return val;
   }
+  if (val > max) {
+      return max;
+  }
+  return val;
 }

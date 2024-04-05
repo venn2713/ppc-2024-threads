@@ -48,10 +48,10 @@ class GaussFilterHorizontal : public ppc::core::Task {
   void normalizeKernel(float normalizationFactor);
   void applyKernel();
   Color calculateNewPixelColor(size_t x, size_t y);
-  void calculateSingleColorComponent(uint8_t neighborColor, float kernelValue, float* newColorComponent);
+  void static calculateSingleColorComponent(uint8_t neighborColor, float kernelValue, float* newColorComponent);
   void calculateColorComponents(size_t x, size_t y, ColorF* color);
   void calculateColorComponentsForRow(int64_t l, size_t x, size_t y, ColorF* color);
-  Color calculateCeilColorF(ColorF preparedColor);
+  Color static calculateCeilColorF(ColorF preparedColor);
   void calculateColorsComponents(Color* neighborColor, int64_t k, int64_t l, int64_t halfSize, ColorF* color);
   template <typename T>
   T clamp(const T& val, const T& min, const T& max);
