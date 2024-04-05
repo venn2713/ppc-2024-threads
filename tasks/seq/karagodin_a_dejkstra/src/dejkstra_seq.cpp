@@ -119,6 +119,7 @@ bool DejkstraTaskSequential::run() {
 bool DejkstraTaskSequential::post_processing() {
   internal_order_test();
   auto* result = reinterpret_cast<std::pair<std::vector<int>, int>*>(taskData->outputs[0]);
+  result->first.resize(res.first.size());
   result->first = res.first;
   result->second = res.second;
   return true;
