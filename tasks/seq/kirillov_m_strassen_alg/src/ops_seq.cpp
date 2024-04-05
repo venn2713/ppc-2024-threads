@@ -88,6 +88,7 @@ std::vector<double> sub(const std::vector<double>& A, const std::vector<double>&
   }
   return C;
 }
+
 std::vector<double> mul(const std::vector<double>& A, const std::vector<double>& B, int n) {
   if (n == 0) {
     return std::vector<double>();
@@ -116,6 +117,7 @@ std::vector<double> generateRandomMatrix(int n) {
   }
   return matrix;
 }
+
 bool StrassenMatrixMultSequential::pre_processing() {
   internal_order_test();
   A.resize(taskData->inputs_count[0]);
