@@ -22,7 +22,6 @@ void shell(int* arr, int n);
 bool BenduyzhkoSequential::run() {
   internal_order_test();
   int p = n >> 1;  // n = 2 * p;
-
   shell(in_out, p);
   shell(in_out + p, n - p);
 
