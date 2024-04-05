@@ -9,8 +9,8 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   if ((n == 0) || ((n & (n - 1)) != 0)) {
     throw std::invalid_argument("Matrix size is not 2^n");
   }
-  if (n == 1) {
-    return {A[0] * B[0]};
+  if (n <= 2) {
+    return mul(A, B, 2);
   }
 
   int half = n / 2;
@@ -106,7 +106,7 @@ std::vector<double> mul(const std::vector<double>& A, const std::vector<double>&
 std::vector<double> generateRandomMatrix(int n) {
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_real_distribution<> dis(1.0, 10.0);
+  std::uniform_real_distribution<> dis(1.0, 5.0);
 
   std::vector<double> matrix(n * n);
   for (int i = 0; i < n; ++i) {
