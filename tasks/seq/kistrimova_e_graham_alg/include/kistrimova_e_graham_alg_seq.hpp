@@ -10,7 +10,6 @@ using Point = std::pair<double, double>;
 
 class GrahamAlgTask : public ppc::core::Task {
  public:
-
   explicit GrahamAlgTask(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
