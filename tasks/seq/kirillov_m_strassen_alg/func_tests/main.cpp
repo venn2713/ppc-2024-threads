@@ -11,7 +11,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult4x4) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -21,7 +21,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult4x4) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
@@ -46,7 +46,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult8x8) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -56,7 +56,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult8x8) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
@@ -81,7 +81,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult16x16) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -91,7 +91,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult16x16) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
@@ -116,7 +116,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult32x32) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -126,7 +126,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult32x32) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
@@ -151,7 +151,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult64x64) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -161,7 +161,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult64x64) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());

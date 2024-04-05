@@ -1,14 +1,16 @@
+// Copyright 2024 Kirillov Maxim
+
 #include "seq/kirillov_m_strassen_alg/include/ops_seq.hpp"
 
-#include <random>
 #include <cmath>
+#include <random>
 
 std::vector<double> strassen(const std::vector<double>& A, const std::vector<double>& B, int n) {
   if ((n == 0) || ((n & (n - 1)) != 0)) {
     throw std::invalid_argument("Matrix size is not 2^n");
   }
   if (n == 1) {
-    return { A[0] * B[0] };
+    return {A[0] * B[0]};
   }
 
   int half = n / 2;
@@ -39,9 +41,7 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   std::vector<double> C21 = add(p2, p4);
   std::vector<double> C22 = add(sub(p1, p2), add(p3, p6));
   return joinMatrices(C11, C12, C21, C22, n);
-
 }
-
 
 std::vector<double> joinMatrices(const std::vector<double>& A11, const std::vector<double>& A12,
                                  const std::vector<double>& A21, const std::vector<double>& A22, int n) {
@@ -58,8 +58,8 @@ std::vector<double> joinMatrices(const std::vector<double>& A11, const std::vect
   return A;
 }
 
-void splitMatrix(const std::vector<double>& A,  std::vector<double>& A11,  std::vector<double>& A12,
-                 std::vector<double>& A21,  std::vector<double>& A22) {
+void splitMatrix(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
+                 std::vector<double>& A21, std::vector<double>& A22) {
   int half = std::sqrt(A.size()) / 2;
   for (int i = 0; i < half; i++) {
     for (int j = 0; j < half; j++) {
@@ -70,7 +70,6 @@ void splitMatrix(const std::vector<double>& A,  std::vector<double>& A11,  std::
     }
   }
 }
-
 
 std::vector<double> add(const std::vector<double>& A, const std::vector<double>& B) {
   int n = A.size();
@@ -93,11 +92,11 @@ std::vector<double> mul(const std::vector<double>& A, const std::vector<double>&
   if (n == 0) {
     return std::vector<double>();
   }
-  std::vector<double> C(n*n, 0.0);
+  std::vector<double> C(n * n, 0.0);
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       for (int k = 0; k < n; k++) {
-        C[i * n + j] += A[i * n + k] * B [k * n + j];
+        C[i * n + j] += A[i * n + k] * B[k * n + j];
       }
     }
   }
@@ -109,7 +108,7 @@ std::vector<double> generateRandomMatrix(int n) {
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dis(1.0, 10.0);
 
-  std::vector<double> matrix(n*n);
+  std::vector<double> matrix(n * n);
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
       matrix[i * n + j] = dis(gen);
@@ -137,8 +136,8 @@ bool StrassenMatrixMultSequential::pre_processing() {
 
 bool StrassenMatrixMultSequential::validation() {
   internal_order_test();
-  return taskData->inputs_count[0] == taskData->inputs_count[1]
-         && taskData->inputs_count[0] == taskData->outputs_count[0];
+  return taskData->inputs_count[0] == taskData->inputs_count[1] &&
+         taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
 bool StrassenMatrixMultSequential::run() {

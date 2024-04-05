@@ -12,7 +12,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -22,7 +22,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
@@ -59,7 +59,7 @@ TEST(Kirillov_M_strassen_seq_perf_tests, test_task_run) {
   // Create data
   std::vector<double> A = generateRandomMatrix(n);
   std::vector<double> B = generateRandomMatrix(n);
-  std::vector<double> out(n*n);
+  std::vector<double> out(n * n);
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -69,7 +69,7 @@ TEST(Kirillov_M_strassen_seq_perf_tests, test_task_run) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(B.data()));
   taskDataSeq->inputs_count.emplace_back(B.size());
 
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int*>(&n)));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(const_cast<int *>(&n)));
 
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
