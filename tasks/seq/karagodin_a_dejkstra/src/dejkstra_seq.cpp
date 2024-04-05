@@ -32,7 +32,7 @@ std::vector<std::vector<int>> initGraphMapRandom(int16_t size) {
   return graphMap;
 }
 
-static void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
+void DejkstraTaskSequential::printGraphMap(const std::vector<std::vector<int>>& graphMapInput) {
   for (const auto& row : graphMapInput) {
     for (int value : row) {
       std::cout << value << "  ";
