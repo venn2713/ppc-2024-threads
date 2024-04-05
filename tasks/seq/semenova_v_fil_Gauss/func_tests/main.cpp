@@ -293,7 +293,7 @@ TEST(semenova_v_fil_Gauss_seq, Task_post_processing1) {
   taskDataSeq->outputs_count.emplace_back(m);
 
   ImageFilGauss ImageFilGauss(taskDataSeq);
-  ASSERT_TRUE((ImageFilGauss.validation());
+  ASSERT_TRUE(ImageFilGauss.validation());
   ImageFilGauss.pre_processing();
   ImageFilGauss.run();
   ASSERT_TRUE(ImageFilGauss.post_processing());
