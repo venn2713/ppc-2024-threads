@@ -18,9 +18,9 @@ TEST(novostroev_i_batcher_merge_seq, Vector20) {
   BatcherMergeSeq testBatcherMergeSeq(dataSeq);
   ASSERT_EQ(testBatcherMergeSeq.validation(), true);
 
-  testBatcherMergeSeq.preProcessing();
+  testBatcherMergeSeq.pre_processing();
   testBatcherMergeSeq.run();
-  testBatcherMergeSeq.postProcessing();
+  testBatcherMergeSeq.post_processing();
 
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
@@ -39,9 +39,9 @@ TEST(novostroev_i_batcher_merge_seq, Vector40) {
 
   ASSERT_EQ(testBatcherMergeSeq.validation(), true);
 
-  testBatcherMergeSeq.preProcessing();
+  testBatcherMergeSeq.pre_processing();
   testBatcherMergeSeq.run();
-  testBatcherMergeSeq.postProcessing();
+  testBatcherMergeSeq.post_processing();
 
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
@@ -60,9 +60,9 @@ TEST(novostroev_i_batcher_merge_seq, Vector60) {
 
   ASSERT_EQ(testBatcherMergeSeq.validation(), true);
 
-  testBatcherMergeSeq.preProcessing();
+  testBatcherMergeSeq.pre_processing();
   testBatcherMergeSeq.run();
-  testBatcherMergeSeq.postProcessing();
+  testBatcherMergeSeq.post_processing();
 
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
@@ -81,9 +81,9 @@ TEST(novostroev_i_batcher_merge_seq, Vector80) {
 
   ASSERT_EQ(testBatcherMergeSeq.validation(), true);
 
-  testBatcherMergeSeq.preProcessing();
+  testBatcherMergeSeq.pre_processing();
   testBatcherMergeSeq.run();
-  testBatcherMergeSeq.postProcessing();
+  testBatcherMergeSeq.post_processing();
 
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
@@ -102,9 +102,9 @@ TEST(novostroev_i_batcher_merge_seq, Vector100) {
 
   ASSERT_EQ(testBatcherMergeSeq.validation(), true);
 
-  testBatcherMergeSeq.preProcessing();
+  testBatcherMergeSeq.pre_processing();
   testBatcherMergeSeq.run();
-  testBatcherMergeSeq.postProcessing();
+  testBatcherMergeSeq.post_processing();
 
   ASSERT_TRUE(std::is_sorted(result.begin(), result.end()));
 }
