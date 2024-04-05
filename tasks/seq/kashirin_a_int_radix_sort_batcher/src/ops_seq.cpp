@@ -4,20 +4,17 @@
 using namespace std::chrono_literals;
 
 int remainder(int num, int k) {
-  if (k == 1)
-    return num % 10;
-  else {
     while (k > 1) {
       num = num / 10;
       k--;
     }
     return num % 10;
-  }
 }
 
 void merge(std::vector<int>& a, size_t left, size_t mid, size_t right) {
   std::vector<int> b(a.size(), 0);
-  size_t i = left, j = mid + 1;
+  size_t i = left;
+  size_t j = mid + 1;
   size_t k = left;
   while (k <= right) {
     if (((j > right) || (a[i] < a[j])) && (i <= mid)) {
@@ -45,8 +42,7 @@ void sort(const std::vector<int>& src, std::vector<int>& result, size_t left, si
       int rem = remainder(b[i], k);
       tmp[rem][amount[rem]++] = b[i];
     }
-    int ind = left;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0, ind = left; i < 10; i++) {
       for (int j = 0; j < amount[i]; j++) {
         b[ind] = tmp[i][j];
         ind++;
@@ -64,7 +60,7 @@ void recursiveSort(std::vector<int>& src, std::vector<int>& result, size_t left,
   if (right - left <= 8) {
     sort(src, result, left, right);
   } else {
-    size_t mid = (size_t)((right + left) / 2);
+    auto mid = (size_t)((right + left) / 2);
     recursiveSort(src, result, left, mid);
     recursiveSort(src, result, mid + 1, right);
     merge(result, left, mid, right);
