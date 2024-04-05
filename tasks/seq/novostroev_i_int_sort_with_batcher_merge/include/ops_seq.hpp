@@ -17,8 +17,8 @@ class BatcherMergeSeq : public ppc::core::Task {
   explicit BatcherMergeSeq(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool run() override;
   bool validation() override;
-  bool preProcessing() override;
-  bool postProcessing() override;
+  bool pre_processing() override;
+  bool post_processing() override;
 };
 
 inline std::vector<int> randomVector(int size) {
