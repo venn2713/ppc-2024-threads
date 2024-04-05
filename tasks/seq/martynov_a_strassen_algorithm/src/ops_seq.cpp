@@ -67,9 +67,8 @@ bool Strssn_alg::post_processing() {
 bool Strssn_alg::validation() {
   internal_order_test();
 
-  if (taskData->inputs_count[1] != taskData->inputs_count[0]) return false;
+  return taskData->inputs_count[1] == taskData->inputs_count[0];
 
-  return true;
 }
 
 bool Strssn_alg::pre_processing() {
