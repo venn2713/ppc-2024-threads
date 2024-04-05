@@ -89,7 +89,7 @@ bool BatcherMergeSeq::validation() {
   return std::is_sorted(part1.begin(), part1.end()) && std::is_sorted(part2.begin(), part2.end());
 }
 
-bool BatcherMergeSeq::preProcessing() {
+bool BatcherMergeSeq::pre_processing() {
   internal_order_test();
   vector = std::vector<int>(taskData->inputs_count[0]);
 
@@ -112,7 +112,7 @@ bool BatcherMergeSeq::preProcessing() {
   return true;
 }
 
-bool BatcherMergeSeq::postProcessing() {
+bool BatcherMergeSeq::post_processing() {
   internal_order_test();
   std::copy(result.begin(), result.end(), reinterpret_cast<int *>(taskData->outputs[0]));
   return true;
