@@ -53,7 +53,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   }
 }
 
-TEST(Kirillov_M_strassen_seq_perf_tests, test_task_run) {
+TEST(kirillov_m_strassen_seq_perf_tests, test_task_run) {
   const int n = 64;
 
   // Create data

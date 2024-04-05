@@ -5,7 +5,7 @@
 
 #include "seq/kirillov_m_strassen_alg/include/ops_seq.hpp"
 
-TEST(Kirillov_M_strassen_seq_func_tests, Mult4x4) {
+TEST(kirillov_m_strassen_seq_func_tests, mult4x4) {
   const int n = 4;
 
   // Create data
@@ -40,7 +40,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult4x4) {
   }
 }
 
-TEST(Kirillov_M_strassen_seq_func_tests, Mult8x8) {
+TEST(kirillov_m_strassen_seq_func_tests, mult8x8) {
   const int n = 8;
 
   // Create data
@@ -75,7 +75,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult8x8) {
   }
 }
 
-TEST(Kirillov_M_strassen_seq_func_tests, Mult16x16) {
+TEST(kirillov_m_strassen_seq_func_tests, mult16x16) {
   const int n = 16;
 
   // Create data
@@ -110,7 +110,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult16x16) {
   }
 }
 
-TEST(Kirillov_M_strassen_seq_func_tests, Mult32x32) {
+TEST(kirillov_m_strassen_seq_func_tests, mult32x32) {
   const int n = 32;
 
   // Create data
@@ -145,7 +145,7 @@ TEST(Kirillov_M_strassen_seq_func_tests, Mult32x32) {
   }
 }
 
-TEST(Kirillov_M_strassen_seq_func_tests, Mult64x64) {
+TEST(kirillov_m_strassen_seq_func_tests, mult64x64) {
   const int n = 64;
 
   // Create data
