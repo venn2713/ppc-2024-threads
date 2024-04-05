@@ -45,7 +45,7 @@ bool ImageFilGauss::run() {
               *imageIndex(i, j) * kernel[1][1] + *imageIndex(i, j + 1) * kernel[1][2] +
               *imageIndex(i + 1, j - 1) * kernel[2][0] + *imageIndex(i + 1, j) * kernel[2][1] +
               *imageIndex(i + 1, j + 1) * kernel[2][2];
-         *filteredIndex(i, j) = (int)sum;
+        *filteredIndex(i, j) = (int)sum;
       }
     }
   } catch (...) {
