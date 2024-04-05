@@ -10,32 +10,32 @@
 #include "seq/bodrov_d_crs_matr/include/bodrov_d_crs_matr_seq.hpp"
 
 SparseMatrix generate_random_matrix(int n, int m, double proba, int seed) {
-    std::mt19937 gen(seed);
-    std::uniform_real_distribution<double> random(-2.0, 2.0);
-    std::bernoulli_distribution bernoulli(proba);
+  std::mt19937 gen(seed);
+  std::uniform_real_distribution<double> random(-2.0, 2.0);
+  std::bernoulli_distribution bernoulli(proba);
 
-    SparseMatrix result;
-    result.n_rows = n;
-    result.n_cols = m;
-    result.pointer.assign(result.n_rows + 1, 0);
-    
-    std::vector<int> col_indexes;
-    std::vector<std::complex<double>> non_zero_values;
+  SparseMatrix result;
+  result.n_rows = n;
+  result.n_cols = m;
+  result.pointer.assign(result.n_rows + 1, 0);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            if (bernoulli(gen)) {
-                col_indexes.push_back(j);
-                non_zero_values.emplace_back(random(gen), random(gen));
-            }
-        }
-        result.pointer[i + 1] = col_indexes.size();
+  std::vector<int> col_indexes;
+  std::vector<std::complex<double>> non_zero_values;
+
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      if (bernoulli(gen)) {
+        col_indexes.push_back(j);
+        non_zero_values.emplace_back(random(gen), random(gen));
+      }
     }
+    result.pointer[i + 1] = col_indexes.size();
+  }
 
-    result.col_indexes = std::move(col_indexes);
-    result.non_zero_values = std::move(non_zero_values);
+  result.col_indexes = std::move(col_indexes);
+  result.non_zero_values = std::move(non_zero_values);
 
-    return result;
+  return result;
 }
 
 TEST(bodrov_d_crs_matr_seq, test_pipeline_run) {

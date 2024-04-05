@@ -99,7 +99,7 @@ TEST(bodrov_d_crs_matr_seq, test_sparse_matrices) {
   Expected.n_rows = 3;
   Expected.n_cols = 3;
   Expected.pointer = {0, 2, 3, 4};
-  Expected.col_indexes = { 0, 2, 1, 2 };
+  Expected.col_indexes = {0, 2, 1, 2};
   Expected.non_zero_values = {1, 2, 6, 16};
 
   // Create TaskData
@@ -175,7 +175,6 @@ TEST(bodrov_d_crs_matr_seq, test_inverse_matrix) {
     ASSERT_NEAR(0.0f, t.real(), 1e-3);
   }
 }
-
 
 TEST(bodrov_d_crs_matr_seq, test_complex_matrix) {
   SparseMatrix A;
