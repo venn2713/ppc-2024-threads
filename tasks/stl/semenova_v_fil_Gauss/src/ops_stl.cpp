@@ -23,7 +23,7 @@ bool ImageFilGauss::pre_processing() {
     filteredImage = reinterpret_cast<int*>(taskData->outputs[0]);
 
     int numThreads = std::thread::hardware_concurrency();
-    std::thread* threads = new std::thread[numThreads];
+    auto threads = new std::thread[numThreads];
     int rowsPerThread = n / numThreads;
 
     for (int i = 0; i < numThreads; ++i) {
@@ -55,7 +55,7 @@ bool ImageFilGauss::run() {
   internal_order_test();
   try {
     int numThreads = std::thread::hardware_concurrency();
-    std::thread* threads = new std::thread[numThreads];
+    auto threads = new std::thread[numThreads];
     int rowsPerThread = (n - 2) / numThreads;
 
     for (int i = 0; i < numThreads; ++i) {
@@ -91,7 +91,7 @@ bool ImageFilGauss::post_processing() {
   internal_order_test();
   try {
     int numThreads = std::thread::hardware_concurrency();
-    std::thread* threads = new std::thread[numThreads];
+    auto threads = new std::thread[numThreads];
     int rowsPerThread = n / numThreads;
 
     for (int i = 0; i < numThreads; ++i) {
