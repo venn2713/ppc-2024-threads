@@ -22,13 +22,13 @@ bool TaskSequential::validation() {
 
 bool TaskSequential::run() {
   internal_order_test();
-  std::vector<int> img = find_components(image, w, h);
-  int components = count_components(img);
-  for (int i = 1; i <= components; ++i) {
-    std::vector<int> points = remove_extra_points(img, w, h, i);
-    std::vector<int> ch = Algorithm_Graham(points);
-    for (size_t j = 0; j < ch.size(); ++j) {
-      hull.emplace_back(ch[j]);
+  std::vector<int> img = findComponents(image, w, h);
+  int c = countComponents(img);
+  for (int i = 1; i <= c; ++i) {
+    std::vector<int> component = removePoints(img, w, h, i);
+    std::vector<int> hullComponent = AlgorithmGraham(component);
+    for (size_t j = 0; j < hullComponent.size(); ++j) {
+      hull.emplace_back(hullComponent[j]);
     }
     hull.emplace_back(-1);
   }
@@ -42,10 +42,10 @@ bool TaskSequential::post_processing() {
   return true;
 }
 
-void mark_component(std::vector<int>* image, int h, int w, int yStart, int xStart, int label) {
+void markComponents(std::vector<int>* image, int w, int h, int startY, int startX, int label) {
   std::stack<std::pair<int, int>> stack;
 
-  stack.push(std::make_pair(xStart, yStart));
+  stack.emplace(std::make_pair(startX, startY));
 
   while (!stack.empty()) {
     int x = stack.top().first;
@@ -55,19 +55,19 @@ void mark_component(std::vector<int>* image, int h, int w, int yStart, int xStar
     if (x >= 0 && y >= 0 && x < w && y < h && image->at(y * w + x) == 1) {
       (*image)[y * w + x] = label;
 
-      stack.push(std::make_pair(x - 1, y));
-      stack.push(std::make_pair(x - 1, y - 1));
-      stack.push(std::make_pair(x - 1, y + 1));
-      stack.push(std::make_pair(x, y - 1));
-      stack.push(std::make_pair(x, y + 1));
-      stack.push(std::make_pair(x + 1, y));
-      stack.push(std::make_pair(x + 1, y - 1));
-      stack.push(std::make_pair(x + 1, y + 1));
+      stack.emplace(std::make_pair(x - 1, y));
+      stack.emplace(std::make_pair(x - 1, y - 1));
+      stack.emplace(std::make_pair(x - 1, y + 1));
+      stack.emplace(std::make_pair(x, y - 1));
+      stack.emplace(std::make_pair(x, y + 1));
+      stack.emplace(std::make_pair(x + 1, y));
+      stack.emplace(std::make_pair(x + 1, y - 1));
+      stack.emplace(std::make_pair(x + 1, y + 1));
     }
   }
 }
 
-std::vector<int> find_components(const std::vector<std::vector<int>>& image, int w, int h) {
+std::vector<int> findComponents(const std::vector<std::vector<int>>& image, int w, int h) {
   std::vector<int> image_arr(w * h);
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
@@ -78,7 +78,7 @@ std::vector<int> find_components(const std::vector<std::vector<int>>& image, int
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
       if (image_arr[i * w + j] == 1) {
-        mark_component(&image_arr, h, w, i, j, label);
+        markComponents(&image_arr, w, h, i, j, label);
         ++label;
       }
     }
@@ -93,7 +93,7 @@ std::vector<int> find_components(const std::vector<std::vector<int>>& image, int
   return image_arr;
 }
 
-int count_components(const std::vector<int>& image) {
+int countComponents(const std::vector<int>& image) {
   int c = 0;
   for (size_t i = 0; i < image.size(); ++i) {
     if (image[i] > c) {
@@ -103,35 +103,21 @@ int count_components(const std::vector<int>& image) {
   return c;
 }
 
-int count_points_component(const std::vector<int>& image) {
-  int count_points = 0;
+int countPointsComponent(const std::vector<int>& image) {
+  int c = 0;
   for (size_t i = 0; i < image.size(); ++i) {
     if (image[i] != 0) {
-      count_points++;
+      c++;
     }
   }
-  return count_points;
+  return c;
 }
 
-std::vector<int> remove_extra_points(const std::vector<int>& image, int w, int h, int label) {
+std::vector<int> removePoints(const std::vector<int>& image, int w, int h, int label) {
   std::vector<int> img(image);
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
       if (image[i * w + j] == label) {
-        if ((j > 0) && (j < w - 1)) {
-          if ((i == 0) || (i == h - 1)) {
-            if ((image[i * w + j - 1] == label) && (image[i * w + j + 1] == label)) {
-              img[i * w + j] = 0;
-            }
-          }
-          if ((i > 0) && (i < h - 1)) {
-            if (((image[i * w + j - 1] == label) && (image[i * w + j + 1] == label)) ||
-                ((image[(i + 1) * w + j] == label) && (image[(i - 1) * w + j] == label))) {
-              img[i * w + j] = 0;
-            }
-          }
-          continue;
-        }
         if ((i > 0) && (i < h - 1)) {
           if ((j == 0) || (j == w - 1)) {
             if ((image[(i - 1) * w + j] == label) && (image[(i + 1) * w + j] == label)) {
@@ -144,104 +130,119 @@ std::vector<int> remove_extra_points(const std::vector<int>& image, int w, int h
               img[i * w + j] = 0;
             }
           }
+          continue;
+        }
+        if ((j > 0) && (j < w - 1)) {
+          if ((i == 0) || (i == h - 1)) {
+            if ((image[i * w + j - 1] == label) && (image[i * w + j + 1] == label)) {
+              img[i * w + j] = 0;
+            }
+          }
+          if ((i > 0) && (i < h - 1)) {
+            if (((image[i * w + j - 1] == label) && (image[i * w + j + 1] == label)) ||
+                ((image[(i + 1) * w + j] == label) && (image[(i - 1) * w + j] == label))) {
+              img[i * w + j] = 0;
+            }
+          }
         }
       } else {
         img[i * w + j] = 0;
       }
     }
   }
-  int size = count_points_component(img);
-  std::vector<int> points(size * 2);
-  int k = 0;
+  int sz = countPointsComponent(img);
+  std::vector<int> points_j_i(sz * 2);
+  int c = 0;
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
       if (img[i * w + j] != 0) {
-        points[k] = j;
-        k++;
-        points[k] = i;
-        k++;
+        points_j_i[c] = j;
+        c++;
+        points_j_i[c] = i;
+        c++;
       }
     }
   }
-  return points;
+  return points_j_i;
 }
 
-int Cross(int x1, int y1, int x2, int y2, int x3, int y3) { return ((x2 - x1) * (y3 - y2) - (x3 - x2) * (y2 - y1)); }
+int positionPoints(int x1, int y1, int x2, int y2, int x3, int y3) {
+  return ((x2 - x1) * (y3 - y2) - (x3 - x2) * (y2 - y1));
+}
 
-void Sort(std::vector<int>* points, int xMin, int yMin) {
-  int size = points->size() / 2;
-  for (int i = 1; i < size; ++i) {
+void Sort(std::vector<int>* component, int minX, int minY) {
+  int sz = component->size() / 2;
+  for (int i = 1; i < sz; ++i) {
     int j = i;
-    while ((j > 0) && (Cross(xMin, yMin, (*points)[2 * j - 2], (*points)[2 * j - 1], (*points)[2 * j],
-                             (*points)[2 * j + 1]) < 0)) {
-      int temp = (*points)[2 * j - 2];
-      (*points)[2 * j - 2] = (*points)[2 * j];
-      (*points)[2 * j] = temp;
-
-      temp = (*points)[2 * j - 1];
-      (*points)[2 * j - 1] = (*points)[2 * j + 1];
-      (*points)[2 * j + 1] = temp;
+    while ((j > 0) && (positionPoints(minX, minY, (*component)[2 * j - 2], (*component)[2 * j - 1], (*component)[2 * j],
+                                      (*component)[2 * j + 1]) < 0)) {
+      int tmp = (*component)[2 * j - 1];
+      (*component)[2 * j - 1] = (*component)[2 * j + 1];
+      (*component)[2 * j + 1] = tmp;
+      tmp = (*component)[2 * j - 2];
+      (*component)[2 * j - 2] = (*component)[2 * j];
+      (*component)[2 * j] = tmp;
       j--;
     }
   }
 }
 
-std::vector<int> Algorithm_Graham(std::vector<int> points) {
+std::vector<int> AlgorithmGraham(std::vector<int> component) {
   std::vector<int> result;
 
-  int num_points = points.size() / 2;
+  int N = component.size() / 2;
 
-  if (num_points > 1) {
-    int x_min = points[0];
-    int y_min = points[1];
+  if (N > 1) {
+    int minX = component[0];
+    int minY = component[1];
 
-    int min_index = 0;
+    int minIdx = 0;
 
-    for (size_t i = 2; i < points.size(); i += 2) {
-      if (points[i] < x_min || (points[i] == x_min && points[i + 1] < y_min)) {
-        x_min = points[i];
+    for (size_t i = 2; i < component.size(); i += 2) {
+      if (component[i] < minX || (component[i] == minX && component[i + 1] < minY)) {
+        minX = component[i];
 
-        y_min = points[i + 1];
+        minY = component[i + 1];
 
-        min_index = i;
+        minIdx = i;
       }
     }
 
-    int temp = points[min_index];
-    points[min_index] = points[num_points * 2 - 2];
-    points[num_points * 2 - 2] = temp;
+    int tmp = component[minIdx];
+    component[minIdx] = component[N * 2 - 2];
+    component[N * 2 - 2] = tmp;
 
-    temp = points[min_index + 1];
-    points[min_index + 1] = points[num_points * 2 - 1];
-    points[num_points * 2 - 1] = temp;
+    tmp = component[minIdx + 1];
+    component[minIdx + 1] = component[N * 2 - 1];
+    component[N * 2 - 1] = tmp;
 
-    points.pop_back();
-    points.pop_back();
+    component.pop_back();
+    component.pop_back();
 
-    Sort(&points, x_min, y_min);
+    Sort(&component, minX, minY);
 
-    result.emplace_back(x_min);
-    result.emplace_back(y_min);
-    result.emplace_back(points[0]);
-    result.emplace_back(points[1]);
+    result.emplace_back(minX);
+    result.emplace_back(minY);
+    result.emplace_back(component[0]);
+    result.emplace_back(component[1]);
 
-    for (size_t i = 2; i < points.size(); i += 2) {
-      int result_size = result.size();
+    for (size_t i = 2; i < component.size(); i += 2) {
+      int resSize = result.size();
 
-      int x1 = result[result_size - 4];
-      int y1 = result[result_size - 3];
-      int x2 = result[result_size - 2];
-      int y2 = result[result_size - 1];
-      int x3 = points[i];
-      int y3 = points[i + 1];
+      int x1 = result[resSize - 4];
+      int y1 = result[resSize - 3];
+      int x2 = result[resSize - 2];
+      int y2 = result[resSize - 1];
+      int x3 = component[i];
+      int y3 = component[i + 1];
 
-      int rot = Cross(x1, y1, x2, y2, x3, y3);
+      int rot = positionPoints(x1, y1, x2, y2, x3, y3);
       if (rot == 0) {
-        result[result_size - 2] = x3;
-        result[result_size - 1] = y3;
+        result[resSize - 2] = x3;
+        result[resSize - 1] = y3;
       } else if (rot < 0) {
-        while (Cross(result[(result.size()) - 4], result[(result.size()) - 3], result[(result.size()) - 2],
-                     result[(result.size()) - 1], x3, y3) < 0)
+        while (positionPoints(result[(result.size()) - 4], result[(result.size()) - 3], result[(result.size()) - 2],
+                              result[(result.size()) - 1], x3, y3) < 0)
           result.pop_back(), result.pop_back();
         result.emplace_back(x3);
         result.emplace_back(y3);
@@ -252,8 +253,8 @@ std::vector<int> Algorithm_Graham(std::vector<int> points) {
     }
   } else {
     result.resize(2);
-    result[0] = points[0];
-    result[1] = points[1];
+    result[0] = component[0];
+    result[1] = component[1];
   }
   return result;
 }

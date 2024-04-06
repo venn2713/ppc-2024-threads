@@ -6,7 +6,6 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include <queue>
 #include <stack>
 #include <string>
 #include <utility>
@@ -14,13 +13,13 @@
 
 #include "core/task/include/task.hpp"
 
-void mark_component(std::vector<int>* image, int height, int width, int yStart, int xStart, int label);
-std::vector<int> remove_extra_points(const std::vector<int>& image, int width, int height, int label);
-std::vector<int> find_components(const std::vector<std::vector<int>>& image, int width, int height);
-int count_components(const std::vector<int>& image);
-int count_points_component(const std::vector<int>& image);
-void Sort(std::vector<int>* points, int xMin, int yMin);
-std::vector<int> Algorithm_Graham(std::vector<int> points);
+void markComponents(std::vector<int>* image, int w, int h, int startY, int startX, int label);
+std::vector<int> removePoints(const std::vector<int>& image, int w, int h, int label);
+std::vector<int> findComponents(const std::vector<std::vector<int>>& image, int w, int h);
+int countComponents(const std::vector<int>& image);
+int countPointsComponent(const std::vector<int>& image);
+void Sort(std::vector<int>* component, int minX, int minY);
+std::vector<int> AlgorithmGraham(std::vector<int> component);
 
 class TaskSequential : public ppc::core::Task {
  public:
