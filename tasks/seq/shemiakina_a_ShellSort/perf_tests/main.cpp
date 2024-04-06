@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "seq/shemiakina_a_ShellSort/include/ShellSort_seq.hpp"
+#include "seq/shemiakina_a_ShellSort/include/ops_seq.hpp"
 
 TEST(shemiakina_a_ShellSort, pipeline_run) {
   const int count = 100;
