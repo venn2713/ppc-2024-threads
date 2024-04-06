@@ -1,8 +1,8 @@
 // Copyright 2024 Shemiakina Alesia
 #pragma once
 
-#include <iterator>
 #include <algorithm>
+#include <iterator>
 #include <memory>
 #include <random>
 #include <string>

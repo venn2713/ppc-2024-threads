@@ -1,7 +1,6 @@
 // Copyright 2024 Shemiakina Alesya
-#include "seq/shemiakina_a_ShellSort/include/ShellSort_seq.hpp"
-
 #include <thread>
+#include "seq/shemiakina_a_ShellSort/include/ops_seq.hpp"
 
 using namespace std::chrono_literals;
 
@@ -17,8 +16,7 @@ bool ShellTaskSequential::pre_processing() {
 bool ShellTaskSequential::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count.size() == 1 && taskData->inputs_count[0] > 0 &&
-         taskData->outputs_count.size() == 1 &&
+  return taskData->inputs_count.size() == 1 && taskData->inputs_count[0] > 0 && taskData->outputs_count.size() == 1 &&
          taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
