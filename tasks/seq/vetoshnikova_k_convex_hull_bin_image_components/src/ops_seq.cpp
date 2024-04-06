@@ -45,7 +45,7 @@ bool TaskSequential::post_processing() {
 void markComponents(std::vector<int>* image, int w, int h, int startY, int startX, int label) {
   std::stack<std::pair<int, int>> stack;
 
-  stack.emplace(std::make_pair(startX, startY));
+  stack.emplace(startX, startY);
 
   while (!stack.empty()) {
     int x = stack.top().first;
@@ -55,14 +55,14 @@ void markComponents(std::vector<int>* image, int w, int h, int startY, int start
     if (x >= 0 && y >= 0 && x < w && y < h && image->at(y * w + x) == 1) {
       (*image)[y * w + x] = label;
 
-      stack.emplace(std::make_pair(x - 1, y));
-      stack.emplace(std::make_pair(x - 1, y - 1));
-      stack.emplace(std::make_pair(x - 1, y + 1));
-      stack.emplace(std::make_pair(x, y - 1));
-      stack.emplace(std::make_pair(x, y + 1));
-      stack.emplace(std::make_pair(x + 1, y));
-      stack.emplace(std::make_pair(x + 1, y - 1));
-      stack.emplace(std::make_pair(x + 1, y + 1));
+      stack.emplace(x - 1, y);
+      stack.emplace(x - 1, y - 1);
+      stack.emplace(x - 1, y + 1);
+      stack.emplace(x, y - 1);
+      stack.emplace(x, y + 1);
+      stack.emplace(x + 1, y);
+      stack.emplace(x + 1, y - 1);
+      stack.emplace(x + 1, y + 1);
     }
   }
 }
