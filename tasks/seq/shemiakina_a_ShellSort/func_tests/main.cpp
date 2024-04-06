@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "seq/shemiakina_a_ShellSort/include/ShellSort_seq.hpp"
+#include "seq/shemiakina_a_ShellSort/include/ops_seq.hpp"
 
 void TestRandomVector(int count) {
   // Create data
