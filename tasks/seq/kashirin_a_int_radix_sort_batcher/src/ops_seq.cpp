@@ -34,7 +34,7 @@ void merge(std::vector<int>& a, size_t left, size_t mid, size_t right) {
 
 void sort(const std::vector<int>& src, std::vector<int>& result, size_t left, size_t right) {
   std::vector<int> b(src);
-  int tmp[10][1000];
+  std::vector<std::vector<int>> tmp(10, std::vector<int>(100, 0));
   std::vector<int> amount(10, 0);
   int k = 1;
   while (k <= 3) {
