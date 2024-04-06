@@ -5,7 +5,7 @@
 
 TEST(lebedeva_k_bitwise_sort_double_batcher, array) {
   // Create data
-  std::vector<double> array = {-12.345, 45.678, -89.012, 34.567, 90.123, -56.789, 23.456, -78.901, 67.890};
+  std::vector<double> array = {-12.346, 45.678, -89.012, 34.567, 90.123, -56.789, 23.456, -78.901, 67.890};
   std::vector<double> out(array.size());
 
   // Create TaskData
