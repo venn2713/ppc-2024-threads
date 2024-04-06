@@ -9,8 +9,7 @@
 
 class bitwise_sort_double_batcher : public ppc::core::Task {
  public:
-  explicit bitwise_sort_double_batcher(std::shared_ptr<ppc::core::TaskData> taskData_)
-      : Task(std::move(taskData_)) {}
+  explicit bitwise_sort_double_batcher(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
