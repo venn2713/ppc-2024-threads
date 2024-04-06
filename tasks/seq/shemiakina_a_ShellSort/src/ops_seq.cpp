@@ -1,6 +1,7 @@
 // Copyright 2024 Shemiakina Alesya
-#include <thread>
 #include "seq/shemiakina_a_ShellSort/include/ops_seq.hpp"
+
+#include <thread>
 
 using namespace std::chrono_literals;
 
