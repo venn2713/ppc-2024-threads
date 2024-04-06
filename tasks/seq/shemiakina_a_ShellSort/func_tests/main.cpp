@@ -52,25 +52,21 @@ TEST(shemiakina_a_ShellSort, Validation_Fail) {
 
 TEST(shemiakina_a_ShellSort, Shell_Random_10) {
   const int count = 10;
-
   TestRandomVector(count);
 }
 
 TEST(shemiakina_a_ShellSort, Shell_Random_20) {
   const int count = 20;
-
   TestRandomVector(count);
 }
 
 TEST(shemiakina_a_ShellSort, Shell_Random_50) {
   const int count = 50;
-
   TestRandomVector(count);
 }
 
 TEST(shemiakina_a_ShellSort, Shell_Random_70) {
   const int count = 70;
-
   TestRandomVector(count);
 }
 
