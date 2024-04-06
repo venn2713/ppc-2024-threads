@@ -11,7 +11,6 @@ TEST(Safronov_mult_m_fox, validationTest) {
   std::vector<double> in2{1.0, 0.0, 0.0, 1.0, 2.0};
   std::vector<double> out(n * n);
 
-  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
@@ -20,7 +19,6 @@ TEST(Safronov_mult_m_fox, validationTest) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Task
   SafronovSeqFoxAlgTask safronovTaskSequential(taskDataSeq);
   ASSERT_EQ(safronovTaskSequential.validation(), false);
 }
@@ -31,7 +29,6 @@ TEST(Safronov_mult_m_fox, mult2) {
   std::vector<double> in2(n * n, 1.0);
   std::vector<double> out(n * n);
 
-  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
@@ -40,17 +37,14 @@ TEST(Safronov_mult_m_fox, mult2) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Task
   SafronovSeqFoxAlgTask safronovTaskSequential(taskDataSeq);
   ASSERT_EQ(safronovTaskSequential.validation(), true);
   safronovTaskSequential.pre_processing();
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  // Calculate expected result using the mul function
   std::vector<double> expected_result = mul(in1, in2, n);
 
-  // Compare the result with the expected value
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
       EXPECT_DOUBLE_EQ(out[i * n + j], expected_result[i * n + j]);
@@ -64,7 +58,6 @@ TEST(Safronov_mult_m_fox, mult3) {
   std::vector<double> in2(n * n, 10.0);
   std::vector<double> out(n * n);
 
-  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
@@ -73,17 +66,14 @@ TEST(Safronov_mult_m_fox, mult3) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Task
   SafronovSeqFoxAlgTask safronovTaskSequential(taskDataSeq);
   ASSERT_EQ(safronovTaskSequential.validation(), true);
   safronovTaskSequential.pre_processing();
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  // Calculate expected result using the mul function
   std::vector<double> expected_result = mul(in1, in2, n);
 
-  // Compare the result with the expected value
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
       EXPECT_DOUBLE_EQ(out[i * n + j], expected_result[i * n + j]);
@@ -97,7 +87,6 @@ TEST(Safronov_mult_m_fox, mult4) {
   std::vector<double> in2{2.0, 6.0, 18.0, 54.0, 162.0, 486.0, 1458.0, 4374.0, 13122.0};
   std::vector<double> out(n * n);
 
-  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
@@ -106,17 +95,14 @@ TEST(Safronov_mult_m_fox, mult4) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Task
   SafronovSeqFoxAlgTask safronovTaskSequential(taskDataSeq);
   ASSERT_EQ(safronovTaskSequential.validation(), true);
   safronovTaskSequential.pre_processing();
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  // Calculate expected result using the mul function
   std::vector<double> expected_result = mul(in1, in2, n);
 
-  // Compare the result with the expected value
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
       EXPECT_DOUBLE_EQ(out[i * n + j], expected_result[i * n + j]);
@@ -130,7 +116,6 @@ TEST(Safronov_mult_m_fox, mult5) {
   std::vector<double> in2{10.0, 9.0, 8.0, 7.0, 9.0, 8.0, 7.0, 6.0, 8.0, 7.0, 6.0, 5.0, 7.0, 6.0, 5.0, 4.0};
   std::vector<double> out(n * n);
 
-  // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in1.data()));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in2.data()));
@@ -139,17 +124,14 @@ TEST(Safronov_mult_m_fox, mult5) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  // Create Task
   SafronovSeqFoxAlgTask safronovTaskSequential(taskDataSeq);
   ASSERT_EQ(safronovTaskSequential.validation(), true);
   safronovTaskSequential.pre_processing();
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  // Calculate expected result using the mul function
   std::vector<double> expected_result = mul(in1, in2, n);
 
-  // Compare the result with the expected value
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
       EXPECT_DOUBLE_EQ(out[i * n + j], expected_result[i * n + j]);
