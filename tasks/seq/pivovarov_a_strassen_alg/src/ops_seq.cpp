@@ -5,18 +5,18 @@
 #include <cmath>
 #include <vector>
 
-int log2(int n) {
-  int res = 1;
-  while ((n >>= 1) != 0) res++;
+size_t log2(size_t n) {
+  size_t res = 0;
+  while (n != 0) {
+    n >>= 1;
+    res++;
+  }
   return res;
 }
 
-int getNewSize(const std::vector<double>& a) {
-  int n = std::sqrt(a.size());
-  if (n > 0 && (n & (n - 1)) == 0) {
-    return n;
-  }
-  return 1 << log2(n);
+size_t getNewSize(const std::vector<double>& a) {
+  size_t n = std::sqrt(a.size());
+  return static_cast<size_t>(std::pow(2, std::ceil(std::log2(n))));
 }
 
 std::vector<double> addSquareMatrix(const std::vector<double>& a, int n) {
@@ -111,8 +111,15 @@ std::vector<double> strassenMatrixMult(const std::vector<double>& A, const std::
     int halfSize = newSize / 2;
     int newSizeSquare = halfSize * halfSize;
 
-    std::vector<double> A11(newSizeSquare), A12(newSizeSquare), A21(newSizeSquare), A22(newSizeSquare);
-    std::vector<double> B11(newSizeSquare), B12(newSizeSquare), B21(newSizeSquare), B22(newSizeSquare);
+    std::vector<double> A11(newSizeSquare);
+    std::vector<double> A12(newSizeSquare);
+    std::vector<double> A21(newSizeSquare);
+    std::vector<double> A22(newSizeSquare);
+
+    std::vector<double> B11(newSizeSquare);
+    std::vector<double> B12(newSizeSquare);
+    std::vector<double> B21(newSizeSquare);
+    std::vector<double> B22(newSizeSquare);
 
     splitMatrix(newA, A11, A12, A21, A22);
     splitMatrix(newB, B11, B12, B21, B22);
