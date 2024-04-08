@@ -46,6 +46,7 @@ bool imageMarkingSeq::post_processing() {
 }
 
 void imageMarkingSeq::imageMark() {
+  // func for solution marking component in bin image
   uint32_t scur = 0;
   std::list<uint32_t> vectr;
   std::vector<std::vector<uint32_t *>> maparr;
