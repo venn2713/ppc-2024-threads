@@ -78,7 +78,6 @@ TEST(Sequential_Jarvis, Duplicate_Points) {
   taskDataSeq->inputs_count.emplace_back(points.size());
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
   taskDataSeq->outputs_count.emplace_back(resHull.size());
-
   // Create Task
   TestTaskSequentialJarvis testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
