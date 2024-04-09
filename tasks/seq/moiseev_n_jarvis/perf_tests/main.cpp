@@ -8,7 +8,7 @@
 
 TEST(Sequential_Jarvis_Perf, test_pipeline_run) {
   std::vector<Point> points;
-  const int size = 1'000;
+  const int size = 666'666;
   points.reserve(size);
   for (int i = 0; i < size; i++) {
     points.push_back({i % 100, i % 200});
@@ -45,7 +45,7 @@ TEST(Sequential_Jarvis_Perf, test_pipeline_run) {
 
 TEST(Sequential_Jarvis_Perf, test_task_run) {
   std::vector<Point> points;
-  const int size = 6'666;
+  const int size = 666'666;
   points.reserve(size);
   for (int i = 0; i < size; i++) {
     points.push_back({rand() % 100, rand() % 200});

@@ -64,7 +64,6 @@ bool TestTaskSequentialJarvis::validation() {
 bool TestTaskSequentialJarvis::run() {
   internal_order_test();
   convexHullPoints = Jarvis(points);
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
