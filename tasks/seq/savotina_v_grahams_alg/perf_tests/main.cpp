@@ -1,12 +1,8 @@
 // Copyright 2024 Savotina Valeria
 #include <gtest/gtest.h>
 
-#include <thread>
-
 #include "core/perf/include/perf.hpp"
 #include "seq/savotina_v_grahams_alg/include/ops_seq.hpp"
-
-using namespace std::chrono_literals;
 
 TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   double min = 0;
@@ -38,7 +34,6 @@ TEST(savotina_v_grahams_alg_seq, test_pipeline_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    // std::this_thread::sleep_for(60ms);
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
@@ -86,7 +81,6 @@ TEST(savotina_v_grahams_alg_seq, test_task_run) {
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
-    // std::this_thread::sleep_for(60ms);
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(current_time_point - t0).count();
     return static_cast<double>(duration) * 1e-9;
   };
