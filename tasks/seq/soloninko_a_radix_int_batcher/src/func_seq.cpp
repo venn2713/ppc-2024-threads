@@ -49,7 +49,7 @@ std::vector<int> sol_merge(std::vector<int> vec1, std::vector<int> vec2) {
   return res;
 }
 
-std::vector<int> sol_even(const std::vector<int> &p1, const std::vector<int> &p2) {
+std::vector<int> soll_even(const std::vector<int> &p1, const std::vector<int> &p2) {
   std::vector<int> res(p1.size() / 2 + p2.size() / 2 + p1.size() % 2 + p2.size() % 2);
   size_t i = 0;
   size_t i1 = 0;
@@ -76,7 +76,7 @@ std::vector<int> sol_odd(const std::vector<int> &p1, const std::vector<int> &p2)
 }
 
 std::vector<int> sol_batcher_sort(const std::vector<int> &p1, const std::vector<int> &p2) {
-  std::vector<int> even_vec = sol_even(p1, p2);
+  std::vector<int> even_vec = soll_even(p1, p2);
 
   std::vector<int> odd_vec = sol_odd(p1, p2);
 
