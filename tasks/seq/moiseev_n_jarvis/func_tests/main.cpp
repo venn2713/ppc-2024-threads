@@ -9,7 +9,6 @@ TEST(Sequential_Jarvis, Empty_Input) {
   std::vector<Point> points = {};
   std::vector<Point> hull = {};
   std::vector<Point> resHull(hull.size());
-
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
