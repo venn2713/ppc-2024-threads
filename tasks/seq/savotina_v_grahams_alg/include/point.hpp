@@ -18,5 +18,5 @@ struct SavotinaPoint {
   double Distance(const SavotinaPoint& p) const;
   void Replace(SavotinaPoint& p2);
   int Compare(const SavotinaPoint& pivot, const SavotinaPoint& P) const;
-  SavotinaPoint aRandomPoint(double min, double max);
+  static SavotinaPoint aRandomPoint(double min, double max);
 };
