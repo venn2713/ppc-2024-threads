@@ -1,4 +1,4 @@
-/// Copyright 2024 Eremin Alexander
+// Copyright 2024 Eremin Alexander
 #include <gtest/gtest.h>
 
 #include <vector>
