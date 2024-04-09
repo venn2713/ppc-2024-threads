@@ -120,7 +120,6 @@ bool TaskSequentialBatcherSoloninko::run() {
   internal_order_test();
 
   res = batcher_sort(p1, p2);
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
