@@ -1,5 +1,5 @@
 // Copyright 2024 Kozlov Mikhail
-#include "seq/kozlov_m_simpson_integral/include/ops_seq.hpp"
+#include "omp/kozlov_m_simpson_integral/include/ops_omp.hpp"
 
 double xy(double x, double y) { return x * y; }
 double sinxy(double x, double y) { return std::sin(x * y); }
@@ -31,7 +31,9 @@ bool KozlovTaskSequential::run() {
   double p;
   double x;
   double y;
-  for (uint64_t i = 0; i <= n; i++) {
+  double res_ = 0;
+#pragma omp parallel for reduction(+ : res_)
+  for (int i = 0; i <= n; i++) {
     if (i == 0 || i == n) {
       p = 1;
     } else if (i % 2 == 0) {
@@ -39,7 +41,7 @@ bool KozlovTaskSequential::run() {
     } else {
       p = 2;
     }
-    for (uint64_t j = 0; j <= m; j++) {
+    for (int j = 0; j <= m; j++) {
       if (j == 0 || j == m) {
         q = 1;
       } else if (i % 2 == 0) {
@@ -49,11 +51,12 @@ bool KozlovTaskSequential::run() {
       }
       x = x1 + i * h_x;
       y = y1 + j * h_y;
-      res += p * q * f(x, y);
+      res_ += p * q * f(x, y);
     }
   }
 
-  res *= h_x * h_y / 9;
+  res_ *= h_x * h_y / 9;
+  res = res_;
   return true;
 }
 

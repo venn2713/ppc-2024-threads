@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
-#include "seq/kozlov_m_simpson_integral/include/ops_seq.hpp"
+#include "omp/kozlov_m_simpson_integral/include/ops_omp.hpp"
 
 TEST(kozlov_m_simpson_integral_seq, test_pipeline_run) {
   double res = 1.5;

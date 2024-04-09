@@ -1,6 +1,8 @@
 // Copyright 2024 Kozlov Mikhail
 #pragma once
 
+#include <omp.h>
+
 #include <cmath>
 #include <functional>
 #include <memory>
@@ -28,7 +30,7 @@ class KozlovTaskSequential : public ppc::core::Task {
  private:
   FUNC f{};
   double x1{}, x2{}, y1{}, y2{};
-  uint64_t n;
-  uint64_t m;
+  int n;
+  int m;
   double res;
 };
