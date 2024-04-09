@@ -7,7 +7,7 @@
 #include "seq/derun_a_shell/include/shell_seq.hpp"
 
 TEST(derun_andrey_shell_seq, pipeline_run) {
-  const int count = 100;
+  const int count = 10000;
 
   // Create data
   std::vector<int> in = ShellSequential::generate_random_vector(count, 1, 100);
@@ -44,7 +44,7 @@ TEST(derun_andrey_shell_seq, pipeline_run) {
 }
 
 TEST(derun_andrey_shell_seq, task_run) {
-  const int count = 100;
+  const int count = 10000;
 
   // Create data
   std::vector<int> in(1, count);
