@@ -9,7 +9,7 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/bodrov_d_crs_matr/include/bodrov_d_crs_matr_seq.hpp"
 
-SparseMatrix generate_random_matrix(int n, int m, double proba, int seed) {
+SparseMatrix generate_random_matrix1(int n, int m, double proba, int seed) {
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> random(-2.0, 2.0);
   std::bernoulli_distribution bernoulli(proba);
@@ -39,8 +39,8 @@ SparseMatrix generate_random_matrix(int n, int m, double proba, int seed) {
 }
 
 TEST(bodrov_d_crs_matr_seq, test_pipeline_run) {
-  SparseMatrix A = generate_random_matrix(100, 100, 0.6, 4113);
-  SparseMatrix B = generate_random_matrix(100, 100, 0.6, 2134);
+  SparseMatrix A = generate_random_matrix1(100, 100, 0.6, 4113);
+  SparseMatrix B = generate_random_matrix1(100, 100, 0.6, 2134);
   SparseMatrix Result;
 
   // Create TaskData
@@ -72,8 +72,8 @@ TEST(bodrov_d_crs_matr_seq, test_pipeline_run) {
 }
 
 TEST(bodrov_d_crs_matr_seq, test_task_run) {
-  SparseMatrix A = generate_random_matrix(100, 100, 0.6, 4113);
-  SparseMatrix B = generate_random_matrix(100, 100, 0.6, 2134);
+  SparseMatrix A = generate_random_matrix1(100, 100, 0.6, 4113);
+  SparseMatrix B = generate_random_matrix1(100, 100, 0.6, 2134);
   SparseMatrix Result;
 
   // Create TaskData

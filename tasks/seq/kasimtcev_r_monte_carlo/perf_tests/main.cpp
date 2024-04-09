@@ -26,7 +26,7 @@ TEST(sequential_kasimtcev_r_perf_test, test_add) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  auto testTaskSequential = std::make_shared<MonteCarloSequential>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<MonteCarloSequentialKasimtcev>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
@@ -64,7 +64,7 @@ TEST(sequential_kasimtcev_r_perf_test, test_miltmilt) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  auto testTaskSequential = std::make_shared<MonteCarloSequential>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<MonteCarloSequentialKasimtcev>(taskDataSeq);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;

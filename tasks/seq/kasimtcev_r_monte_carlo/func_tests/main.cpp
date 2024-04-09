@@ -25,7 +25,7 @@ TEST(kasimtcev_r_monte_carlo_seq, tested_linear_function) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  MonteCarloSequential testTaskSequential(taskDataSeq);
+  MonteCarloSequentialKasimtcev testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -52,7 +52,7 @@ TEST(kasimtcev_r_monte_carlo_seq, tested_of_x_multiply_y) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  MonteCarloSequential testTaskSequential(taskDataSeq);
+  MonteCarloSequentialKasimtcev testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -79,7 +79,7 @@ TEST(kasimtcev_r_monte_carlo_seq, tested_x_multiply_y_y) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  MonteCarloSequential testTaskSequential(taskDataSeq);
+  MonteCarloSequentialKasimtcev testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -106,7 +106,7 @@ TEST(kasimtcev_r_monte_carlo_seq, testes_summ_of_sin) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  MonteCarloSequential testTaskSequential(taskDataSeq);
+  MonteCarloSequentialKasimtcev testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();
@@ -133,7 +133,7 @@ TEST(kasimtcev_r_monte_carlo_seq, tested_summ_of_cos) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  MonteCarloSequential testTaskSequential(taskDataSeq);
+  MonteCarloSequentialKasimtcev testTaskSequential(taskDataSeq);
   ASSERT_EQ(testTaskSequential.validation(), true);
   testTaskSequential.pre_processing();
   testTaskSequential.run();

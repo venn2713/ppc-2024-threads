@@ -12,7 +12,7 @@ double fcosxcosy(double x, double y) { return cos(x) + cos(y); }
 double fxy(double x, double y) { return x * y; }
 double fxyy(double x, double y) { return x * y * y; }
 
-bool MonteCarloSequential::pre_processing() {
+bool MonteCarloSequentialKasimtcev::pre_processing() {
   internal_order_test();
   Int1[0] = reinterpret_cast<double*>(taskData->inputs[0])[0];
   Int1[1] = reinterpret_cast<double*>(taskData->inputs[0])[1];
@@ -25,12 +25,12 @@ bool MonteCarloSequential::pre_processing() {
   return true;
 }
 
-bool MonteCarloSequential::validation() {
+bool MonteCarloSequentialKasimtcev::validation() {
   internal_order_test();
   return taskData->inputs_count[0] == 2 && taskData->inputs_count[1] == 2 && taskData->outputs_count[0] == 1;
 }
 
-bool MonteCarloSequential::run() {
+bool MonteCarloSequentialKasimtcev::run() {
   internal_order_test();
 
   double h1 = (Int1[1] - Int1[0]) / N;
@@ -49,7 +49,7 @@ bool MonteCarloSequential::run() {
   return true;
 }
 
-bool MonteCarloSequential::post_processing() {
+bool MonteCarloSequentialKasimtcev::post_processing() {
   internal_order_test();
   reinterpret_cast<double*>(taskData->outputs[0])[0] = res;
   return true;

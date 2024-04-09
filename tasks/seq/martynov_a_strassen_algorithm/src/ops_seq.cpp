@@ -85,7 +85,7 @@ bool Strssn_alg::pre_processing() {
   }
   return true;
 }
-std::vector<double> strassen(const std::vector<double>& a, const std::vector<double>& b, int n) {
+std::vector<double> strassenM(const std::vector<double>& a, const std::vector<double>& b, int n) {
   int size = n;
 
   if (size <= 2) {
@@ -104,13 +104,13 @@ std::vector<double> strassen(const std::vector<double>& a, const std::vector<dou
   toSubmatrices(a, a11, a12, a21, a22);
   toSubmatrices(b, b11, b12, b21, b22);
 
-  std::vector<double> p1 = strassen(sum_matrix(a11, a22), sum_matrix(b11, b22), size);
-  std::vector<double> p2 = strassen(sum_matrix(a21, a22), b11, size);
-  std::vector<double> p3 = strassen(a11, sub(b12, b22), size);
-  std::vector<double> p4 = strassen(a22, sub(b21, b11), size);
-  std::vector<double> p5 = strassen(sum_matrix(a11, a12), b22, size);
-  std::vector<double> p6 = strassen(sub(a21, a11), sum_matrix(b11, b12), size);
-  std::vector<double> p7 = strassen(sub(a12, a22), sum_matrix(b21, b22), size);
+  std::vector<double> p1 = strassenM(sum_matrix(a11, a22), sum_matrix(b11, b22), size);
+  std::vector<double> p2 = strassenM(sum_matrix(a21, a22), b11, size);
+  std::vector<double> p3 = strassenM(a11, sub(b12, b22), size);
+  std::vector<double> p4 = strassenM(a22, sub(b21, b11), size);
+  std::vector<double> p5 = strassenM(sum_matrix(a11, a12), b22, size);
+  std::vector<double> p6 = strassenM(sub(a21, a11), sum_matrix(b11, b12), size);
+  std::vector<double> p7 = strassenM(sub(a12, a22), sum_matrix(b21, b22), size);
 
   std::vector<double> c11 = sum_matrix(sum_matrix(p1, p4), sub(p7, p5));
   std::vector<double> c12 = sum_matrix(p3, p5);
@@ -121,7 +121,7 @@ std::vector<double> strassen(const std::vector<double>& a, const std::vector<dou
 bool Strssn_alg::run() {
   internal_order_test();
   n = get_size(first_matrix);
-  result = strassen(first_matrix, second_matrix, n);
+  result = strassenM(first_matrix, second_matrix, n);
   return true;
 }
 std::vector<double> ijkalgorithm(const std::vector<double>& first_matrix, const std::vector<double>& second_matrix,

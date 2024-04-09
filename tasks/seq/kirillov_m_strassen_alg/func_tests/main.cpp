@@ -26,7 +26,7 @@ TEST(kirillov_m_strassen_seq_func_tests, mult4x4) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul(A, B, n);
+  std::vector<double> res = mul1(A, B, n);
 
   // Create Task
   StrassenMatrixMultSequential strassenMatrixMultSequential(taskDataSeq);
@@ -61,7 +61,7 @@ TEST(kirillov_m_strassen_seq_func_tests, mult8x8) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul(A, B, n);
+  std::vector<double> res = mul1(A, B, n);
 
   // Create Task
   StrassenMatrixMultSequential strassenMatrixMultSequential(taskDataSeq);
@@ -96,7 +96,7 @@ TEST(kirillov_m_strassen_seq_func_tests, mult16x16) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul(A, B, n);
+  std::vector<double> res = mul1(A, B, n);
 
   // Create Task
   StrassenMatrixMultSequential strassenMatrixMultSequential(taskDataSeq);
@@ -131,7 +131,7 @@ TEST(kirillov_m_strassen_seq_func_tests, mult32x32) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul(A, B, n);
+  std::vector<double> res = mul1(A, B, n);
 
   // Create Task
   StrassenMatrixMultSequential strassenMatrixMultSequential(taskDataSeq);
@@ -166,7 +166,7 @@ TEST(kirillov_m_strassen_seq_func_tests, mult64x64) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul(A, B, n);
+  std::vector<double> res = mul1(A, B, n);
 
   // Create Task
   StrassenMatrixMultSequential strassenMatrixMultSequential(taskDataSeq);
