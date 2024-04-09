@@ -122,7 +122,7 @@ std::vector<SavotinaPoint> SavotinaMinConvexHull(std::vector<SavotinaPoint> poin
 
 std::vector<SavotinaPoint> SavotinaRandomPoints(double leftBorder, double rightBorder, size_t size) {
   std::vector<SavotinaPoint> arrPoints(size);
-  for (SavotinaPoint& value : arrPoints) value = value.aRandomPoint(leftBorder, rightBorder);
+  for (SavotinaPoint& value : arrPoints) value = SavotinaPoint::aRandomPoint(leftBorder, rightBorder);
   return arrPoints;
 }
 
