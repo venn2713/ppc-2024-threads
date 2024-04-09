@@ -24,7 +24,7 @@ class RadixSortTaskTBB : public ppc::core::Task {
 class RadixSortBody {
  public:
   mutable std::vector<int> VectorResult;
-  RadixSortBody() {}
+  RadixSortBody() = default;
   RadixSortBody(const RadixSortBody&, tbb::split) {}
 
   void operator()(const tbb::blocked_range<std::vector<int>::iterator>& r) {
@@ -35,6 +35,6 @@ class RadixSortBody {
 
   void join(RadixSortBody& rhs) { VectorResult = myMerge(&rhs.VectorResult, &VectorResult); }
 
-  std::vector<int> radixSort(std::vector<int> vec);
-  std::vector<int> myMerge(std::vector<int>* OneVector, std::vector<int>* TwoVector);
+  static std::vector<int> radixSort(std::vector<int> vec);
+  static std::vector<int> myMerge(std::vector<int>* OneVector, std::vector<int>* TwoVector);
 };
