@@ -11,7 +11,7 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   }
 
   if (n <= 2) {
-    return mul(A, B, 2);
+    return mul1(A, B, 2);
   }
 
   int half = n / 2;
@@ -26,8 +26,8 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
   std::vector<double> B21(half * half);
   std::vector<double> B22(half * half);
 
-  splitMatrix(A, A11, A12, A21, A22);
-  splitMatrix(B, B11, B12, B21, B22);
+  splitMatrix2(A, A11, A12, A21, A22);
+  splitMatrix2(B, B11, B12, B21, B22);
 
   std::vector<double> p1 = strassen(add(A11, A22), add(B11, B22), half);
   std::vector<double> p2 = strassen(add(A21, A22), B11, half);
@@ -60,7 +60,7 @@ std::vector<double> joinMatrices(const std::vector<double>& A11, const std::vect
   return A;
 }
 
-void splitMatrix(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
+void splitMatrix2(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
                  std::vector<double>& A21, std::vector<double>& A22) {
   int half = std::sqrt(A.size()) / 2;
   for (int i = 0; i < half; i++) {
