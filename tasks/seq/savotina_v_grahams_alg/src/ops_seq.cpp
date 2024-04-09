@@ -2,7 +2,7 @@
 #include "seq/savotina_v_grahams_alg/include/ops_seq.hpp"
 
 // Quick Sort
-void QuickSort(std::vector<Point>& pointArr, int left, int right) {
+void SavotinaQuickSort(std::vector<SavotinaPoint>& pointArr, int left, int right) {
   if (left > right) return;  // Leave recursion
 
   int piv = 0;
@@ -16,7 +16,7 @@ void QuickSort(std::vector<Point>& pointArr, int left, int right) {
   else
     piv = std::trunc(arrSize / 2) + left;
 
-  Point pivot = pointArr[piv];
+  SavotinaPoint pivot = pointArr[piv];
 
   while (L <= R) {
     while (!(pointArr[0].Compare(pivot, pointArr[L]) >= 0)) ++L;
@@ -30,12 +30,12 @@ void QuickSort(std::vector<Point>& pointArr, int left, int right) {
     }
   }
 
-  QuickSort(pointArr, left, R);
-  QuickSort(pointArr, L, right);
+  SavotinaQuickSort(pointArr, left, R);
+  SavotinaQuickSort(pointArr, L, right);
 }
 
 // A search minimum point in point's array (min x, then min y)
-Point MinPoint(const std::vector<Point>& pointArr) {
+SavotinaPoint SavotinaMinPoint(const std::vector<SavotinaPoint>& pointArr) {
   double minX = pointArr[0].x;
   double minY = 0;
   std::stack<int> S;
@@ -63,11 +63,11 @@ Point MinPoint(const std::vector<Point>& pointArr) {
     S.pop();
   }
 
-  return Point(minX, minY);  // Anonymous object
+  return SavotinaPoint(minX, minY);  // Anonymous object
 }
 
 // Determining the number (index) of a point in the array
-int PointPosition(const Point& p, const std::vector<Point>& pointArr) {
+int SavotinaPointPosition(const SavotinaPoint& p, const std::vector<SavotinaPoint>& pointArr) {
   int pp = 0;
   int pArrSize = pointArr.size();
   for (int i = 0; i < pArrSize; ++i) {
@@ -80,10 +80,10 @@ int PointPosition(const Point& p, const std::vector<Point>& pointArr) {
 }
 
 // Creating a minimum convex hull
-std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
+std::vector<SavotinaPoint> SavotinaMinConvexHull(std::vector<SavotinaPoint> pointArr) {
   if (pointArr.size() < 3) return pointArr;
 
-  std::vector<Point> mch;
+  std::vector<SavotinaPoint> mch;
   int ind1 = 0;
   int ind2 = 1;
   int arrSize = pointArr.size();
@@ -120,13 +120,19 @@ std::vector<Point> MinConvexHull(std::vector<Point> pointArr) {
   return mch;
 }
 
-bool GrahamsAlgorithmSequential::pre_processing() {
+std::vector<SavotinaPoint> SavotinaRandomPoints(double leftBorder, double rightBorder, size_t size) {
+  std::vector<SavotinaPoint> arrPoints(size);
+  for (SavotinaPoint& value : arrPoints) value = value.aRandomPoint(leftBorder, rightBorder);
+  return arrPoints;
+}
+
+bool SavotinaGrahamsAlgorithmSequential::pre_processing() {
   internal_order_test();
 
   // Init value for input and output
-  pointsArr = std::vector<Point>(taskData->inputs_count[0]);
+  pointsArr = std::vector<SavotinaPoint>(taskData->inputs_count[0]);
 
-  auto* pArray = reinterpret_cast<Point*>(taskData->inputs[0]);
+  auto* pArray = reinterpret_cast<SavotinaPoint*>(taskData->inputs[0]);
   for (unsigned i = 0; i < taskData->inputs_count[0]; i++) {
     pointsArr[i] = pArray[i];
   }
@@ -135,34 +141,34 @@ bool GrahamsAlgorithmSequential::pre_processing() {
   return true;
 }
 
-bool GrahamsAlgorithmSequential::validation() {
+bool SavotinaGrahamsAlgorithmSequential::validation() {
   internal_order_test();
 
   // Check count elements of output
   return (taskData->outputs_count[0] <= taskData->inputs_count[0]);
 }
 
-bool GrahamsAlgorithmSequential::run() {
+bool SavotinaGrahamsAlgorithmSequential::run() {
   internal_order_test();
 
   if (pointsArr.empty()) return true;
 
   // Step 1: search the minimum point P0
-  Point P0 = MinPoint(pointsArr);
-  int p0 = PointPosition(P0, pointsArr);
+  SavotinaPoint P0 = SavotinaMinPoint(pointsArr);
+  int p0 = SavotinaPointPosition(P0, pointsArr);
 
   // Step 2: sort all points except P0
   minConvexHull[0].Replace(minConvexHull[p0]);
-  QuickSort(minConvexHull, 1, minConvexHull.size() - 1);  // Quick Sort
+  SavotinaQuickSort(minConvexHull, 1, minConvexHull.size() - 1);  // Quick Sort
 
   // Step 3: build a minimum convex hull
-  minConvexHull = MinConvexHull(minConvexHull);
+  minConvexHull = SavotinaMinConvexHull(minConvexHull);
   return true;
 }
 
-bool GrahamsAlgorithmSequential::post_processing() {
+bool SavotinaGrahamsAlgorithmSequential::post_processing() {
   internal_order_test();
 
-  std::copy(minConvexHull.begin(), minConvexHull.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
+  std::copy(minConvexHull.begin(), minConvexHull.end(), reinterpret_cast<SavotinaPoint*>(taskData->outputs[0]));
   return true;
 }

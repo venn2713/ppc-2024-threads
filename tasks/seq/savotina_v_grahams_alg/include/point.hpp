@@ -2,19 +2,21 @@
 #pragma once
 
 #include <cmath>
+#include <random>
 
-struct Point {
+struct SavotinaPoint {
   double x;
   double y;
 
-  Point();
-  Point(double X, double Y);
-  Point(const Point& p2);
+  SavotinaPoint();
+  SavotinaPoint(double X, double Y);
+  SavotinaPoint(const SavotinaPoint& p2);
 
-  Point& operator=(const Point& p2);
-  bool operator==(const Point& p2) const;
+  SavotinaPoint& operator=(const SavotinaPoint& p2);
+  bool operator==(const SavotinaPoint& p2) const;
 
-  double Distance(const Point& p) const;
-  void Replace(Point& p2);
-  int Compare(const Point& pivot, const Point& P) const;
+  double Distance(const SavotinaPoint& p) const;
+  void Replace(SavotinaPoint& p2);
+  int Compare(const SavotinaPoint& pivot, const SavotinaPoint& P) const;
+  SavotinaPoint aRandomPoint(double min, double max);
 };
