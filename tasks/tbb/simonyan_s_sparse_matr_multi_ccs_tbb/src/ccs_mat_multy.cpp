@@ -1,14 +1,16 @@
 // Copyright 2024 Simonyan Suren
 
-#include "omp/simonyan_s_sparse_matr_multi_ccs_omp/include/ccs_mat_multy.hpp"
+#include "tbb/simonyan_s_sparse_matr_multi_ccs_tbb/include/ccs_mat_multy.hpp"
 
-#include <thread>
+#include <tbb/blocked_range.h>
+#include <tbb/parallel_for.h>
+#include <tbb/tbb.h>
 
 using namespace std::chrono_literals;
 
 using namespace std;
 
-bool SparseOmpMatrixMultiSequential::pre_processing() {
+bool SparseTBBMatrixMultiSequential::pre_processing() {
   internal_order_test();
   auto* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
   auto* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
@@ -52,14 +54,14 @@ bool SparseOmpMatrixMultiSequential::pre_processing() {
   return true;
 }
 
-bool SparseOmpMatrixMultiSequential::validation() {
+bool SparseTBBMatrixMultiSequential::validation() {
   internal_order_test();
   return taskData->inputs_count[1] == taskData->inputs_count[2] &&
          taskData->outputs_count[0] == taskData->inputs_count[0] &&
          taskData->outputs_count[1] == taskData->inputs_count[3];
 }
 
-bool SparseOmpMatrixMultiSequential::run() {
+bool SparseTBBMatrixMultiSequential::run() {
   internal_order_test();
 
   values3.clear();
@@ -95,7 +97,7 @@ bool SparseOmpMatrixMultiSequential::run() {
   return true;
 }
 
-bool SparseOmpMatrixMultiSequential::post_processing() {
+bool SparseTBBMatrixMultiSequential::post_processing() {
   internal_order_test();
 
   auto* out_ptr = reinterpret_cast<double*>(taskData->outputs[0]);
@@ -108,7 +110,7 @@ bool SparseOmpMatrixMultiSequential::post_processing() {
   return true;
 }
 
-bool SparseOmpMatrixMultiParallel::pre_processing() {
+bool SparseTBBMatrixMultiParallel::pre_processing() {
   internal_order_test();
   auto* matrix1 = reinterpret_cast<double*>(taskData->inputs[0]);
   auto* matrix2 = reinterpret_cast<double*>(taskData->inputs[1]);
@@ -152,21 +154,25 @@ bool SparseOmpMatrixMultiParallel::pre_processing() {
   return true;
 }
 
-bool SparseOmpMatrixMultiParallel::validation() {
+bool SparseTBBMatrixMultiParallel::validation() {
   internal_order_test();
   return taskData->inputs_count[1] == taskData->inputs_count[2] &&
          taskData->outputs_count[0] == taskData->inputs_count[0] &&
          taskData->outputs_count[1] == taskData->inputs_count[3];
 }
 
-bool SparseOmpMatrixMultiParallel::run() {
+bool SparseTBBMatrixMultiParallel::run() {
   internal_order_test();
 
   values3.clear();
   rows3.clear();
   colPtr3.clear();
-#pragma omp parallel for
-  for (int j = 0; j < numCols1; j++) {
+
+  values3.resize(numCols2 * numRows1);  // Выделение памяти заранее для values3
+  rows3.reserve(numCols2 * numRows1);   // Резервирование места в rows3
+  colPtr3.reserve(numCols2 + 1);        // Резервирование места в colPtr3
+
+  tbb::parallel_for(0, numCols1, [&](int j) {
     for (int k = colPtr2[j]; k < colPtr2[j + 1]; k++) {
       int column2 = j;
       int row2 = rows2[k];
@@ -175,42 +181,27 @@ bool SparseOmpMatrixMultiParallel::run() {
         double val1 = values1[l];
         double val2 = values2[k];
         int index = row1 * numCols2 + column2;
-#pragma omp atomic
         result[index] += val1 * val2;
       }
     }
-  }
+  });
 
-  std::vector<int> local_colPtr3(numCols2 + 1);
-  std::vector<int> local_rows3;
-  std::vector<double> local_values3;
-
-#pragma omp parallel for
-  for (int j = 0; j < numCols2; j++) {
-    std::vector<int> temp_rows3;
-    std::vector<double> temp_values3;
+  tbb::parallel_for(0, numCols2, [&](int j) {
+    colPtr3.push_back(values3.size());
     for (int i = 0; i < numRows1; i++) {
       int ind = i * numCols2 + j;
       if (result[ind] != 0.0) {
-        temp_values3.push_back(result[ind]);
-        temp_rows3.push_back(i);
+        values3[ind] = result[ind];
+        rows3.push_back(i);
       }
     }
-    local_colPtr3[j + 1] = temp_values3.size();
-#pragma omp critical
-    {
-      local_values3.insert(local_values3.end(), temp_values3.begin(), temp_values3.end());
-      local_rows3.insert(local_rows3.end(), temp_rows3.begin(), temp_rows3.end());
-    }
-  }
+  });
 
-  colPtr3 = local_colPtr3;
-  values3 = local_values3;
-  rows3 = local_rows3;
+  colPtr3.push_back(values3.size());
   return true;
 }
 
-bool SparseOmpMatrixMultiParallel::post_processing() {
+bool SparseTBBMatrixMultiParallel::post_processing() {
   internal_order_test();
 
   auto* out_ptr = reinterpret_cast<double*>(taskData->outputs[0]);

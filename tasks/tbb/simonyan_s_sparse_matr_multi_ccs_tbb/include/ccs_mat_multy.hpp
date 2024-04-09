@@ -1,14 +1,13 @@
 // Copyright 2023 Simonyan Suren
 #pragma once
 
-#include <string>
 #include <vector>
 
 #include "core/task/include/task.hpp"
 
-class SparseOmpMatrixMultiSequential : public ppc::core::Task {
+class SparseTBBMatrixMultiSequential : public ppc::core::Task {
  public:
-  explicit SparseOmpMatrixMultiSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
+  explicit SparseTBBMatrixMultiSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
       : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
@@ -34,9 +33,9 @@ class SparseOmpMatrixMultiSequential : public ppc::core::Task {
   double* result{};
 };
 
-class SparseOmpMatrixMultiParallel : public ppc::core::Task {
+class SparseTBBMatrixMultiParallel : public ppc::core::Task {
  public:
-  explicit SparseOmpMatrixMultiParallel(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
+  explicit SparseTBBMatrixMultiParallel(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;

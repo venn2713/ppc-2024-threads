@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "omp/simonyan_s_sparse_matr_multi_ccs_omp/include/ccs_mat_multy.hpp"
+#include "tbb/simonyan_s_sparse_matr_multi_ccs_tbb/include/ccs_mat_multy.hpp"
 
-TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes) {
+TEST(simonyan_s_sparse_matr_multi_ccs_tbb, test_sizes) {
   size_t n1 = 4;
   size_t m1 = 5;
   size_t n2 = 3;
@@ -31,8 +31,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes) {
   taskDataSeq->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiSequential sparseOmpMatrixMultiSequential(taskDataSeq);
-  ASSERT_FALSE(sparseOmpMatrixMultiSequential.validation());
+  SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
+  ASSERT_FALSE(sparseTBBMatrixMultiSequential.validation());
 
   // Create data
   std::vector<double> in3(n1 * m1);
@@ -53,11 +53,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes) {
   taskDataParallel->outputs_count.emplace_back(n1);
   taskDataParallel->outputs_count.emplace_back(m2);
   // Create Task
-  SparseOmpMatrixMultiParallel sparseOmpMatrixMultiParallel(taskDataParallel);
-  ASSERT_FALSE(sparseOmpMatrixMultiParallel.validation());
+  SparseTBBMatrixMultiParallel sparseTBBMatrixMultiParallel(taskDataParallel);
+  ASSERT_FALSE(sparseTBBMatrixMultiParallel.validation());
 }
 
-TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes2) {
+TEST(simonyan_s_sparse_matr_multi_ccs_tbb, test_sizes2) {
   size_t n1 = 4;
   size_t m1 = 4;
   size_t n2 = 4;
@@ -83,8 +83,8 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes2) {
   taskDataSeq->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiSequential sparseOmpMatrixMultiSequential(taskDataSeq);
-  ASSERT_EQ(sparseOmpMatrixMultiSequential.validation(), true);
+  SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
+  ASSERT_EQ(sparseTBBMatrixMultiSequential.validation(), true);
 
   // Create data
   std::vector<double> in3(n1 * m1);
@@ -105,11 +105,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_sizes2) {
   taskDataParallel->outputs_count.emplace_back(n1);
   taskDataParallel->outputs_count.emplace_back(m2);
   // Create Task
-  SparseOmpMatrixMultiParallel sparseOmpMatrixMultiParallel(taskDataParallel);
-  ASSERT_EQ(sparseOmpMatrixMultiParallel.validation(), true);
+  SparseTBBMatrixMultiParallel sparseTBBMatrixMultiParallel(taskDataParallel);
+  ASSERT_EQ(sparseTBBMatrixMultiParallel.validation(), true);
 }
 
-TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_multy_correct) {
+TEST(simonyan_s_sparse_matr_multi_ccs_tbb, test_multy_correct) {
   size_t n1 = 4;
   size_t m1 = 4;
   size_t n2 = 4;
@@ -134,11 +134,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_multy_correct) {
   taskDataSeq->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiSequential sparseOmpMatrixMultiSequential(taskDataSeq);
-  sparseOmpMatrixMultiSequential.validation();
-  sparseOmpMatrixMultiSequential.pre_processing();
-  sparseOmpMatrixMultiSequential.run();
-  sparseOmpMatrixMultiSequential.post_processing();
+  SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
+  sparseTBBMatrixMultiSequential.validation();
+  sparseTBBMatrixMultiSequential.pre_processing();
+  sparseTBBMatrixMultiSequential.run();
+  sparseTBBMatrixMultiSequential.post_processing();
 
   size_t k = 0;
 
@@ -168,11 +168,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_multy_correct) {
   taskDataParallel->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiParallel sparseOmpMatrixMultiParallel(taskDataSeq);
-  sparseOmpMatrixMultiParallel.validation();
-  sparseOmpMatrixMultiParallel.pre_processing();
-  sparseOmpMatrixMultiParallel.run();
-  sparseOmpMatrixMultiParallel.post_processing();
+  SparseTBBMatrixMultiParallel sparseTBBMatrixMultiParallel(taskDataSeq);
+  sparseTBBMatrixMultiParallel.validation();
+  sparseTBBMatrixMultiParallel.pre_processing();
+  sparseTBBMatrixMultiParallel.run();
+  sparseTBBMatrixMultiParallel.post_processing();
 
   size_t ch = 0;
 
@@ -185,7 +185,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, test_multy_correct) {
   ASSERT_EQ(ch, n1 * m2);
 }
 
-TEST(simonyan_s_sparse_matr_multi_ccs_omp, inverse_matrix) {
+TEST(simonyan_s_sparse_matr_multi_ccs_tbb, inverse_matrix) {
   size_t n1 = 4;
   size_t m1 = 4;
   size_t n2 = 4;
@@ -210,11 +210,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, inverse_matrix) {
   taskDataSeq->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiSequential sparseOmpMatrixMultiSequential(taskDataSeq);
-  sparseOmpMatrixMultiSequential.validation();
-  sparseOmpMatrixMultiSequential.pre_processing();
-  sparseOmpMatrixMultiSequential.run();
-  sparseOmpMatrixMultiSequential.post_processing();
+  SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
+  sparseTBBMatrixMultiSequential.validation();
+  sparseTBBMatrixMultiSequential.pre_processing();
+  sparseTBBMatrixMultiSequential.run();
+  sparseTBBMatrixMultiSequential.post_processing();
 
   size_t k = 0;
 
@@ -244,11 +244,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, inverse_matrix) {
   taskDataParallel->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiParallel sparseOmpMatrixMultiParallel(taskDataSeq);
-  sparseOmpMatrixMultiParallel.validation();
-  sparseOmpMatrixMultiParallel.pre_processing();
-  sparseOmpMatrixMultiParallel.run();
-  sparseOmpMatrixMultiParallel.post_processing();
+  SparseTBBMatrixMultiParallel sparseTBBMatrixMultiParallel(taskDataSeq);
+  sparseTBBMatrixMultiParallel.validation();
+  sparseTBBMatrixMultiParallel.pre_processing();
+  sparseTBBMatrixMultiParallel.run();
+  sparseTBBMatrixMultiParallel.post_processing();
 
   size_t ch = 0;
 
@@ -261,7 +261,7 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, inverse_matrix) {
   ASSERT_EQ(ch, n1 * m2);
 }
 
-TEST(simonyan_s_sparse_matr_multi_ccs_omp, zero_matrix) {
+TEST(simonyan_s_sparse_matr_multi_ccs_tbb, zero_matrix) {
   size_t n1 = 3;
   size_t m1 = 3;
   size_t n2 = 3;
@@ -286,11 +286,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, zero_matrix) {
   taskDataSeq->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiSequential sparseOmpMatrixMultiSequential(taskDataSeq);
-  sparseOmpMatrixMultiSequential.validation();
-  sparseOmpMatrixMultiSequential.pre_processing();
-  sparseOmpMatrixMultiSequential.run();
-  sparseOmpMatrixMultiSequential.post_processing();
+  SparseTBBMatrixMultiSequential sparseTBBMatrixMultiSequential(taskDataSeq);
+  sparseTBBMatrixMultiSequential.validation();
+  sparseTBBMatrixMultiSequential.pre_processing();
+  sparseTBBMatrixMultiSequential.run();
+  sparseTBBMatrixMultiSequential.post_processing();
 
   size_t k = 0;
 
@@ -320,11 +320,11 @@ TEST(simonyan_s_sparse_matr_multi_ccs_omp, zero_matrix) {
   taskDataParallel->outputs_count.emplace_back(m2);
 
   // Create Task
-  SparseOmpMatrixMultiParallel sparseOmpMatrixMultiParallel(taskDataSeq);
-  sparseOmpMatrixMultiParallel.validation();
-  sparseOmpMatrixMultiParallel.pre_processing();
-  sparseOmpMatrixMultiParallel.run();
-  sparseOmpMatrixMultiParallel.post_processing();
+  SparseTBBMatrixMultiParallel sparseTBBMatrixMultiParallel(taskDataSeq);
+  sparseTBBMatrixMultiParallel.validation();
+  sparseTBBMatrixMultiParallel.pre_processing();
+  sparseTBBMatrixMultiParallel.run();
+  sparseTBBMatrixMultiParallel.post_processing();
 
   size_t ch = 0;
 
