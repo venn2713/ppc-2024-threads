@@ -46,7 +46,7 @@ std::vector<double> strassenKirillov(const std::vector<double>& A, const std::ve
 }
 
 std::vector<double> joinMatricesKirillov(const std::vector<double>& A11, const std::vector<double>& A12,
-                                 const std::vector<double>& A21, const std::vector<double>& A22, int n) {
+                                         const std::vector<double>& A21, const std::vector<double>& A22, int n) {
   int half = n / 2;
   std::vector<double> A(n * n, 0.0);
   for (int i = 0; i < half; i++) {
@@ -61,7 +61,7 @@ std::vector<double> joinMatricesKirillov(const std::vector<double>& A11, const s
 }
 
 void splitMatrixKirillov(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
-                  std::vector<double>& A21, std::vector<double>& A22) {
+                         std::vector<double>& A21, std::vector<double>& A22) {
   int half = std::sqrt(A.size()) / 2;
   for (int i = 0; i < half; i++) {
     for (int j = 0; j < half; j++) {
