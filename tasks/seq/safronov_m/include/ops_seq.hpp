@@ -25,4 +25,4 @@ void GetRandomValue(double *m, int size);
 void identityMatrix(double *m, int n, double k = 1.0);
 void ModifidentityMatrix(double *m, int n, double k = 1.0);
 
-std::vector<double> mul(const std::vector<double> &A, const std::vector<double> &B, int n);
+std::vector<double> mulSafronov(const std::vector<double> &A, const std::vector<double> &B, int n);
