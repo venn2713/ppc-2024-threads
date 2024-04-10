@@ -8,12 +8,13 @@
 
 #include "core/task/include/task.hpp"
 
+namespace KuznetsovArtyomSeq {
 bool isEqual(double valueOne, double valueTwo, double eps = 0.01);
 
 bool validateMatrix(size_t sizeOne, size_t sizeTwo);
 
 std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne, const std::vector<double>& matrTwo,
-                                        size_t size, size_t block);
+                                        int size, int block);
 
 std::vector<double> multMatrSquare(const std::vector<double>& matrOne, const std::vector<double>& matrTwo, size_t size);
 
@@ -34,3 +35,4 @@ class KuznetsovCannonMatrMultSeq : public ppc::core::Task {
   size_t mSize;
   size_t mBlock;
 };
+}  // namespace KuznetsovArtyomSeq

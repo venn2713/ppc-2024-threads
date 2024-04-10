@@ -5,6 +5,7 @@
 
 using namespace std::chrono_literals;
 
+namespace KuznetsovArtyomSeq {
 enum Order : size_t { MATR_ONE = 0, MATR_TWO = 1, SIZE = 2, BLOCK = 3, MATR_RES = 0 };
 
 bool isEqual(double valueOne, double valueTwo, double eps) { return std::fabs(valueOne - valueTwo) <= eps; }
@@ -12,23 +13,23 @@ bool isEqual(double valueOne, double valueTwo, double eps) { return std::fabs(va
 bool validateMatrix(size_t sizeOne, size_t sizeTwo) { return sizeOne == sizeTwo && sizeOne != 0; }
 
 std::vector<double> CannonMatrixMultSeq(const std::vector<double>& matrOne, const std::vector<double>& matrTwo,
-                                        size_t size, size_t block) {
+                                        int size, int block) {
   if (!validateMatrix(matrOne.size(), matrTwo.size())) throw std::invalid_argument{"invalid matrixs"};
 
   if (block > size) throw std::invalid_argument{"Wrong size block"};
 
-  size_t jbMin = 0;
-  size_t kbMin = 0;
+  int jbMin = 0;
+  int kbMin = 0;
   std::vector<double> matrRes(size * size, 0.0);
 
-  for (size_t jb = 0; jb < size; jb += block) {
-    for (size_t kb = 0; kb < size; kb += block) {
+  for (int jb = 0; jb < size; jb += block) {
+    for (int kb = 0; kb < size; kb += block) {
       jbMin = std::min(jb + block, size);
       kbMin = std::min(kb + block, size);
 
-      for (size_t i = 0; i < size; ++i)
-        for (size_t k = kb; k < kbMin; ++k)
-          for (size_t j = jb; j < jbMin; ++j) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
+      for (int i = 0; i < size; ++i)
+        for (int k = kb; k < kbMin; ++k)
+          for (int j = jb; j < jbMin; ++j) matrRes[i * size + j] += matrOne[i * size + k] * matrTwo[k * size + j];
     }
   }
 
@@ -106,3 +107,4 @@ bool KuznetsovCannonMatrMultSeq::post_processing() {
   std::copy(mMatrRes.begin(), mMatrRes.end(), reinterpret_cast<double*>(taskData->outputs[MATR_RES]));
   return true;
 }
+}  // namespace KuznetsovArtyomSeq

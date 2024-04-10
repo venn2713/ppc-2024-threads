@@ -6,16 +6,16 @@
 #include "core/perf/include/perf.hpp"
 #include "seq/kuznetsov_a_cannon_matr_mult/include/ops_seq.hpp"
 
-TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
+TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_900x900) {
   // Create data
-  size_t size = 500;
-  size_t block = 250;
+  size_t size = 900;
+  size_t block = 450;
 
   double minVal = -100.0;
   double maxVal = 100.0;
 
-  auto inputMatrOne = getRandomSquareMatrix(size, minVal, maxVal);
-  auto inputMatrTwo = getRandomSquareMatrix(size, minVal, maxVal);
+  auto inputMatrOne = KuznetsovArtyomSeq::getRandomSquareMatrix(size, minVal, maxVal);
+  auto inputMatrTwo = KuznetsovArtyomSeq::getRandomSquareMatrix(size, minVal, maxVal);
   std::vector<double> outputMatr(size * size, 0.0);
 
   // Create TaskData
@@ -39,10 +39,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  auto testTaskSequential = std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -65,20 +65,20 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_500x500) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
 
-TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
+TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_800x800) {
   // Create data
-  size_t size = 600;
-  size_t block = 300;
+  size_t size = 800;
+  size_t block = 400;
 
   double minVal = -100.0;
   double maxVal = 100.0;
 
-  auto inputMatrOne = getRandomSquareMatrix(size, minVal, maxVal);
-  auto inputMatrTwo = getRandomSquareMatrix(size, minVal, maxVal);
+  auto inputMatrOne = KuznetsovArtyomSeq::getRandomSquareMatrix(size, minVal, maxVal);
+  auto inputMatrTwo = KuznetsovArtyomSeq::getRandomSquareMatrix(size, minVal, maxVal);
   std::vector<double> outputMatr(size * size, 0.0);
 
   // Create TaskData
@@ -102,10 +102,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  auto testTaskSequential = std::make_shared<KuznetsovCannonMatrMultSeq>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -128,6 +128,6 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_perf_tests, test_600x600) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }

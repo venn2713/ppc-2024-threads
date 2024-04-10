@@ -35,10 +35,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_3x3) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
+  KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
 
   ASSERT_TRUE(testTaskSequential.validation());
   testTaskSequential.pre_processing();
@@ -48,7 +48,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_3x3) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
 
@@ -82,10 +82,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_4x4) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
+  KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
 
   ASSERT_TRUE(testTaskSequential.validation());
   testTaskSequential.pre_processing();
@@ -95,7 +95,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_4x4) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
 
@@ -131,10 +131,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_5x5) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
+  KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
 
   ASSERT_TRUE(testTaskSequential.validation());
   testTaskSequential.pre_processing();
@@ -144,7 +144,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_5x5) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
 
@@ -180,10 +180,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_6x6) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
+  KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
 
   ASSERT_TRUE(testTaskSequential.validation());
   testTaskSequential.pre_processing();
@@ -193,7 +193,7 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_6x6) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
 
@@ -231,10 +231,10 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_7x7) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(outputMatr.data()));
   taskDataSeq->outputs_count.emplace_back(outputMatr.size());
 
-  auto resSeq = multMatrSquare(inputMatrOne, inputMatrTwo, size);
+  auto resSeq = KuznetsovArtyomSeq::multMatrSquare(inputMatrOne, inputMatrTwo, size);
 
   // Create Task
-  KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
+  KuznetsovArtyomSeq::KuznetsovCannonMatrMultSeq testTaskSequential(taskDataSeq);
 
   ASSERT_TRUE(testTaskSequential.validation());
   testTaskSequential.pre_processing();
@@ -244,6 +244,6 @@ TEST(Kuznetsov_a_cannon_matr_mult_seq_func_tests, mult_7x7) {
   auto resSize = resSeq.size();
 
   for (size_t i = 0; i < resSize; ++i) {
-    ASSERT_TRUE(isEqual(resSeq[i], outputMatr[i]));
+    ASSERT_TRUE(KuznetsovArtyomSeq::isEqual(resSeq[i], outputMatr[i]));
   }
 }
