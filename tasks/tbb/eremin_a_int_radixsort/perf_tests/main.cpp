@@ -7,7 +7,7 @@
 #include "core/perf/include/perf.hpp"
 #include "tbb/eremin_a_int_radixsort/include/ops_seq.hpp"
 
-std::vector<int> getRandom(int size) {
+std::vector<int> getRandomEremin(int size) {
   std::vector<int> randomVector(size);
   std::random_device dev;
   std::mt19937 gen(dev());
@@ -21,7 +21,7 @@ TEST(eremin_a_int_radixsort_tbb, test_pipeline_run) {
   const int count = 5000000;
 
   // Create data
-  std::vector<int> in = getRandom(count);
+  std::vector<int> in = getRandomEremin(count);
   std::vector<int> answer = in;
   std::vector<int> out(count);
 
@@ -59,7 +59,7 @@ TEST(eremin_a_int_radixsort_tbb, test_task_run) {
   const int count = 5000000;
 
   // Create data
-  std::vector<int> in = getRandom(count);
+  std::vector<int> in = getRandomEremin(count);
   std::vector<int> answer = in;
   std::vector<int> out(count);
 
