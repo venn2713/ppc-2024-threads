@@ -25,7 +25,7 @@ std::vector<double> add(const std::vector<double>& A, const std::vector<double>&
 std::vector<double> sub(const std::vector<double>& A, const std::vector<double>& B);
 std::vector<double> mul1(const std::vector<double>& A, const std::vector<double>& B, int n);
 void splitMatrix2(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
-                 std::vector<double>& A21, std::vector<double>& A22);
+                  std::vector<double>& A21, std::vector<double>& A22);
 std::vector<double> joinMatrices(const std::vector<double>& A11, const std::vector<double>& A12,
                                  const std::vector<double>& A21, const std::vector<double>& A22, int n);
 std::vector<double> generateRandomMatrix(int n);

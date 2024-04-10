@@ -16,7 +16,7 @@ double angle1(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point
                    : (dx < 0 ? 2 - dy / (-dx - dy) : 3 + dx / (dx - dy));
 }
 bool compareForSort1(const KriseevMTaskSeq::Point &origin, const KriseevMTaskSeq::Point &a,
-                    const KriseevMTaskSeq::Point &b) {
+                     const KriseevMTaskSeq::Point &b) {
   double angleA = angle1(origin, a);
   double angleB = angle1(origin, b);
   if (angleA < angleB) {

@@ -69,7 +69,7 @@ void splitMatrix(const std::vector<double>& mSplit, std::vector<double>& a11, st
 }
 
 std::vector<double> mergeMatrix1(std::vector<double> a11, std::vector<double> a12, std::vector<double> a21,
-                                std::vector<double> a22) {
+                                 std::vector<double> a22) {
   int n = a11.size();
   std::vector<double> res(4 * n, 0.0);
   n = std::sqrt(n);

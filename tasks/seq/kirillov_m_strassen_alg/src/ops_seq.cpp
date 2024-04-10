@@ -61,7 +61,7 @@ std::vector<double> joinMatrices(const std::vector<double>& A11, const std::vect
 }
 
 void splitMatrix2(const std::vector<double>& A, std::vector<double>& A11, std::vector<double>& A12,
-                 std::vector<double>& A21, std::vector<double>& A22) {
+                  std::vector<double>& A21, std::vector<double>& A22) {
   int half = std::sqrt(A.size()) / 2;
   for (int i = 0; i < half; i++) {
     for (int j = 0; j < half; j++) {
