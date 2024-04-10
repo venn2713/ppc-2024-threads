@@ -16,7 +16,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Simple_Array) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -34,7 +34,7 @@ TEST(ChuvashovABatcherFuncTests, Test_100_Size) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -52,7 +52,7 @@ TEST(ChuvashovABatcherFuncTests, Test_200_Size) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -70,7 +70,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Little_Size) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -88,7 +88,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Only_Negative) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -106,7 +106,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Only_Zeroes) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();
@@ -124,7 +124,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Already_Sorted) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  SequentialBatcherSort testSeq(seqData);
+  Chuvashov_SequentialBatcherSort testSeq(seqData);
   ASSERT_EQ(testSeq.validation(), true);
   testSeq.pre_processing();
   testSeq.run();

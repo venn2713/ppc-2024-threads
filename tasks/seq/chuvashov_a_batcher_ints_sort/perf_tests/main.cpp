@@ -17,7 +17,7 @@ TEST(ChuvashovABatcherPerfTests, Test_Run_Task) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  auto testSeq = std::make_shared<SequentialBatcherSort>(seqData);
+  auto testSeq = std::make_shared<Chuvashov_SequentialBatcherSort>(seqData);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;
@@ -46,7 +46,7 @@ TEST(ChuvashovABatcherPerfTests, Test_Run_Pipeline) {
   seqData->outputs.emplace_back(reinterpret_cast<uint8_t *>(result.data()));
   seqData->outputs_count.emplace_back(result.size());
 
-  auto testSeq = std::make_shared<SequentialBatcherSort>(seqData);
+  auto testSeq = std::make_shared<Chuvashov_SequentialBatcherSort>(seqData);
 
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
   perfAttr->num_running = 10;

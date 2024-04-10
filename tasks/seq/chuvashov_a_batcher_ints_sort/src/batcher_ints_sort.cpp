@@ -104,7 +104,7 @@ std::vector<int> Chuvashov_BatcherSort(const std::vector<int> &arr1, const std::
   return result;
 }
 
-bool SequentialBatcherSort::pre_processing() {
+bool Chuvashov_SequentialBatcherSort::pre_processing() {
   internal_order_test();
   input = std::vector<int>(taskData->inputs_count[0]);
   auto *tmp_ptr_A = reinterpret_cast<int *>(taskData->inputs[0]);
@@ -124,18 +124,18 @@ bool SequentialBatcherSort::pre_processing() {
   return true;
 }
 
-bool SequentialBatcherSort::validation() {
+bool Chuvashov_SequentialBatcherSort::validation() {
   internal_order_test();
   return std::is_sorted(arr1.begin(), arr1.end()) && std::is_sorted(arr2.begin(), arr2.end());
 }
 
-bool SequentialBatcherSort::run() {
+bool Chuvashov_SequentialBatcherSort::run() {
   internal_order_test();
   output = Chuvashov_BatcherSort(arr1, arr2);
   return true;
 }
 
-bool SequentialBatcherSort::post_processing() {
+bool Chuvashov_SequentialBatcherSort::post_processing() {
   internal_order_test();
   std::copy(output.begin(), output.end(), reinterpret_cast<int *>(taskData->outputs[0]));
   return true;
