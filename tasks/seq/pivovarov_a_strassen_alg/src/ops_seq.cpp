@@ -66,7 +66,7 @@ std::vector<double> subMatrix(const std::vector<double>& A, const std::vector<do
 }
 
 void splitMatrix1(const std::vector<double>& mSplit, std::vector<double>& a11, std::vector<double>& a12,
-                 std::vector<double>& a21, std::vector<double>& a22) {
+                  std::vector<double>& a21, std::vector<double>& a22) {
   int n = std::sqrt(mSplit.size()) / 2;
 
   for (int i = 0; i < n; i++) {
