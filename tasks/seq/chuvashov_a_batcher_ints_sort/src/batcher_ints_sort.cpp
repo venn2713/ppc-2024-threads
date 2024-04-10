@@ -3,7 +3,7 @@
 #include "seq/chuvashov_a_batcher_ints_sort/include/batcher_ints_sort.hpp"
 using namespace std::chrono_literals;
 
-std::vector<int> BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
+std::vector<int> Chuvashov_BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() / 2 + arr2.size() / 2 + arr1.size() % 2 + arr2.size() % 2);
   size_t i = 0;
   size_t j = 0;
@@ -35,7 +35,7 @@ std::vector<int> BatcherEven(std::vector<int> arr1, std::vector<int> arr2) {
   return result;
 }
 
-std::vector<int> BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
+std::vector<int> Chuvashov_BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() / 2 + arr2.size() / 2);
   size_t i = 0;
   size_t j = 1;
@@ -67,7 +67,7 @@ std::vector<int> BatcherOdd(std::vector<int> arr1, std::vector<int> arr2) {
   return result;
 }
 
-std::vector<int> merge(std::vector<int> arr1, std::vector<int> arr2) {
+std::vector<int> Chuvashov_merge(std::vector<int> arr1, std::vector<int> arr2) {
   std::vector<int> result(arr1.size() + arr2.size());
   size_t i = 0;
   size_t j = 0;
@@ -97,10 +97,10 @@ std::vector<int> merge(std::vector<int> arr1, std::vector<int> arr2) {
   return result;
 }
 
-std::vector<int> BatcherSort(const std::vector<int> &arr1, const std::vector<int> &arr2) {
-  std::vector<int> even = BatcherEven(arr1, arr2);
-  std::vector<int> odd = BatcherOdd(arr1, arr2);
-  std::vector<int> result = merge(even, odd);
+std::vector<int> Chuvashov_BatcherSort(const std::vector<int> &arr1, const std::vector<int> &arr2) {
+  std::vector<int> even = Chuvashov_BatcherEven(arr1, arr2);
+  std::vector<int> odd = Chuvashov_BatcherOdd(arr1, arr2);
+  std::vector<int> result = Chuvashov_merge(even, odd);
   return result;
 }
 
@@ -131,8 +131,7 @@ bool SequentialBatcherSort::validation() {
 
 bool SequentialBatcherSort::run() {
   internal_order_test();
-  output = BatcherSort(arr1, arr2);
-  std::this_thread::sleep_for(35ms);
+  output = Chuvashov_BatcherSort(arr1, arr2);
   return true;
 }
 

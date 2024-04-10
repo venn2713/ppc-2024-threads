@@ -8,7 +8,7 @@
 #include "seq/chuvashov_a_batcher_ints_sort/include/batcher_ints_sort.hpp"
 
 TEST(ChuvashovABatcherPerfTests, Test_Run_Task) {
-  std::vector<int> vect = GenerateVector(1000);
+  std::vector<int> vect = Chuvashov_GenerateVector(1'000'000);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> seqData = std::make_shared<ppc::core::TaskData>();
@@ -37,7 +37,7 @@ TEST(ChuvashovABatcherPerfTests, Test_Run_Task) {
 }
 
 TEST(ChuvashovABatcherPerfTests, Test_Run_Pipeline) {
-  std::vector<int> vect = GenerateVector(1000);
+  std::vector<int> vect = Chuvashov_GenerateVector(1'000'000);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> seqData = std::make_shared<ppc::core::TaskData>();

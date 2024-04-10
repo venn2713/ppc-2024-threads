@@ -25,7 +25,7 @@ TEST(ChuvashovABatcherFuncTests, Test_Simple_Array) {
 }
 
 TEST(ChuvashovABatcherFuncTests, Test_100_Size) {
-  std::vector<int> vect = GenerateVector(100);
+  std::vector<int> vect = Chuvashov_GenerateVector(100);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> seqData = std::make_shared<ppc::core::TaskData>();
@@ -43,7 +43,7 @@ TEST(ChuvashovABatcherFuncTests, Test_100_Size) {
 }
 
 TEST(ChuvashovABatcherFuncTests, Test_200_Size) {
-  std::vector<int> vect = GenerateVector(200);
+  std::vector<int> vect = Chuvashov_GenerateVector(200);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> seqData = std::make_shared<ppc::core::TaskData>();
@@ -61,7 +61,7 @@ TEST(ChuvashovABatcherFuncTests, Test_200_Size) {
 }
 
 TEST(ChuvashovABatcherFuncTests, Test_Little_Size) {
-  std::vector<int> vect = GenerateVector(2);
+  std::vector<int> vect = Chuvashov_GenerateVector(2);
   std::vector<int> result(vect.size(), 0);
 
   std::shared_ptr<ppc::core::TaskData> seqData = std::make_shared<ppc::core::TaskData>();

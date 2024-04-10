@@ -23,7 +23,7 @@ class SequentialBatcherSort : public ppc::core::Task {
   std::vector<int> input, output, arr1, arr2;
 };
 
-inline std::vector<int> GenerateVector(int size) {
+inline std::vector<int> Chuvashov_GenerateVector(int size) {
   if (size < 1) throw -1;
   std::mt19937 gen;
   std::vector<int> vec(size);
