@@ -10,8 +10,8 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   const int n = 64;
 
   // Create data
-  std::vector<double> A = generateRandomMatrix(n);
-  std::vector<double> B = generateRandomMatrix(n);
+  std::vector<double> A = generateRandomMatrixKirillov(n);
+  std::vector<double> B = generateRandomMatrixKirillov(n);
   std::vector<double> out(n * n);
 
   // Create TaskData
@@ -27,7 +27,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_pipeline_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul1(A, B, n);
+  std::vector<double> res = mulKirillov(A, B, n);
   // Create Task
   auto strassenMatrixMultSequential = std::make_shared<StrassenMatrixMultSequential>(taskDataSeq);
 
@@ -57,8 +57,8 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_task_run) {
   const int n = 64;
 
   // Create data
-  std::vector<double> A = generateRandomMatrix(n);
-  std::vector<double> B = generateRandomMatrix(n);
+  std::vector<double> A = generateRandomMatrixKirillov(n);
+  std::vector<double> B = generateRandomMatrixKirillov(n);
   std::vector<double> out(n * n);
 
   // Create TaskData
@@ -74,7 +74,7 @@ TEST(kirillov_m_strassen_seq_perf_tests, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
 
-  std::vector<double> res = mul1(A, B, n);
+  std::vector<double> res = mulKirillov(A, B, n);
   // Create Task
   auto strassenMatrixMultSequential = std::make_shared<StrassenMatrixMultSequential>(taskDataSeq);
 
