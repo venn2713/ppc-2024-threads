@@ -43,7 +43,7 @@ TEST(Safronov_mult_m_fox, mult2) {
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  std::vector<double> expected_result = mul(in1, in2, n);
+  std::vector<double> expected_result = mulSafronov(in1, in2, n);
 
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
@@ -72,7 +72,7 @@ TEST(Safronov_mult_m_fox, mult3) {
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  std::vector<double> expected_result = mul(in1, in2, n);
+  std::vector<double> expected_result = mulSafronov(in1, in2, n);
 
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
@@ -101,7 +101,7 @@ TEST(Safronov_mult_m_fox, mult4) {
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  std::vector<double> expected_result = mul(in1, in2, n);
+  std::vector<double> expected_result = mulSafronov(in1, in2, n);
 
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {
@@ -130,7 +130,7 @@ TEST(Safronov_mult_m_fox, mult5) {
   safronovTaskSequential.run();
   safronovTaskSequential.post_processing();
 
-  std::vector<double> expected_result = mul(in1, in2, n);
+  std::vector<double> expected_result = mulSafronov(in1, in2, n);
 
   for (size_t i = 0; i < n; i++) {
     for (size_t j = 0; j < n; j++) {

@@ -81,7 +81,7 @@ void ModifidentityMatrix(double *m, int n, double k) {
   }
 }
 
-std::vector<double> mul1(const std::vector<double> &A, const std::vector<double> &B, int n) {
+std::vector<double> mulSafronov(const std::vector<double> &A, const std::vector<double> &B, int n) {
   if (n == 0) {
     return std::vector<double>();
   }
