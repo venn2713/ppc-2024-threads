@@ -15,7 +15,7 @@ namespace sobol {
 	class Sobel_stl : public ppc::core::Task {
 	public:
 		explicit Sobel_stl(std::shared_ptr<ppc::core::TaskData> taskData_, int w_, int h_)
-			: Task(std::move(taskData_)), width(w_), height(h_), num_threads(std::thread::hardware_concurrency()) {}
+			: Task(std::move(taskData_)), num_threads(std::thread::hardware_concurrency()) , width(w_), height(h_) {}
 		bool validation() override;
 		bool pre_processing() override;
 		bool run() override;
